@@ -128,6 +128,34 @@ public class BMBlocks {
     public static final BlockWithItemHolder<VeinMineChargeBlock, BlockItem> VEINMINE_CHARGE = BLOCK_REG.register("veinmine_charge", () -> new VeinMineChargeBlock(128, charge_properties));
     public static final BlockWithItemHolder<FungalChargeBlock, BlockItem> FUNGAL_CHARGE = BLOCK_REG.register("fungal_charge", () -> new FungalChargeBlock(128, charge_properties));
 
+    // Demon Dungeon system, ported from 1.20.1's structures/ package + associated blocks. Only the
+    // handful of blocks actually referenced by Java code (the generator's mechanical needs) are
+    // ported this round - the ~130-block decorative palette (numbered dungeon_brick1-3/tile/
+    // polished/pillars/stairs/slabs/walls/gates, plus the 4 Will-corrupted "corrosive/destructive/
+    // steadfast/vengeful" reskins of all of those) is a separate content task for a follow-up round.
+    // Until then, any of the copied NBT structure templates that reference those unregistered block
+    // ids will place as air (vanilla's structure loader silently substitutes air for unknown block
+    // ids) - the room-stitching/generation logic itself is unaffected, this is a visual/content gap
+    // only. dungeon_stone is the block StoneToOreProcessor swaps for dungeon_ore while placing a
+    // room's NBT, at a rate controlled by that room's oreDensity - it's the block actually used for
+    // "these walls sometimes have valuable ore" progression, so it (and the ore it becomes) are
+    // ported now rather than deferred with the rest of the decorative set.
+    private static final BlockBehaviour.Properties dungeon_properties = BlockBehaviour.Properties.of().strength(2.0F, 5.0F).sound(SoundType.STONE).requiresCorrectToolForDrops();
+    public static final BlockWithItemHolder<Block, BlockItem> DUNGEON_STONE = BLOCK_REG.register("dungeon_stone", dungeon_properties, new Item.Properties());
+    public static final BlockWithItemHolder<Block, BlockItem> DUNGEON_ORE = BLOCK_REG.register("dungeon_ore", BlockBehaviour.Properties.of().strength(3.0F, 3.0F).sound(SoundType.STONE).requiresCorrectToolForDrops(), new Item.Properties());
+    // Filler material used to cap doorways that never got a room placed against them, and to plug
+    // the gap between adjacent rooms - this is what most of a generated dungeon's walls are made of.
+    public static final BlockWithItemHolder<Block, BlockItem> DUNGEON_BRICK_ASSORTED = BLOCK_REG.register("dungeon_brick_assorted", BlockBehaviour.Properties.of().strength(20.0F, 50.0F).sound(SoundType.STONE).requiresCorrectToolForDrops(), new Item.Properties());
+    // Replaces a TileDungeonSeal that got permanently blocked (a room couldn't be placed and the
+    // door has nowhere left to go).
+    public static final BlockWithItemHolder<Block, BlockItem> DUNGEON_TILE_SPECIAL = BLOCK_REG.register("dungeon_tilespecial", dungeon_properties, new Item.Properties());
+
+    // Structural/internal only - never player-placed, so (matching the BLOOD_LIGHT precedent above)
+    // these have no BlockItem.
+    public static final DeferredHolder<Block, wayoftime.bloodmagic.common.block.BlockDungeonController> DUNGEON_CONTROLLER = BLOCKS.register("dungeon_controller", wayoftime.bloodmagic.common.block.BlockDungeonController::new);
+    public static final DeferredHolder<Block, wayoftime.bloodmagic.common.block.BlockDungeonSeal> DUNGEON_SEAL = BLOCKS.register("dungeon_seal", wayoftime.bloodmagic.common.block.BlockDungeonSeal::new);
+    public static final DeferredHolder<Block, wayoftime.bloodmagic.common.block.BlockSpecialDungeonSeal> SPECIAL_DUNGEON_SEAL = BLOCKS.register("special_dungeon_seal", wayoftime.bloodmagic.common.block.BlockSpecialDungeonSeal::new);
+
     private static void registerBlockCapability(RegisterCapabilitiesEvent event) {
         event.registerBlock(
                 BMCaps.RUNE_POWERS,

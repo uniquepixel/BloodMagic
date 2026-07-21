@@ -477,6 +477,21 @@ public class BMLanguageProvider extends LanguageProvider {
         add(BMBlocks.FUNGAL_CHARGE, "Fungal Charge");
         addTooltip("fungal_charge.desc", "Sticks to a huge mushroom and clears the whole connected growth a few seconds after being placed.");
 
+        // Demon Dungeon system
+        add(wayoftime.bloodmagic.common.item.BMItems.DUNGEON_SIMPLE_KEY.get(), "Simple Dungeon Key");
+        add(wayoftime.bloodmagic.common.item.BMItems.DUNGEON_MINE_ENTRANCE_KEY.get(), "Mine Entrance Key");
+        add(wayoftime.bloodmagic.common.item.BMItems.DUNGEON_MINE_KEY.get(), "Mine Key");
+        add(BMBlocks.DUNGEON_STONE, "Dungeon Stone");
+        add(BMBlocks.DUNGEON_ORE, "Dungeon Ore");
+        add(BMBlocks.DUNGEON_BRICK_ASSORTED, "Assorted Dungeon Brick");
+        add(BMBlocks.DUNGEON_TILE_SPECIAL, "Blocked Dungeon Seal");
+        add(BMBlocks.DUNGEON_CONTROLLER.get(), "Dungeon Controller");
+        add(BMBlocks.DUNGEON_SEAL.get(), "Dungeon Seal");
+        add(BMBlocks.SPECIAL_DUNGEON_SEAL.get(), "Special Dungeon Seal");
+        addTooltip("specialspawn", "A special room has spawned nearby!");
+        addTooltip("blockeddoor", "This door leads nowhere...");
+        addTooltip("incorrectKey", "This key doesn't fit this door.");
+
         //Modopedia Guidebook lang-keys (was Patchouli)
         addBook("name", "Sanguine Scientiem");
         addBook("landing_text", "Welcome to $(blood)Blood Magic$()! \n\n$(bmentry:utility/nyi)A lot of stuff$() isn't yet implemented, so please excuse our dust. \n\nClick $(bmentry:utility/getting_started)HERE$() to get started. If you find any bugs, please report them on our $(l:https://github.com/WayofTime/BloodMagic/issues)Github$().");

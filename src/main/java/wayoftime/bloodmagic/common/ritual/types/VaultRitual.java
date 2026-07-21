@@ -1,32 +1,59 @@
 package wayoftime.bloodmagic.common.ritual.types;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.entity.ChestBlockEntity;
+import net.minecraft.world.phys.AABB;
 import wayoftime.bloodmagic.api.ritual.EnumRuneType;
 import wayoftime.bloodmagic.api.ritual.IMasterRitualStone;
 import wayoftime.bloodmagic.api.ritual.Ritual;
 import wayoftime.bloodmagic.api.ritual.RitualComponent;
 import wayoftime.bloodmagic.common.block.BMBlocks;
-import wayoftime.bloodmagic.common.loot.BMLootTables;
+import wayoftime.bloodmagic.common.dimension.DungeonDimensionHelper;
+import wayoftime.bloodmagic.common.dimension.DungeonSpawnAllocator;
 import wayoftime.bloodmagic.common.ritual.RitualRegistry;
+import wayoftime.bloodmagic.structures.DungeonSynthesizer;
+import wayoftime.bloodmagic.structures.ModRoomPools;
+import wayoftime.bloodmagic.util.Constants;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 /**
- * Heavily simplified take on the 1.20.1 Demon Dungeon system: the original procedurally stitches
- * together dozens of hand-built NBT room templates (with their own full brick/slab/stair/wall
- * block sets per Will type) into a branching multi-room dungeon via a room-pool synthesizer. None
- * of that is ported. This carves out a single small fixed vault instead - one room, Bloodstone
- * Brick walls, one loot chest - built in one shot the first time the ritual runs (it's a no-op on
- * later pulses once the chest is already there). Porting the real generator is tracked separately.
+ * Real Demon Dungeon entry point, replacing the single-fixed-room stand-in this class used to be
+ * (see git history for that version's javadoc). The 1.20.1 original split this into two rituals -
+ * {@code RitualStandardDungeon} and {@code RitualSimpleDungeon} - that generate a dungeon in the
+ * dedicated void dungeon dimension (see {@code data/bloodmagic/dimension/dungeon.json}) via
+ * {@link DungeonSynthesizer#generateInitialRoom} and then link the two dimensions with a pair of
+ * physical, bidirectional {@code INVERSION_PILLAR} portal blocks a player walks through. This
+ * branch only has one dungeon-opening ritual slot to reuse (porting a second ritual type would mean
+ * touching {@code RitualRegistry}, which is out of scope for this pass) and doesn't port the
+ * Inversion Pillar portal subsystem (a whole separate block+tile pair with its own bidirectional-
+ * pairing NBT and command-based cross-dimension teleport) - so this instead:
+ * <ul>
+ * <li>generates a full {@code room_pools/entrances/standard_dungeon_entrances} dungeon (the
+ * "standard" tier, matching upstream's {@code RitualStandardDungeon}) in the dungeon dimension via
+ * the exact same {@link DungeonSynthesizer} every generated room afterwards also goes through;</li>
+ * <li>directly teleports every player within range of the altar to the generated entrance room's
+ * safe spawn point (grabbing "nearby players" rather than a specific one because {@link Ritual#performRitual}
+ * isn't given a player reference - upstream's own dead/commented-out code in
+ * {@code RitualStandardDungeon} shows this was the original pre-portal approach too, before the
+ * Inversion Pillar system was built);</li>
+ * <li>stashes each teleported player's return position in their persistent data under
+ * {@link Constants.NBT#DUNGEON_EXIT} (same NBT shape upstream used for this), and gives the
+ * dungeon's {@code TileDungeonController} block (which every generated dungeon has exactly one of,
+ * at its entrance room) a right-click handler that teleports back to it - see
+ * {@code BlockDungeonController}.</li>
+ * </ul>
+ * Once inside, the actual room-by-room exploration/expansion (players right-clicking
+ * {@code TileDungeonSeal} blocks with a dungeon-key item to push the generator further) is
+ * unchanged from upstream.
  */
 public class VaultRitual extends Ritual {
-    private static final int VERTICAL_OFFSET = 15;
-    private static final int WIDTH = 5;
-    private static final int DEPTH = 5;
-    private static final int HEIGHT = 4;
+    private static final double PLAYER_SEARCH_RADIUS = 8.0;
 
     public VaultRitual() {
         super(RitualRegistry.rl("vault"), 1, 200000, "ritual.bloodmagic.vault");
@@ -37,29 +64,42 @@ public class VaultRitual extends Ritual {
         Level level = masterRitualStone.getWorldObj();
         BlockPos pos = masterRitualStone.getMasterBlockPos();
 
-        BlockPos corner = pos.offset(-WIDTH / 2, -VERTICAL_OFFSET, -DEPTH / 2);
-        BlockPos chestPos = corner.offset(WIDTH / 2, 1, DEPTH / 2);
-
-        if (level.getBlockState(chestPos).is(Blocks.CHEST)) {
+        if (level.isClientSide || !(level instanceof ServerLevel serverLevel)) {
             return;
         }
 
-        for (int x = 0; x < WIDTH; x++) {
-            for (int y = 0; y < HEIGHT; y++) {
-                for (int z = 0; z < DEPTH; z++) {
-                    BlockPos target = corner.offset(x, y, z);
-                    boolean shell = x == 0 || x == WIDTH - 1 || y == 0 || y == HEIGHT - 1 || z == 0 || z == DEPTH - 1;
-                    level.setBlockAndUpdate(target, shell
-                            ? BMBlocks.BLOODSTONE_BRICK.block().get().defaultBlockState()
-                            : Blocks.AIR.defaultBlockState());
-                }
-            }
+        // One-shot guard: this ritual only opens one dungeon per altar. Subsequent pulses (it keeps
+        // ticking every getRefreshTime() while the ritual stays active) are a no-op once the marker
+        // is down, mirroring how the old stand-in checked "does the loot chest already exist".
+        BlockPos markerPos = pos.above();
+        if (level.getBlockState(markerPos).is(BMBlocks.DUNGEON_BRICK_ASSORTED.block().get())) {
+            return;
         }
 
-        level.setBlockAndUpdate(chestPos, Blocks.CHEST.defaultBlockState());
-        if (level.getBlockEntity(chestPos) instanceof ChestBlockEntity chest) {
-            chest.setLootTable(BMLootTables.DEMON_VAULT);
+        ServerLevel dungeonWorld = DungeonDimensionHelper.getDungeonWorld(level);
+        if (dungeonWorld == null) {
+            return;
         }
+
+        BlockPos dungeonSpawnLocation = DungeonSpawnAllocator.allocateSpawnPosition(dungeonWorld);
+        DungeonSynthesizer dungeon = new DungeonSynthesizer();
+        ResourceLocation initialType = ModRoomPools.STANDARD_DUNGEON_ENTRANCES;
+        BlockPos[] positions = dungeon.generateInitialRoom(initialType, level.random, dungeonWorld, dungeonSpawnLocation);
+        BlockPos safePlayerPosition = positions[0];
+
+        List<ServerPlayer> nearbyPlayers = serverLevel.getEntitiesOfClass(ServerPlayer.class, new AABB(pos).inflate(PLAYER_SEARCH_RADIUS));
+        for (ServerPlayer player : nearbyPlayers) {
+            CompoundTag exit = new CompoundTag();
+            exit.putInt("xCoord", player.getBlockX());
+            exit.putInt("yCoord", player.getBlockY());
+            exit.putInt("zCoord", player.getBlockZ());
+            exit.putString("dimension_key", player.level().dimension().location().toString());
+            player.getPersistentData().put(Constants.NBT.DUNGEON_EXIT, exit);
+
+            player.teleportTo(dungeonWorld, safePlayerPosition.getX() + 0.5, safePlayerPosition.getY(), safePlayerPosition.getZ() + 0.5, player.getYRot(), player.getXRot());
+        }
+
+        serverLevel.setBlockAndUpdate(markerPos, BMBlocks.DUNGEON_BRICK_ASSORTED.block().get().defaultBlockState());
     }
 
     @Override

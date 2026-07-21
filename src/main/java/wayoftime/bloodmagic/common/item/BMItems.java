@@ -240,6 +240,13 @@ public class BMItems {
     public static final DeferredHolder<Item, Item> AVERAGE_LENGTHENING_CATALYST = BASIC_ITEMS.register("averagelengtheningcatalyst", () -> new Item(new Item.Properties()));
     public static final DeferredHolder<Item, Item> AVERAGE_FILLING_AGENT = BASIC_ITEMS.register("standardfillingagent", () -> new Item(new Item.Properties()));
 
+    // Demon Dungeon key items, ported from 1.20.1's BloodMagicItems - each matches a door's
+    // potential room-pool ids by substring (see ItemDungeonKey) to pick which pool to pull the next
+    // room from.
+    public static final DeferredHolder<Item, wayoftime.bloodmagic.common.item.dungeon.ItemDungeonKey> DUNGEON_SIMPLE_KEY = BASIC_ITEMS.register("simplekey", () -> new wayoftime.bloodmagic.common.item.dungeon.ItemDungeonKey(new Item.Properties(), "tier1", "standard"));
+    public static final DeferredHolder<Item, wayoftime.bloodmagic.common.item.dungeon.ItemDungeonKey> DUNGEON_MINE_ENTRANCE_KEY = BASIC_ITEMS.register("mineentrancekey", () -> new wayoftime.bloodmagic.common.item.dungeon.ItemDungeonKey(new Item.Properties(), "mine_entrances"));
+    public static final DeferredHolder<Item, wayoftime.bloodmagic.common.item.dungeon.ItemDungeonKey> DUNGEON_MINE_KEY = BASIC_ITEMS.register("minekey", () -> new wayoftime.bloodmagic.common.item.dungeon.ItemDungeonKey(new Item.Properties(), "mines"));
+
     public static void register(IEventBus modBus) {
         BASIC_ITEMS.register(modBus);
         ITEMS.register(modBus);

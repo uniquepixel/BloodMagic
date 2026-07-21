@@ -33,6 +33,13 @@ public class MineBlock extends BlockLootSubProvider {
         addDropSelf(BMBlocks.DEMON_CRUCIBLE);
         addDropSelf(BMBlocks.DEMON_CRYSTALLIZER);
         addDropSelf(BMBlocks.DEMON_PYLON);
+
+        // Demon Dungeon system - DUNGEON_CONTROLLER/DUNGEON_SEAL/SPECIAL_DUNGEON_SEAL are
+        // structural/internal only (no BlockItem, see BMBlocks) so intentionally have no loot table.
+        addDropSelf(BMBlocks.DUNGEON_STONE);
+        addDropSelf(BMBlocks.DUNGEON_ORE);
+        addDropSelf(BMBlocks.DUNGEON_BRICK_ASSORTED);
+        addDropSelf(BMBlocks.DUNGEON_TILE_SPECIAL);
     }
 
     private void addDropSelf(BlockWithItemHolder<? extends Block, ? extends BlockItem> toAdd) {

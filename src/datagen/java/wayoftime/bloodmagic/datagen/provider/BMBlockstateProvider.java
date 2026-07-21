@@ -57,6 +57,23 @@ public class BMBlockstateProvider extends BlockStateProvider {
         chargeBlock(BMBlocks.VEINMINE_CHARGE.block().get(), "veinmine_charge");
         chargeBlock(BMBlocks.FUNGAL_CHARGE.block().get(), "fungal_charge");
 
+        // Demon Dungeon system - no dedicated textures ported yet (see BMBlocks for why only this
+        // handful of dungeon blocks is registered this round), so these reuse the same placeholder
+        // cube texture as the other textureless machine blocks above.
+        simpleBlockWithItem(BMBlocks.DUNGEON_STONE.block().get(), models().cubeAll("dungeon_stone", bm("block/hellforged_block")));
+        simpleBlockWithItem(BMBlocks.DUNGEON_ORE.block().get(), models().cubeAll("dungeon_ore", bm("block/hellforged_block")));
+        simpleBlockWithItem(BMBlocks.DUNGEON_BRICK_ASSORTED.block().get(), models().cubeAll("dungeon_brick_assorted", bm("block/hellforged_block")));
+        simpleBlockWithItem(BMBlocks.DUNGEON_TILE_SPECIAL.block().get(), models().cubeAll("dungeon_tilespecial", bm("block/hellforged_block")));
+        simpleBlock(BMBlocks.DUNGEON_CONTROLLER.get(), models().cubeAll("dungeon_controller", bm("block/hellforged_block")));
+        simpleBlock(BMBlocks.DUNGEON_SEAL.get(), models().cubeAll("dungeon_seal", bm("block/hellforged_block")));
+        // SPECIAL_DUNGEON_SEAL has a SEAL enum property (standard/mine_entrance/mine_key) but no
+        // per-variant art yet, so every value points at the same placeholder model.
+        ModelFile specialSealModel = models().cubeAll("special_dungeon_seal", bm("block/hellforged_block"));
+        VariantBlockStateBuilder specialSealBuilder = getVariantBuilder(BMBlocks.SPECIAL_DUNGEON_SEAL.get());
+        for (wayoftime.bloodmagic.common.block.type.SpecialSealType type : wayoftime.bloodmagic.common.block.type.SpecialSealType.values()) {
+            specialSealBuilder.partialState().with(wayoftime.bloodmagic.common.block.BlockSpecialDungeonSeal.SEAL, type).modelForState().modelFile(specialSealModel).addModel();
+        }
+
         VariantBlockStateBuilder builder = getVariantBuilder(BMBlocks.ARC_BLOCK.block().get());
         String bottom = "block/arc_bottom";
         String lit = "_lit";

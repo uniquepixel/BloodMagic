@@ -8,6 +8,7 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.NeoForge;
 import org.apache.commons.lang3.tuple.Pair;
@@ -80,6 +81,15 @@ public class BloodMagic {
         HarvestHandlerRegistry.bootstrap();
         IncenseTranquilityRegistry.bootstrap();
 
+        // Demon Dungeon system: registers every room/room-pool id and loads its JSON off the mod's
+        // own classpath (see DungeonRoomLoader) - safe to do here since, like the bootstrap() calls
+        // above, none of this touches a DeferredHolder#get() yet. ModRoomPools#registerSpecialRooms
+        // DOES need block state lookups though, so it's deferred to FMLCommonSetupEvent below,
+        // after registries have actually been populated.
+        wayoftime.bloodmagic.structures.ModDungeons.init();
+        wayoftime.bloodmagic.structures.ModRoomPools.init();
+        modBus.addListener(BloodMagic::commonSetup);
+
         container.registerConfig(ModConfig.Type.SERVER, SERVER_CONFIG_SPEC);
 
         NeoForge.EVENT_BUS.addListener(BMCommands::register);
@@ -113,5 +123,9 @@ public class BloodMagic {
 
     public static ResourceLocation rl(String path) {
         return ResourceLocation.fromNamespaceAndPath(MODID, path);
+    }
+
+    private static void commonSetup(FMLCommonSetupEvent event) {
+        event.enqueueWork(wayoftime.bloodmagic.structures.ModRoomPools::registerSpecialRooms);
     }
 }
