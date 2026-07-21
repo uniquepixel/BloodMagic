@@ -17,6 +17,13 @@ public class BMEntities {
                     .updateInterval(10)
                     .build(BloodMagic.rl("throwing_dagger").toString()));
 
+    public static final DeferredHolder<EntityType<?>, EntityType<ThrowingDaggerSyringeEntity>> THROWING_DAGGER_SYRINGE = ENTITY_TYPES.register("throwing_dagger_syringe",
+            () -> EntityType.Builder.<ThrowingDaggerSyringeEntity>of(ThrowingDaggerSyringeEntity::new, MobCategory.MISC)
+                    .sized(0.35F, 0.35F)
+                    .clientTrackingRange(4)
+                    .updateInterval(10)
+                    .build(BloodMagic.rl("throwing_dagger_syringe").toString()));
+
     public static final DeferredHolder<EntityType<?>, EntityType<EntityMeteor>> METEOR = ENTITY_TYPES.register("meteor",
             () -> EntityType.Builder.<EntityMeteor>of(EntityMeteor::new, MobCategory.MISC)
                     .sized(1F, 1F)

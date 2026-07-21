@@ -38,6 +38,10 @@ public class BMBlockstateProvider extends BlockStateProvider {
         simpleBlockWithItem(BMBlocks.INPUT_ROUTING_NODE.block().get(), models().cubeAll("input_routing_node", bm("block/hellforged_block")));
         simpleBlockWithItem(BMBlocks.OUTPUT_ROUTING_NODE.block().get(), models().cubeAll("output_routing_node", bm("block/hellforged_block")));
 
+        // Living Station: new to this branch, no 1.20.1 art to port - see BMBlocks for why this
+        // reuses the same placeholder cube texture as the other textureless machine blocks above.
+        simpleBlockWithItem(BMBlocks.LIVING_STATION.block().get(), models().cubeAll("living_station", bm("block/hellforged_block")));
+
         // Demonic Will collection chain - no dedicated textures/models ported yet (1.20.1 used
         // custom .obj models for all three), so these reuse placeholder cube textures the same way
         // the routing nodes above do.

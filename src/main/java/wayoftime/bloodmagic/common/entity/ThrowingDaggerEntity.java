@@ -43,6 +43,14 @@ public class ThrowingDaggerEntity extends ThrowableItemProjectile {
         super(BMEntities.THROWING_DAGGER.get(), x, y, z, level);
     }
 
+    /**
+     * For subclasses (e.g. {@link ThrowingDaggerSyringeEntity}) that need their own {@link EntityType}
+     * instead of the hardcoded {@code BMEntities.THROWING_DAGGER} used by the public constructor above.
+     */
+    protected ThrowingDaggerEntity(EntityType<? extends ThrowingDaggerEntity> type, Level level, LivingEntity thrower) {
+        super(type, thrower, level);
+    }
+
     public void setDamage(double damage) {
         this.damage = damage;
     }

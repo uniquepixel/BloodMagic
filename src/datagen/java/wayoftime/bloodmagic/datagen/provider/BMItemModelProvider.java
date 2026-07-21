@@ -2,6 +2,7 @@ package wayoftime.bloodmagic.datagen.provider;
 
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
@@ -13,27 +14,80 @@ import wayoftime.bloodmagic.api.sigil.SigilEffect;
 import wayoftime.bloodmagic.common.datacomponent.EnumWillType;
 import wayoftime.bloodmagic.common.item.BMItems;
 
+import java.util.Set;
 import java.util.function.Supplier;
 
 public class BMItemModelProvider extends ItemModelProvider {
+    // See registerModels()'s comment on the L/XL anointment tiers for why these are excluded from
+    // the generic BASIC_ITEMS loop and textured explicitly instead.
+    private static final Set<Item> ANOINTMENT_TIER_ITEMS = Set.of(
+            BMItems.ANOINTMENT_MELEE_DAMAGE_L.get(), BMItems.ANOINTMENT_MELEE_DAMAGE_XL.get(),
+            BMItems.ANOINTMENT_LOOTING_L.get(), BMItems.ANOINTMENT_LOOTING_XL.get(),
+            BMItems.ANOINTMENT_BOW_POWER_L.get(), BMItems.ANOINTMENT_BOW_POWER_XL.get(),
+            BMItems.ANOINTMENT_BOW_VELOCITY_L.get(), BMItems.ANOINTMENT_BOW_VELOCITY_XL.get(),
+            BMItems.ANOINTMENT_HIDDEN_KNOWLEDGE_L.get(), BMItems.ANOINTMENT_HIDDEN_KNOWLEDGE_XL.get(),
+            BMItems.ANOINTMENT_HOLY_WATER_L.get(), BMItems.ANOINTMENT_HOLY_WATER_XL.get(),
+            BMItems.ANOINTMENT_QUICK_DRAW_L.get(), BMItems.ANOINTMENT_QUICK_DRAW_XL.get(),
+            BMItems.ANOINTMENT_SILK_TOUCH_L.get(), BMItems.ANOINTMENT_SILK_TOUCH_XL.get(),
+            BMItems.ANOINTMENT_FORTUNE_L.get(), BMItems.ANOINTMENT_FORTUNE_XL.get(),
+            BMItems.ANOINTMENT_SMELTING_L.get(), BMItems.ANOINTMENT_SMELTING_XL.get(),
+            BMItems.ANOINTMENT_VOIDING_L.get(), BMItems.ANOINTMENT_VOIDING_XL.get(),
+            BMItems.ANOINTMENT_WEAPON_REPAIR_L.get(), BMItems.ANOINTMENT_WEAPON_REPAIR_XL.get());
+
     public BMItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
         super(output, BloodMagic.MODID, existingFileHelper);
+    }
+
+    private void reuseTexture(Item item, String texturePath) {
+        String path = net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(item).getPath();
+        getBuilder(path)
+                .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                .texture("layer0", modLoc("item/" + texturePath));
     }
 
     @Override
     protected void registerModels() {
         // reagent_binding has no dedicated texture yet, so it's excluded from the generic loop and
-        // instead reuses reagent_holding's texture as a placeholder below.
+        // instead reuses reagent_holding's texture as a placeholder below. The L/XL anointment tiers
+        // are excluded the same way - 1.20.1 told them apart with composited vial/ribbon overlays
+        // this branch never ported (see BMItems for why), so each tier reuses its own family's
+        // tier-1 icon instead of going textureless.
         BMItems.BASIC_ITEMS.getEntries().stream().map(Supplier::get)
                 .filter(item -> item != BMItems.REAGENT_BINDING.get())
+                .filter(item -> !ANOINTMENT_TIER_ITEMS.contains(item))
                 .forEach(this::basicItem);
         getBuilder(BMItems.REAGENT_BINDING.getId().getPath())
                 .parent(new ModelFile.UncheckedModelFile("item/generated"))
                 .texture("layer0", modLoc("item/reagent_holding"));
+        reuseTexture(BMItems.ANOINTMENT_MELEE_DAMAGE_L.get(), "anointment_melee_damage");
+        reuseTexture(BMItems.ANOINTMENT_MELEE_DAMAGE_XL.get(), "anointment_melee_damage");
+        reuseTexture(BMItems.ANOINTMENT_LOOTING_L.get(), "anointment_looting");
+        reuseTexture(BMItems.ANOINTMENT_LOOTING_XL.get(), "anointment_looting");
+        reuseTexture(BMItems.ANOINTMENT_BOW_POWER_L.get(), "anointment_bow_power");
+        reuseTexture(BMItems.ANOINTMENT_BOW_POWER_XL.get(), "anointment_bow_power");
+        reuseTexture(BMItems.ANOINTMENT_BOW_VELOCITY_L.get(), "anointment_bow_velocity");
+        reuseTexture(BMItems.ANOINTMENT_BOW_VELOCITY_XL.get(), "anointment_bow_velocity");
+        reuseTexture(BMItems.ANOINTMENT_HIDDEN_KNOWLEDGE_L.get(), "anointment_hidden_knowledge");
+        reuseTexture(BMItems.ANOINTMENT_HIDDEN_KNOWLEDGE_XL.get(), "anointment_hidden_knowledge");
+        reuseTexture(BMItems.ANOINTMENT_HOLY_WATER_L.get(), "anointment_holy_water");
+        reuseTexture(BMItems.ANOINTMENT_HOLY_WATER_XL.get(), "anointment_holy_water");
+        reuseTexture(BMItems.ANOINTMENT_QUICK_DRAW_L.get(), "anointment_quick_draw");
+        reuseTexture(BMItems.ANOINTMENT_QUICK_DRAW_XL.get(), "anointment_quick_draw");
+        reuseTexture(BMItems.ANOINTMENT_SILK_TOUCH_L.get(), "anointment_silk_touch");
+        reuseTexture(BMItems.ANOINTMENT_SILK_TOUCH_XL.get(), "anointment_silk_touch");
+        reuseTexture(BMItems.ANOINTMENT_FORTUNE_L.get(), "anointment_fortune");
+        reuseTexture(BMItems.ANOINTMENT_FORTUNE_XL.get(), "anointment_fortune");
+        reuseTexture(BMItems.ANOINTMENT_SMELTING_L.get(), "anointment_smelting");
+        reuseTexture(BMItems.ANOINTMENT_SMELTING_XL.get(), "anointment_smelting");
+        reuseTexture(BMItems.ANOINTMENT_VOIDING_L.get(), "anointment_voiding");
+        reuseTexture(BMItems.ANOINTMENT_VOIDING_XL.get(), "anointment_voiding");
+        reuseTexture(BMItems.ANOINTMENT_WEAPON_REPAIR_L.get(), "anointment_weapon_repair");
+        reuseTexture(BMItems.ANOINTMENT_WEAPON_REPAIR_XL.get(), "anointment_weapon_repair");
         basicItem(BMItems.LIVING_PLATE.get());
         basicItem(BMItems.UPGRADE_TOME.get());
         basicItem(BMItems.SIGIL_HOLDING.get());
         basicItem(BMItems.THROWING_DAGGER.get());
+        basicItem(BMItems.THROWING_DAGGER_SYRINGE.get());
         basicItem(BMItems.SOUL_SNARE.get());
         // The Sentient Armour Gem needs a second, orthogonal dimension (activated/deactivated) on
         // top of the plain per-Will-type variant every other WILL_ITEMS entry gets, so it's built

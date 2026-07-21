@@ -262,6 +262,17 @@ public class BloodAltarTile extends BaseTile implements IFluidHandler {
         setChanged();
     }
 
+    /**
+     * Full-fidelity port of 1.20.1's {@code IBloodAltar#fillMainTank(int)}: adds raw LP straight into
+     * the main tank with no sacrifice/self-sacrifice multiplier applied, capped at capacity. Used by
+     * {@link wayoftime.bloodmagic.common.item.SlateAmpouleItem} (1.20.1's {@code ItemBloodProvider}),
+     * which unlike the Sacrificial Dagger isn't part of the sacrifice economy at all.
+     */
+    public void fillMainTank(int lpAdded) {
+        mainTank = mainTank + Math.min((getMainCapacity() - mainTank), lpAdded);
+        setChanged();
+    }
+
     public void checkAction() {
         if (!isActive) {
             progress = 0;

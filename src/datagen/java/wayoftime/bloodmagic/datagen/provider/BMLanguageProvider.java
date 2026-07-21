@@ -48,6 +48,9 @@ public class BMLanguageProvider extends LanguageProvider {
         add(BMItems.SACRIFICIAL_DAGGER.get(), "Sacrificial Dagger");
         add(BMItems.THROWING_DAGGER.get(), "Throwing Dagger");
         add("tooltip.bloodmagic.throwing_dagger.desc", "Throw for quick, if unremarkable, damage.");
+        add(BMItems.THROWING_DAGGER_SYRINGE.get(), "Syringe Throwing Dagger");
+        add(BMItems.SLATE_AMPOULE.get(), "Slate Ampoule");
+        add("tooltip.bloodmagic.blood_provider.slate.desc", "A simple ampoule containing 500LP.");
         add(BMItems.SOUL_SNARE.get(), "Soul Snare");
         addTooltip("soul_snare.desc", "Throw at a monster and then kill them to obtain their demonic will.");
 
@@ -270,6 +273,33 @@ public class BMLanguageProvider extends LanguageProvider {
 
         add(BMItems.ANOINTMENT_WILL_POWER.get(), "Anointment of Will Power");
         addTooltip("anointment_will_power.desc", "Coats a weapon so its hits siphon a little Demon Will into your inventory, for a limited number of hits.");
+
+        // Larger-capacity tiers of the anointments above (ported from 1.20.1's "_L"/"_XL" container
+        // sizes - see BMItems for why Will Power has no tiers, matching 1.20.1).
+        add(BMItems.ANOINTMENT_MELEE_DAMAGE_L.get(), "Anointment of Melee Damage L");
+        add(BMItems.ANOINTMENT_MELEE_DAMAGE_XL.get(), "Anointment of Melee Damage XL");
+        add(BMItems.ANOINTMENT_LOOTING_L.get(), "Anointment of Looting L");
+        add(BMItems.ANOINTMENT_LOOTING_XL.get(), "Anointment of Looting XL");
+        add(BMItems.ANOINTMENT_BOW_POWER_L.get(), "Anointment of Bow Power L");
+        add(BMItems.ANOINTMENT_BOW_POWER_XL.get(), "Anointment of Bow Power XL");
+        add(BMItems.ANOINTMENT_BOW_VELOCITY_L.get(), "Anointment of Bow Velocity L");
+        add(BMItems.ANOINTMENT_BOW_VELOCITY_XL.get(), "Anointment of Bow Velocity XL");
+        add(BMItems.ANOINTMENT_HIDDEN_KNOWLEDGE_L.get(), "Anointment of Hidden Knowledge L");
+        add(BMItems.ANOINTMENT_HIDDEN_KNOWLEDGE_XL.get(), "Anointment of Hidden Knowledge XL");
+        add(BMItems.ANOINTMENT_HOLY_WATER_L.get(), "Anointment of Holy Water L");
+        add(BMItems.ANOINTMENT_HOLY_WATER_XL.get(), "Anointment of Holy Water XL");
+        add(BMItems.ANOINTMENT_QUICK_DRAW_L.get(), "Anointment of Quick Draw L");
+        add(BMItems.ANOINTMENT_QUICK_DRAW_XL.get(), "Anointment of Quick Draw XL");
+        add(BMItems.ANOINTMENT_SILK_TOUCH_L.get(), "Anointment of Silk Touch L");
+        add(BMItems.ANOINTMENT_SILK_TOUCH_XL.get(), "Anointment of Silk Touch XL");
+        add(BMItems.ANOINTMENT_FORTUNE_L.get(), "Anointment of Fortune L");
+        add(BMItems.ANOINTMENT_FORTUNE_XL.get(), "Anointment of Fortune XL");
+        add(BMItems.ANOINTMENT_SMELTING_L.get(), "Anointment of Smelting L");
+        add(BMItems.ANOINTMENT_SMELTING_XL.get(), "Anointment of Smelting XL");
+        add(BMItems.ANOINTMENT_VOIDING_L.get(), "Anointment of Voiding L");
+        add(BMItems.ANOINTMENT_VOIDING_XL.get(), "Anointment of Voiding XL");
+        add(BMItems.ANOINTMENT_WEAPON_REPAIR_L.get(), "Anointment of Weapon Repair L");
+        add(BMItems.ANOINTMENT_WEAPON_REPAIR_XL.get(), "Anointment of Weapon Repair XL");
 
         add(BMBlocks.INCENSE_ALTAR, "Incense Altar");
 

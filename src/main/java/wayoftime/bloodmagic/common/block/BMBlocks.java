@@ -41,7 +41,12 @@ public class BMBlocks {
     public static final BlockWithItemHolder<ARCBlock, BlockItem> ARC_BLOCK = BLOCK_REG.register("arc", ARCBlock::new);
     public static final BlockWithItemHolder<AlchemyTableBlock, BlockItem> ALCHEMY_TABLE = BLOCK_REG.register("alchemy_table", AlchemyTableBlock::new);
 
-    // TODO add model/textures for this and change registry to BASIC_REG
+    // Living Station has no 1.20.1 equivalent to port art from (it's new to this branch, built for
+    // this branch's from-scratch Living Armour upgrade/training system - see LivingStationTile), so
+    // there's no upstream texture to copy. It stays on BLOCK_REG (not BASIC_REG) and reuses the
+    // "hellforged_block" placeholder cube texture in BMBlockstateProvider, the same convention
+    // already used for the other mechanically-complete-but-textureless machine blocks (ITEM_ROUTER,
+    // DEMON_CRUCIBLE, the routing nodes, etc.) - see BMBlockstateProvider#registerStatesAndModels.
     public static final BlockWithItemHolder<LivingStationBlock, BlockItem> LIVING_STATION = BLOCK_REG.register("living_station", LivingStationBlock::new);
 
     public static final BlockWithItemHolder<ImperfectRitualBlock, BlockItem> IMPERFECT_RITUAL_BLOCK = BASIC_REG.register("ritual_stone_imperfect", ImperfectRitualBlock::new);

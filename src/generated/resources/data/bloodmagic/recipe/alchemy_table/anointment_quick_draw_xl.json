@@ -1,0 +1,27 @@
+{
+  "type": "bloodmagic:alchemy_table",
+  "duration": 100,
+  "essence": 2000,
+  "inputs": [
+    {
+      "item": "bloodmagic:anointment_quick_draw_l"
+    },
+    {
+      "item": "bloodmagic:slate_ethereal"
+    },
+    {
+      "tag": "c:crops/nether_wart"
+    },
+    {
+      "tag": "c:string"
+    },
+    {
+      "item": "minecraft:spectral_arrow"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "bloodmagic:anointment_quick_draw_xl"
+  },
+  "tier": 4
+}

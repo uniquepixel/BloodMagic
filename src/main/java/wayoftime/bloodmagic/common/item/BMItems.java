@@ -52,7 +52,9 @@ public class BMItems {
     public static final DeferredHolder<Item, Item> SLATE_IMBUED = BASIC_ITEMS.register("slate_imbued", () -> new Item(new Item.Properties()));
     public static final DeferredHolder<Item, Item> SLATE_DEMONIC = BASIC_ITEMS.register("slate_demonic", () -> new Item(new Item.Properties()));
     public static final DeferredHolder<Item, Item> SLATE_ETHEREAL = BASIC_ITEMS.register("slate_ethereal", () -> new Item(new Item.Properties()));
-    // TODO I dont think there ever was a T6 slate? if there was we should add it here as well
+    // Confirmed against upstream/1.20.1's BloodMagicItems.java: SLATE/REINFORCED_SLATE/IMBUED_SLATE/
+    // DEMONIC_SLATE/ETHEREAL_SLATE are the full list there too - there was never a 6th (Tier 6) slate
+    // on 1.20.1, so nothing is missing here.
 
     // Ore fragments (ARC ore-processing chain: raw material/ore -> fragment -> dust/nugget) and
     // Hellforged Parts (dropped by reverting a tier-2 rune back to its tier-1 form in the ARC),
@@ -115,7 +117,13 @@ public class BMItems {
 
     public static final DeferredHolder<Item, SacrificialDaggerItem> SACRIFICIAL_DAGGER = ITEMS.register("sacrificial_dagger", SacrificialDaggerItem::new);
     public static final DeferredHolder<Item, ThrowingDaggerItem> THROWING_DAGGER = ITEMS.register("throwing_dagger", ThrowingDaggerItem::new);
+    // Syringe variant: faster/weaker dagger that harvests Slate Ampoules from a killing blow - see
+    // ThrowingDaggerSyringeItem/ThrowingDaggerSyringeEntity.
+    public static final DeferredHolder<Item, ThrowingDaggerSyringeItem> THROWING_DAGGER_SYRINGE = ITEMS.register("throwing_dagger_syringe", ThrowingDaggerSyringeItem::new);
     public static final DeferredHolder<Item, SoulSnareItem> SOUL_SNARE = ITEMS.register("soul_snare", SoulSnareItem::new);
+    // Harvested by the Syringe Throwing Dagger; right-click near a Blood Altar to pour 500 LP into
+    // it, ported from 1.20.1's ItemBloodProvider("slate", 500).
+    public static final DeferredHolder<Item, SlateAmpouleItem> SLATE_AMPOULE = BASIC_ITEMS.register("slate_ampoule", SlateAmpouleItem::new);
 
     public static final DeferredHolder<Item, RawSoulItem> RAW_WILL = WILL_ITEMS.register("raw_will", RawSoulItem::new);
 
@@ -171,6 +179,39 @@ public class BMItems {
     public static final DeferredHolder<Item, AnointmentItem> ANOINTMENT_VOIDING = BASIC_ITEMS.register("anointment_voiding", () -> new AnointmentItem(BMDataComponents.ANOINTMENT_VOIDING_USES.get(), 20));
     public static final DeferredHolder<Item, AnointmentItem> ANOINTMENT_WEAPON_REPAIR = BASIC_ITEMS.register("anointment_weapon_repair", () -> new AnointmentItem(BMDataComponents.ANOINTMENT_WEAPON_REPAIR_USES.get(), 20));
     public static final DeferredHolder<Item, AnointmentItem> ANOINTMENT_WILL_POWER = BASIC_ITEMS.register("anointment_will_power", () -> new AnointmentItem(BMDataComponents.ANOINTMENT_WILL_POWER_USES.get(), 20));
+
+    // 1.20.1 sold anointments in three container sizes (base/"_L"/"_XL", 256/1024/4096 max-applications
+    // in the original) for every family except Will Power (which never got size variants there
+    // either); this branch's simplified AnointmentItem only has a single "uses" number (no separate
+    // potency axis - see AnointmentItem's class javadoc), so L/XL are ported as the same 1:4:16 uses
+    // ratio applied to each family's base 20-use count, reusing AnointmentItem as-is. 1.20.1's
+    // potency-tier variants (_2/_3, same use-count but a stronger per-hit effect, plus the one-off
+    // BOW_POWER_ANOINTMENT_STRONG) aren't ported: this branch's AnointmentItem has no potency
+    // parameter at all, so that would need a new mechanic, not just "a different use-count argument".
+    public static final DeferredHolder<Item, AnointmentItem> ANOINTMENT_MELEE_DAMAGE_L = BASIC_ITEMS.register("anointment_melee_damage_l", () -> new AnointmentItem(BMDataComponents.ANOINTMENT_MELEE_USES.get(), 80));
+    public static final DeferredHolder<Item, AnointmentItem> ANOINTMENT_MELEE_DAMAGE_XL = BASIC_ITEMS.register("anointment_melee_damage_xl", () -> new AnointmentItem(BMDataComponents.ANOINTMENT_MELEE_USES.get(), 320));
+    public static final DeferredHolder<Item, AnointmentItem> ANOINTMENT_LOOTING_L = BASIC_ITEMS.register("anointment_looting_l", () -> new AnointmentItem(BMDataComponents.ANOINTMENT_LOOTING_USES.get(), 80));
+    public static final DeferredHolder<Item, AnointmentItem> ANOINTMENT_LOOTING_XL = BASIC_ITEMS.register("anointment_looting_xl", () -> new AnointmentItem(BMDataComponents.ANOINTMENT_LOOTING_USES.get(), 320));
+    public static final DeferredHolder<Item, AnointmentItem> ANOINTMENT_BOW_POWER_L = BASIC_ITEMS.register("anointment_bow_power_l", () -> new AnointmentItem(BMDataComponents.ANOINTMENT_BOW_POWER_USES.get(), 80));
+    public static final DeferredHolder<Item, AnointmentItem> ANOINTMENT_BOW_POWER_XL = BASIC_ITEMS.register("anointment_bow_power_xl", () -> new AnointmentItem(BMDataComponents.ANOINTMENT_BOW_POWER_USES.get(), 320));
+    public static final DeferredHolder<Item, AnointmentItem> ANOINTMENT_BOW_VELOCITY_L = BASIC_ITEMS.register("anointment_bow_velocity_l", () -> new AnointmentItem(BMDataComponents.ANOINTMENT_BOW_VELOCITY_USES.get(), 80));
+    public static final DeferredHolder<Item, AnointmentItem> ANOINTMENT_BOW_VELOCITY_XL = BASIC_ITEMS.register("anointment_bow_velocity_xl", () -> new AnointmentItem(BMDataComponents.ANOINTMENT_BOW_VELOCITY_USES.get(), 320));
+    public static final DeferredHolder<Item, AnointmentItem> ANOINTMENT_HIDDEN_KNOWLEDGE_L = BASIC_ITEMS.register("anointment_hidden_knowledge_l", () -> new AnointmentItem(BMDataComponents.ANOINTMENT_HIDDEN_KNOWLEDGE_USES.get(), 80));
+    public static final DeferredHolder<Item, AnointmentItem> ANOINTMENT_HIDDEN_KNOWLEDGE_XL = BASIC_ITEMS.register("anointment_hidden_knowledge_xl", () -> new AnointmentItem(BMDataComponents.ANOINTMENT_HIDDEN_KNOWLEDGE_USES.get(), 320));
+    public static final DeferredHolder<Item, AnointmentItem> ANOINTMENT_HOLY_WATER_L = BASIC_ITEMS.register("anointment_holy_water_l", () -> new AnointmentItem(BMDataComponents.ANOINTMENT_HOLY_WATER_USES.get(), 80));
+    public static final DeferredHolder<Item, AnointmentItem> ANOINTMENT_HOLY_WATER_XL = BASIC_ITEMS.register("anointment_holy_water_xl", () -> new AnointmentItem(BMDataComponents.ANOINTMENT_HOLY_WATER_USES.get(), 320));
+    public static final DeferredHolder<Item, AnointmentItem> ANOINTMENT_QUICK_DRAW_L = BASIC_ITEMS.register("anointment_quick_draw_l", () -> new AnointmentItem(BMDataComponents.ANOINTMENT_QUICK_DRAW_USES.get(), 80));
+    public static final DeferredHolder<Item, AnointmentItem> ANOINTMENT_QUICK_DRAW_XL = BASIC_ITEMS.register("anointment_quick_draw_xl", () -> new AnointmentItem(BMDataComponents.ANOINTMENT_QUICK_DRAW_USES.get(), 320));
+    public static final DeferredHolder<Item, AnointmentItem> ANOINTMENT_SILK_TOUCH_L = BASIC_ITEMS.register("anointment_silk_touch_l", () -> new AnointmentItem(BMDataComponents.ANOINTMENT_SILK_TOUCH_USES.get(), 80));
+    public static final DeferredHolder<Item, AnointmentItem> ANOINTMENT_SILK_TOUCH_XL = BASIC_ITEMS.register("anointment_silk_touch_xl", () -> new AnointmentItem(BMDataComponents.ANOINTMENT_SILK_TOUCH_USES.get(), 320));
+    public static final DeferredHolder<Item, AnointmentItem> ANOINTMENT_FORTUNE_L = BASIC_ITEMS.register("anointment_fortune_l", () -> new AnointmentItem(BMDataComponents.ANOINTMENT_FORTUNE_USES.get(), 80));
+    public static final DeferredHolder<Item, AnointmentItem> ANOINTMENT_FORTUNE_XL = BASIC_ITEMS.register("anointment_fortune_xl", () -> new AnointmentItem(BMDataComponents.ANOINTMENT_FORTUNE_USES.get(), 320));
+    public static final DeferredHolder<Item, AnointmentItem> ANOINTMENT_SMELTING_L = BASIC_ITEMS.register("anointment_smelting_l", () -> new AnointmentItem(BMDataComponents.ANOINTMENT_SMELTING_USES.get(), 80));
+    public static final DeferredHolder<Item, AnointmentItem> ANOINTMENT_SMELTING_XL = BASIC_ITEMS.register("anointment_smelting_xl", () -> new AnointmentItem(BMDataComponents.ANOINTMENT_SMELTING_USES.get(), 320));
+    public static final DeferredHolder<Item, AnointmentItem> ANOINTMENT_VOIDING_L = BASIC_ITEMS.register("anointment_voiding_l", () -> new AnointmentItem(BMDataComponents.ANOINTMENT_VOIDING_USES.get(), 80));
+    public static final DeferredHolder<Item, AnointmentItem> ANOINTMENT_VOIDING_XL = BASIC_ITEMS.register("anointment_voiding_xl", () -> new AnointmentItem(BMDataComponents.ANOINTMENT_VOIDING_USES.get(), 320));
+    public static final DeferredHolder<Item, AnointmentItem> ANOINTMENT_WEAPON_REPAIR_L = BASIC_ITEMS.register("anointment_weapon_repair_l", () -> new AnointmentItem(BMDataComponents.ANOINTMENT_WEAPON_REPAIR_USES.get(), 80));
+    public static final DeferredHolder<Item, AnointmentItem> ANOINTMENT_WEAPON_REPAIR_XL = BASIC_ITEMS.register("anointment_weapon_repair_xl", () -> new AnointmentItem(BMDataComponents.ANOINTMENT_WEAPON_REPAIR_USES.get(), 320));
 
     public static final DeferredHolder<Item, ItemActivationCrystal> ACTIVATION_CRYSTAL_WEAK = BASIC_ITEMS.register("activation_crystal_weak", () -> new ItemActivationCrystal(ItemActivationCrystal.CrystalType.WEAK));
     public static final DeferredHolder<Item, ItemActivationCrystal> ACTIVATION_CRYSTAL_AWAKENED = BASIC_ITEMS.register("activation_crystal_awakened", () -> new ItemActivationCrystal(ItemActivationCrystal.CrystalType.AWAKENED));

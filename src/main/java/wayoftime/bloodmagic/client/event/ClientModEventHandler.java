@@ -104,6 +104,7 @@ public class ClientModEventHandler {
     @SubscribeEvent
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(BMEntities.THROWING_DAGGER.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(BMEntities.THROWING_DAGGER_SYRINGE.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(BMEntities.METEOR.get(), EntityMeteorRenderer::new);
         event.registerEntityRenderer(BMEntities.SOUL_SNARE.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(BMEntities.POTION_FLASK.get(), ThrownItemRenderer::new);

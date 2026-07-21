@@ -1,0 +1,27 @@
+{
+  "type": "bloodmagic:alchemy_table",
+  "duration": 100,
+  "essence": 2000,
+  "inputs": [
+    {
+      "item": "bloodmagic:anointment_hidden_knowledge_l"
+    },
+    {
+      "item": "bloodmagic:slate_ethereal"
+    },
+    {
+      "tag": "c:crops/nether_wart"
+    },
+    {
+      "item": "minecraft:glass_bottle"
+    },
+    {
+      "item": "minecraft:enchanted_book"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "bloodmagic:anointment_hidden_knowledge_xl"
+  },
+  "tier": 4
+}

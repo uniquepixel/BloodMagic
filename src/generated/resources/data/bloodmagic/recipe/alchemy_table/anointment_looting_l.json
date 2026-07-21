@@ -1,0 +1,27 @@
+{
+  "type": "bloodmagic:alchemy_table",
+  "duration": 100,
+  "essence": 1000,
+  "inputs": [
+    {
+      "item": "bloodmagic:anointment_looting"
+    },
+    {
+      "item": "bloodmagic:slate_demonic"
+    },
+    {
+      "tag": "c:crops/nether_wart"
+    },
+    {
+      "tag": "c:gems/lapis"
+    },
+    {
+      "tag": "c:bones"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "bloodmagic:anointment_looting_l"
+  },
+  "tier": 3
+}

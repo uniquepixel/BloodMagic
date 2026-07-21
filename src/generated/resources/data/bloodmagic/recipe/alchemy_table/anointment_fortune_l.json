@@ -1,0 +1,27 @@
+{
+  "type": "bloodmagic:alchemy_table",
+  "duration": 100,
+  "essence": 1000,
+  "inputs": [
+    {
+      "item": "bloodmagic:anointment_fortune"
+    },
+    {
+      "item": "bloodmagic:slate_demonic"
+    },
+    {
+      "tag": "c:crops/nether_wart"
+    },
+    {
+      "tag": "c:dusts/redstone"
+    },
+    {
+      "tag": "c:dusts/coal"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "bloodmagic:anointment_fortune_l"
+  },
+  "tier": 3
+}

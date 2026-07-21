@@ -1,0 +1,27 @@
+{
+  "type": "bloodmagic:alchemy_table",
+  "duration": 100,
+  "essence": 1000,
+  "inputs": [
+    {
+      "item": "bloodmagic:anointment_bow_power"
+    },
+    {
+      "item": "bloodmagic:slate_demonic"
+    },
+    {
+      "tag": "c:crops/nether_wart"
+    },
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "item": "minecraft:bow"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "bloodmagic:anointment_bow_power_l"
+  },
+  "tier": 3
+}
