@@ -1,0 +1,47 @@
+{
+  "title": "Fortuna Extract",
+  "icon": { "id": "bloodmagic:anointment_fortune" },
+  "assigned_items": [ "bloodmagic:anointment_fortune" ],
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Fortuna Extract$(/b)\n\nIncreases the yield of some harvested blocks. Also stacks with the Fortune enchantment. \n\nValid items: Tools, Swords, Charges. \n\nApplies: Fortunate I (256 blocks)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Fortuna Extract L$(/b)\n\nThis upgraded version of the anointment lasts four times longer. \n\nApplies: Fortunate I (1024 blocks)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Fortuna Extract II$(/b)\n\nThis upgraded version of the anointment increases the yield. \n\nApplies: Fortunate II (256 blocks)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Fortuna Extract XL$(/b)\n\nThis upgraded version of the anointment lasts sixteen times longer. \n\nApplies: Fortunate I (4096 blocks)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Fortuna Extract III$(/b)\n\nThis upgraded version of the anointment increases the yield. \n\nApplies: Fortunate III (256 blocks)"
+        }
+      ]
+    }
+  ]
+}

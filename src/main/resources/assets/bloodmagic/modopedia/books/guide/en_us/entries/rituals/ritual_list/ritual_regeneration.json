@@ -1,0 +1,14 @@
+{
+  "title": "Ritual of Regeneration",
+  "icon": { "id": "minecraft:golden_apple" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Ritual of Regeneration slowly heals players within its range over time. Tier 0, costs $(blood)25,000 LP$() to activate. Requires Corrosive Will to be channeled into the ritual via the Aura in order to function.\nUse a Ritual Diviner [Dusk] for easier construction."
+        }
+      ]
+    }
+  ]
+}

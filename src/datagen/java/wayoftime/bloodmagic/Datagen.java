@@ -47,5 +47,7 @@ public class Datagen {
         event.createProvider(BMDataMapProvider::new);
 
         event.createProvider(BMLootTableProvider::new);
+
+        generator.addProvider(event.includeServer(), new BMRecipeProvider(output, event.getLookupProvider()));
     }
 }

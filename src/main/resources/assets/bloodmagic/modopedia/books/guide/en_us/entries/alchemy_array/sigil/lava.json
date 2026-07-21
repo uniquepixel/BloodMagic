@@ -1,0 +1,22 @@
+{
+  "title": "Lava Sigil",
+  "icon": { "id": "bloodmagic:sigil" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The sister sigil to the Water Sigil. Right-click when holding the Lava Sigil to create a source block of $(fire)lava$() on the ground, for the cost of $(blood)1000 LP$(). Crafted via the Alchemy Table and an Alchemy Array; it'll drain 5 hearts from you if you don't have enough LP in your Soul Network."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "It can also be used in the Alchemy Table to automate the production of $(fire)Lava Buckets$(). The Sigil is not consumed in this recipe."
+        }
+      ]
+    }
+  ]
+}

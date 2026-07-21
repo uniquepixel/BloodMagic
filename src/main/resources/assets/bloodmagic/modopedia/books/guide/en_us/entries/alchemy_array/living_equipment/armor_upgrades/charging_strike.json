@@ -1,0 +1,14 @@
+{
+  "title": "Charging Strike",
+  "icon": { "id": "minecraft:golden_axe" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Effect: Increases damage and knockback from sprinting attacks, up to +50%.\nTrained by: Dealing damage while sprinting.\nMaximum level: 5."
+        }
+      ]
+    }
+  ]
+}

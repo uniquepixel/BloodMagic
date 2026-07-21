@@ -1,0 +1,30 @@
+{
+  "title": "Alchemy Array Basics",
+  "icon": { "id": "bloodmagic:alchemy_array" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Arcane Ashes are an item that is pivotal in the creation of Alchemy Arrays. Arcane Ashes can be crafted in the Alchemy Table using some early game items."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "In order to create an Alchemy Array, right-click while looking at a block with the Arcane Ashes in hand. This will consume 1 durability out of 20 from the Arcane Ashes and draw a simple Alchemy Array, that by itself has no effects.\nWhen you click on the Alchemy Array, it will consume a single item from the stack in your hand and hold it in the array. These items are then used to determine the Alchemy Array's effect."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Each effect requires two items: a base and a catalyst. The base is the first item that you click the array with after it is drawn, and the catalyst is the second item. When you apply the base item, the design of the array will change if it is valid, and the array will activate once you apply the catalyst.\nArrays range from simple crafting arrays to even teleportation and movement arrays."
+        }
+      ]
+    }
+  ]
+}

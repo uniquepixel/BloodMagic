@@ -1,0 +1,15 @@
+{
+  "title": "Blood Altars",
+  "icon": { "id": "bloodmagic:blood_altar" },
+  "landing_text": "One of the central concepts of Blood Magic is building a glorious ziggurat to focus your power. These pages will guide you in the construction of this masterwork.",
+  "entries": [
+    "altar/blood_altar",
+    "altar/redstone_automation",
+    "altar/slates",
+    "altar/soul_network"
+  ],
+  "children": [
+    "altar/blood_rune"
+  ],
+  "sort_num": 0
+}

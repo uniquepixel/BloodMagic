@@ -1,0 +1,14 @@
+{
+  "title": "Gift of Ignis",
+  "icon": { "id": "minecraft:blaze_powder" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Effect: Provides Fire Resistance. Higher levels last longer and recharge faster.\nTrained by: Being on fire. (Potions of Fire Resistance may be your friend here.)\nMaximum level: 5."
+        }
+      ]
+    }
+  ]
+}

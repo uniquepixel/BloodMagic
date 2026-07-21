@@ -1,0 +1,12 @@
+{
+  "type": "bloodmagic:flask_fill",
+  "input": [
+    {
+      "item": "bloodmagic:standardfillingagent"
+    }
+  ],
+  "max_effects": 3,
+  "minimum_tier": 0,
+  "syphon": 3000,
+  "ticks": 200
+}

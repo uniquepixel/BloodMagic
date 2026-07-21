@@ -1,0 +1,16 @@
+{
+  "title": "Living Equipment",
+  "icon": { "id": "bloodmagic:living_helmet" },
+  "landing_text": "With some Arcane Ashes and a handful of Binding Reagent, a whole world of defense and utility has opened up before you.\nSee the subcategories below for a list of all modifiers.",
+  "entries": [
+    "alchemy_array/living_equipment/living_basics",
+    "alchemy_array/living_equipment/living_tomes",
+    "alchemy_array/living_equipment/living_upgrades",
+    "alchemy_array/living_equipment/training_bracelet"
+  ],
+  "children": [
+    "alchemy_array/living_equipment/armor_upgrades",
+    "alchemy_array/living_equipment/armor_downgrades"
+  ],
+  "sort_num": 2
+}

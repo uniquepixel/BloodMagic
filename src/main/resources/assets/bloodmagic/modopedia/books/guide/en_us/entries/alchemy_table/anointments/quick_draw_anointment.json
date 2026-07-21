@@ -1,0 +1,47 @@
+{
+  "title": "Dexterity Alkahest",
+  "icon": { "id": "bloodmagic:anointment_quick_draw" },
+  "assigned_items": [ "bloodmagic:anointment_quick_draw" ],
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Dexterity Alkahest$(/b)\n\nLowers the draw time of bows and crossbows by 33%. \n\nValid items: Bows, Crossbows.\n\nApplies: Deft Hands I (256 shots)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Dexterity Alkahest L$(/b)\n\nThis upgraded version of the anointment lasts four times longer. \n\nApplies: Deft Hands I (1024 shots)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Dexterity Alkahest II$(/b)\n\nThis upgraded version of the anointment lowers the draw time of bows and crossbows by 50%. \n\nApplies: Deft Hands II (256 shots)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Dexterity Alkahest XL$(/b)\n\nThis upgraded version of the anointment lasts sixteen times longer. \n\nApplies: Deft Hands I (4096 shots)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Dexterity Alkahest III$(/b)\n\nThis upgraded version of the anointment lowers the draw time of bows and crossbows by 67%. \n\nApplies: Deft Hands III (256 shots)"
+        }
+      ]
+    }
+  ]
+}

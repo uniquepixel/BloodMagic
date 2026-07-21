@@ -19,6 +19,8 @@ public class BMMenus {
 
     public static final DeferredHolder<MenuType<?>, MenuType<TrainerMenu>> TRAINER = MENUS.register("trainer", () -> IMenuTypeExtension.create(TrainerMenu::new));
 
+    public static final DeferredHolder<MenuType<?>, MenuType<HoldingMenu>> HOLDING = MENUS.register("holding", () -> IMenuTypeExtension.create(HoldingMenu::new));
+
     public static void register(IEventBus modbus) {
         MENUS.register(modbus);
     }

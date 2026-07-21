@@ -1,0 +1,47 @@
+{
+  "title": "Iron Tip",
+  "icon": { "id": "bloodmagic:anointment_bow_power" },
+  "assigned_items": [ "bloodmagic:anointment_bow_power" ],
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Iron Tip$(/b)\n\nIncreases the damage of fired arrows by 25%. Also stacks with Vanilla enchantments. \n\nValid items: Bows, Crossbows.\n\nApplies: Heavy Shot I (256 shots)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Iron Tip L$(/b)\n\nThis upgraded version of the anointment lasts four times longer. \n\nApplies: Heavy Shot I (1024 shots)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Iron Tip II$(/b)\n\nThis upgraded version of the anointment increases the damage by 50% instead. \n\nApplies: Heavy Shot II (256 shots)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Iron Tip XL$(/b)\n\nThis upgraded version of the anointment lasts sixteen times longer. \n\nApplies: Heavy Shot I (4096 shots)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Iron Tip III$(/b)\n\nThis upgraded version of the anointment increases the damage by 75% instead. \n\nApplies: Heavy Shot III (256 shots)"
+        }
+      ]
+    }
+  ]
+}

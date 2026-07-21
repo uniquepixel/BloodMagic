@@ -1,0 +1,14 @@
+{
+  "title": "Throwing Daggers",
+  "icon": { "id": "bloodmagic:throwing_dagger" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Bows and Crossbows are fine enough in their way, but sifting through Gravel for Flint and plucking chickens for their Feathers is, frankly, beneath you. These shiny (and extremely sharp) Throwing Daggers, crafted at the Hellfire Forge, deal solid damage and can drop Demon Will when they land a kill, just like a Sentient Sword."
+        }
+      ]
+    }
+  ]
+}

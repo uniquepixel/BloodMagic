@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "attached=down": {
+      "model": "bloodmagic:block/fungal_charge"
+    },
+    "attached=east": {
+      "model": "bloodmagic:block/fungal_charge"
+    },
+    "attached=north": {
+      "model": "bloodmagic:block/fungal_charge"
+    },
+    "attached=south": {
+      "model": "bloodmagic:block/fungal_charge"
+    },
+    "attached=up": {
+      "model": "bloodmagic:block/fungal_charge"
+    },
+    "attached=west": {
+      "model": "bloodmagic:block/fungal_charge"
+    }
+  }
+}

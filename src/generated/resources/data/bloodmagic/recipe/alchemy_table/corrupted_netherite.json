@@ -1,0 +1,24 @@
+{
+  "type": "bloodmagic:alchemy_table",
+  "duration": 50,
+  "essence": 1000,
+  "inputs": [
+    {
+      "item": "bloodmagic:fragment_netherite_scrap"
+    },
+    {
+      "item": "bloodmagic:corrupted_dust"
+    },
+    {
+      "item": "bloodmagic:corrupted_dust"
+    },
+    {
+      "item": "bloodmagic:corrupted_dust"
+    }
+  ],
+  "output": {
+    "count": 2,
+    "id": "bloodmagic:gravel_netherite_scrap"
+  },
+  "tier": 3
+}

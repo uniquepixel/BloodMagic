@@ -1,0 +1,22 @@
+{
+  "title": "Demon Will Aspects",
+  "icon": { "id": "bloodmagic:crystal_cluster" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Crystallized Will can come in four aspected flavours beyond plain Raw Will: Steadfast, Destructive, Vengeful, and Corrosive. These various types of Will can be released into the Aura just like Raw Will, and from there fed into various Rituals to great and fascinating effect - and they also change how Sentient Tools and the Sentient Sword behave, making them more powerful in different ways depending on the aspect carried."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Broadly, by reputation: Raw Will increases damage; Corrosive Will gives attacks a chance to apply poison or wither; Vengeful Will increases damage (less than Raw) plus attack speed and a movement speed buff; Steadfast Will increases damage (less than Raw) and grants Absorption after a kill; Destructive Will increases damage more than any other type but decreases attack speed. Exact current numbers may have changed on this branch - check in-game tooltips for precise figures.\nYour Sentient Tools take on the aspect of whichever Will type you're carrying the largest amount of; the Hellfire Forge accepts any aspect of Will for crafting."
+        }
+      ]
+    }
+  ]
+}

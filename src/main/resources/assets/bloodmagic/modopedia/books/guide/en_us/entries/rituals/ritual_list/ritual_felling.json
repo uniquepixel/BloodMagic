@@ -1,0 +1,14 @@
+{
+  "title": "Crash of the Timberman",
+  "icon": { "id": "minecraft:oak_sapling" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Crash of the Timberman (internally: Felling Ritual) fells an entire tree at once when you break a single log within its range, dropping all the logs for collection. Tier 0, costs $(blood)20,000 LP$() to activate.\nUse a Ritual Diviner for easier construction."
+        }
+      ]
+    }
+  ]
+}

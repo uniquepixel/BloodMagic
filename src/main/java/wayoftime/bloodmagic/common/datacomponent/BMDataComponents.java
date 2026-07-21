@@ -2,6 +2,7 @@ package wayoftime.bloodmagic.common.datacomponent;
 
 import com.mojang.serialization.Codec;
 import it.unimi.dsi.fastutil.objects.Object2FloatOpenHashMap;
+import net.minecraft.core.GlobalPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
@@ -9,7 +10,9 @@ import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.RegistryFixedCodec;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Unit;
+import net.minecraft.world.item.component.ItemContainerContents;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.fluids.SimpleFluidContent;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -55,6 +58,35 @@ public class BMDataComponents {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> UPGRADE_SCRAP = DATA_COMPONENTS.registerComponentType("upgrade_scrap", builder -> builder.persistent(Codec.INT));
 
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> PREVIOUS_DAMAGE = DATA_COMPONENTS.registerComponentType("previous_damage", builder -> builder.persistent(Codec.INT));
+
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<GlobalPos>> TELEPOSITION_BINDING = DATA_COMPONENTS.registerComponentType("teleposition_binding", builder -> builder.persistent(GlobalPos.CODEC).networkSynchronized(GlobalPos.STREAM_CODEC));
+
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<ItemContainerContents>> HOLDING_CONTENTS = DATA_COMPONENTS.registerComponentType("holding_contents", builder -> builder.persistent(ItemContainerContents.CODEC).networkSynchronized(ItemContainerContents.STREAM_CODEC));
+
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> ANOINTMENT_MELEE_USES = DATA_COMPONENTS.registerComponentType("anointment_melee_uses", builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> ANOINTMENT_LOOTING_USES = DATA_COMPONENTS.registerComponentType("anointment_looting_uses", builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> ANOINTMENT_BOW_POWER_USES = DATA_COMPONENTS.registerComponentType("anointment_bow_power_uses", builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> ANOINTMENT_BOW_VELOCITY_USES = DATA_COMPONENTS.registerComponentType("anointment_bow_velocity_uses", builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> ANOINTMENT_HIDDEN_KNOWLEDGE_USES = DATA_COMPONENTS.registerComponentType("anointment_hidden_knowledge_uses", builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> ANOINTMENT_HOLY_WATER_USES = DATA_COMPONENTS.registerComponentType("anointment_holy_water_uses", builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> ANOINTMENT_QUICK_DRAW_USES = DATA_COMPONENTS.registerComponentType("anointment_quick_draw_uses", builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> ANOINTMENT_SILK_TOUCH_USES = DATA_COMPONENTS.registerComponentType("anointment_silk_touch_uses", builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> ANOINTMENT_FORTUNE_USES = DATA_COMPONENTS.registerComponentType("anointment_fortune_uses", builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> ANOINTMENT_SMELTING_USES = DATA_COMPONENTS.registerComponentType("anointment_smelting_uses", builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> ANOINTMENT_VOIDING_USES = DATA_COMPONENTS.registerComponentType("anointment_voiding_uses", builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> ANOINTMENT_WEAPON_REPAIR_USES = DATA_COMPONENTS.registerComponentType("anointment_weapon_repair_uses", builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> ANOINTMENT_WILL_POWER_USES = DATA_COMPONENTS.registerComponentType("anointment_will_power_uses", builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT));
+
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> STORED_EXPERIENCE = DATA_COMPONENTS.registerComponentType("stored_experience", builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT));
+
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<ResourceLocation>> DIVINER_RITUAL = DATA_COMPONENTS.registerComponentType("diviner_ritual", builder -> builder.persistent(ResourceLocation.CODEC).networkSynchronized(ResourceLocation.STREAM_CODEC));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> DIVINER_DIRECTION = DATA_COMPONENTS.registerComponentType("diviner_direction", builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT));
+
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<FlaskEffects>> FLASK_EFFECTS = DATA_COMPONENTS.registerComponentType("flask_effects", builder -> builder.persistent(FlaskEffects.CODEC).networkSynchronized(FlaskEffects.STREAM_CODEC));
+
+    // Sentient Armour Gem "activated" toggle - same Unit-presence pattern as SIGIL_ACTIVE above; see
+    // SentientArmorGemItem/SentientArmorItem.
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Unit>> SENTIENT_ARMOUR_GEM_ACTIVE = DATA_COMPONENTS.registerComponentType("sentient_armour_gem_active", builder -> builder.persistent(Unit.CODEC).networkSynchronized(StreamCodec.unit(Unit.INSTANCE)));
 
     public static void register(IEventBus modBus) {
         DATA_COMPONENTS.register(modBus);

@@ -1,0 +1,22 @@
+{
+  "title": "Commands",
+  "icon": { "id": "minecraft:command_block" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "For server admins and those with cheat mode enabled, Blood Magic has some useful commands (note the command root is /bloodmagic on this branch):\n- /bloodmagic soul-network <player> add <amount> adds the given amount of LP to that player's Soul Network.\n- /bloodmagic soul-network <player> query lists their current total (akin to using a Divination Sigil bound to them)."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "- /bloodmagic soul-network <player> reset empties their Soul Network.\n- /bloodmagic soul-network <player> set <amount> sets the total LP in their Soul Network to the given amount.\nThere's also a /bloodmagic living-upgrade command for directly setting Living Armour upgrade levels and limits - handy for testing and admin purposes."
+        }
+      ]
+    }
+  ]
+}

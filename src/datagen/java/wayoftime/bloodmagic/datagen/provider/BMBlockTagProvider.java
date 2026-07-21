@@ -53,13 +53,21 @@ public class BMBlockTagProvider extends BlockTagsProvider {
                 .addAll(BlockGroups.HELLFORGED_BLOCK);
 
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
-                .add(BMBlocks.BLOOD_ALTAR.block().getKey(), BMBlocks.BLOOD_TANK.block().getKey(), BMBlocks.ALCHEMY_TABLE.block().getKey());
+                .add(BMBlocks.BLOOD_ALTAR.block().getKey(), BMBlocks.BLOOD_TANK.block().getKey(), BMBlocks.ALCHEMY_TABLE.block().getKey(), BMBlocks.TELEPOSER.block().getKey(), BMBlocks.INCENSE_ALTAR.block().getKey(), BMBlocks.ITEM_ROUTER.block().getKey(), BMBlocks.MASTER_ROUTING_NODE.block().getKey(), BMBlocks.INPUT_ROUTING_NODE.block().getKey(), BMBlocks.OUTPUT_ROUTING_NODE.block().getKey(), BMBlocks.DEMON_CRUCIBLE.block().getKey(), BMBlocks.DEMON_CRYSTALLIZER.block().getKey(), BMBlocks.DEMON_PYLON.block().getKey(), BMBlocks.SHAPED_CHARGE.block().getKey(), BMBlocks.DEFORESTER_CHARGE.block().getKey(), BMBlocks.VEINMINE_CHARGE.block().getKey(), BMBlocks.FUNGAL_CHARGE.block().getKey());
 
         this.tag(BlockTags.NEEDS_STONE_TOOL)
-                .add(BMBlocks.BLOOD_ALTAR.block().getKey(), BMBlocks.BLOOD_TANK.block().getKey(), BMBlocks.ALCHEMY_TABLE.block().getKey());
+                .add(BMBlocks.BLOOD_ALTAR.block().getKey(), BMBlocks.BLOOD_TANK.block().getKey(), BMBlocks.ALCHEMY_TABLE.block().getKey(), BMBlocks.TELEPOSER.block().getKey(), BMBlocks.INCENSE_ALTAR.block().getKey(), BMBlocks.ITEM_ROUTER.block().getKey(), BMBlocks.MASTER_ROUTING_NODE.block().getKey(), BMBlocks.INPUT_ROUTING_NODE.block().getKey(), BMBlocks.OUTPUT_ROUTING_NODE.block().getKey(), BMBlocks.DEMON_CRUCIBLE.block().getKey(), BMBlocks.DEMON_CRYSTALLIZER.block().getKey(), BMBlocks.DEMON_PYLON.block().getKey(), BMBlocks.SHAPED_CHARGE.block().getKey(), BMBlocks.DEFORESTER_CHARGE.block().getKey(), BMBlocks.VEINMINE_CHARGE.block().getKey(), BMBlocks.FUNGAL_CHARGE.block().getKey());
 
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(BMBlocks.IMPERFECT_RITUAL_BLOCK.block().getKey())
+                .add(BMBlocks.MASTER_RITUAL_STONE.block().getKey())
+                .add(BMBlocks.RITUAL_STONE_BLANK.block().getKey())
+                .add(BMBlocks.RITUAL_STONE_WATER.block().getKey())
+                .add(BMBlocks.RITUAL_STONE_FIRE.block().getKey())
+                .add(BMBlocks.RITUAL_STONE_EARTH.block().getKey())
+                .add(BMBlocks.RITUAL_STONE_AIR.block().getKey())
+                .add(BMBlocks.RITUAL_STONE_DUSK.block().getKey())
+                .add(BMBlocks.RITUAL_STONE_DAWN.block().getKey())
                 .addAll(BlockGroups.BLOODSTONE)
                 .addAll(BlockGroups.HELLFORGED_BLOCK)
                 .addAll(BlockGroups.CRYSTAL_CLUSTER)
@@ -68,6 +76,14 @@ public class BMBlockTagProvider extends BlockTagsProvider {
 
         this.tag(BlockTags.NEEDS_STONE_TOOL)
                 .add(BMBlocks.IMPERFECT_RITUAL_BLOCK.block().getKey())
+                .add(BMBlocks.MASTER_RITUAL_STONE.block().getKey())
+                .add(BMBlocks.RITUAL_STONE_BLANK.block().getKey())
+                .add(BMBlocks.RITUAL_STONE_WATER.block().getKey())
+                .add(BMBlocks.RITUAL_STONE_FIRE.block().getKey())
+                .add(BMBlocks.RITUAL_STONE_EARTH.block().getKey())
+                .add(BMBlocks.RITUAL_STONE_AIR.block().getKey())
+                .add(BMBlocks.RITUAL_STONE_DUSK.block().getKey())
+                .add(BMBlocks.RITUAL_STONE_DAWN.block().getKey())
                 .addAll(BlockGroups.BLOODSTONE)
                 .addAll(BlockGroups.CRYSTAL_CLUSTER)
                 .addAll(BlockGroups.RUNE_T1);

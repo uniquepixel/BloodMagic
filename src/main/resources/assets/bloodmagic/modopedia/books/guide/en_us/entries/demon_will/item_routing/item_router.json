@@ -1,0 +1,22 @@
+{
+  "title": "Item Router",
+  "icon": { "id": "minecraft:hopper" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Item Router is a standalone alternative to the full Routing Node network - a single self-contained block, essentially an enhanced hopper. It pulls items from its four horizontal sides and above, and pushes them into whatever inventory is directly below it."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Right-click it with an item in hand to toggle that item in its small filter (holds up to 4 items). An empty filter lets everything through, behaving just like a plain hopper."
+        }
+      ]
+    }
+  ]
+}

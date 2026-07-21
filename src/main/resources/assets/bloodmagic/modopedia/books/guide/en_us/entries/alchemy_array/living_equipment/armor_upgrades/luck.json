@@ -1,0 +1,14 @@
+{
+  "title": "Skilled",
+  "icon": { "id": "minecraft:rabbit_foot" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "A new upgrade not present in earlier versions of the mod. Effect: grants the Luck attribute, improving loot table rolls, fishing, and similar luck-based mechanics, up to +10 Luck across 5 levels.\nThis upgrade is still a work in progress on this branch - its intended training method (partly tied to Demon Dungeon loot) isn't fully wired up yet, so treat its acquisition path as unconfirmed for now."
+        }
+      ]
+    }
+  ]
+}

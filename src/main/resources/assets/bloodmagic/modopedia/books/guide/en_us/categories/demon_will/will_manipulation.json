@@ -1,0 +1,17 @@
+{
+  "title": "Will Manipulation",
+  "icon": { "id": "bloodmagic:raw_will" },
+  "landing_text": "Demonic will is strange stuff. Untapped, it seems to coalesce around entities, but it can be tapped, harnessed, and controlled. This chapter lays out the underlying concepts and techniques for Demon Will manipulation.",
+  "entries": [
+    "demon_will/will_manipulation/aspected_will",
+    "demon_will/will_manipulation/aura",
+    "demon_will/will_manipulation/aura_gauge",
+    "demon_will/will_manipulation/crystallized_will",
+    "demon_will/will_manipulation/demon_will",
+    "demon_will/will_manipulation/soul_forge",
+    "demon_will/will_manipulation/soul_gem",
+    "demon_will/will_manipulation/soul_snare",
+    "demon_will/will_manipulation/will_catalysts"
+  ],
+  "sort_num": 0
+}

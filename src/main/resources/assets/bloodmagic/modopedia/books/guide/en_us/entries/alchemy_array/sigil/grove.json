@@ -1,0 +1,22 @@
+{
+  "title": "Sigil of the Green Grove",
+  "icon": { "id": "bloodmagic:sigil" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Sigil of the Green Grove is an item that has multiple uses. Crafted via the Alchemy Table and an Alchemy Array, the sigil can use your Soul Network's $(blood)LP$() to nourish and grow nearby plants."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "If you right-click on a growable block, it will apply the bonemeal effect while consuming $(blood)150 LP$().\nHowever, if you hold sneak and right-click while aiming at the air, it will light up to indicate that it is activated, and will consume $(blood)150 LP$() every 5 seconds until deactivated. Every block in a 7x7x5 high volume centered on the player will have a growth tick applied to it. Good for farming those taters!"
+        }
+      ]
+    }
+  ]
+}

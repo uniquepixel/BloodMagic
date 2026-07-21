@@ -1,0 +1,14 @@
+{
+  "title": "Concrete Shoes",
+  "icon": { "id": "minecraft:water_bucket" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Reduces your swim speed significantly. Caps out at an 80% reduction."
+        }
+      ]
+    }
+  ]
+}

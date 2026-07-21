@@ -1,0 +1,22 @@
+{
+  "title": "Hellforged Material",
+  "icon": { "id": "bloodmagic:hellforged_block" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Note: in earlier versions of the mod, Demonite Ore was mined from within procedurally-generated Demon Dungeons. That dungeon system isn't present on this branch, so the ore-mining source described below is not currently accurate here - but the refined materials it fed into (Demonite Fragments and the Hellforged Block, used as capstones on the Tier 5 Blood Altar) are still real, registered items/blocks. Exactly how you currently obtain them is unconfirmed - check JEI or current loot tables in-game."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Hellforged Block is a sturdy metallic building block, and Demonite Fragments and Hellforged Parts are used in various higher-tier recipes throughout the mod (including upgrading Blood Runes to their augmented form alongside Netherite Scrap)."
+        }
+      ]
+    }
+  ]
+}

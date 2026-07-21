@@ -1,0 +1,14 @@
+{
+  "title": "Repair",
+  "icon": { "id": "minecraft:anvil" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Effect: Repairs a random piece of worn armour every 100 ticks.\nTrained by: Repairing your chestplate (in an anvil, with the Mending enchantment, etc).\nMaximum level: 1."
+        }
+      ]
+    }
+  ]
+}

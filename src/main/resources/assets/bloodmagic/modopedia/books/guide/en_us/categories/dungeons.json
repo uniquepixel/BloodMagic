@@ -1,0 +1,9 @@
+{
+  "title": "Dungeons",
+  "icon": { "id": "bloodmagic:hellforged_block" },
+  "landing_text": "Note: the elaborate procedural Demon Dungeon system from earlier versions of the mod (mazelike dungeon generation, Foreman's Keys, Spatial Distortions, Mimics, Tau Fruit farming, dungeon-exclusive ores) has not been carried over to this branch yet. This category is a placeholder for the one piece of related material that does still exist.",
+  "entries": [
+    "dungeons/demonite"
+  ],
+  "sort_num": 5
+}

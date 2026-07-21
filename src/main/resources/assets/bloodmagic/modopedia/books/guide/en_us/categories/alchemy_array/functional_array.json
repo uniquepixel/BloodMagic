@@ -1,0 +1,13 @@
+{
+  "title": "Functional Arrays",
+  "icon": { "id": "bloodmagic:alchemy_array" },
+  "landing_text": "Alchemy Arrays drawn on the ground that produce items or apply effects when the right base and catalyst items are supplied.",
+  "entries": [
+    "alchemy_array/functional_arrays/arcane_ash",
+    "alchemy_array/functional_arrays/crafting_array",
+    "alchemy_array/functional_arrays/movement_arrays",
+    "alchemy_array/functional_arrays/spike_array",
+    "alchemy_array/functional_arrays/time_arrays"
+  ],
+  "sort_num": 0
+}

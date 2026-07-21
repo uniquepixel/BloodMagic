@@ -1,0 +1,23 @@
+{
+  "type": "bloodmagic:soul_forge",
+  "drain": 200.0,
+  "inputs": [
+    {
+      "tag": "c:storage_blocks/iron"
+    },
+    {
+      "tag": "c:gems/diamond"
+    },
+    {
+      "item": "bloodmagic:slate_imbued"
+    },
+    {
+      "tag": "c:dusts/glowstone"
+    }
+  ],
+  "minDrain": 400.0,
+  "output": {
+    "count": 1,
+    "id": "bloodmagic:master_routing_node"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "type": "bloodmagic:alchemical_reaction_chamber",
+  "chance_outputs": [
+    {
+      "chance": 0.5,
+      "item": {
+        "count": 1,
+        "id": "bloodmagic:copperfragment"
+      }
+    }
+  ],
+  "guaranteed_outputs": [
+    {
+      "count": 4,
+      "id": "bloodmagic:copperfragment"
+    }
+  ],
+  "input": {
+    "tag": "c:ores/copper"
+  },
+  "tool": {
+    "tag": "bloodmagic:arc_tool/explosives"
+  }
+}

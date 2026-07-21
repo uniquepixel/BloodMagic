@@ -1,0 +1,14 @@
+{
+  "title": "Dawn of the New Moon",
+  "icon": { "id": "minecraft:ender_pearl" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Dawn of the New Moon (internally: Sphere Creation Ritual) is a building ritual similar to the Focus of the Ellipsoid, but produces a true sphere. It draws blocks from a linked chest and places them to form a spherical structure around the Master Ritual Stone. Tier 0, costs $(blood)20,000 LP$() to activate.\nUse a Ritual Diviner [Dusk] for easier construction."
+        }
+      ]
+    }
+  ]
+}

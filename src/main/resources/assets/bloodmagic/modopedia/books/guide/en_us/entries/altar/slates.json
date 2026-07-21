@@ -1,0 +1,38 @@
+{
+  "title": "Tiers of Slates",
+  "icon": { "id": "bloodmagic:slate_blank" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Blood Altar's main use is the production of Slates. Each tier of slate requires the previous tier and a more powerful altar than the last."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Blank Slate$(/b) and $(b)Reinforced Slate$(/b)\nCrafted at a Blood Altar. The Blank Slate is the base tier used to craft many of the mod's basic tools and sigils; the Reinforced Slate follows on from it at a higher altar tier."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Imbued Slate$(/b) and $(b)Demonic Slate$(/b)\nCrafted at higher-tier Blood Altars, using the previous slate tier as an ingredient. These unlock more advanced sigils and tools."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Ethereal Slate$(/b)\nThe highest tier of slate, crafted at a high-tier Blood Altar from Demonic Slate."
+        }
+      ]
+    }
+  ]
+}

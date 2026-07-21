@@ -1,0 +1,22 @@
+{
+  "title": "Yawning of the Void",
+  "icon": { "id": "minecraft:black_stained_glass" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Yawning of the Void (internally: Yawning Void Ritual) voids items matching a filter from a linked chest, useful for automatically clearing out unwanted overflow items from a processing line. Tier 0, costs $(blood)5,000 LP$() to activate.\nUse a Ritual Diviner [Dusk] for easier construction."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "To set a filter, place any form of Item Filter into the linked chest. The ritual will only use the first filter it finds, but will accept Standard, Tag, and Mod Item Filters."
+        }
+      ]
+    }
+  ]
+}

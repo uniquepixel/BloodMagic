@@ -1,0 +1,16 @@
+{
+  "type": "bloodmagic:array",
+  "added_input": {
+    "item": "bloodmagic:slate_reinforced"
+  },
+  "base_input": {
+    "item": "bloodmagic:reagent_fastminer"
+  },
+  "output": {
+    "components": {
+      "bloodmagic:sigil_effect": "bloodmagic:miner"
+    },
+    "count": 1,
+    "id": "bloodmagic:sigil"
+  }
+}

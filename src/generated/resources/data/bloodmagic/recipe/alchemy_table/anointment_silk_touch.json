@@ -1,0 +1,24 @@
+{
+  "type": "bloodmagic:alchemy_table",
+  "duration": 100,
+  "essence": 500,
+  "inputs": [
+    {
+      "item": "bloodmagic:slate_imbued"
+    },
+    {
+      "tag": "c:crops/nether_wart"
+    },
+    {
+      "item": "minecraft:cobweb"
+    },
+    {
+      "tag": "c:nuggets/gold"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "bloodmagic:anointment_silk_touch"
+  },
+  "tier": 1
+}

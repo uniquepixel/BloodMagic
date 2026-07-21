@@ -1,0 +1,40 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "bloodmagic:raw_will"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "bloodmagic:soul_gem_lesser"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "bloodmagic:soul_gem_common"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "bloodmagic:blood_orb_apprentice"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "bloodmagic:slate_reinforced"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "bloodmagic:experience_book"
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 4.0,
+        "min": 2.0
+      }
+    }
+  ],
+  "random_sequence": "bloodmagic:chests/demon_vault"
+}

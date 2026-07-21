@@ -1,0 +1,16 @@
+{
+  "type": "bloodmagic:flask_effect",
+  "base_duration": 0,
+  "effect": "minecraft:instant_health",
+  "input": [
+    {
+      "item": "bloodmagic:simplecatalyst"
+    },
+    {
+      "item": "minecraft:glistering_melon_slice"
+    }
+  ],
+  "minimum_tier": 1,
+  "syphon": 500,
+  "ticks": 200
+}

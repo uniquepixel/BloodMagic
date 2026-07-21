@@ -1,0 +1,14 @@
+{
+  "title": "Storm Trooper",
+  "icon": { "id": "minecraft:arrow" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Makes you wildly inaccurate when shooting bows and crossbows."
+        }
+      ]
+    }
+  ]
+}

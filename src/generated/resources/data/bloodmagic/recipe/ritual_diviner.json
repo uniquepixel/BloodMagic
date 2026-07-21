@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "d": {
+      "tag": "c:gems/diamond"
+    },
+    "i": {
+      "item": "bloodmagic:slate_imbued"
+    },
+    "s": {
+      "item": "minecraft:blaze_rod"
+    }
+  },
+  "pattern": [
+    "ddd",
+    "sis",
+    "ddd"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bloodmagic:ritual_diviner"
+  }
+}

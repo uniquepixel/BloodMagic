@@ -1,0 +1,14 @@
+{
+  "title": "Ritual of the High Jump",
+  "icon": { "id": "minecraft:diamond_boots" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Ritual of the High Jump grants players within its range a significant jump boost, letting them leap far higher than normal. Tier 0, costs $(blood)5,000 LP$() to activate.\nUse a Ritual Diviner for easier construction."
+        }
+      ]
+    }
+  ]
+}

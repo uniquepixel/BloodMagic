@@ -1,0 +1,47 @@
+{
+  "title": "Archer's Polish",
+  "icon": { "id": "bloodmagic:anointment_bow_velocity" },
+  "assigned_items": [ "bloodmagic:anointment_bow_velocity" ],
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Archer's Polish$(/b)\n\nIncreases the velocity of fired arrows by 50%. This also increases the damage dealt by your arrows proportionally. Also stacks with Vanilla enchantments. \n\nValid items: Bows, Crossbows.\n\nApplies: Sniping I (256 shots)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Archer's Polish L$(/b)\n\nThis upgraded version of the anointment lasts four times longer. \n\nApplies: Sniping I (1024 shots)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Archer's Polish II$(/b)\n\nThis upgraded version of the anointment increases the velocity by 100% instead. \n\nApplies: Sniping II (256 shots)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Archer's Polish XL$(/b)\n\nThis upgraded version of the anointment lasts sixteen times longer. \n\nApplies: Sniping I (4096 shots)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Archer's Polish III$(/b)\n\nThis upgraded version of the anointment increases the velocity by 150% instead. \n\nApplies: Sniping III (256 shots)"
+        }
+      ]
+    }
+  ]
+}

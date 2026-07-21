@@ -1,0 +1,22 @@
+{
+  "title": "Ritual of the Shepherd",
+  "icon": { "id": "minecraft:white_wool" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Ritual of the Shepherd (internally: Ritual of Animal Growth) speeds up the growth of baby animals and encourages breeding in a radius around the Master Ritual Stone. Tier 0, costs $(blood)10,000 LP$() to activate.\nUse a Ritual Diviner [Dusk] for easier construction."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Various Demon Will types can be channeled into this ritual via the Aura to change its behavior - for example, feeding it Steadfast Will lets it draw breeding feed from a linked chest instead of requiring animals to already be in love mode. Check the ritual's tooltip in-game (via the Ritual Diviner or a Divination Sigil) for the exact current bonuses on this branch."
+        }
+      ]
+    }
+  ]
+}

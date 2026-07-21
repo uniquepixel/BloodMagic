@@ -1,0 +1,30 @@
+{
+  "title": "Teleposers",
+  "icon": { "id": "bloodmagic:teleposer_focus" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Teleposers allow for a form of redstone-controlled teleportation. Craft a Teleposition Focus, bind it to your target Teleposer, place it in another Teleposer, and apply a redstone signal to the Teleposer with a focus in it. Anything - blocks, items, entities, players - in a defined area above the two Teleposers will be swapped."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Nothing comes for free, however: transporting blocks or entities via the Teleposer costs $(blood)1 LP$() for every two blocks traversed, per item/entity.\nTeleposers can be linked one-way, two-way (each end has a Focus linking to the other, so a redstone signal on either end triggers the swap), or even chained (A to B to C and back to A)."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "If you're having difficulty getting your Teleposer to work, make sure it is being strongly redstone powered - a redstone block next to it won't power it, you'll need redstone dust or a repeater pointing into its side, or a lever/button directly on it."
+        }
+      ]
+    }
+  ]
+}

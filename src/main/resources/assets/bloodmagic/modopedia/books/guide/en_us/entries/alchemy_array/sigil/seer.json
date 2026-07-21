@@ -1,0 +1,22 @@
+{
+  "title": "Seer's Sigil",
+  "icon": { "id": "bloodmagic:sigil" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Seer's Sigil is a more advanced form of the Divination Sigil. Alongside showing the amount of LP in the bound player's Soul Network, it also shows more information when looking at a Blood Altar. Like the Divination Sigil, it can also be used to edit your GUI (see the Divination Sigil's entry for more info)."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "From top to bottom, the extra information shown includes:\n- The current Tier of the Blood Altar.\n- The amount of blood currently inside the Altar, and the current total capacity of the Altar. (This defaults to 10,000mb, but may be increased with Runes of Capacity and Runes of Augmented Capacity.)\n- The current crafting progress, if any.\n- LP Consumption/Tick - how much LP the Altar will use per tick when crafting.\n- Current LP Storage of any Charging Runes you may have."
+        }
+      ]
+    }
+  ]
+}

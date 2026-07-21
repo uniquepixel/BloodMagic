@@ -1,0 +1,22 @@
+{
+  "title": "Ritual of the Green Grove",
+  "icon": { "id": "minecraft:bone_meal" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Ritual of the Green Grove acts as an automatic fertilizer, periodically bonemealing crops and plants within its range to speed up their growth. Tier 0, costs $(blood)5,000 LP$() to activate.\nUse a Ritual Diviner for easier construction."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Various Demon Will types can be channeled into this ritual via the Aura to change its behavior - for example granting hydration or leeching health from nearby entities to speed growth further. Check the ritual's tooltip in-game (via the Ritual Diviner or a Divination Sigil) for the exact current bonuses on this branch."
+        }
+      ]
+    }
+  ]
+}

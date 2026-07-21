@@ -1,0 +1,17 @@
+{
+  "title": "Blood Runes",
+  "icon": { "id": "bloodmagic:rune_blank" },
+  "landing_text": "There's lots of different runes. They do cool stuff! Try mixing and matching to see what works best for you.",
+  "entries": [
+    "altar/blood_rune/acceleration_rune",
+    "altar/blood_rune/aug_capacity_rune",
+    "altar/blood_rune/capacity_rune",
+    "altar/blood_rune/charging_rune",
+    "altar/blood_rune/dislocation_rune",
+    "altar/blood_rune/orb_rune",
+    "altar/blood_rune/sacrifice_rune",
+    "altar/blood_rune/self_sacrifice_rune",
+    "altar/blood_rune/speed_rune"
+  ],
+  "sort_num": 0
+}

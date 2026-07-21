@@ -1,0 +1,15 @@
+{
+  "title": "Rituals",
+  "icon": { "id": "bloodmagic:ritual_stone_master" },
+  "landing_text": "Rituals consume $(blood)LP$() from your Soul Network in order to do a variety of tasks.\nFor information on specific rituals, see the List of Rituals below.",
+  "entries": [
+    "rituals/activation_crystals",
+    "rituals/ritual_basics",
+    "rituals/ritual_diviner",
+    "rituals/ritual_stones"
+  ],
+  "children": [
+    "rituals/ritual_list"
+  ],
+  "sort_num": 4
+}

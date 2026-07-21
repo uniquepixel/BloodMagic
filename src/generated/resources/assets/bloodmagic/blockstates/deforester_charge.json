@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "attached=down": {
+      "model": "bloodmagic:block/deforester_charge"
+    },
+    "attached=east": {
+      "model": "bloodmagic:block/deforester_charge"
+    },
+    "attached=north": {
+      "model": "bloodmagic:block/deforester_charge"
+    },
+    "attached=south": {
+      "model": "bloodmagic:block/deforester_charge"
+    },
+    "attached=up": {
+      "model": "bloodmagic:block/deforester_charge"
+    },
+    "attached=west": {
+      "model": "bloodmagic:block/deforester_charge"
+    }
+  }
+}

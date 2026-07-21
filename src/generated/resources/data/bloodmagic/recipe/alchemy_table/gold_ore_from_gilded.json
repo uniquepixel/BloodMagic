@@ -1,0 +1,15 @@
+{
+  "type": "bloodmagic:alchemy_table",
+  "duration": 100,
+  "essence": 200,
+  "inputs": [
+    {
+      "item": "minecraft:gilded_blackstone"
+    }
+  ],
+  "output": {
+    "count": 9,
+    "id": "minecraft:gold_nugget"
+  },
+  "tier": 2
+}

@@ -1,0 +1,13 @@
+{
+  "type": "bloodmagic:array",
+  "added_input": {
+    "item": "minecraft:coal"
+  },
+  "base_input": {
+    "item": "minecraft:coal"
+  },
+  "output": {
+    "count": 1,
+    "id": "minecraft:bedrock"
+  }
+}

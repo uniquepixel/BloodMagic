@@ -1,0 +1,22 @@
+{
+  "title": "Acceleration Rune",
+  "icon": { "id": "bloodmagic:rune_acceleration" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Acceleration Rune increases the rate of a couple operations. While normally the operations of the Charging Rune and Displacement Rune occur every 20 ticks, one tick of the delay is removed per rune, down to a minimum of 1 operation per tick."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "With Netherite Scrap and Hellforged Parts, you can upgrade an Acceleration Rune to its augmented form, removing two ticks per rune instead of one, freeing up other slots around your altar. If you change your mind, you can undo the upgrade in the Alchemical Reaction Chamber (ARC)."
+        }
+      ]
+    }
+  ]
+}

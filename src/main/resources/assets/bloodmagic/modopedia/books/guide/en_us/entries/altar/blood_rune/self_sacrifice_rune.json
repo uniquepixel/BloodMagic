@@ -1,0 +1,22 @@
+{
+  "title": "Rune of Self Sacrifice",
+  "icon": { "id": "bloodmagic:rune_sacrifice_self" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Rune of Self Sacrifice increases the amount of $(blood)Life Essence$() gained in the Blood Altar through means that use a player's health. Each rune gives a bonus of +10% additively per rune."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "With Netherite Scrap and Hellforged Parts, you can upgrade a Rune of Self Sacrifice to its augmented form, increasing the bonus to an additive +20% per rune. If you change your mind, you can undo the upgrade in the Alchemical Reaction Chamber (ARC)."
+        }
+      ]
+    }
+  ]
+}

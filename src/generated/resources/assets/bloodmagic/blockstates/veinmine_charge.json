@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "attached=down": {
+      "model": "bloodmagic:block/veinmine_charge"
+    },
+    "attached=east": {
+      "model": "bloodmagic:block/veinmine_charge"
+    },
+    "attached=north": {
+      "model": "bloodmagic:block/veinmine_charge"
+    },
+    "attached=south": {
+      "model": "bloodmagic:block/veinmine_charge"
+    },
+    "attached=up": {
+      "model": "bloodmagic:block/veinmine_charge"
+    },
+    "attached=west": {
+      "model": "bloodmagic:block/veinmine_charge"
+    }
+  }
+}

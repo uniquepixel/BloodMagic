@@ -1,0 +1,14 @@
+{
+  "title": "Brilliance (Forgotten)",
+  "icon": { "id": "minecraft:diamond" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Note: on this branch this upgrade is internally named \"Forgotten\" rather than \"Brilliance\", but keeps the same role.\nEffect: Improves your armour defence, adding both Armor and Armor Toughness as it levels up.\nTrained by: passive experience gain like most other upgrades (rather than the old one-tome-per-level system).\nMaximum level: 8."
+        }
+      ]
+    }
+  ]
+}

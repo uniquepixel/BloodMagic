@@ -1,0 +1,14 @@
+{
+  "title": "Leadened Pick",
+  "icon": { "id": "minecraft:stone_pickaxe" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Effect: Reduces your dig speed. Caps out at an 80% reduction."
+        }
+      ]
+    }
+  ]
+}

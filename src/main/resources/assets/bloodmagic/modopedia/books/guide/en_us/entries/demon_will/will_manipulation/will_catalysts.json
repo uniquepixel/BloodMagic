@@ -1,0 +1,22 @@
+{
+  "title": "Will Catalysts",
+  "icon": { "id": "bloodmagic:crystal_cluster" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "If Demon Will has one drawback, it's that collecting it is a slow, tedious process. Will Catalysts help speed up the passive growth of Will Crystal Clusters: while holding one, right-click a Crystal Cluster of the matching type to turbocharge its growth for a number of spires' worth."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Gathering of the Forsaken Souls ritual will automatically apply catalysts to any crystals in its area of effect, and combined with the Crack of the Fractured Crystal (harvesting) and Call of the Zephyr (collection) rituals plus a Routing Node setup, crystal farming can be fully automated."
+        }
+      ]
+    }
+  ]
+}

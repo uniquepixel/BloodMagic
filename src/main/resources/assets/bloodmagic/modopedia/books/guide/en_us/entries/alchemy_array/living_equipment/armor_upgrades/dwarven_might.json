@@ -1,0 +1,14 @@
+{
+  "title": "Dwarven Might",
+  "icon": { "id": "minecraft:diamond_pickaxe" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Effect: Increases mining speed while mining identical blocks. After a certain level, gives a Haste buff after breaking blocks.\nTrained by: Mining.\nMaximum level: 10."
+        }
+      ]
+    }
+  ]
+}

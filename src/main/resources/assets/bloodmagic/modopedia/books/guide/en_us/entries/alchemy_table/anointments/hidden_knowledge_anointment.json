@@ -1,0 +1,47 @@
+{
+  "title": "Miner's Secrets",
+  "icon": { "id": "bloodmagic:anointment_hidden_knowledge" },
+  "assigned_items": [ "bloodmagic:anointment_hidden_knowledge" ],
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Miner's Secrets$(/b)\n\nExp-dropping blocks drop extra exp on successful harvest. Drops +2 exp per block. Consumed when extra exp is dropped.\n\nValid items: Tools, Swords.\n\nApplies: Miner's Secrets I (256 exp-dropping blocks)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Miner's Secrets L$(/b)\n\nThis upgraded version of the anointment lasts four times longer. \n\nApplies: Miner's Secrets I (1024 exp-dropping blocks)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Miner's Secrets II$(/b)\n\nThis upgraded version of the anointment increases the yield to +4 exp per block. \n\nApplies: Miner's Secrets II (256 exp-dropping blocks)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Miner's Secrets XL$(/b)\n\nThis upgraded version of the anointment lasts sixteen times longer. \n\nApplies: Miner's Secrets I (4096 exp-dropping blocks)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Miner's Secrets III$(/b)\n\nThis upgraded version of the anointment increases the yield to +6 exp per block. \n\nApplies: Miner's Secrets III (256 exp-dropping blocks)"
+        }
+      ]
+    }
+  ]
+}

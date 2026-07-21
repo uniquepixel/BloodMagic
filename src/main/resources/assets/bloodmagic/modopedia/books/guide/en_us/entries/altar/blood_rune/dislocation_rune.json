@@ -1,0 +1,22 @@
+{
+  "title": "Displacement Rune",
+  "icon": { "id": "bloodmagic:rune_dislocation" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Displacement Rune increases the flow rate of $(blood)Life Essence$() into and out of the altar when pumping to and from an external Tank multiplicatively by +20%."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "With Netherite Scrap and Hellforged Parts, you can upgrade a Displacement Rune to its augmented form, increasing the flow rate by a multiplicative +40% per rune. If you change your mind, you can undo the upgrade in the Alchemical Reaction Chamber (ARC)."
+        }
+      ]
+    }
+  ]
+}

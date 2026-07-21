@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "attached=down": {
+      "model": "bloodmagic:block/shaped_charge"
+    },
+    "attached=east": {
+      "model": "bloodmagic:block/shaped_charge"
+    },
+    "attached=north": {
+      "model": "bloodmagic:block/shaped_charge"
+    },
+    "attached=south": {
+      "model": "bloodmagic:block/shaped_charge"
+    },
+    "attached=up": {
+      "model": "bloodmagic:block/shaped_charge"
+    },
+    "attached=west": {
+      "model": "bloodmagic:block/shaped_charge"
+    }
+  }
+}

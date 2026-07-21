@@ -1,0 +1,51 @@
+package wayoftime.bloodmagic.common.block;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.Nullable;
+import wayoftime.bloodmagic.common.blockentity.BMTiles;
+import wayoftime.bloodmagic.common.blockentity.TeleposerTile;
+import wayoftime.bloodmagic.util.BlockEntityHelper;
+
+public class TeleposerBlock extends Block implements EntityBlock {
+    public TeleposerBlock() {
+        super(
+                BlockBehaviour.Properties.of()
+                        .requiresCorrectToolForDrops()
+                        .strength(5, 10)
+                        .sound(SoundType.METAL)
+        );
+    }
+
+    @Override
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+        if (level.getBlockEntity(pos) instanceof TeleposerTile tile) {
+            if (!level.isClientSide) {
+                tile.handleInteract(player);
+            }
+            return InteractionResult.sidedSuccess(level.isClientSide);
+        }
+        return super.useWithoutItem(state, level, pos, player, hitResult);
+    }
+
+    @Override
+    public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new TeleposerTile(pos, state);
+    }
+
+    @Override
+    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
+        return BlockEntityHelper.getTicker(blockEntityType, BMTiles.TELEPOSER_TYPE.get(), TeleposerTile::tick);
+    }
+}

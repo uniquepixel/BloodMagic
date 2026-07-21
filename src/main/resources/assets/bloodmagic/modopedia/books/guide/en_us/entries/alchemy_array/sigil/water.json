@@ -1,0 +1,22 @@
+{
+  "title": "Water Sigil",
+  "icon": { "id": "bloodmagic:sigil" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Water Sigil is a rather simple sigil. When you right-click while looking at a block, you can drain $(blood)100 LP$() from your Soul Network to place a source block of water in the world. If there's not enough LP, it will instead drain the toll from your health. Crafted via the Alchemy Table and an Alchemy Array."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "It can also be used in the Alchemy Table to automate the production of $(water)Water Buckets$(). The Sigil is not consumed in this recipe."
+        }
+      ]
+    }
+  ]
+}

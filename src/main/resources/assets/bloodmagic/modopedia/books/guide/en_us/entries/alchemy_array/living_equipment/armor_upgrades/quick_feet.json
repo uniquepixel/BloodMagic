@@ -1,0 +1,14 @@
+{
+  "title": "Quick Feet",
+  "icon": { "id": "minecraft:sugar" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Effect: Increases player movement speed up to 150%.\nTrained by: Running around.\nMaximum level: 10."
+        }
+      ]
+    }
+  ]
+}

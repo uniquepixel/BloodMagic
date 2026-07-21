@@ -1,0 +1,14 @@
+{
+  "title": "Movement Array",
+  "icon": { "id": "minecraft:feather" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Movement Arrays are a pair of arrays that throw players, mobs, items, etc. in a specific direction. One (the Speed Array) throws them horizontally, while the other (the Updraft Array) throws them vertically."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "title": "The Sinner's Burden",
+  "icon": { "id": "minecraft:dirt" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Sinner's Burden (internally: Grounding Ritual) negates knockback, levitation, and other displacement effects for players within its range, keeping them firmly grounded. Tier 0, costs $(blood)5,000 LP$() to activate.\nUse a Ritual Diviner for easier construction."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Various Demon Will types can be channeled into this ritual via the Aura to change its behavior, granting effects reminiscent of Suspended or countering Levitation and Heavy Heart. Check the ritual's tooltip in-game (via the Ritual Diviner or a Divination Sigil) for the exact current bonuses on this branch."
+        }
+      ]
+    }
+  ]
+}

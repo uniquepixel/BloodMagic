@@ -1,0 +1,22 @@
+{
+  "title": "Ritual of the Geode's Bounty",
+  "icon": { "id": "minecraft:amethyst_cluster" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Ritual of the Geode's Bounty grows and harvests crystal clusters (such as amethyst) within its range, similar in spirit to the Demon Will crystal-harvesting rituals but aimed at vanilla geode crystals. Tier 0, costs $(blood)20,000 LP$() to activate.\nUse a Ritual Diviner for easier construction."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Various Demon Will types can be channeled into this ritual via the Aura to change its growth/harvest radius, harm nearby entities, or accelerate growth. Check the ritual's tooltip in-game (via the Ritual Diviner or a Divination Sigil) for the exact current bonuses on this branch."
+        }
+      ]
+    }
+  ]
+}

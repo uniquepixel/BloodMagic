@@ -1,0 +1,16 @@
+{
+  "type": "bloodmagic:flask_effect",
+  "base_duration": 1800,
+  "effect": "minecraft:weakness",
+  "input": [
+    {
+      "item": "bloodmagic:simplecatalyst"
+    },
+    {
+      "item": "minecraft:fermented_spider_eye"
+    }
+  ],
+  "minimum_tier": 1,
+  "syphon": 500,
+  "ticks": 200
+}

@@ -1,0 +1,7 @@
+{
+  "type": "bloodmagic:bonemeal_pulse_effect",
+  "chance": 50,
+  "horizontal_range": 3,
+  "upkeep_cost": 150,
+  "vertical_range": 2
+}

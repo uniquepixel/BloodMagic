@@ -1,0 +1,14 @@
+{
+  "title": "Body Builder",
+  "icon": { "id": "minecraft:cooked_beef" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Effect: Grants Knockback Resistance and bonus Health. Caps out at 100% Resistance and 10 half-hearts of health.\nTrained by: Eating food.\nMaximum level: 5."
+        }
+      ]
+    }
+  ]
+}

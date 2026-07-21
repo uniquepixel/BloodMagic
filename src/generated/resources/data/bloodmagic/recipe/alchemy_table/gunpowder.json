@@ -1,0 +1,21 @@
+{
+  "type": "bloodmagic:alchemy_table",
+  "duration": 100,
+  "essence": 0,
+  "inputs": [
+    {
+      "tag": "c:dusts/sulfur"
+    },
+    {
+      "tag": "c:dusts/saltpeter"
+    },
+    {
+      "tag": "minecraft:coals"
+    }
+  ],
+  "output": {
+    "count": 3,
+    "id": "minecraft:gunpowder"
+  },
+  "tier": 0
+}

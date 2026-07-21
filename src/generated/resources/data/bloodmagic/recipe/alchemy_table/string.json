@@ -1,0 +1,18 @@
+{
+  "type": "bloodmagic:alchemy_table",
+  "duration": 100,
+  "essence": 100,
+  "inputs": [
+    {
+      "tag": "minecraft:wool"
+    },
+    {
+      "item": "minecraft:flint"
+    }
+  ],
+  "output": {
+    "count": 4,
+    "id": "minecraft:string"
+  },
+  "tier": 0
+}

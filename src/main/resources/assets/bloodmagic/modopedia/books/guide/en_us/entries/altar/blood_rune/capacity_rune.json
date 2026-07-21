@@ -1,0 +1,22 @@
+{
+  "title": "Rune of Capacity",
+  "icon": { "id": "bloodmagic:rune_capacity" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Rune of Capacity increases the capacity of the Blood Altar by an additive +20% per rune."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "With Netherite Scrap and Hellforged Parts, you can upgrade a Rune of Capacity to its augmented form, increasing the capacity of the Blood Altar by an additive +40% per rune. If you change your mind, you can undo the upgrade in the Alchemical Reaction Chamber (ARC)."
+        }
+      ]
+    }
+  ]
+}

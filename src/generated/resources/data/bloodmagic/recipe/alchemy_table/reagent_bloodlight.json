@@ -1,0 +1,21 @@
+{
+  "type": "bloodmagic:alchemy_table",
+  "duration": 100,
+  "essence": 500,
+  "inputs": [
+    {
+      "item": "minecraft:glowstone_dust"
+    },
+    {
+      "item": "minecraft:blaze_powder"
+    },
+    {
+      "tag": "c:dusts/redstone"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "bloodmagic:reagent_bloodlight"
+  },
+  "tier": 1
+}

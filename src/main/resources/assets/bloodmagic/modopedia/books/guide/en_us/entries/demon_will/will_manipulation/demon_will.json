@@ -1,0 +1,22 @@
+{
+  "title": "Demon Will",
+  "icon": { "id": "bloodmagic:raw_will" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Once you have a Blood Altar, you'll need to gather a few Demon Wills. There are two ways to get Demon Will:\n- Killing a mob that has been hit with a Soul Snare and is killed while white particle effects appear.\n- By killing a hostile mob with a Sentient Sword.\nSince you are just beginning to use the mod, you will not yet have a Sentient Sword, and thus will need to use a Soul Snare."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Demon Will is a recurring resource in Blood Magic, and is used to power the Hellfire Forge. In the lore of Blood Magic, Demon Will is the residual effect of when a demon imbues its will into the bodies of the dead or other monsters.\nOnce you have some Will, you can use it to craft useful tools in the Hellfire Forge. If you find it cluttering up your inventory, perhaps a Tartaric Gem may help."
+        }
+      ]
+    }
+  ]
+}

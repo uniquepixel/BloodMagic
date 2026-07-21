@@ -1,0 +1,12 @@
+{
+  "type": "bloodmagic:flask_fill",
+  "input": [
+    {
+      "item": "bloodmagic:weakfillingagent"
+    }
+  ],
+  "max_effects": 1,
+  "minimum_tier": 0,
+  "syphon": 1000,
+  "ticks": 200
+}

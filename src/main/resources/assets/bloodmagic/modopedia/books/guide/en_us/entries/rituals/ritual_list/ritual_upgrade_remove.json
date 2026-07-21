@@ -1,0 +1,14 @@
+{
+  "title": "Sound of the Cleansing Soul",
+  "icon": { "id": "bloodmagic:upgrade_tome" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Sound of the Cleansing Soul (internally: Upgrade Remove Ritual) strips an upgrade or downgrade from your worn Living Armour while you stand on the Master Ritual Stone, refunding some of the points spent on it - the counterpart to Penance of the Leaden Soul. Tier 0, costs $(blood)25,000 LP$() to activate.\nUse a Ritual Diviner [Dusk] for easier construction."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "title": "Experienced",
+  "icon": { "id": "minecraft:experience_bottle" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Effect: Increases XP drops from killing mobs, up to 150%.\nTrained by: Collecting XP.\nMaximum level: 10."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "title": "Ritual of Magnetism",
+  "icon": { "id": "minecraft:iron_ore" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "By default, the Ritual of Magnetism searches down to bedrock in a radius of 3 blocks out from the Master Ritual Stone for ores to collect, pulling them to the surface. Tier 0, costs $(blood)5,000 LP$() to activate.\nUse a Ritual Diviner for easier construction."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The search radius can be augmented by placing an expensive block directly underneath the Master Ritual Stone - progressively more valuable blocks (such as a Block of Iron, and beyond it a Block of Diamond) extend the radius further. Check the ritual's tooltip in-game (via the Ritual Diviner or a Divination Sigil) for the exact current radius values on this branch."
+        }
+      ]
+    }
+  ]
+}

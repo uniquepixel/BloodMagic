@@ -26,13 +26,26 @@ public class MineBlock extends BlockLootSubProvider {
         addDropSelf(BMBlocks.ARC_BLOCK); // TODO maybe let it keep fluids?
         addDropSelf(BMBlocks.BLOOD_ALTAR);
         addDropSelf(BMBlocks.HELLFIRE_FORGE);
+        addDropSelf(BMBlocks.MASTER_RITUAL_STONE);
+        addDropSelf(BMBlocks.TELEPOSER);
+        addDropSelf(BMBlocks.INCENSE_ALTAR);
+        addDropSelf(BMBlocks.ITEM_ROUTER);
+        addDropSelf(BMBlocks.DEMON_CRUCIBLE);
+        addDropSelf(BMBlocks.DEMON_CRYSTALLIZER);
+        addDropSelf(BMBlocks.DEMON_PYLON);
     }
 
     private void addDropSelf(BlockWithItemHolder<? extends Block, ? extends BlockItem> toAdd) {
         dropSelfList.add(toAdd.block().get());
     }
 
-    private final List<Block> specialDropList = List.of(BMBlocks.BLOOD_TANK.block().get(), BMBlocks.LIVING_STATION.block().get(), BMBlocks.ALCHEMY_TABLE.block().get());
+    // Explosive Charges are never in the standard loot table - like BLOOD_LIGHT, they drop (or
+    // don't) entirely through their own tile's playerWillDestroy -> dropSelf() override instead
+    // (see ExplosiveChargeBlock/ExplosiveChargeTile), so a normal dropSelf loot entry here would
+    // double the item.
+    private final List<Block> chargeBlocks = List.of(BMBlocks.SHAPED_CHARGE.block().get(), BMBlocks.DEFORESTER_CHARGE.block().get(), BMBlocks.VEINMINE_CHARGE.block().get(), BMBlocks.FUNGAL_CHARGE.block().get());
+
+    private final List<Block> specialDropList = List.of(BMBlocks.BLOOD_TANK.block().get(), BMBlocks.LIVING_STATION.block().get(), BMBlocks.ALCHEMY_TABLE.block().get(), BMBlocks.BLOOD_LIGHT.get());
     private List<Block> dropSelfList = new ArrayList<>();
 
     @Override
@@ -40,6 +53,7 @@ public class MineBlock extends BlockLootSubProvider {
         List<Block> list = new ArrayList<>();
         list.addAll(specialDropList);
         list.addAll(dropSelfList);
+        list.addAll(chargeBlocks);
         return list;
     }
 
@@ -50,6 +64,9 @@ public class MineBlock extends BlockLootSubProvider {
         copyComponents(BMBlocks.LIVING_STATION);
 
         add(BMBlocks.ALCHEMY_TABLE.block().get(), block -> createSinglePropConditionTable(block, AlchemyTableBlock.PART, TablePart.LEFT));
+
+        add(BMBlocks.BLOOD_LIGHT.get(), noDrop());
+        chargeBlocks.forEach(block -> add(block, noDrop()));
     }
 
     private void copyComponents(BlockWithItemHolder<? extends Block, ? extends BlockItem> holder) {

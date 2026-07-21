@@ -1,0 +1,14 @@
+{
+  "title": "Dulled Blade",
+  "icon": { "id": "minecraft:stone_sword" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Reduces your melee damage. Caps out at an 80% reduction."
+        }
+      ]
+    }
+  ]
+}

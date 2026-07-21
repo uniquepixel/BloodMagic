@@ -1,0 +1,22 @@
+{
+  "title": "Activation Crystals",
+  "icon": { "id": "bloodmagic:activation_crystal_weak" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Your rituals require more than simply the correct arrangement of blocks and Sigils. An effort of will is required to open a channel from your Soul Network to the ritual, and the Activation Crystal will allow you to focus yourself enough to activate your rituals."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Simply right-click with a bound Activation Crystal on a Master Ritual Stone to activate the ritual it's part of - assuming it's suitably assembled, that is. There are Weak, Awakened, and Creative tiers of Activation Crystal."
+        }
+      ]
+    }
+  ]
+}

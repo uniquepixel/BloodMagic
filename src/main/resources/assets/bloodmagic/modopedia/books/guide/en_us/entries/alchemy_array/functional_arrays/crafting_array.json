@@ -1,0 +1,22 @@
+{
+  "title": "Crafting with Arrays",
+  "icon": { "id": "bloodmagic:sigil" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Alchemy Arrays of Crafting are one of the simplest forms of array. These arrays inscribe the base item onto the catalyst, transforming them both into a useful item (after a small, pretty animation)."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "While some of these resulting items can be crafted using very simple ingredients (such as the Divination Sigil, from Redstone Dust and a Blank Slate), others require additional steps to create useful items."
+        }
+      ]
+    }
+  ]
+}

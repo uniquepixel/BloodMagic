@@ -1,0 +1,14 @@
+{
+  "title": "Tough",
+  "icon": { "id": "minecraft:shield" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Effect: Protects you from non-projectile harm.\nTrained by: Taking damage from anything but projectiles.\nMaximum level: 10."
+        }
+      ]
+    }
+  ]
+}

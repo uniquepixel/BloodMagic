@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "tag": "c:stone"
+    },
+    "b": {
+      "item": "minecraft:bucket"
+    },
+    "c": {
+      "item": "bloodmagic:rune_blank"
+    },
+    "d": {
+      "item": "bloodmagic:slate_imbued"
+    }
+  },
+  "pattern": [
+    "aba",
+    "bcb",
+    "ada"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bloodmagic:rune_capacity"
+  }
+}

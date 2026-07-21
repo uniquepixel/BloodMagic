@@ -1,0 +1,21 @@
+{
+  "type": "bloodmagic:flask_transform",
+  "input": [
+    {
+      "item": "bloodmagic:combinationalcatalyst"
+    }
+  ],
+  "input_effect": [
+    "bloodmagic:grounded",
+    "minecraft:slow_falling"
+  ],
+  "minimum_tier": 1,
+  "output_effect": [
+    {
+      "base_duration": 1800,
+      "effect": "bloodmagic:gravity"
+    }
+  ],
+  "syphon": 1000,
+  "ticks": 200
+}

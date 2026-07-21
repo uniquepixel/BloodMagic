@@ -1,0 +1,11 @@
+{
+  "title": "Demonic Items",
+  "icon": { "id": "bloodmagic:sentient_sword" },
+  "landing_text": "From the functional to the deadly, Demon Will unlocks a lot of powerful tools for the budding Sanguimancer.",
+  "entries": [
+    "demon_will/demonic_items/sentient_sword",
+    "demon_will/demonic_items/sentient_tools",
+    "demon_will/demonic_items/throwing_daggers"
+  ],
+  "sort_num": 2
+}

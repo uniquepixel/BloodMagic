@@ -1,0 +1,16 @@
+{
+  "type": "bloodmagic:array",
+  "added_input": {
+    "item": "bloodmagic:slate_blank"
+  },
+  "base_input": {
+    "item": "minecraft:redstone"
+  },
+  "output": {
+    "components": {
+      "bloodmagic:sigil_effect": "bloodmagic:divination"
+    },
+    "count": 1,
+    "id": "bloodmagic:sigil"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "bloodmagic:alchemy_table",
+  "duration": 50,
+  "essence": 50,
+  "inputs": [
+    {
+      "tag": "c:string"
+    },
+    {
+      "tag": "c:string"
+    },
+    {
+      "tag": "c:string"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "minecraft:cobweb"
+  },
+  "tier": 1
+}

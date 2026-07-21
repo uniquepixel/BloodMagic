@@ -1,0 +1,14 @@
+{
+  "title": "Limp Leg",
+  "icon": { "id": "minecraft:soul_sand" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Effect: Reduces your movement speed significantly. Caps out at a 70% reduction.\nMaximum level: 10."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "type": "bloodmagic:alchemy_table",
+  "duration": 200,
+  "essence": 10000,
+  "inputs": [
+    {
+      "item": "bloodmagic:sigil"
+    },
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "item": "minecraft:bucket"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "bloodmagic:reagent_suppression"
+  },
+  "tier": 4
+}

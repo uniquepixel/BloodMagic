@@ -1,0 +1,22 @@
+{
+  "title": "Hellfire Forge",
+  "icon": { "id": "bloodmagic:hellfire_forge" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Hellfire Forge is one of the core crafting mechanics of Blood Magic, alongside the Blood Altar itself. Here, you can work with the Demon Will you have harvested from mobs, to create Sentient Tools, Tartaric Gems, various reagents, Arcane Ash, and many things besides."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "All of the Hellfire Forge's slots are accessible from any side, but it will prioritise certain slots over others when accepting items from different sides. Each of the four cardinal directions, for example, will prioritise its own input slot, while pushing items in from the top will try to place them into the gem slot first. Items will never be placed into the output slot, and extracting from the bottom will only try to take from the output slot."
+        }
+      ]
+    }
+  ]
+}

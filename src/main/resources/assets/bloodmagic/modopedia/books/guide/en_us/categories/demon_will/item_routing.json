@@ -1,0 +1,10 @@
+{
+  "title": "Item Routing",
+  "icon": { "id": "bloodmagic:master_routing_node" },
+  "landing_text": "Who needs hoppers? Blood Magic has automated item movement, from a simple standalone router block up to a small routing network.\nNote: on this branch the item routing system has been substantially redesigned/simplified from earlier versions - see the entries below for what's actually here now.",
+  "entries": [
+    "demon_will/item_routing/routing_nodes",
+    "demon_will/item_routing/item_router"
+  ],
+  "sort_num": 1
+}

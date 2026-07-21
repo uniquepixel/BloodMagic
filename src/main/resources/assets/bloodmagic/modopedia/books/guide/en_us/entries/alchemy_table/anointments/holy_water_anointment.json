@@ -1,0 +1,47 @@
+{
+  "title": "Holy Water",
+  "icon": { "id": "bloodmagic:anointment_holy_water" },
+  "assigned_items": [ "bloodmagic:anointment_holy_water" ],
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Holy Water$(/b)\n\nTemporarily increases the melee damage dealt to undead mobs by +5. \n\nValid items: Tools, Swords.\n\nApplies: Holy Light I (256 hits)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Holy Water L$(/b)\n\nThis upgraded version of the anointment lasts four times longer. \n\nApplies: Holy Light I (1024 hits)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Holy Water II$(/b)\n\nThis upgraded version of the anointment increases melee damage dealt to undead mobs by +10. \n\nApplies: Holy Light II (256 hits)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Holy Water XL$(/b)\n\nThis upgraded version of the anointment lasts sixteen times longer. \n\nApplies: Holy Light I (4096 hits)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Holy Water III$(/b)\n\nThis upgraded version of the anointment increases melee damage dealt to undead mobs by +15. \n\nApplies: Holy Light III (256 hits)"
+        }
+      ]
+    }
+  ]
+}

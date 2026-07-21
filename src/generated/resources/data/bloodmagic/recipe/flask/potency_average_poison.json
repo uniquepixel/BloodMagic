@@ -1,0 +1,14 @@
+{
+  "type": "bloodmagic:flask_potency",
+  "amp_duration_mod": 0.25,
+  "amplifier": 2,
+  "effect": "minecraft:poison",
+  "input": [
+    {
+      "item": "bloodmagic:averagepowercatalyst"
+    }
+  ],
+  "minimum_tier": 4,
+  "syphon": 500,
+  "ticks": 100
+}

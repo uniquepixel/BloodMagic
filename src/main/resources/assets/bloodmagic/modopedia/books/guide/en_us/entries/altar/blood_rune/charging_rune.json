@@ -1,0 +1,30 @@
+{
+  "title": "Charging Rune",
+  "icon": { "id": "bloodmagic:rune_charging" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Charging Rune is a unique Rune upgrade. When the Blood Altar is not crafting nor filling a Blood Orb, it will syphon $(blood)LP$() from the Altar to charge an internal buffer. When an item is next placed inside of the Altar, it will instantaneously consume the stored charge and apply it to the crafting of the item at a 1:1 ratio."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Blood Altar does a charging tick once per 20 in-game ticks, which is reduced by 1 per Acceleration Rune.\nThe speed that the Blood Altar charges at per charging tick is: [$(blood)10LP$() x Charging Runes x (1 + Speed Runes/10)]\nThe maximum charge that a Blood Altar can hold is $(blood)1000 LP$() per Charging Rune, which is then multiplied by: [(capacity of the main Blood Altar tank)/20000] if that value is above 1."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "With Netherite Scrap and Hellforged Parts, you can upgrade a Charging Rune to its augmented form, doubling its power in terms of both capacity and speed. If you change your mind, you can undo the upgrade in the Alchemical Reaction Chamber (ARC)."
+        }
+      ]
+    }
+  ]
+}

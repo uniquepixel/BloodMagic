@@ -1,0 +1,22 @@
+{
+  "title": "Serenade of the Nether",
+  "icon": { "id": "minecraft:lava_bucket" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Serenade of the Nether (internally: Lava Ritual) generates lava into a linked tank near the Master Ritual Stone, giving you a renewable lava source. Tier 0, costs $(blood)10,000 LP$() to activate.\nUse a Ritual Diviner for easier construction."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Various Demon Will types can be channeled into this ritual via the Aura to change its behavior - it can be made particularly useful against denizens of the Nether, set nearby hostile mobs on a fire fuse (when the debuff ends, they do a wonderful impression of a firework), or grant the player Fire Resistance. Check the ritual's tooltip in-game (via the Ritual Diviner or a Divination Sigil) for the exact current bonuses on this branch."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "type": "bloodmagic:soul_forge",
+  "drain": 80.0,
+  "inputs": [
+    {
+      "item": "bloodmagic:soul_gem_lesser"
+    },
+    {
+      "item": "minecraft:diamond_helmet"
+    }
+  ],
+  "minDrain": 200.0,
+  "output": {
+    "count": 1,
+    "id": "bloodmagic:sentient_helmet"
+  }
+}

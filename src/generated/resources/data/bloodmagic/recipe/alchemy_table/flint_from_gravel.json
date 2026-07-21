@@ -1,0 +1,18 @@
+{
+  "type": "bloodmagic:alchemy_table",
+  "duration": 20,
+  "essence": 50,
+  "inputs": [
+    {
+      "item": "minecraft:gravel"
+    },
+    {
+      "item": "minecraft:flint"
+    }
+  ],
+  "output": {
+    "count": 2,
+    "id": "minecraft:flint"
+  },
+  "tier": 0
+}

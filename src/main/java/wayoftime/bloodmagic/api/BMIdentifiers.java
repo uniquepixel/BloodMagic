@@ -46,6 +46,13 @@ public class BMIdentifiers {
         public static final ResourceKey<SigilEffect> WATER = ResourceKey.create(RegistryKeys.SIGIL_EFFECT, bm("water"));
         public static final ResourceKey<SigilEffect> VOID = ResourceKey.create(RegistryKeys.SIGIL_EFFECT, bm("void"));
         public static final ResourceKey<SigilEffect> MINER = ResourceKey.create(RegistryKeys.SIGIL_EFFECT, bm("miner"));
+        public static final ResourceKey<SigilEffect> AIR = ResourceKey.create(RegistryKeys.SIGIL_EFFECT, bm("air"));
+        public static final ResourceKey<SigilEffect> ICE = ResourceKey.create(RegistryKeys.SIGIL_EFFECT, bm("ice"));
+        public static final ResourceKey<SigilEffect> GROWTH = ResourceKey.create(RegistryKeys.SIGIL_EFFECT, bm("growth"));
+        public static final ResourceKey<SigilEffect> MAGNETISM = ResourceKey.create(RegistryKeys.SIGIL_EFFECT, bm("magnetism"));
+        public static final ResourceKey<SigilEffect> BLOODLIGHT = ResourceKey.create(RegistryKeys.SIGIL_EFFECT, bm("bloodlight"));
+        public static final ResourceKey<SigilEffect> SUPPRESSION = ResourceKey.create(RegistryKeys.SIGIL_EFFECT, bm("suppression"));
+        public static final ResourceKey<SigilEffect> TELEPOSITION = ResourceKey.create(RegistryKeys.SIGIL_EFFECT, bm("teleposition"));
     }
 
     public static class Upgrades {
@@ -99,6 +106,7 @@ public class BMIdentifiers {
 
     public static class ItemProperties {
         public static final ResourceLocation SIGIL_ACTIVE = bm("sigil_active");
+        public static final ResourceLocation SENTIENT_GEM_ACTIVE = bm("sentient_armour_gem_active");
     }
 
     public static class ModelLoaders {
@@ -112,6 +120,13 @@ public class BMIdentifiers {
         public static final ModelResourceLocation WATER = fromSigilKey(Sigils.WATER);
         public static final ModelResourceLocation VOID = fromSigilKey(Sigils.VOID);
         public static final ModelResourceLocation MINER = fromSigilKey(Sigils.MINER);
+        public static final ModelResourceLocation AIR = fromSigilKey(Sigils.AIR);
+        public static final ModelResourceLocation ICE = fromSigilKey(Sigils.ICE);
+        public static final ModelResourceLocation GROWTH = fromSigilKey(Sigils.GROWTH);
+        public static final ModelResourceLocation MAGNETISM = fromSigilKey(Sigils.MAGNETISM);
+        public static final ModelResourceLocation BLOODLIGHT = fromSigilKey(Sigils.BLOODLIGHT);
+        public static final ModelResourceLocation SUPPRESSION = fromSigilKey(Sigils.SUPPRESSION);
+        public static final ModelResourceLocation TELEPOSITION = fromSigilKey(Sigils.TELEPOSITION);
 
         public static ModelResourceLocation fromSigilKey(ResourceKey<SigilEffect> key) {
             return ModelResourceLocation.standalone(ResourceLocation.fromNamespaceAndPath(key.location().getNamespace(), "item/sigil_" + key.location().getPath()));

@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "tag": "c:stone"
+    },
+    "b": {
+      "type": "bloodmagic:bloodorb",
+      "orb_tier": 1
+    },
+    "c": {
+      "item": "bloodmagic:rune_blank"
+    },
+    "d": {
+      "type": "bloodmagic:bloodorb",
+      "orb_tier": 4
+    }
+  },
+  "pattern": [
+    "aba",
+    "cdc",
+    "aba"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bloodmagic:rune_orb"
+  }
+}

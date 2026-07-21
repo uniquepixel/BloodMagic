@@ -1,0 +1,16 @@
+{
+  "type": "bloodmagic:flask_effect",
+  "base_duration": 3600,
+  "effect": "bloodmagic:bounce",
+  "input": [
+    {
+      "item": "bloodmagic:simplecatalyst"
+    },
+    {
+      "item": "minecraft:slime_ball"
+    }
+  ],
+  "minimum_tier": 1,
+  "syphon": 500,
+  "ticks": 200
+}

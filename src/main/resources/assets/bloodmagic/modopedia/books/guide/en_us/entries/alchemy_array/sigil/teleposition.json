@@ -1,0 +1,14 @@
+{
+  "title": "Teleposition Sigil",
+  "icon": { "id": "bloodmagic:sigil" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Teleports the user to a linked Teleposer at a cost of $(blood)1000 LP$() per use. By shift-clicking on a Teleposer with the sigil in hand, the location and dimension of the Teleposer can be recorded, allowing for a quick escape back home.\nJust don't move the Teleposer by accident..."
+        }
+      ]
+    }
+  ]
+}

@@ -85,6 +85,18 @@ versionRange="${minecraft_version_range}"
 ordering="NONE"
 side="BOTH"
 
+# Load after Architectury (if present) and any of its consumers. Bloodmagic has no actual dependency on
+# Architectury, but in very large modpacks it has been observed to shift FML's mod-construction ordering
+# enough to expose a pre-existing race in Architectury's EventBuses registration on NeoForge
+# (see architectury/architectury-api#664). Declaring this ordering hint costs nothing when Architectury
+# isn't installed, and nudges the load order in packs where it is.
+[[dependencies.${mod_id}]]
+modId="architectury"
+type="optional"
+versionRange="[0,)"
+ordering="AFTER"
+side="BOTH"
+
 # Features are specific properties of the game environment, that you may want to declare you require. This example declares
 # that your mod requires GL version 3.2 or higher. Other features will be added. They are side aware so declaring this won't
 # stop your mod loading on the server for example.

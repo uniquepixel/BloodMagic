@@ -1,0 +1,16 @@
+{
+  "type": "bloodmagic:flask_effect",
+  "base_duration": 1800,
+  "effect": "minecraft:slow_falling",
+  "input": [
+    {
+      "item": "bloodmagic:simplecatalyst"
+    },
+    {
+      "item": "minecraft:phantom_membrane"
+    }
+  ],
+  "minimum_tier": 1,
+  "syphon": 500,
+  "ticks": 200
+}

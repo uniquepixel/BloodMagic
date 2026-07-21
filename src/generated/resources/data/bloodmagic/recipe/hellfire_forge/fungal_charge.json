@@ -1,0 +1,33 @@
+{
+  "type": "bloodmagic:soul_forge",
+  "drain": 0.5,
+  "inputs": [
+    {
+      "tag": "c:cobblestone"
+    },
+    {
+      "item": "minecraft:charcoal"
+    },
+    [
+      {
+        "item": "minecraft:red_mushroom_block"
+      },
+      {
+        "item": "minecraft:brown_mushroom_block"
+      }
+    ],
+    [
+      {
+        "item": "minecraft:red_mushroom"
+      },
+      {
+        "item": "minecraft:brown_mushroom"
+      }
+    ]
+  ],
+  "minDrain": 10.0,
+  "output": {
+    "count": 8,
+    "id": "bloodmagic:fungal_charge"
+  }
+}

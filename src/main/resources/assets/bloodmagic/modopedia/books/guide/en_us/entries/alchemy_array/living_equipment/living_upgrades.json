@@ -1,0 +1,22 @@
+{
+  "title": "Living Equipment Upgrades",
+  "icon": { "id": "bloodmagic:upgrade_tome" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "While wearing this new armour, you have felt it growing, trying to assist you with various tasks it has seen you perform. It seems to be able to perform in a number of areas, but its growth is limited, and trying to do everything at once is quite fruitless."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Perhaps multiple specialised sets may be a good idea? Of course, you'll have to train it carefully if you want more than a smattering of poorly-directed benefits.\nFortunately, there is a Ritual (Sound of the Cleansing Soul / Penance of the Leaden Soul) that will assist with training, and another (Ritual of Living Evolution) that will imbue your armour with a greater ability to grow."
+        }
+      ]
+    }
+  ]
+}

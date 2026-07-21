@@ -1,0 +1,22 @@
+{
+  "title": "Sigil of Holding",
+  "icon": { "id": "bloodmagic:sigil_holding" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "This Sigil can hold up to 5 other Sigils at a time, providing you with their passive effects and allowing you to activate them on a whim. Use the configured keybinds (check your controls menu) to open its inventory and cycle between the held sigils - holding sneak and using your mousewheel also works."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Crafted in two steps: first a Holding Reagent at the Alchemy Table, then combine it with a Blank Slate in an Alchemy Array to produce the finished Sigil."
+        }
+      ]
+    }
+  ]
+}

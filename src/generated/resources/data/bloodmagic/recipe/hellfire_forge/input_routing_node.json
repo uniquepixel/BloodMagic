@@ -1,0 +1,23 @@
+{
+  "type": "bloodmagic:soul_forge",
+  "drain": 25.0,
+  "inputs": [
+    {
+      "tag": "c:stone"
+    },
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "tag": "c:dusts/redstone"
+    },
+    {
+      "tag": "c:dusts/glowstone"
+    }
+  ],
+  "minDrain": 400.0,
+  "output": {
+    "count": 1,
+    "id": "bloodmagic:input_routing_node"
+  }
+}

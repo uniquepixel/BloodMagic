@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "S": {
+      "item": "bloodmagic:slate_blank"
+    },
+    "i": {
+      "tag": "c:ingots/iron"
+    },
+    "o": {
+      "tag": "c:storage_blocks/iron"
+    },
+    "s": {
+      "tag": "c:stone"
+    }
+  },
+  "pattern": [
+    "i i",
+    "sSs",
+    "sos"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bloodmagic:hellfire_forge"
+  }
+}

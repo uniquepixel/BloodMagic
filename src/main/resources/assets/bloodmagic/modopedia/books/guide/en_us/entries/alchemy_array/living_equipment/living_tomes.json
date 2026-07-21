@@ -1,0 +1,30 @@
+{
+  "title": "Upgrade Tomes",
+  "icon": { "id": "bloodmagic:upgrade_tome" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Upon activating the Sound of the Cleansing Soul (or through other means of acquiring them), a series of magical Tomes will manifest around you.\nBy right-clicking whilst holding one of these, you can 'teach' your chestplate one level of this skill (assuming it has enough spare points to learn it). Holding sneak and right-clicking will instead consume as much XP from the tome as possible."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Doing so will consume the Tome and apply all EXP from it to your chestplate - unless there are not enough Upgrade Points available. In this case, the Tome will apply as much EXP as it can and store the remainder - unless there's less than 1 level's worth left, in which case the tome will be destroyed."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "This is an excellent way to focus training on abilities you wish to see more of, whilst conveniently forgetting ones you find less useful. Alternately, you can teach different chestplates different skills, so you can have one chestplate for mining, one for combat, and yet another for exploration.\nTo better manage these Tomes you can put two or more of the same up- or downgrade in a crafting grid to combine the EXP they store."
+        }
+      ]
+    }
+  ]
+}

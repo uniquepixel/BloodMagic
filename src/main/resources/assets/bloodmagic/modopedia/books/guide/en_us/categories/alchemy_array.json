@@ -1,0 +1,11 @@
+{
+  "title": "Alchemy Arrays",
+  "icon": { "id": "bloodmagic:alchemy_array" },
+  "landing_text": "Alchemy Arrays are simple effects that originate from circles that are drawn on the ground. They are simple to build and can be really useful in both early game and late game applications.",
+  "children": [
+    "alchemy_array/functional_array",
+    "alchemy_array/living_equipment",
+    "alchemy_array/sigil"
+  ],
+  "sort_num": 2
+}

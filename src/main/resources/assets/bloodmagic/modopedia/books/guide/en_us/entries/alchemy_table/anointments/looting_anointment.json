@@ -1,0 +1,47 @@
+{
+  "title": "Plunderer's Glint",
+  "icon": { "id": "bloodmagic:anointment_looting" },
+  "assigned_items": [ "bloodmagic:anointment_looting" ],
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Plunderer's Glint$(/b)\n\nIncreases the drops from killed mobs. Also stacks with the Looting enchantment.\n\nValid items: Tools, Swords.\n\nApplies: Plundering I (256 hits)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Plunderer's Glint L$(/b)\n\nThis upgraded version of the anointment lasts four times longer. \n\nApplies: Plundering I (1024 hits)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Plunderer's Glint II$(/b)\n\nThis upgraded version of the anointment further increases the drops from killed mobs. \n\nApplies: Plundering II (256 hits)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Plunderer's Glint XL$(/b)\n\nThis upgraded version of the anointment lasts sixteen times longer. \n\nApplies: Plundering I (4096 hits)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Plunderer's Glint III$(/b)\n\nThis upgraded version of the anointment further increases the drops from killed mobs. \n\nApplies: Plundering III (256 hits)"
+        }
+      ]
+    }
+  ]
+}

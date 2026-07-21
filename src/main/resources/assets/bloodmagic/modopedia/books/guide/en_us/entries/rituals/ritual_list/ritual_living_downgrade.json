@@ -1,0 +1,30 @@
+{
+  "title": "Penance of the Leaden Soul",
+  "icon": { "id": "bloodmagic:upgrade_scrap" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "This ritual consumes excess Upgrade Points (in the form of Tomes, Scraps, and Synthetic Upgrade Points) alongside one Key Item per level, in order to apply Downgrades to your worn Living Armour. Tier 0, costs $(blood)10,000 LP$() to activate.\nUse a Ritual Diviner [Dusk] for easier construction."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "If you do not have enough points available to you, you can craft Synthetic Upgrade Points - each one is worth a single Upgrade Point.\nTo use the ritual, place your tomes (or other sources of Upgrade Points) and the required item(s) for the particular downgrade you have in mind into the attached chest, while wearing your Living Armour. The ritual will consume the points and apply the downgrade to your armour."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The downgrade applied depends on what item(s) you place in the chest - each item that matches a particular downgrade will increase that downgrade's level by one, so multiple downgrades can be applied at once with a single ritual activation.\nThe ritual respects any settings configured on your Living Armour Training Bracelet, so if it's set to 'do not allow other upgrades' the ritual will fail to apply the downgrades. Excess points are returned as Living Armour Upgrade Scraps, usable in subsequent rituals."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "type": "bloodmagic:alchemical_reaction_chamber",
+  "chance_outputs": [],
+  "guaranteed_outputs": [
+    {
+      "count": 1,
+      "id": "bloodmagic:demonitegravel"
+    }
+  ],
+  "input": {
+    "item": "bloodmagic:demonitefragment"
+  },
+  "tool": {
+    "tag": "bloodmagic:arc_tool/resonator"
+  }
+}

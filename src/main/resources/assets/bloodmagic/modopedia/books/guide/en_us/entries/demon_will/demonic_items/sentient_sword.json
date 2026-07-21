@@ -1,0 +1,22 @@
+{
+  "title": "Sentient Sword",
+  "icon": { "id": "bloodmagic:sentient_sword" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Sentient Sword is a much more effective tool for collecting Demon Will than Soul Snares could ever hope to be. It may seem weak at first, but it is powered by the Will you carry, so having a Tartaric Gem is a must.\nNote that the sword, as with all Sentient Tools, can be repaired with Crystallized Will in an Anvil."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Crafted at the Hellfire Forge. You can update the sword's stats by right-clicking while you have it equipped - if you have recently acquired a large amount of Will, or are trying out a new Aspect of Will for the first time, this may be a good idea."
+        }
+      ]
+    }
+  ]
+}

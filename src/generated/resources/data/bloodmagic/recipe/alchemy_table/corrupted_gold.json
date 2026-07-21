@@ -1,0 +1,18 @@
+{
+  "type": "bloodmagic:alchemy_table",
+  "duration": 50,
+  "essence": 300,
+  "inputs": [
+    {
+      "item": "bloodmagic:goldfragment"
+    },
+    {
+      "item": "bloodmagic:corrupted_dust"
+    }
+  ],
+  "output": {
+    "count": 2,
+    "id": "bloodmagic:goldgravel"
+  },
+  "tier": 3
+}

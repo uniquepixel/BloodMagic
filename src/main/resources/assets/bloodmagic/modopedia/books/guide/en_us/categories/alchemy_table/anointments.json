@@ -1,0 +1,20 @@
+{
+  "title": "Anointments",
+  "icon": { "id": "bloodmagic:anointment_smelting" },
+  "landing_text": "",
+  "entries": [
+    "alchemy_table/anointments/bow_power_anointment",
+    "alchemy_table/anointments/bow_velocity_anointment",
+    "alchemy_table/anointments/fortune_anointment",
+    "alchemy_table/anointments/hidden_knowledge_anointment",
+    "alchemy_table/anointments/holy_water_anointment",
+    "alchemy_table/anointments/looting_anointment",
+    "alchemy_table/anointments/melee_anointment",
+    "alchemy_table/anointments/quick_draw_anointment",
+    "alchemy_table/anointments/silk_touch_anointment",
+    "alchemy_table/anointments/smelting_anointment",
+    "alchemy_table/anointments/voiding_anointment",
+    "alchemy_table/anointments/weapon_repair_anointment"
+  ],
+  "sort_num": 0
+}

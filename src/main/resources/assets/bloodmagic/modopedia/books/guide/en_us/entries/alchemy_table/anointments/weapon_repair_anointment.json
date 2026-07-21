@@ -1,0 +1,47 @@
+{
+  "title": "Repairing Salve",
+  "icon": { "id": "bloodmagic:anointment_weapon_repair" },
+  "assigned_items": [ "bloodmagic:anointment_weapon_repair" ],
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Repairing Salve$(/b)\n\nRepairs damaged tools by 1 point when the tool is used. \n\nValid items: Tools, Swords.\n\nApplies: Regular Maintenance I (256 blocks)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Repairing Salve L$(/b)\n\nThis upgraded version of the anointment lasts four times longer. \n\nApplies: Regular Maintenance I (1024 blocks)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Repairing Salve II$(/b)\n\nThis upgraded version of the anointment repairs the tool by 2 points for every point of damage taken. Does not activate if doing so would waste some of the repair bonus. \n\nApplies: Regular Maintenance II (256 blocks)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Repairing Salve XL$(/b)\n\nThis upgraded version of the anointment lasts sixteen times longer. \n\nApplies: Regular Maintenance I (4096 blocks)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Repairing Salve III$(/b)\n\nThis upgraded version of the anointment repairs the tool by 3 points for every point of damage taken. Does not activate if doing so would waste some of the repair bonus. \n\nApplies: Regular Maintenance III (256 blocks)"
+        }
+      ]
+    }
+  ]
+}

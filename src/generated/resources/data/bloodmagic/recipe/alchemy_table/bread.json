@@ -1,0 +1,18 @@
+{
+  "type": "bloodmagic:alchemy_table",
+  "duration": 100,
+  "essence": 100,
+  "inputs": [
+    {
+      "tag": "c:crops/wheat"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "minecraft:bread"
+  },
+  "tier": 1
+}

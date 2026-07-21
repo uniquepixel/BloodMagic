@@ -1,0 +1,22 @@
+{
+  "title": "Mark of the Falling Tower",
+  "icon": { "id": "minecraft:fire_charge" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Using the vast powers at your disposal, you reach the conclusion that it is a good idea to summon a meteor from outer space to crash upon the world. By dropping an appropriate offering on top of the Master Ritual Stone, the ritual will consume the item (plus a large amount of LP, default $(blood)250,000 LP$()) and summon a meteor.\nUse a Ritual Diviner [Dusk] for easier construction."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The size of the meteor and the resources gained vary based on the offering given. Normal offerings include Diamond, Block of Iron, Glowstone Dust, and Stone. Compatible mod items can also be used as offerings where present."
+        }
+      ]
+    }
+  ]
+}

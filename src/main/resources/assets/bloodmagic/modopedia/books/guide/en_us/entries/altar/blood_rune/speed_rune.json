@@ -1,0 +1,22 @@
+{
+  "title": "Speed Rune",
+  "icon": { "id": "bloodmagic:rune_speed" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Speed Rune increases all of the crafting operations of the Blood Altar. The crafting speed (and speed that the progress is lost when empty) increases by an additive +20% per rune."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "With Netherite Scrap and Hellforged Parts, you can upgrade a Speed Rune to its augmented form, increasing the crafting rate by an additive +40% per rune. If you change your mind, you can undo the upgrade in the Alchemical Reaction Chamber (ARC)."
+        }
+      ]
+    }
+  ]
+}

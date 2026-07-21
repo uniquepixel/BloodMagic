@@ -1,0 +1,22 @@
+{
+  "title": "Crystallized Will",
+  "icon": { "id": "bloodmagic:crystal_cluster" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Once you have plenty of Demon Will stored up, it's time to explore what happens when you unleash it upon the world in crystal form. Will Crystal Clusters can grow from a placed Crystal Cluster block when there's enough of the matching Will aspect available - once grown, they can be harvested."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "If you have more than 512 total Will in your inventory (across any number of Tartaric Gems, of any one type), you can harvest crystal spires by right-clicking with an empty hand, which removes all but the central spire. If you don't have enough Will, or are just in a hurry, you can harvest the whole cluster with a pickaxe instead.\nThe Rituals of Crystal Harvest, Crystal Split, and Gathering of the Forsaken Souls (alongside Will Catalysts) can help automate and boost crystal production."
+        }
+      ]
+    }
+  ]
+}

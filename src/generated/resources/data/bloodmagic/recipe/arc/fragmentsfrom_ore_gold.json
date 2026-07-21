@@ -1,0 +1,24 @@
+{
+  "type": "bloodmagic:alchemical_reaction_chamber",
+  "chance_outputs": [
+    {
+      "chance": 0.5,
+      "item": {
+        "count": 1,
+        "id": "bloodmagic:goldfragment"
+      }
+    }
+  ],
+  "guaranteed_outputs": [
+    {
+      "count": 4,
+      "id": "bloodmagic:goldfragment"
+    }
+  ],
+  "input": {
+    "tag": "c:ores/gold"
+  },
+  "tool": {
+    "tag": "bloodmagic:arc_tool/explosives"
+  }
+}

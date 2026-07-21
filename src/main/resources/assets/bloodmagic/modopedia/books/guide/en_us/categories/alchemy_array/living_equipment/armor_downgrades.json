@@ -1,0 +1,17 @@
+{
+  "title": "Living Armor Downgrades",
+  "icon": { "id": "bloodmagic:upgrade_scrap" },
+  "landing_text": "A list of available Living Armor Downgrades. See Penance of the Leaden Soul for a primer on how they work.",
+  "entries": [
+    "alchemy_array/living_equipment/armour_downgrades/battle_hungry",
+    "alchemy_array/living_equipment/armour_downgrades/crippled_arm",
+    "alchemy_array/living_equipment/armour_downgrades/dig_slowdown",
+    "alchemy_array/living_equipment/armour_downgrades/melee_decrease",
+    "alchemy_array/living_equipment/armour_downgrades/quenched",
+    "alchemy_array/living_equipment/armour_downgrades/slow_heal",
+    "alchemy_array/living_equipment/armour_downgrades/speed_decrease",
+    "alchemy_array/living_equipment/armour_downgrades/storm_trooper",
+    "alchemy_array/living_equipment/armour_downgrades/swim_decrease"
+  ],
+  "sort_num": 1
+}

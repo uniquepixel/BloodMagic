@@ -1,0 +1,12 @@
+{
+  "type": "bloodmagic:flask_cycle",
+  "count": 1,
+  "input": [
+    {
+      "item": "bloodmagic:cyclingcatalyst"
+    }
+  ],
+  "minimum_tier": 1,
+  "syphon": 500,
+  "ticks": 50
+}

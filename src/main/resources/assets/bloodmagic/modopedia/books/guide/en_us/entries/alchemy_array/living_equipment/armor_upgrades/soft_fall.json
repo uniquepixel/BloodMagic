@@ -1,0 +1,14 @@
+{
+  "title": "Soft Fall",
+  "icon": { "id": "minecraft:feather" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Effect: Reduces fall damage, up to complete immunity.\nTrained by: Getting hurt from falls.\nMaximum level: 5."
+        }
+      ]
+    }
+  ]
+}

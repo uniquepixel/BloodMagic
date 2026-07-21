@@ -1,0 +1,14 @@
+{
+  "title": "Pin Cushion",
+  "icon": { "id": "minecraft:arrow" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Effect: Offers protection from arrows.\nTrained by: Being shot.\nMaximum level: 10."
+        }
+      ]
+    }
+  ]
+}

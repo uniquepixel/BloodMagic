@@ -1,0 +1,14 @@
+{
+  "title": "Day/Night Arrays",
+  "icon": { "id": "minecraft:clock" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Time-based arrays are straight-forward arrays that control the time of day. The items used are consumed once the array starts changing the time.\nThe Day array (New Dawn) will change the time of day to the next sunrise. The Night array (True Twilight) will change the time of day to the next sunset."
+        }
+      ]
+    }
+  ]
+}

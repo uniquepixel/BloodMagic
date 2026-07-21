@@ -66,8 +66,18 @@ public class SigilItem extends Item {
     @Override
     public InteractionResult useOn(UseOnContext context) {
         Player player = context.getPlayer();
-        ItemStack stack = context.getItemInHand();
-        if (player == null || player.isFakePlayer()) {
+        if (player == null) {
+            return InteractionResult.PASS;
+        }
+        return useSigilOn(context.getItemInHand(), context, player);
+    }
+
+    /**
+     * Shared with {@link wayoftime.bloodmagic.common.item.SigilHoldingItem}, which delegates to
+     * a sigil stack it contains rather than the one physically in the player's hand.
+     */
+    public static InteractionResult useSigilOn(ItemStack stack, UseOnContext context, Player player) {
+        if (player.isFakePlayer()) {
             return InteractionResult.PASS;
         }
 
@@ -96,7 +106,10 @@ public class SigilItem extends Item {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
-        ItemStack stack = player.getItemInHand(usedHand);
+        return useSigil(player.getItemInHand(usedHand), level, player, usedHand);
+    }
+
+    public static InteractionResultHolder<ItemStack> useSigil(ItemStack stack, Level level, Player player, InteractionHand usedHand) {
         if (player.isFakePlayer()) {
             return InteractionResultHolder.pass(stack);
         }
@@ -131,11 +144,15 @@ public class SigilItem extends Item {
             return InteractionResultHolder.sidedSuccess(stack, false);
         }
 
-        return super.use(level, player, usedHand);
+        return InteractionResultHolder.pass(stack);
     }
 
     @Override
     public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity interactionTarget, InteractionHand usedHand) {
+        return useSigilOnEntity(stack, player, interactionTarget);
+    }
+
+    public static InteractionResult useSigilOnEntity(ItemStack stack, Player player, LivingEntity interactionTarget) {
         if (player.isFakePlayer()) {
             return InteractionResult.PASS;
         }
@@ -169,16 +186,20 @@ public class SigilItem extends Item {
             return;
         }
 
+        if (!(entity instanceof Player player)) {
+            return;
+        }
+
+        tickSigil(stack, level, player);
+    }
+
+    public static void tickSigil(ItemStack stack, Level level, Player player) {
         Binding binding = stack.getOrDefault(BMDataComponents.BINDING, Binding.EMPTY);
         if (binding.isEmpty()) {
             return;
         }
         SoulNetwork network = SoulNetworkHelper.getSoulNetwork(binding.uuid());
         if (network == null) {
-            return;
-        }
-
-        if (!(entity instanceof Player player)) {
             return;
         }
 

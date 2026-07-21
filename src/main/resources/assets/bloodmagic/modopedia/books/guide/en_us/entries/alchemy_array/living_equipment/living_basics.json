@@ -1,0 +1,30 @@
+{
+  "title": "Living Equipment Basics",
+  "icon": { "id": "bloodmagic:living_helmet" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "To create Living Equipment, you will first need Iron Armor, some Arcane Ash, and some Binding Reagent. You'll also need at least a Common Tartaric Gem in order to hold the Demon Will required.\nLiving Equipment is equivalent in durability to Diamond Armour, and can be repaired in an Anvil with more Binding Reagent."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "As with any other Alchemy Array, right-click while looking at a block with the Arcane Ashes in hand, then apply the Binding Reagent. Then place in your Iron Helmet, Iron Chestplate, Iron Leggings, or Iron Boots, stand back, and watch the show.\nLiving Equipment starts off equivalent to Iron, but it has Upgrade Points that can, with care, be spent to train it in specific ways. It starts with 100, but there may be ways to surpass this limitation..."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "It's alive, all right... and it's learning from you. You'd best be careful what you teach it. You can keep a closer eye on what it's learned so far by holding sneak when you look at it."
+        }
+      ]
+    }
+  ]
+}

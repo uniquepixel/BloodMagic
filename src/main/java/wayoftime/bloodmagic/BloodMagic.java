@@ -5,6 +5,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.common.ModConfigSpec;
@@ -20,12 +21,25 @@ import wayoftime.bloodmagic.common.creativetab.BMTabs;
 import wayoftime.bloodmagic.common.dataattachment.BMDataAttachments;
 import wayoftime.bloodmagic.common.datacomponent.BMDataComponents;
 import wayoftime.bloodmagic.common.datamap.BMDataMaps;
+import wayoftime.bloodmagic.common.entity.BMEntities;
 import wayoftime.bloodmagic.common.fluid.BMFluids;
+import wayoftime.bloodmagic.common.incense.IncenseTranquilityRegistry;
 import wayoftime.bloodmagic.common.item.BMItems;
 import wayoftime.bloodmagic.common.item.BMMaterialsAndTiers;
 import wayoftime.bloodmagic.common.recipe.BMRecipes;
+import wayoftime.bloodmagic.common.recipe.ingredient.BMIngredientTypes;
 import wayoftime.bloodmagic.common.registry.BMRegistries;
+import wayoftime.bloodmagic.common.event.AnointmentEventHandler;
+import wayoftime.bloodmagic.common.event.SentientArmorEventHandler;
+import wayoftime.bloodmagic.common.potion.BMPotionEventHandler;
+import wayoftime.bloodmagic.common.potion.BMPotions;
+import wayoftime.bloodmagic.common.ritual.RitualRegistry;
+import wayoftime.bloodmagic.common.ritual.harvest.HarvestHandlerRegistry;
+import wayoftime.bloodmagic.common.sigil.SuppressionEffect;
+import wayoftime.bloodmagic.common.will.WillEventHandler;
+import wayoftime.bloodmagic.compat.curios.CuriosCompat;
 import wayoftime.bloodmagic.compat.modopedia.BookCompat;
+import wayoftime.bloodmagic.network.BMNetworking;
 
 @Mod(BloodMagic.MODID)
 public class BloodMagic {
@@ -50,21 +64,49 @@ public class BloodMagic {
         BMFluids.register(modBus);
         BMBlocks.register(modBus);
         BMTiles.register(modBus);
+        BMEntities.register(modBus);
         BMMaterialsAndTiers.register(modBus);
         BMItems.register(modBus);
         modBus.addListener(BMDataMaps::register);
         BMDataAttachments.register(modBus);
         BMAttributes.register(modBus);
         BMRecipes.register(modBus);
+        BMIngredientTypes.register(modBus);
         BMMenus.register(modBus);
         BMTabs.register(modBus);
+        BMPotions.register(modBus);
+        modBus.addListener(BMNetworking::register);
+        RitualRegistry.bootstrap();
+        HarvestHandlerRegistry.bootstrap();
+        IncenseTranquilityRegistry.bootstrap();
 
         container.registerConfig(ModConfig.Type.SERVER, SERVER_CONFIG_SPEC);
 
         NeoForge.EVENT_BUS.addListener(BMCommands::register);
+        NeoForge.EVENT_BUS.addListener(SuppressionEffect::onMobSpawnPositionCheck);
+        NeoForge.EVENT_BUS.addListener(WillEventHandler::onLivingDrops);
+        NeoForge.EVENT_BUS.addListener(WillEventHandler::onItemPickup);
+        NeoForge.EVENT_BUS.addListener(AnointmentEventHandler::onIncomingDamage);
+        NeoForge.EVENT_BUS.addListener(AnointmentEventHandler::onLivingDrops);
+        NeoForge.EVENT_BUS.addListener(AnointmentEventHandler::onBlockDrops);
+        NeoForge.EVENT_BUS.addListener(AnointmentEventHandler::onArrowLoose);
+        NeoForge.EVENT_BUS.addListener(AnointmentEventHandler::onEntityJoin);
+        NeoForge.EVENT_BUS.addListener(BMPotionEventHandler::onIncomingDamage);
+        NeoForge.EVENT_BUS.addListener(BMPotionEventHandler::onLivingDrops);
+        NeoForge.EVENT_BUS.addListener(SentientArmorEventHandler::onIncomingDamage);
+        NeoForge.EVENT_BUS.addListener(SentientArmorEventHandler::onDamagePre);
+
+        if (ModList.get().isLoaded("curios")) {
+            modBus.addListener(CuriosCompat::registerCapabilities);
+        }
+
+        if (side == Dist.CLIENT && ModList.get().isLoaded("modopedia")) {
+            BookCompat.init();
+        }
 
         if (side == Dist.CLIENT) {
-            BookCompat.init();
+            modBus.addListener(wayoftime.bloodmagic.client.BMKeyMappings::register);
+            NeoForge.EVENT_BUS.addListener(wayoftime.bloodmagic.client.BMKeyMappings::onClientTick);
         }
     }
 

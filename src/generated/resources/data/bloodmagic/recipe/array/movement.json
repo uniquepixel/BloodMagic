@@ -1,0 +1,13 @@
+{
+  "type": "bloodmagic:array",
+  "added_input": {
+    "tag": "c:dusts/redstone"
+  },
+  "base_input": {
+    "item": "minecraft:feather"
+  },
+  "output": {
+    "count": 1,
+    "id": "minecraft:bedrock"
+  }
+}

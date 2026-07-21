@@ -1,0 +1,21 @@
+{
+  "type": "bloodmagic:flask_transform",
+  "input": [
+    {
+      "item": "bloodmagic:combinationalcatalyst"
+    }
+  ],
+  "input_effect": [
+    "bloodmagic:suspended",
+    "minecraft:levitation"
+  ],
+  "minimum_tier": 1,
+  "output_effect": [
+    {
+      "base_duration": 3600,
+      "effect": "bloodmagic:flight"
+    }
+  ],
+  "syphon": 1000,
+  "ticks": 200
+}

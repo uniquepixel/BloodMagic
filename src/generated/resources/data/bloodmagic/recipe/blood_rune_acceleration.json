@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "minecraft:bucket"
+    },
+    "b": {
+      "item": "bloodmagic:slate_demonic"
+    },
+    "c": {
+      "tag": "c:ingots/gold"
+    },
+    "d": {
+      "item": "bloodmagic:rune_speed"
+    },
+    "e": {
+      "type": "bloodmagic:bloodorb",
+      "orb_tier": 4
+    }
+  },
+  "pattern": [
+    "aba",
+    "cdc",
+    "aea"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bloodmagic:rune_acceleration"
+  }
+}

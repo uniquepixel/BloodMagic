@@ -1,0 +1,13 @@
+{
+  "type": "bloodmagic:array",
+  "added_input": {
+    "item": "bloodmagic:slate_imbued"
+  },
+  "base_input": {
+    "item": "bloodmagic:reagent_holding"
+  },
+  "output": {
+    "count": 1,
+    "id": "bloodmagic:sigil_holding"
+  }
+}

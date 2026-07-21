@@ -1,0 +1,30 @@
+{
+  "title": "Divination Sigil",
+  "icon": { "id": "bloodmagic:sigil" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Divination Sigil is probably the first of many sigils that you would like to craft in Blood Magic. In order to craft the sigil, you need to create an Alchemy Array and use Redstone Dust and a Blank Slate as the base and catalyst items, respectively."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Divination Sigil has two primary uses:\n- When any player right-clicks while aiming at the air with a bound sigil, it will display the amount of $(blood)LP$() that is in the owner's Soul Network.\n- When right-clicking on a Blood Altar, it will tell the player the altar's current Tier, the amount of Life Essence stored in the altar, as well as its current max capacity. Having a Divination Sigil on hand can also be helpful for the Incense Altar."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Finally, when holding down sneak and right-clicking, a new interface opens displaying all available HUD elements from Blood Magic. An element can be selected and moved by clicking and dragging the element. Releasing the element and clicking \"Save\" will save the element's new location. Selecting \"Default\" returns the elements to their default positions."
+        }
+      ]
+    }
+  ]
+}

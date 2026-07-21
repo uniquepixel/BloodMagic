@@ -1,0 +1,31 @@
+{
+  "title": "Void Essence",
+  "icon": { "id": "bloodmagic:anointment_voiding" },
+  "assigned_items": [ "bloodmagic:anointment_voiding" ],
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Void Essence$(/b)\n\nDeletes simple blocks on mining, such as stone, dirt, and netherrack. \n\nValid items: Tools, Swords, Charges. \n\nApplies: Voiding I (256 blocks)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Void Essence L$(/b)\n\nThis upgraded version of the anointment lasts four times longer. \n\nApplies: Voiding I (1024 blocks)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Void Essence XL$(/b)\n\nThis upgraded version of the anointment lasts sixteen times longer. \n\nApplies: Voiding I (4096 blocks)"
+        }
+      ]
+    }
+  ]
+}

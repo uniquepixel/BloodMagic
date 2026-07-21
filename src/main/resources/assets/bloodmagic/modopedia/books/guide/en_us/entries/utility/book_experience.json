@@ -1,0 +1,14 @@
+{
+  "title": "Tome of Peritia",
+  "icon": { "id": "bloodmagic:experience_book" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Tome of Peritia allows you to safely store your experience.\nSneak-right-clicking with the Tome in hand stores one level of XP. Right-clicking retrieves a level. Hold right-click to store/retrieve multiple levels."
+        }
+      ]
+    }
+  ]
+}

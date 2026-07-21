@@ -1,0 +1,13 @@
+{
+  "type": "bloodmagic:array",
+  "added_input": {
+    "tag": "c:ingots/iron"
+  },
+  "base_input": {
+    "item": "minecraft:cobblestone"
+  },
+  "output": {
+    "count": 1,
+    "id": "minecraft:bedrock"
+  }
+}

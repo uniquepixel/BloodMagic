@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "tag": "c:stone"
+    },
+    "b": {
+      "item": "bloodmagic:slate_reinforced"
+    },
+    "c": {
+      "item": "minecraft:glowstone_dust"
+    },
+    "d": {
+      "item": "bloodmagic:rune_blank"
+    },
+    "e": {
+      "type": "bloodmagic:bloodorb",
+      "orb_tier": 2
+    }
+  },
+  "pattern": [
+    "aba",
+    "cdc",
+    "aea"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bloodmagic:rune_sacrifice_self"
+  }
+}

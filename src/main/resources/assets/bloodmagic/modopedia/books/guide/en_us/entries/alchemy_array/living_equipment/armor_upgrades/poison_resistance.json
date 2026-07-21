@@ -1,0 +1,14 @@
+{
+  "title": "Poison Resistance",
+  "icon": { "id": "minecraft:milk_bucket" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Effect: Cures Poison. Has a cooldown which shortens with additional levels.\nTrained by: Being poisoned.\nMaximum level: 5."
+        }
+      ]
+    }
+  ]
+}

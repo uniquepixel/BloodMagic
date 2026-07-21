@@ -1,0 +1,16 @@
+{
+  "type": "bloodmagic:array",
+  "added_input": {
+    "item": "bloodmagic:slate_demonic"
+  },
+  "base_input": {
+    "item": "bloodmagic:reagent_suppression"
+  },
+  "output": {
+    "components": {
+      "bloodmagic:sigil_effect": "bloodmagic:suppression"
+    },
+    "count": 1,
+    "id": "bloodmagic:sigil"
+  }
+}

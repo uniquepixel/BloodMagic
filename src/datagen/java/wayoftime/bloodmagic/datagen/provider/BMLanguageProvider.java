@@ -46,6 +46,56 @@ public class BMLanguageProvider extends LanguageProvider {
 
         add(BMBlocks.BLOOD_ALTAR, "Blood Altar");
         add(BMItems.SACRIFICIAL_DAGGER.get(), "Sacrificial Dagger");
+        add(BMItems.THROWING_DAGGER.get(), "Throwing Dagger");
+        add("tooltip.bloodmagic.throwing_dagger.desc", "Throw for quick, if unremarkable, damage.");
+        add(BMItems.SOUL_SNARE.get(), "Soul Snare");
+        addTooltip("soul_snare.desc", "Throw at a monster and then kill them to obtain their demonic will.");
+
+        //Sentient tools
+        add(BMItems.SENTIENT_SWORD.get(), "Sentient Sword");
+        add(BMItems.SENTIENT_AXE.get(), "Sentient Axe");
+        add(BMItems.SENTIENT_PICKAXE.get(), "Sentient Pickaxe");
+        add(BMItems.SENTIENT_SHOVEL.get(), "Sentient Shovel");
+        add(BMItems.SENTIENT_SCYTHE.get(), "Sentient Scythe");
+        add(BMItems.SENTIENT_BOW.get(), "Sentient Bow");
+        addTooltip("sentient_sword.desc", "Uses demon will to unleash its full potential.");
+        addTooltip("sentient_axe.desc", "Uses demon will to unleash its full potential.");
+        addTooltip("sentient_pickaxe.desc", "Uses demon will to unleash its full potential.");
+        addTooltip("sentient_shovel.desc", "Uses demon will to unleash its full potential.");
+        addTooltip("sentient_scythe.desc", "Uses demon will to unleash its full potential.");
+        addTooltip("sentient_bow.desc", "Uses demon will to unleash its full potential.");
+        addTooltip("extra_info", "-Hold shift for more info-");
+        add("tooltip.bloodmagic.sentient.attuned", "Attuned: %s");
+        add("tooltip.bloodmagic.sentient.level_pool", "Level %s (%s Will)");
+        add("tooltip.bloodmagic.sentient.inactive", "Inactive (gather more Will)");
+        add("tooltip.bloodmagic.sentient.bonus_damage", "%s bonus damage");
+        add("tooltip.bloodmagic.sentient.rider.corrosive", "On hit: Wither %ss (Lv %s)");
+        add("tooltip.bloodmagic.sentient.rider.steadfast", "On kill: Absorption %ss");
+        add("tooltip.bloodmagic.sentient.rider.vengeful", "Movement Speed: %s");
+        add("tooltip.bloodmagic.sentient.rider.dig_speed", "Mining Speed: %s");
+
+        //Sentient Armour - see SentientArmorItem's class javadoc: 1.20.1 never shipped a Java
+        //implementation of this at all, so it's reconstructed here from 1.12's mechanics.
+        add(BMItems.SENTIENT_HELMET.get(), "Sentient Helmet");
+        add(BMItems.SENTIENT_PLATE.get(), "Sentient Plate");
+        add(BMItems.SENTIENT_LEGGINGS.get(), "Sentient Leggings");
+        add(BMItems.SENTIENT_BOOTS.get(), "Sentient Boots");
+        add(BMItems.SENTIENT_ARMOUR_GEM.get(), "Sentient Armour Gem");
+        addTooltip("sentient_helmet.desc", "Uses demon will to unleash its full potential.");
+        addTooltip("sentient_plate.desc", "Uses demon will to unleash its full potential.");
+        addTooltip("sentient_leggings.desc", "Uses demon will to unleash its full potential.");
+        addTooltip("sentient_boots.desc", "Uses demon will to unleash its full potential.");
+        addTooltip("sentient_armour_gem.desc", "Carry this while wearing a full Sentient Armour set and activate it to unleash the set's true potential.");
+        add("tooltip.bloodmagic.sentient_armour_gem.active", "Activated");
+        add("tooltip.bloodmagic.sentient_armour_gem.inactive", "Deactivated (right click to activate)");
+        add("tooltip.bloodmagic.sentient_armor.knockback", "Knockback Resistance: %s");
+        add("tooltip.bloodmagic.sentient_armor.speed", "Movement Speed: %s");
+        add("tooltip.bloodmagic.sentient_armor.damage", "Attack Damage: %s");
+        add("tooltip.bloodmagic.sentient_armor.attack_speed", "Attack Speed: %s");
+        add("tooltip.bloodmagic.sentient_armor.corrosive_reflect", "On hit: attacker is Withered %ss");
+        add("tooltip.bloodmagic.sentient_armor.corrosive_cleanse", "Immune to Poison and Wither");
+        add("tooltip.bloodmagic.sentient_armor.full_set_protection", "Full Set Bonus: %s extra damage reduction");
+        add("tooltip.bloodmagic.sentient_armor.gem_required", "Inactive (carry an activated Sentient Armour Gem)");
 
         //Runes - Blank
         add(BMBlocks.RUNE_BLANK, "Blank Rune");
@@ -79,6 +129,24 @@ public class BMLanguageProvider extends LanguageProvider {
 
         add(BMBlocks.HELLFORGED_BLOCK, "Hellforged Block");
 
+        //Ore fragments + Hellforged Parts
+        add(BMItems.HELLFORGED_PARTS.get(), "Intricate Hellforged Parts");
+        addTooltip("hellforgedparts", "These parts are currently beyond your crafting capabilities...");
+        add(BMItems.IRON_FRAGMENT.get(), "Iron Fragment");
+        add(BMItems.GOLD_FRAGMENT.get(), "Gold Fragment");
+        add(BMItems.COPPER_FRAGMENT.get(), "Copper Fragment");
+        add(BMItems.NETHERITE_SCRAP_FRAGMENT.get(), "Ancient Debris Fragment");
+        add(BMItems.DEMONITE_FRAGMENT.get(), "Demonite Fragment");
+
+        //Ore gravel + Corrupted Dust
+        add(BMItems.IRON_GRAVEL.get(), "Iron Gravel");
+        add(BMItems.GOLD_GRAVEL.get(), "Gold Gravel");
+        add(BMItems.COPPER_GRAVEL.get(), "Copper Gravel");
+        add(BMItems.NETHERITE_SCRAP_GRAVEL.get(), "Ancient Debris Gravel");
+        add(BMItems.DEMONITE_GRAVEL.get(), "Demonite Gravel");
+        add(BMItems.CORRUPTED_DUST.get(), "Corrupted Dust");
+        add(BMItems.CORRUPTED_DUST_TINY.get(), "Tiny Corrupted Dust");
+
         add(BMBlocks.CRYSTAL_CLUSTER, "Crystal Cluster");
         add(BMBlocks.CRYSTAL_CLUSTER_BRICK, "Crystal Cluster Brick");
 
@@ -94,7 +162,160 @@ public class BMLanguageProvider extends LanguageProvider {
 
         add(BMBlocks.IMPERFECT_RITUAL_BLOCK, "Imperfect Ritual Stone");
 
+        add(BMBlocks.MASTER_RITUAL_STONE, "Master Ritual Stone");
+
+        add(BMBlocks.RITUAL_STONE_BLANK, "Ritual Stone");
+        add(BMBlocks.RITUAL_STONE_WATER, "Water Ritual Stone");
+        add(BMBlocks.RITUAL_STONE_FIRE, "Fire Ritual Stone");
+        add(BMBlocks.RITUAL_STONE_EARTH, "Earth Ritual Stone");
+        add(BMBlocks.RITUAL_STONE_AIR, "Air Ritual Stone");
+        add(BMBlocks.RITUAL_STONE_DUSK, "Dusk Ritual Stone");
+        add(BMBlocks.RITUAL_STONE_DAWN, "Dawn Ritual Stone");
+
+        add("ritual.bloodmagic.full_spring", "Ritual of the Full Spring");
+        add("ritual.bloodmagic.regeneration", "Ritual of Regeneration");
+        add("ritual.bloodmagic.speed", "Ritual of Speed");
+        add("ritual.bloodmagic.lava", "Ritual of the Crucible");
+        add("ritual.bloodmagic.magnetism", "Ritual of Magnetism");
+        add("ritual.bloodmagic.jumping", "Ritual of the High Jump");
+        add("ritual.bloodmagic.felling", "Ritual of the Feller");
+        add("ritual.bloodmagic.green_grove", "Ritual of the Green Grove");
+        add("ritual.bloodmagic.full_stomach", "Ritual of the Full Stomach");
+        add("ritual.bloodmagic.zephyr", "Ritual of the Zephyr");
+        add("ritual.bloodmagic.yawning_void", "Ritual of the Yawning Void");
+        add("ritual.bloodmagic.grounding", "Ritual of Grounding");
+        add("ritual.bloodmagic.condor", "Ritual of the Condor");
+        add("ritual.bloodmagic.animal_growth", "Ritual of Animal Growth");
+        add("ritual.bloodmagic.well_of_suffering", "Ritual of the Well of Suffering");
+        add("ritual.bloodmagic.feathered_knife", "Ritual of the Feathered Knife");
+        add("ritual.bloodmagic.sphere_create", "Ritual of the Sphere Creation");
+        add("ritual.bloodmagic.harvest", "Ritual of the Harvest");
+        add("ritual.bloodmagic.meteor", "Ritual of the Meteor");
+        add("ritual.bloodmagic.vault", "Ritual of the Vault");
+        add("chat.bloodmagic.ritual.bound", "You have bound this ritual stone.");
+        add("chat.bloodmagic.ritual.notOwner", "You do not own this ritual stone.");
+        add("chat.bloodmagic.ritual.none", "The ritual stone is now inactive.");
+        add("chat.bloodmagic.ritual.selected", "Selected: %s");
+        add("chat.bloodmagic.ritual.activated", "The ritual has been activated.");
+        add("chat.bloodmagic.ritual.deactivated", "The ritual has been deactivated.");
+
         add(BMBlocks.HELLFIRE_FORGE, "Hellfire Forge");
+        add(BMItems.SIGIL_HOLDING.get(), "Sigil of Holding");
+        addTooltip("sigil_holding.desc", "Sigil-ception");
+
+        add(BMBlocks.ALCHEMY_ARRAY, "Alchemy Array");
+        add(BMItems.REAGENT_BLOODLIGHT.get(), "Blood Lamp Reagent");
+        add(BMItems.REAGENT_HOLDING.get(), "Holding Reagent");
+        add(BMItems.REAGENT_SUPPRESSION.get(), "Suppression Reagent");
+        add(BMItems.REAGENT_TELEPOSITION.get(), "Teleposition Reagent");
+        add(BMItems.REAGENT_FASTMINER.get(), "Fast Miner Reagent");
+        add(BMItems.REAGENT_BINDING.get(), "Binding Reagent");
+
+        add(BMBlocks.TELEPOSER, "Teleposer");
+        add(BMItems.TELEPOSER_FOCUS.get(), "Teleposition Focus");
+        addTooltip("teleposerfocus.coords", "Current coordinates: (%d, %d, %d).");
+        add("chat.bloodmagic.teleposer.linked", "Teleposer linked.");
+        add("chat.bloodmagic.teleposer.unlinked", "Teleposer unlinked.");
+
+        add(BMItems.ANOINTMENT_MELEE_DAMAGE.get(), "Anointment of Melee Damage");
+        addTooltip("anointment_melee_damage.desc", "Coats a weapon in a corrosive edge, dealing bonus damage for a limited number of hits.");
+
+        add(BMItems.ANOINTMENT_LOOTING.get(), "Anointment of Looting");
+        addTooltip("anointment_looting.desc", "Coats a weapon so that its kills yield double the spoils, for a limited number of hits.");
+
+        add(BMItems.ANOINTMENT_BOW_POWER.get(), "Anointment of Bow Power");
+        addTooltip("anointment_bow_power.desc", "Coats a bow so its arrows strike harder, for a limited number of shots.");
+
+        add(BMItems.ANOINTMENT_BOW_VELOCITY.get(), "Anointment of Bow Velocity");
+        addTooltip("anointment_bow_velocity.desc", "Coats a bow so its arrows fly faster, for a limited number of shots.");
+
+        add(BMItems.ANOINTMENT_HIDDEN_KNOWLEDGE.get(), "Anointment of Hidden Knowledge");
+        addTooltip("anointment_hidden_knowledge.desc", "Coats a tool so mined blocks yield bonus experience, for a limited number of blocks.");
+
+        add(BMItems.ANOINTMENT_HOLY_WATER.get(), "Anointment of Holy Water");
+        addTooltip("anointment_holy_water.desc", "Coats a weapon with holy water, dealing severe bonus damage to the undead, for a limited number of hits.");
+
+        add(BMItems.ANOINTMENT_QUICK_DRAW.get(), "Anointment of Quick Draw");
+        addTooltip("anointment_quick_draw.desc", "Coats a bow so it fires at full power even on a rushed draw, for a limited number of shots.");
+
+        add(BMItems.ANOINTMENT_SILK_TOUCH.get(), "Anointment of Silk Touch");
+        addTooltip("anointment_silk_touch.desc", "Coats a tool so mined blocks drop themselves intact, for a limited number of blocks.");
+
+        add(BMItems.ANOINTMENT_FORTUNE.get(), "Anointment of Fortune");
+        addTooltip("anointment_fortune.desc", "Coats a tool so mined blocks drop extra loot, for a limited number of blocks.");
+
+        add(BMItems.ANOINTMENT_SMELTING.get(), "Anointment of Smelting");
+        addTooltip("anointment_smelting.desc", "Coats a tool so mined blocks drop their smelted form, for a limited number of blocks.");
+
+        add(BMItems.ANOINTMENT_VOIDING.get(), "Anointment of Voiding");
+        addTooltip("anointment_voiding.desc", "Coats a tool so mined blocks drop nothing at all, for a limited number of blocks.");
+
+        add(BMItems.ANOINTMENT_WEAPON_REPAIR.get(), "Anointment of Weapon Repair");
+        addTooltip("anointment_weapon_repair.desc", "Coats a weapon so it mends a little with every hit, for a limited number of hits.");
+
+        add(BMItems.ANOINTMENT_WILL_POWER.get(), "Anointment of Will Power");
+        addTooltip("anointment_will_power.desc", "Coats a weapon so its hits siphon a little Demon Will into your inventory, for a limited number of hits.");
+
+        add(BMBlocks.INCENSE_ALTAR, "Incense Altar");
+
+        add("effect.bloodmagic.soul_snare", "Soul Snare");
+        add("effect.bloodmagic.soft_fall", "Soft Fall");
+        add("effect.bloodmagic.fire_fuse", "Fire Fuse");
+        add("effect.bloodmagic.suspended", "Suspended");
+        add("effect.bloodmagic.flight", "Flight");
+        add("effect.bloodmagic.heavy_heart", "Heavy Heart");
+        add("effect.bloodmagic.passivity", "Passivity");
+        add("effect.bloodmagic.plant_leech", "Plant Leech");
+        add("effect.bloodmagic.sacrificial_lamb", "Sacrificial Lamb");
+        add("effect.bloodmagic.spectral_sight", "Spectral Sight");
+        add("effect.bloodmagic.gravity", "Gravity");
+        add("effect.bloodmagic.grounded", "Grounded");
+        add("effect.bloodmagic.obsidian_cloak", "Obsidian Cloak");
+        add("effect.bloodmagic.hard_cloak", "Hard Cloak");
+        add("effect.bloodmagic.bounce", "Bounce");
+        add("effect.bloodmagic.soul_fray", "Soul Fray");
+
+        add(BMItems.RITUAL_DIVINER.get(), "Ritual Diviner");
+        add(BMItems.RITUAL_DIVINER_DUSK.get(), "Dusk Ritual Diviner");
+        add(BMItems.RITUAL_DIVINER_DAWN.get(), "Dawn Ritual Diviner");
+        add("chat.bloodmagic.diviner.none", "This Master Ritual Stone has no ritual bound.");
+        add("chat.bloodmagic.diviner.info", "Ritual: %s | Active: %s | Cost: %s LP every %s ticks");
+        add("tooltip.bloodmagic.diviner.currentRitual", "Current Ritual: %s");
+        add("tooltip.bloodmagic.diviner.currentDirection", "Direction: %s");
+        add("tooltip.bloodmagic.diviner.totalRune", "Total Runes: %s");
+
+        add(BMItems.ACTIVATION_CRYSTAL_WEAK.get(), "Weak Activation Crystal");
+        add(BMItems.ACTIVATION_CRYSTAL_AWAKENED.get(), "Awakened Activation Crystal");
+        add(BMItems.ACTIVATION_CRYSTAL_CREATIVE.get(), "Creative Activation Crystal");
+        add("tooltip.bloodmagic.activation_crystal.weak", "Can activate low-tier rituals.");
+        add("tooltip.bloodmagic.activation_crystal.awakened", "Can activate mid-tier rituals.");
+        add("tooltip.bloodmagic.activation_crystal.creative", "Can activate any ritual.");
+
+        add(BMItems.DEMON_WILL_GAUGE.get(), "Demon Will Gauge");
+        add("chat.bloodmagic.willgauge.line", "%s Will: %s");
+        add("chat.bloodmagic.willgauge.empty", "You aren't carrying any Will.");
+        add("chat.bloodmagic.willgauge.aura_line", "Ambient %s Will: %s");
+        add("chat.bloodmagic.willgauge.aura_empty", "There is no ambient Will here.");
+
+        add("key.categories.bloodmagic", "Blood Magic");
+        add("key.bloodmagic.open_holding", "Open Sigil of Holding");
+        add("key.bloodmagic.open_hud_editor", "Open HUD Editor");
+
+        add(BMBlocks.ITEM_ROUTER, "Item Router");
+
+        add(BMBlocks.MASTER_ROUTING_NODE, "Master Routing Node");
+        add(BMBlocks.INPUT_ROUTING_NODE, "Input Routing Node");
+        add(BMBlocks.OUTPUT_ROUTING_NODE, "Output Routing Node");
+        add("chat.bloodmagic.routing_node.whitelist", "Filter mode: Whitelist");
+        add("chat.bloodmagic.routing_node.blacklist", "Filter mode: Blacklist");
+        add("chat.bloodmagic.routing_node.priority", "Priority: %s");
+        add("chat.bloodmagic.item_router.added", "Added %s to the filter.");
+        add("chat.bloodmagic.item_router.removed", "Removed %s from the filter.");
+        add("chat.bloodmagic.item_router.full", "The filter is full.");
+
+        add(BMItems.EXPERIENCE_BOOK.get(), "Experience Book");
+        addTooltip("experience_book", "Stores banked knowledge for later.");
+        addTooltip("experience_book.stored", "Stored Experience: %s");
         add(BMItems.RAW_WILL.get(), "Raw Will");
 
         //Soul Gems
@@ -157,6 +378,59 @@ public class BMLanguageProvider extends LanguageProvider {
 
         LivingUpgrades.translations(this::add);
         SigilData.translations(this::add);
+
+        // JEI recipe category lang-keys
+        add("jei.bloodmagic.recipe.alchemyarray", "Alchemy Array");
+        add("jei.bloodmagic.recipe.alchemytable", "Alchemy Table");
+        add("jei.bloodmagic.recipe.altar", "Blood Altar");
+        add("jei.bloodmagic.recipe.arc", "ARC Recipe");
+        add("jei.bloodmagic.recipe.arcfurnace", "ARC Furnace Recipe");
+        add("jei.bloodmagic.recipe.consumptionrate", "Consumption: %s LP/t");
+        add("jei.bloodmagic.recipe.drainrate", "Drain: %s LP/t");
+        add("jei.bloodmagic.recipe.info", "Info");
+        add("jei.bloodmagic.recipe.lp", "LP");
+        add("jei.bloodmagic.recipe.lpDrained", "Drained: %s LP");
+        add("jei.bloodmagic.recipe.minimumsouls", "Minimum: %s Will");
+        add("jei.bloodmagic.recipe.requiredlp", "LP: %,d");
+        add("jei.bloodmagic.recipe.requiredtier", "Tier: %d");
+        add("jei.bloodmagic.recipe.soulforge", "Hellfire Forge");
+        add("jei.bloodmagic.recipe.soulsdrained", "Drained: %s Will");
+        add("jei.bloodmagic.recipe.ticksRequired", "Time: %sTicks");
+        add("jei.bloodmagic.recipe.will", "Will");
+        add("tooltip.bloodmagic.tier", "Tier %d");
+
+        //Alchemical Potion Flasks
+        add(BMItems.ALCHEMY_FLASK.get(), "Alchemy Flask");
+        add(BMItems.ALCHEMY_FLASK_THROWABLE.get(), "Throwable Alchemy Flask");
+        add(BMItems.ALCHEMY_FLASK_LINGERING.get(), "Lingering Alchemy Flask");
+        addTooltip("arctool.uses", "Uses: %d");
+
+        //Alchemy Table catalysts/filling agents
+        add(BMItems.SIMPLE_CATALYST.get(), "Simple Catalyst");
+        add(BMItems.MUNDANE_POWER_CATALYST.get(), "Mundane Power Catalyst");
+        add(BMItems.MUNDANE_LENGTHENING_CATALYST.get(), "Mundane Lengthening Catalyst");
+        add(BMItems.COMBINATIONAL_CATALYST.get(), "Combinational Catalyst");
+        add(BMItems.WEAK_FILLING_AGENT.get(), "Weak Filling Agent");
+        add(BMItems.CYCLING_CATALYST.get(), "Cycling Catalyst");
+        add(BMItems.AVERAGE_POWER_CATALYST.get(), "Average Power Catalyst");
+        add(BMItems.AVERAGE_LENGTHENING_CATALYST.get(), "Average Lengthening Catalyst");
+        add(BMItems.AVERAGE_FILLING_AGENT.get(), "Average Filling Agent");
+
+        add(BMBlocks.DEMON_CRUCIBLE, "Demonic Crucible");
+        addTooltip("demon_crucible.desc", "Exchanges Will between a held Raw Will item or Soul Gem and the ambient aura. Unpowered releases Will into the aura; a redstone signal reverses it to withdraw Will instead.");
+        add(BMBlocks.DEMON_CRYSTALLIZER, "Demonic Crystallizer");
+        addTooltip("demon_crystallizer.desc", "Slowly condenses a chunk's ambient Will into a growing Crystal Cluster placed above it.");
+        add(BMBlocks.DEMON_PYLON, "Demonic Pylon");
+        addTooltip("demon_pylon.desc", "Draws ambient Will from the 4 neighboring chunks into its own, slowly concentrating Will over an area.");
+
+        add(BMBlocks.SHAPED_CHARGE, "Shaped Charge");
+        addTooltip("shaped_charge.desc", "Sticks to a surface and, a few seconds after being placed, digs a small tunnel into whatever it's attached to.");
+        add(BMBlocks.DEFORESTER_CHARGE, "Deforester Charge");
+        addTooltip("deforester_charge.desc", "Sticks to a tree and clears the whole connected trunk and canopy a few seconds after being placed.");
+        add(BMBlocks.VEINMINE_CHARGE, "Vein Charge");
+        addTooltip("veinmine_charge.desc", "Sticks to a block and clears the whole connected vein of that block a few seconds after being placed.");
+        add(BMBlocks.FUNGAL_CHARGE, "Fungal Charge");
+        addTooltip("fungal_charge.desc", "Sticks to a huge mushroom and clears the whole connected growth a few seconds after being placed.");
 
         //Modopedia Guidebook lang-keys (was Patchouli)
         addBook("name", "Sanguine Scientiem");

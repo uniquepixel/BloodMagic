@@ -1,0 +1,5 @@
+{
+  "type": "bloodmagic:magnetism_effect",
+  "range": 5,
+  "upkeep_cost": 50
+}

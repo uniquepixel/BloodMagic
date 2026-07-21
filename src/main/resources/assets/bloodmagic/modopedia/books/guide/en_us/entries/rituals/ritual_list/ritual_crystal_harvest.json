@@ -1,0 +1,14 @@
+{
+  "title": "Crack of the Fractured Crystal",
+  "icon": { "id": "bloodmagic:crystal_cluster" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Crack of the Fractured Crystal automatically harvests grown Demon Will Crystal Clusters around the Master Ritual Stone, whether raw or aspected. Tier 0, costs $(blood)40,000 LP$() to activate.\nUse a Ritual Diviner [Dusk] for easier construction."
+        }
+      ]
+    }
+  ]
+}

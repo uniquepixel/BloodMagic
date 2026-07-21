@@ -1,0 +1,22 @@
+{
+  "title": "Demon Will Aura",
+  "icon": { "id": "bloodmagic:raw_will" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "As established, Demonic Will coalesces around certain creatures and propels them with malevolent force. This isn't the only place Will can exist, though - it's possible to release Will into a chunk's ambient Aura, where various Rituals can then draw on it for bonus effects."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Aura is chunk-based: Will you release fills up the chunk it's released in, up to a total cap for each of the five aspects (Raw, Corrosive, Steadfast, Destructive, Vengeful). You can measure this using a Demon Will Aura Gauge.\nNote: on this branch, the specific old machines for feeding the Aura (Demon Crucible, Demon Pylon) are not present as separate blocks - the underlying chunk-based Aura that Rituals read from is real and functional, but exactly how Will currently gets released into it may differ from earlier versions. Check current recipes/mechanics in-game."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "type": "bloodmagic:soul_forge",
+  "drain": 5.0,
+  "inputs": [
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "tag": "c:string"
+    }
+  ],
+  "minDrain": 32.0,
+  "output": {
+    "count": 16,
+    "id": "bloodmagic:throwing_dagger"
+  }
+}

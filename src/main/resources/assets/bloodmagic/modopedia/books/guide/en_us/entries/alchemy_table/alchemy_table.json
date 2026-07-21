@@ -1,0 +1,55 @@
+{
+  "title": "Alchemy Table",
+  "icon": { "id": "bloodmagic:alchemy_table" },
+  "assigned_items": [ "bloodmagic:alchemy_table" ],
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Alchemy Table crafts items using $(blood)LP$() from a Soul Network. The Soul Network used and Tier of recipes available are determined by the Blood Orb inserted on the right side of the GUI. \n\nThe Alchemy Table is used to craft a handful of Blood Magic components, and provides alternate recipes for some vanilla items as well."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "This page showed the crafting recipe for the Alchemy Table itself. \n\nWhen looking at Alchemy Table recipes in this book (or in JEI), please hover over the arrow with an \"LP\" label to view Time, $(blood)LP$() drain, and Tier information."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Alchemy Table GUI can be inserted into or extracted from using a set of face-toggle buttons. \n\nThe Alchemy Table has a number of buttons on its right hand side. These are, in order, $(b)D$(/b)own, $(b)U$(/b)p, $(b)N$(/b)orth, $(b)S$(/b)outh, $(b)W$(/b)est, and $(b)E$(/b)ast. To use them, first click on any slot in the Alchemy Table. Next, click on one of these six buttons to toggle whether or not the Alchemy Table should allow Hoppers, pipes, or other such external interference from this face. To return to the table's normal function, simply click the slot again to deselect it. The icon displayed in the slot shows whether it is accepting inputs or providing outputs."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Alchemy Table will tell you when something is wrong, showing an error directly in its GUI. \n\nThe two most common reasons for a recipe to not work in the Alchemy Table are as follows:\n• $(b)Orb Error$(/b): Either there is no Blood Orb present in the relevant slot, or the Orb you are trying to use is not a high enough level for this recipe.\n• $(b)Soul Network Error$(/b): The orb is of a valid level, but either you have not bound it to yourself (right-click while holding it), or your Soul Network does not have enough LP in it. \n\nThe following recipes are currently available for the Alchemy Table."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Alchemy Table can craft a number of useful items directly from raw materials, including: Grass, Leather (from Rotten Flesh), Bread, Clay (from Sand), String, Cobweb, Plant Oil (from Wheat, Carrots, Potatoes, or Beetroot), Coal Sand, Explosive Powder, Flint (from Gravel), Saltpeter, and Gunpowder."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Alchemy Table can also craft a Lava Sigil from a Lava Bucket, or a Water Sigil from a Water Bucket. The Lava and Water Sigils are not consumed in either of these recipes. What's more, the Water Sigil can be used in place of a $(water)Water Bucket$() in any Alchemy Table Recipe."
+        }
+      ]
+    }
+  ]
+}

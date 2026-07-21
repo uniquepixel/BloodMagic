@@ -1,0 +1,14 @@
+{
+  "title": "Sigil of Magnetism",
+  "icon": { "id": "bloodmagic:sigil" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Increases the player's item pickup range to 7 blocks when active. Toggle on/off by holding the Sigil in your hand, and then holding sneak and right-clicking.\nConsumes $(blood)50 LP$() every 5 seconds while active."
+        }
+      ]
+    }
+  ]
+}

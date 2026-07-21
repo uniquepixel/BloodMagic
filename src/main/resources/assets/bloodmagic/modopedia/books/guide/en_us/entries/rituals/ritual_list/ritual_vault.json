@@ -1,0 +1,22 @@
+{
+  "title": "Ritual of the Vault",
+  "icon": { "id": "bloodmagic:hellforged_block" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "On earlier versions of the mod, this slot was filled by two separate rituals: \"Edge of the Hidden Realm\" (a simple version) and \"Pathway to the Endless Realm\" (a more advanced version), both opening a passage to a self-contained loot dungeon. On this branch they have been consolidated into a single Ritual of the Vault. Tier 1, costs $(blood)200,000 LP$() to activate.\nUse a Ritual Diviner for easier construction."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Note: the broader Demon Dungeon generation system (keys, mimics, dungeon-specific hazards, etc.) that the old dungeon rituals led into has not been fully carried over to this branch yet - treat the destination content as a work in progress."
+        }
+      ]
+    }
+  ]
+}

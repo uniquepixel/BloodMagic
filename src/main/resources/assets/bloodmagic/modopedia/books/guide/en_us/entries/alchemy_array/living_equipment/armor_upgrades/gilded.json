@@ -1,0 +1,14 @@
+{
+  "title": "Gilded",
+  "icon": { "id": "minecraft:golden_chestplate" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Effect: Pacifies Piglins as if you were wearing Golden Armor.\nTrained by: Giving a Piglin a Gold Ingot. You must give it to them directly, it cannot be dropped on the ground.\nMaximum level: 1."
+        }
+      ]
+    }
+  ]
+}

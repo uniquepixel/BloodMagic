@@ -1,0 +1,22 @@
+{
+  "title": "Ore Processing",
+  "icon": { "id": "bloodmagic:arc" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Alchemy Table can be used, amongst other things, for ore doubling, whilst the Alchemical Reaction Chamber can give you extra ingots per piece of Raw Ore or Ore Block. Get more ore out of your mining expeditions with the power of blood!"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Note: earlier versions of the mod had an elaborate chain of degrading catalyst tools for this (Cutting Fluid, Explosive Powder, Resonators, Corrupted Dust, in Basic/Reinforced/Hellforged tiers). None of those specific items are present on this branch - the ARC's core ore-multiplying function is real, but check JEI in-game for the actual current recipes rather than relying on the old tool chain."
+        }
+      ]
+    }
+  ]
+}

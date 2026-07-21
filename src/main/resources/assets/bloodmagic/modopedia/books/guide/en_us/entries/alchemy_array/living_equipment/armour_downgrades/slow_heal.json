@@ -1,0 +1,14 @@
+{
+  "title": "Slow Heal",
+  "icon": { "id": "minecraft:ghast_tear" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Reduces the effectiveness of all healing sources. Caps out at 80%, so a source that would normally heal 10 hearts will only heal 2."
+        }
+      ]
+    }
+  ]
+}

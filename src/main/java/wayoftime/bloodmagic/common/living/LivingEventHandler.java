@@ -23,9 +23,12 @@ import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerXpEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
+import net.neoforged.fml.ModList;
 import wayoftime.bloodmagic.BloodMagic;
+import wayoftime.bloodmagic.api.BMIdentifiers;
 import wayoftime.bloodmagic.common.datacomponent.BMDataComponents;
 import wayoftime.bloodmagic.api.BMTags;
+import wayoftime.bloodmagic.compat.curios.CuriosCompat;
 
 @EventBusSubscriber(modid = BloodMagic.MODID)
 public class LivingEventHandler {
@@ -218,7 +221,12 @@ public class LivingEventHandler {
             LivingHelper.getAttributes(chestStack, builder);
         }
 
-        chestStack.set(DataComponents.ATTRIBUTE_MODIFIERS, builder.build());
+        ItemAttributeModifiers modifiers = builder.build();
+        if (LivingHelper.hasFullSet(player) && ModList.get().isLoaded("curios")) {
+            int curiosSocketLevel = LivingHelper.getUpgradeLevel(chestStack, BMIdentifiers.Upgrades.CURIOS_SOCKET);
+            modifiers = CuriosCompat.withBonusSlots(modifiers, curiosSocketLevel);
+        }
+        chestStack.set(DataComponents.ATTRIBUTE_MODIFIERS, modifiers);
     }
 
     @SubscribeEvent

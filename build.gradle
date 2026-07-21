@@ -32,11 +32,6 @@ repositories {
         name = "Modrinth"
         url = "https://api.modrinth.com/maven"
     }
-    maven {
-        //Modopedia Maven - replacing Patchouli for 1.21
-        name = 'Favouriteless Maven'
-        url 'https://maven.favouriteless.net/releases'
-    }
 
 }
 
@@ -115,11 +110,11 @@ dependencies {
 
     compileOnly("mezz.jei:jei-${mc_version}-neoforge-api:${jei_version}")
     compileOnly("top.theillusivec4.curios:curios-neoforge:${curios_version}+${minecraft_version}:api")
-    compileOnly("net.favouriteless.modopedia:modopedia-neoforge-${minecraft_version}:${modopedia_version}")
+    compileOnly("maven.modrinth:modopedia:${modopedia_version}+neoforge")
 
     runtimeOnly("mezz.jei:jei-${mc_version}-neoforge:${jei_version}")
     runtimeOnly("top.theillusivec4.curios:curios-neoforge:${curios_version}+${minecraft_version}")
-    runtimeOnly("net.favouriteless.modopedia:modopedia-neoforge-${minecraft_version}:${modopedia_version}")
+    runtimeOnly("maven.modrinth:modopedia:${modopedia_version}+neoforge")
 }
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {

@@ -1,0 +1,46 @@
+{
+  "title": "Soul Network",
+  "icon": { "id": "bloodmagic:blood_orb_weak" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Soul Network is the network that connects your Soul to all of your bound items, rituals and blocks. Functionally, it is a global storage of $(blood)LP$() unique to each player that can be added to and extracted from, using the player's bound items as an intermediary. When you first right-click with an item that can be bound to a Soul Network, it will bind to you and will be labeled as being \"owned\" by you."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "As such, any action that the item does that has an $(blood)LP cost$() will drain from your Soul Network. In some cases, if the item cannot get its $(blood)LP$() from the Soul Network, it will instead directly take the $(blood)LP$() cost from your health.\nIn other cases (such as when an ongoing Ritual drains your network completely), they will merely cause unceasing nausea until either the Ritual is deactivated or your Soul Network is re-filled."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "In order to fill your Soul Network, you will need to construct a Blood Orb.\nBlood Orbs can be charged with $(blood)LP$() in one of two ways:\n- A player can sacrifice 1 heart of health by right-clicking with the Blood Orb, providing the bound Soul Network with $(blood)200 LP$().\n- The Blood Orb can be placed inside a Blood Altar with some $(blood)Life Essence$() in it. The Orb will absorb it as fast as it can, limited by your Altar's Speed Runes."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "There is a separate Blood Orb that can be created for each Tier of the Blood Altar:\n- Weak Blood Orb - Max capacity: $(blood)5k LP$().\n- Apprentice Blood Orb - Max capacity: $(blood)25k LP$().\n- Magician Blood Orb - Max capacity: $(blood)150k LP$().\n- Master Blood Orb - Max capacity: $(blood)1M LP$().\n- Archmage Blood Orb - Max capacity: $(blood)10M LP$()."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "If that's still not enough $(blood)LP storage$() for you, consider using Runes of the Orb.\n(This branch also registers a further Transcendent Blood Orb beyond the Archmage tier - check its in-game tooltip for its exact capacity.)"
+        }
+      ]
+    }
+  ]
+}

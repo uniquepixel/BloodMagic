@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "tag": "c:obsidian"
+    },
+    "b": {
+      "item": "bloodmagic:slate_reinforced"
+    },
+    "c": {
+      "type": "bloodmagic:bloodorb",
+      "orb_tier": 2
+    }
+  },
+  "pattern": [
+    "aba",
+    "bcb",
+    "aba"
+  ],
+  "result": {
+    "count": 4,
+    "id": "bloodmagic:ritual_stone_blank"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "title": "Rhythm of the Beating Anvil",
+  "icon": { "id": "minecraft:crafting_table" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Rhythm of the Beating Anvil (internally: Crafting Ritual) is a powerful and versatile ritual, allowing you to autocraft standard crafting recipes alongside recipes using your Alchemy Table or Hellfire Forge (if properly augmented). Tier 0, costs $(blood)15,000 LP$() to activate. Each ritual can handle exactly one recipe.\nUse a Ritual Diviner [Dusk] for easier construction."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "First, specify the recipe you want the ritual to craft using an Item Filter. Multiple types of Item Filter can be used, however the ritual will only ever accept one filter at a time; any additional filters will be ignored. The following filters are accepted:\n- Standard Item Filter: specifies exactly which item to use in each slot.\n- Tag Item Filter: uses tags to specify what items to use (e.g. any kind of stone).\n- Mod Item Filter: uses any item from a given mod in this slot."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Item Filter is placed on the ritual, either directly in an Item Frame or inside a linked chest - note that if you put multiple filters in the chest, only the first one will be used. By default, the input chest and output chest are in the same place.\nIf you supply the ritual with Steadfast or Corrosive Will, it will instead try to autocraft with a linked Hellfire Forge or Alchemy Table respectively. These recipes are all shapeless, but if you need 2 of an item, you'll have to specify it twice in the filter."
+        }
+      ]
+    }
+  ]
+}

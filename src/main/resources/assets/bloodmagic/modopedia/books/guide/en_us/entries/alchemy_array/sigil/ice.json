@@ -1,0 +1,22 @@
+{
+  "title": "Sigil of the Frozen Lake",
+  "icon": { "id": "bloodmagic:sigil" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "You've heard tell of ancient boots enchanted with Frost Walking, freezing the ground and water beneath the wearer's feet. That sounds like fine inspiration for a sigil! It's even able to be toggled, so you're not in danger of freezing over your farmlands every time you get close."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Crafted via the Alchemy Table and an Alchemy Array, following the same two-step reagent-then-array process as most other Sigils - check JEI for the exact current ingredients on this branch."
+        }
+      ]
+    }
+  ]
+}

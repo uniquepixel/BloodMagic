@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "bloodmagic:block/output_routing_node"
+    }
+  }
+}

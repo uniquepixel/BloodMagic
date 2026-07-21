@@ -1,0 +1,47 @@
+{
+  "title": "Honing Oil",
+  "icon": { "id": "bloodmagic:anointment_melee_damage" },
+  "assigned_items": [ "bloodmagic:anointment_melee_damage" ],
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Honing Oil$(/b)\n\nTemporarily increases the melee damage dealt by +3. \n\nValid items: Tools, Swords.\n\nApplies: Whetstone I (256 hits)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Honing Oil L$(/b)\n\nThis upgraded version of the anointment lasts four times longer. \n\nApplies: Whetstone I (1024 hits)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Honing Oil II$(/b)\n\nThis upgraded version of the anointment increases melee damage dealt by +6. \n\nApplies: Whetstone II (256 hits)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Honing Oil XL$(/b)\n\nThis upgraded version of the anointment lasts sixteen times longer. \n\nApplies: Whetstone I (4096 hits)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Honing Oil III$(/b)\n\nThis upgraded version of the anointment increases melee damage dealt by +9. \n\nApplies: Whetstone III (256 hits)"
+        }
+      ]
+    }
+  ]
+}

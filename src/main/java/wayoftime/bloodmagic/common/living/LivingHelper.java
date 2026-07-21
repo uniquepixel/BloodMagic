@@ -187,6 +187,16 @@ public class LivingHelper {
         runIterationOnItem(chestStack, (holder, level) -> holder.value().collectAttributes(level, builder::add));
     }
 
+    public static int getUpgradeLevel(ItemStack stack, net.minecraft.resources.ResourceKey<LivingUpgrade> upgrade) {
+        AtomicInteger level = new AtomicInteger(0);
+        runIterationOnItem(stack, (holder, upgradeLevel) -> {
+            if (holder.is(upgrade)) {
+                level.set(upgradeLevel);
+            }
+        });
+        return level.get();
+    }
+
     public static float applyExpToCap(Player wearer, Holder<LivingUpgrade> upgrade, float amount, boolean fromTome) {
         float rest = amount;
         float previous;

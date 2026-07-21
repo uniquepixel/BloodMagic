@@ -1,0 +1,20 @@
+{
+  "type": "bloodmagic:flask_transform",
+  "input": [
+    {
+      "item": "minecraft:fermented_spider_eye"
+    }
+  ],
+  "input_effect": [
+    "bloodmagic:gravity"
+  ],
+  "minimum_tier": 1,
+  "output_effect": [
+    {
+      "base_duration": 1800,
+      "effect": "bloodmagic:suspended"
+    }
+  ],
+  "syphon": 1000,
+  "ticks": 200
+}

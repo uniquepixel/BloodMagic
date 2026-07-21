@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "d": {
+      "item": "bloodmagic:bloodstone"
+    },
+    "o": {
+      "item": "bloodmagic:slate_ethereal"
+    },
+    "p": {
+      "item": "bloodmagic:hellforgedparts"
+    },
+    "r": {
+      "item": "bloodmagic:rune_capacity_augmented"
+    },
+    "s": {
+      "item": "minecraft:netherite_scrap"
+    }
+  },
+  "pattern": [
+    "sps",
+    "drd",
+    "sos"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bloodmagic:rune_2_capacity_augmented"
+  }
+}

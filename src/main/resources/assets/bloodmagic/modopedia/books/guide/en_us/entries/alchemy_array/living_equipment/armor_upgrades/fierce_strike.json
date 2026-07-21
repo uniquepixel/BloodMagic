@@ -1,0 +1,14 @@
+{
+  "title": "Fierce Strike",
+  "icon": { "id": "minecraft:golden_sword" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Effect: Melee attacks do additional damage.\nTrained by: Performing melee attacks.\nMaximum level: 10."
+        }
+      ]
+    }
+  ]
+}

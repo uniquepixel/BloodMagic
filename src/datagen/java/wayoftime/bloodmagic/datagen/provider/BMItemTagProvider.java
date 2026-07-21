@@ -24,13 +24,13 @@ public class BMItemTagProvider extends ItemTagsProvider {
                 .add(BMItems.LIVING_HELMET.get(), BMItems.LIVING_PLATE.get(), BMItems.LIVING_LEGGINGS.get(), BMItems.LIVING_BOOTS.get());
 
         tag(ItemTags.HEAD_ARMOR)
-                .add(BMItems.LIVING_HELMET.get());
+                .add(BMItems.LIVING_HELMET.get(), BMItems.SENTIENT_HELMET.get());
         tag(ItemTags.CHEST_ARMOR)
-                .add(BMItems.LIVING_PLATE.get());
+                .add(BMItems.LIVING_PLATE.get(), BMItems.SENTIENT_PLATE.get());
         tag(ItemTags.LEG_ARMOR)
-                .add(BMItems.LIVING_LEGGINGS.get());
+                .add(BMItems.LIVING_LEGGINGS.get(), BMItems.SENTIENT_LEGGINGS.get());
         tag(ItemTags.FOOT_ARMOR)
-                .add(BMItems.LIVING_BOOTS.get());
+                .add(BMItems.LIVING_BOOTS.get(), BMItems.SENTIENT_BOOTS.get());
 
         tag(BMTags.Items.LIVING_UPGRADE_SET)
                 .addTag(BMTags.Items.LIVING_SET);

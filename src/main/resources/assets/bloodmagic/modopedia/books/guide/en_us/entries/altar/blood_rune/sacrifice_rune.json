@@ -1,0 +1,22 @@
+{
+  "title": "Rune of Sacrifice",
+  "icon": { "id": "bloodmagic:rune_sacrifice" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Rune of Sacrifice increases the amount of $(blood)Life Essence$() gained in the Blood Altar through means that take health from non-player entities. Each rune gives a bonus of +10% additively per rune."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "With Netherite Scrap and Hellforged Parts, you can upgrade a Rune of Sacrifice to its augmented form, increasing the bonus to an additive +20% per rune. If you change your mind, you can undo the upgrade in the Alchemical Reaction Chamber (ARC)."
+        }
+      ]
+    }
+  ]
+}

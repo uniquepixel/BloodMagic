@@ -1,0 +1,14 @@
+{
+  "title": "Battle Hungry",
+  "icon": { "id": "minecraft:rotten_flesh" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Gives you hunger if you haven't attacked something recently. Higher levels give you a shorter cooldown window and make the hunger worse."
+        }
+      ]
+    }
+  ]
+}

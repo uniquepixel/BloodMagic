@@ -1,0 +1,86 @@
+{
+  "title": "Tiers & Getting Started",
+  "icon": { "id": "bloodmagic:sacrificial_dagger" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Here is a quick overview of how to progress through Blood Magic.\nThe first step is to build a Blood Altar and a Sacrificial Knife. Use these to generate $(blood)LP$() from self-sacrificing.\nUse this $(blood)LP$() to craft a Weak Blood Orb, several Blank Slates, and a few Soul Snares."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Alchemy Table uses $(blood)LP$() from a player's Soul Network (drawn from the bound Blood Orb in it) to craft various different objects, such as:\n- Arcane Ashes\n- Reagents for Sigils\n- Anointments\n- 2x Ore Processing\n- and various other odds and ends."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "An Alchemy Array is made by placing some Arcane Ashes on the ground. The Alchemy Array can have 2 items inserted into it via right-click, and will either craft an item (such as a Divination Sigil) or perform some kind of function (such as turning day into night)."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Hellfire Forge crafts using Demon Will. You get your first Will by using Soul Snares, though upgrading to a Sentient Sword is recommended. The Hellfire Forge is used for stuff directly related to Demon Will, like Tartaric Gems and Sentient Tools."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "At this point, you'll be able to craft a Dagger of Sacrifice to slaughter mobs for more $(blood)LP$(). Various Blood Runes should be available for your Blood Altar, and more Sigils will become available too. As before, focus on further upgrading your Altar."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "By this point you'll have the ability to create some basic Rituals and Living Armour as well. This armour is very versatile, though you'll have to work hard to unlock its full potential. Look into upgrading your Altar and your Ritual Diviner to unlock more powerful Rituals."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "At Tier 4 you'll gain access to the Ritual Diviner [Dusk], and with it a plethora of more advanced Rituals, allowing feats such as automating your LP supply (Well of Suffering), creative-like flight within your base (Reverence of the Condor), and even summoning a devastating meteor (Mark of the Falling Tower)."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "With the Ritual Diviner [Dusk], you're also free to augment your Living Armour like never before. The Ritual of Living Evolution will raise your points cap from 100 to 300. If that's not enough, use the Sound of the Cleansing Soul to strip your armour of its upgrades - the freed-up Tomes can be copied into a Training Bracelet, or re-applied to ensure you only train upgrades you actually want. Leftover Upgrade Tomes can be kept as fuel for the Penance of the Leaden Soul ritual, which applies Downgrades to your armour."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Downgrades are expensive and each comes with a hefty penalty, but their negative point-cost gives you more room to further improve your upgrades. Want to be incredibly tough and healthy, and don't mind being slow? Try combining Body Builder, Brilliance, Healthy, and Tough at high levels with a speed-reducing downgrade. Feel more like exploring and going fast instead? Strong Legs, Quick Feet, and Crippled Arm might suit you better. There are dozens of upgrades and downgrades - mix and match to find your favourite combinations, and consider keeping multiple specialised chestplates around."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Beyond this point, the various kinds of Will Aspects are worth investigating, both to refine your rituals and to alter how your Sentient Tools and Sentient Sword behave.\nNote: in earlier versions of the mod, further progression from here involved delving into the Demon Realm via advanced dungeon rituals to hunt for Demonite Ore, Tau Fruit, and Intricate Hellforged Parts. That procedural dungeon content has not been fully carried over to this branch yet, so treat any late-game material sourced that way as a work in progress - keep an eye on future updates for it to be fleshed out."
+        }
+      ]
+    }
+  ]
+}

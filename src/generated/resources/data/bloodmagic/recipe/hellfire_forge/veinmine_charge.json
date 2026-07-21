@@ -1,0 +1,23 @@
+{
+  "type": "bloodmagic:soul_forge",
+  "drain": 0.5,
+  "inputs": [
+    {
+      "tag": "c:cobblestone"
+    },
+    {
+      "item": "minecraft:charcoal"
+    },
+    {
+      "item": "minecraft:sandstone"
+    },
+    {
+      "tag": "c:sand"
+    }
+  ],
+  "minDrain": 10.0,
+  "output": {
+    "count": 8,
+    "id": "bloodmagic:veinmine_charge"
+  }
+}

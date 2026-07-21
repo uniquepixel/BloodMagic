@@ -1,0 +1,22 @@
+{
+  "title": "Rune of The Orb",
+  "icon": { "id": "bloodmagic:rune_orb" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Rune of The Orb increases the capacity of the Blood Orb that is inside of the Altar by +2% additively per rune while it is inside of the Altar."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "With Netherite Scrap and Hellforged Parts, you can upgrade a Rune of the Orb to its augmented form, increasing the orb's capacity by an additive +4% per rune. If you change your mind, you can undo the upgrade in the Alchemical Reaction Chamber (ARC)."
+        }
+      ]
+    }
+  ]
+}

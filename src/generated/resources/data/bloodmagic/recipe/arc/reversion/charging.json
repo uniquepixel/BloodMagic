@@ -1,0 +1,24 @@
+{
+  "type": "bloodmagic:alchemical_reaction_chamber",
+  "chance_outputs": [],
+  "guaranteed_outputs": [
+    {
+      "count": 1,
+      "id": "bloodmagic:rune_charging"
+    },
+    {
+      "count": 1,
+      "id": "bloodmagic:hellforgedparts"
+    },
+    {
+      "count": 4,
+      "id": "minecraft:netherite_scrap"
+    }
+  ],
+  "input": {
+    "item": "bloodmagic:rune_2_charging"
+  },
+  "tool": {
+    "tag": "bloodmagic:arc_tool/reverter"
+  }
+}

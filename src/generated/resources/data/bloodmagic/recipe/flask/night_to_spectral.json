@@ -1,0 +1,20 @@
+{
+  "type": "bloodmagic:flask_transform",
+  "input": [
+    {
+      "item": "minecraft:glowstone_dust"
+    }
+  ],
+  "input_effect": [
+    "minecraft:night_vision"
+  ],
+  "minimum_tier": 1,
+  "output_effect": [
+    {
+      "base_duration": 3600,
+      "effect": "bloodmagic:spectral_sight"
+    }
+  ],
+  "syphon": 500,
+  "ticks": 200
+}

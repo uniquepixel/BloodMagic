@@ -1,0 +1,13 @@
+{
+  "type": "bloodmagic:flask_length",
+  "effect": "minecraft:water_breathing",
+  "input": [
+    {
+      "item": "bloodmagic:mundanelengtheningcatalyst"
+    }
+  ],
+  "length_duration_mod": 2.6667,
+  "minimum_tier": 1,
+  "syphon": 200,
+  "ticks": 100
+}

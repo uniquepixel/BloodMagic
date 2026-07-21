@@ -1,0 +1,31 @@
+{
+  "title": "Soft Coating",
+  "icon": { "id": "bloodmagic:anointment_silk_touch" },
+  "assigned_items": [ "bloodmagic:anointment_silk_touch" ],
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Soft Coating$(/b)\n\nApplies Silk Touch to blocks harvested. Does not stack with the vanilla enchantment.\n\nValid items: Tools, Swords, Charges.\n\nApplies: Soft Touch I (256 blocks)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Soft Coating L$(/b)\n\nThis upgraded version of the anointment lasts four times longer. \n\nApplies: Soft Touch I (1024 blocks)"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Soft Coating XL$(/b)\n\nThis upgraded version of the anointment lasts sixteen times longer. \n\nApplies: Soft Touch I (4096 blocks)"
+        }
+      ]
+    }
+  ]
+}

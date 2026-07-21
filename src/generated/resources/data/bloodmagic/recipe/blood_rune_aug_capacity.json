@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "tag": "c:obsidian"
+    },
+    "b": {
+      "item": "bloodmagic:slate_demonic"
+    },
+    "c": {
+      "item": "minecraft:bucket"
+    },
+    "d": {
+      "item": "bloodmagic:rune_capacity"
+    },
+    "e": {
+      "type": "bloodmagic:bloodorb",
+      "orb_tier": 4
+    }
+  },
+  "pattern": [
+    "aba",
+    "cdc",
+    "aea"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bloodmagic:rune_capacity_augmented"
+  }
+}

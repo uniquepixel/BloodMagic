@@ -1,0 +1,21 @@
+{
+  "type": "bloodmagic:alchemy_table",
+  "duration": 200,
+  "essence": 200,
+  "inputs": [
+    {
+      "item": "minecraft:dirt"
+    },
+    {
+      "item": "minecraft:bone_meal"
+    },
+    {
+      "item": "minecraft:wheat_seeds"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "minecraft:grass_block"
+  },
+  "tier": 1
+}

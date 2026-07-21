@@ -1,0 +1,22 @@
+{
+  "title": "Air Sigil",
+  "icon": { "id": "bloodmagic:sigil" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Throws you in the direction you're facing, at a cost of $(blood)50 LP$() per use. Note that this does not provide any sort of Feather Falling effect, so be careful when landing! A good way to get around quickly, albeit with some risk. Many an unwary mage has met their end by running out of $(blood)LP$() in their Soul Network while flying miles above the countryside."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Crafted via the Alchemy Table and an Alchemy Array, following the same two-step reagent-then-array process as most other Sigils - check JEI for the exact current ingredients on this branch."
+        }
+      ]
+    }
+  ]
+}

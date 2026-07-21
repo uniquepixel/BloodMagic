@@ -1,0 +1,22 @@
+{
+  "title": "Sentient Tools",
+  "icon": { "id": "bloodmagic:sentient_pickaxe" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Sentient Sword has proven to be a resounding success. Other tools react similarly to the same treatment: Sentient Pickaxe, Sentient Axe, Sentient Shovel, and Sentient Scythe are all available, alongside the Sentient Bow.\nNote that these tools, as with the Sentient Sword, can be repaired with Crystallized Will in an Anvil, and are all highly enchantable."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Sentient Pickaxe, Axe, and Shovel each improve with Will, cutting through their material with ease - with no Will to power them they're only slightly better than the Iron tool they were crafted from, but a full Tartaric Gem can push them past even Netherite.\nThe Sentient Scythe is a slower, less powerful weapon than the others, but its great swings deal full damage to all enemies in its range, making it excellent for crowd control - and it still functions as a hoe."
+        }
+      ]
+    }
+  ]
+}

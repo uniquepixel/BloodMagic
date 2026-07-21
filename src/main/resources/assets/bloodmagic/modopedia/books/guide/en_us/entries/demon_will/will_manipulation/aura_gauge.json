@@ -1,0 +1,14 @@
+{
+  "title": "Demon Will Aura Gauge",
+  "icon": { "id": "bloodmagic:demon_will_gauge" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Right-click on air while holding the Demon Will Aura Gauge to report how much Will of each type you're carrying across your Tartaric Gems. Right-click on a block instead to report the ambient Will Aura in that block's chunk - broken down by aspect (Raw, Corrosive, Steadfast, Destructive, Vengeful)."
+        }
+      ]
+    }
+  ]
+}

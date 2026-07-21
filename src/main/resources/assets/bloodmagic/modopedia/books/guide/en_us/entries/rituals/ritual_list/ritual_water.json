@@ -1,0 +1,14 @@
+{
+  "title": "Ritual of the Full Spring",
+  "icon": { "id": "minecraft:water_bucket" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Ritual of the Full Spring generates water into a linked tank near the Master Ritual Stone, giving you a renewable water source - the counterpart to the Serenade of the Nether's lava generation. Tier 0, costs $(blood)500 LP$() to activate.\nUse a Ritual Diviner for easier construction."
+        }
+      ]
+    }
+  ]
+}

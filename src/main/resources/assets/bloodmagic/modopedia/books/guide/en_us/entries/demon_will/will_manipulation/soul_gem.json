@@ -1,0 +1,22 @@
+{
+  "title": "Tartaric Gems",
+  "icon": { "id": "bloodmagic:soul_gem_greater" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Demon Will is a very useful resource, but the fragments you get from killing mobs are decidedly lacking in power. What you need is a storage item - a Tartaric Gem seems just the thing. It can also absorb any leftover Demon Will you might have lying around; just drop it onto the floor and your shiny new gem will absorb it."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Tartaric Gems come in five tiers on this branch: Petty, Lesser, Common, Greater, and Grand, each holding progressively more Will than the last (crafted at the Hellfire Forge, generally requiring the previous tier plus additional materials - check JEI for exact current recipes). If you ever want to transfer Will from one gem to another, hold right-click while holding the gem you want to empty, and it will transfer its Will into the first valid gem it finds in your inventory."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "title": "Sigils",
+  "icon": { "id": "bloodmagic:sigil" },
+  "landing_text": "Sigils are formed using an Alchemy Array, some form of Reagent, and a Slate. They draw $(blood)LP$() from your Soul Network in order to perform all sorts of useful tasks.",
+  "entries": [
+    "alchemy_array/sigil/air",
+    "alchemy_array/sigil/blood_light",
+    "alchemy_array/sigil/divination",
+    "alchemy_array/sigil/grove",
+    "alchemy_array/sigil/holding",
+    "alchemy_array/sigil/ice",
+    "alchemy_array/sigil/lava",
+    "alchemy_array/sigil/magnetism",
+    "alchemy_array/sigil/mining",
+    "alchemy_array/sigil/seer",
+    "alchemy_array/sigil/suppression",
+    "alchemy_array/sigil/teleposition",
+    "alchemy_array/sigil/void",
+    "alchemy_array/sigil/water"
+  ],
+  "sort_num": 1
+}

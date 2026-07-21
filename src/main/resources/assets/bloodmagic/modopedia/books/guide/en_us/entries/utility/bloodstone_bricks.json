@@ -1,0 +1,14 @@
+{
+  "title": "Bloodstone Bricks",
+  "icon": { "id": "bloodmagic:bloodstone_brick" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Bloodstone Bricks are a decorative block, used as the capstones for the Tier 4 Blood Altar. They're derived from Bloodstone, itself tied to the Blood Altar's crafting chain - check JEI for the exact current recipe on this branch."
+        }
+      ]
+    }
+  ]
+}

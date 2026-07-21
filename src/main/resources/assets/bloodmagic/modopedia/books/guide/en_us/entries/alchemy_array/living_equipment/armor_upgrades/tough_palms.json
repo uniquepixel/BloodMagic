@@ -1,0 +1,14 @@
+{
+  "title": "Tough Palms",
+  "icon": { "id": "bloodmagic:sacrificial_dagger" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Effect: Grants a bonus to Self Sacrifice, up to an additional 150%.\nTrained by: Sacrificing Blood with the Sacrificial Knife.\nMaximum level: 10."
+        }
+      ]
+    }
+  ]
+}

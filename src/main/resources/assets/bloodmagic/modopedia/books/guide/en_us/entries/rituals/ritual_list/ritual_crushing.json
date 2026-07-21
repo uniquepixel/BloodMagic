@@ -1,0 +1,22 @@
+{
+  "title": "Ritual of the Crusher",
+  "icon": { "id": "minecraft:iron_pickaxe" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Ritual of the Crusher takes ores and other crushable items from a linked chest and crushes them into their higher-value forms - for example, it will turn Coal into Blocks of Coal, Redstone Dust into Blocks of Redstone, etc. Tier 0, costs $(blood)5,000 LP$() to activate.\nUse a Ritual Diviner [Dusk] for easier construction."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Various Demon Will types can be channeled into this ritual via the Aura to change its behavior - Corrosive Will grants effects similar to Silk Touch, Destructive Will similar to Fortune III, and Steadfast Will lets you choose between the two. Check the ritual's tooltip in-game (via the Ritual Diviner or a Divination Sigil) for the exact current bonuses on this branch."
+        }
+      ]
+    }
+  ]
+}

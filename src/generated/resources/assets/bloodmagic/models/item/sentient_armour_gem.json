@@ -1,0 +1,78 @@
+{
+  "parent": "minecraft:item/handheld",
+  "overrides": [
+    {
+      "model": "bloodmagic:item/variant/sentient_armour_gem_default_deactivated",
+      "predicate": {
+        "bloodmagic:sentient_armour_gem_active": 0.0,
+        "bloodmagic:will_type": 0.0
+      }
+    },
+    {
+      "model": "bloodmagic:item/variant/sentient_armour_gem_default_activated",
+      "predicate": {
+        "bloodmagic:sentient_armour_gem_active": 1.0,
+        "bloodmagic:will_type": 0.0
+      }
+    },
+    {
+      "model": "bloodmagic:item/variant/sentient_armour_gem_corrosive_deactivated",
+      "predicate": {
+        "bloodmagic:sentient_armour_gem_active": 0.0,
+        "bloodmagic:will_type": 1.0
+      }
+    },
+    {
+      "model": "bloodmagic:item/variant/sentient_armour_gem_corrosive_activated",
+      "predicate": {
+        "bloodmagic:sentient_armour_gem_active": 1.0,
+        "bloodmagic:will_type": 1.0
+      }
+    },
+    {
+      "model": "bloodmagic:item/variant/sentient_armour_gem_destructive_deactivated",
+      "predicate": {
+        "bloodmagic:sentient_armour_gem_active": 0.0,
+        "bloodmagic:will_type": 2.0
+      }
+    },
+    {
+      "model": "bloodmagic:item/variant/sentient_armour_gem_destructive_activated",
+      "predicate": {
+        "bloodmagic:sentient_armour_gem_active": 1.0,
+        "bloodmagic:will_type": 2.0
+      }
+    },
+    {
+      "model": "bloodmagic:item/variant/sentient_armour_gem_steadfast_deactivated",
+      "predicate": {
+        "bloodmagic:sentient_armour_gem_active": 0.0,
+        "bloodmagic:will_type": 3.0
+      }
+    },
+    {
+      "model": "bloodmagic:item/variant/sentient_armour_gem_steadfast_activated",
+      "predicate": {
+        "bloodmagic:sentient_armour_gem_active": 1.0,
+        "bloodmagic:will_type": 3.0
+      }
+    },
+    {
+      "model": "bloodmagic:item/variant/sentient_armour_gem_vengeful_deactivated",
+      "predicate": {
+        "bloodmagic:sentient_armour_gem_active": 0.0,
+        "bloodmagic:will_type": 4.0
+      }
+    },
+    {
+      "model": "bloodmagic:item/variant/sentient_armour_gem_vengeful_activated",
+      "predicate": {
+        "bloodmagic:sentient_armour_gem_active": 1.0,
+        "bloodmagic:will_type": 4.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "bloodmagic:item/sentient_armour_gem_default_deactivated"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "title": "Demon Will",
+  "icon": { "id": "bloodmagic:raw_will" },
+  "landing_text": "Demon Will is one of the first things you can create with Blood Magic. Once you have gathered some with a Soul Snare (or a Sentient Sword), you will be able to craft a Petty Tartaric Gem and work up from there.",
+  "children": [
+    "demon_will/demonic_items",
+    "demon_will/item_routing",
+    "demon_will/will_manipulation"
+  ],
+  "sort_num": 3
+}

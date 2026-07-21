@@ -1,0 +1,14 @@
+{
+  "title": "Ritual Stones",
+  "icon": { "id": "bloodmagic:ritual_stone_water" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Ritual Stones are the canvas upon which you will draw your Rituals. They also look quite nifty. There are Blank, Water, Fire, Earth, Air, Dusk, and Dawn variants, each used to build increasingly advanced rituals - and, of course, one Master Ritual Stone which sits at the centre of every ritual."
+        }
+      ]
+    }
+  ]
+}

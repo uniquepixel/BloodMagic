@@ -12,6 +12,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import wayoftime.bloodmagic.api.sigil.SigilEffect;
 import wayoftime.bloodmagic.common.blockentity.BloodAltarTile;
+import wayoftime.bloodmagic.common.blockentity.IncenseAltarTile;
 import wayoftime.bloodmagic.common.datacomponent.BMDataComponents;
 import wayoftime.bloodmagic.api.datacomponent.Binding;
 import wayoftime.bloodmagic.util.ChatUtil;
@@ -66,7 +67,14 @@ public record DivinationEffect(boolean isAdvanced) implements SigilEffect {
             return 0;
         }
 
-        // TODO IncenseAltarTile impl
+        if (be instanceof IncenseAltarTile altar) {
+            List<Component> send = new ArrayList<>();
+            send.add(translateAltar("tranquility", (int) (100 * altar.getTranquility()) / 100D));
+            send.add(translateAltar("bonus", (int) (100 * altar.getIncenseBonus())));
+
+            ChatUtil.sendChatNoSpam(player, send);
+            return 0;
+        }
 
         return 0;
     }

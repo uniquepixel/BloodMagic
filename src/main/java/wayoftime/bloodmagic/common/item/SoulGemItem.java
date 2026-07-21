@@ -6,15 +6,19 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import wayoftime.bloodmagic.common.datacomponent.BMDataComponents;
 import wayoftime.bloodmagic.common.datacomponent.EnumWillType;
 import wayoftime.bloodmagic.common.datamap.BMDataMaps;
+import wayoftime.bloodmagic.common.will.WillHelper;
+import wayoftime.bloodmagic.common.will.WorldWillHelper;
 import wayoftime.bloodmagic.util.ChatUtil;
 
 import java.util.List;
@@ -25,10 +29,62 @@ public class SoulGemItem extends Item {
         super(new Properties().stacksTo(1).component(BMDataComponents.DEMON_WILL_AMOUNT, 0D).component(BMDataComponents.DEMON_WILL_TYPE, EnumWillType.DEFAULT));
     }
 
+    /**
+     * Redistributes a tenth of this gem's held Will into any other Soul Gems the player is
+     * carrying - lets a full gem "top off" emptier ones without needing to manually dump it out.
+     */
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
-        // TODO: implement
-        return super.use(level, player, usedHand);
+        ItemStack stack = player.getItemInHand(usedHand);
+        if (level.isClientSide) {
+            return InteractionResultHolder.sidedSuccess(stack, true);
+        }
+
+        EnumWillType type = stack.getOrDefault(BMDataComponents.DEMON_WILL_TYPE, EnumWillType.DEFAULT);
+        double current = stack.getOrDefault(BMDataComponents.DEMON_WILL_AMOUNT, 0D);
+        Double max = stack.getItemHolder().getData(BMDataMaps.TARTARIC_GEM_MAX_AMOUNTS);
+        double maxWill = max == null ? 0 : max;
+        double toDistribute = Math.min(current, maxWill / 10);
+        if (toDistribute <= 0) {
+            return InteractionResultHolder.pass(stack);
+        }
+
+        double distributed = WillHelper.fillOtherGems(player, stack, type, toDistribute);
+        if (distributed <= 0) {
+            return InteractionResultHolder.pass(stack);
+        }
+
+        stack.set(BMDataComponents.DEMON_WILL_AMOUNT, current - distributed);
+        return InteractionResultHolder.sidedSuccess(stack, false);
+    }
+
+    /**
+     * Drains ambient Will from the world aura at the clicked block into this gem.
+     */
+    @Override
+    public InteractionResult useOn(UseOnContext context) {
+        Level level = context.getLevel();
+        if (level.isClientSide) {
+            return InteractionResult.sidedSuccess(true);
+        }
+
+        ItemStack stack = context.getItemInHand();
+        EnumWillType type = stack.getOrDefault(BMDataComponents.DEMON_WILL_TYPE, EnumWillType.DEFAULT);
+        double current = stack.getOrDefault(BMDataComponents.DEMON_WILL_AMOUNT, 0D);
+        Double max = stack.getItemHolder().getData(BMDataMaps.TARTARIC_GEM_MAX_AMOUNTS);
+        double maxWill = max == null ? 0 : max;
+        double space = maxWill - current;
+        if (space <= 0) {
+            return InteractionResult.PASS;
+        }
+
+        double drained = WorldWillHelper.drainWill(level, context.getClickedPos(), type, space);
+        if (drained <= 0) {
+            return InteractionResult.PASS;
+        }
+
+        stack.set(BMDataComponents.DEMON_WILL_AMOUNT, current + drained);
+        return InteractionResult.sidedSuccess(false);
     }
 
     @Override

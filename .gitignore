@@ -5,6 +5,13 @@ gradle
 # IntelliJ
 .idea
 
+# Eclipse
+.eclipse
+bin
+
+# VS Code
+.vscode
+
 # general
 build
 run

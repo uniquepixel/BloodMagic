@@ -1,0 +1,28 @@
+{
+  "title": "Living Armor Upgrades",
+  "icon": { "id": "bloodmagic:upgrade_tome" },
+  "landing_text": "A list of available Living Armor Upgrades.",
+  "entries": [
+    "alchemy_array/living_equipment/armor_upgrades/body_builder",
+    "alchemy_array/living_equipment/armor_upgrades/brilliance",
+    "alchemy_array/living_equipment/armor_upgrades/charging_strike",
+    "alchemy_array/living_equipment/armor_upgrades/curios_sockets",
+    "alchemy_array/living_equipment/armor_upgrades/dwarven_might",
+    "alchemy_array/living_equipment/armor_upgrades/elytra",
+    "alchemy_array/living_equipment/armor_upgrades/experienced",
+    "alchemy_array/living_equipment/armor_upgrades/fierce_strike",
+    "alchemy_array/living_equipment/armor_upgrades/gift_of_ignis",
+    "alchemy_array/living_equipment/armor_upgrades/gilded",
+    "alchemy_array/living_equipment/armor_upgrades/healthy",
+    "alchemy_array/living_equipment/armor_upgrades/luck",
+    "alchemy_array/living_equipment/armor_upgrades/pin_cushion",
+    "alchemy_array/living_equipment/armor_upgrades/poison_resistance",
+    "alchemy_array/living_equipment/armor_upgrades/quick_feet",
+    "alchemy_array/living_equipment/armor_upgrades/repair",
+    "alchemy_array/living_equipment/armor_upgrades/soft_fall",
+    "alchemy_array/living_equipment/armor_upgrades/strong_legs",
+    "alchemy_array/living_equipment/armor_upgrades/tough",
+    "alchemy_array/living_equipment/armor_upgrades/tough_palms"
+  ],
+  "sort_num": 0
+}

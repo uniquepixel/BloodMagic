@@ -1,0 +1,22 @@
+{
+  "title": "Well of Suffering",
+  "icon": { "id": "minecraft:water_bucket" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "This ritual attacks mobs within its damage zone and puts the harvested $(blood)Blood$() into a nearby Blood Altar. Put a Blood Orb in the Altar, maybe add a few Runes of Sacrifice, and you have a fantastic passive $(blood)LP$() generator. Tier 0, costs $(blood)40,000 LP$() to activate.\nUse a Ritual Diviner [Dusk] for easier construction."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The ritual can only link to one altar at a time. Mobs will still drop their normal, non-player-kill drops."
+        }
+      ]
+    }
+  ]
+}

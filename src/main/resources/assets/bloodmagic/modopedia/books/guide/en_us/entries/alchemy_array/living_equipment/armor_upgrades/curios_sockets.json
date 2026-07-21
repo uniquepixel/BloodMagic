@@ -1,0 +1,14 @@
+{
+  "title": "Socketed (Curios Socket)",
+  "icon": { "id": "minecraft:chest" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Adds Living Armour Socket Curios slots to the player, able to hold compatible Blood Magic items.\nThis upgrade can't be trained through normal play, only crafted directly. By default, each Upgrade Tome applied adds one additional slot."
+        }
+      ]
+    }
+  ]
+}

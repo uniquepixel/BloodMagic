@@ -1,0 +1,30 @@
+{
+  "title": "The Ritual Diviner",
+  "icon": { "id": "bloodmagic:ritual_diviner" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Crafting rituals is an intricate business; you can't just slap runic inscriptions down any old how and expect things to happen. Luckily, the Ritual Diviner is here to help.\nHold sneak and right-click or left-click to cycle through the available rituals in either direction."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "You can also change the direction that the completed ritual will face by right-clicking. This will only affect a small number of rituals, such as the Ritual of Speed, as most rituals are symmetrical.\nSimply tap right-click while looking at a Master Ritual Stone to make the Diviner build the currently selected ritual out of any Ritual Stones you may be carrying. It's almost like magic!"
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Ritual Diviner can break replaceable blocks (like tall grass, snow, etc), but not solid ones such as stone or dirt, so make sure the area is clear before you commence construction, or the Activation Crystal will be unable to do its job.\nIt's also worth noting that the base Ritual Diviner can only create some of the more basic rituals. If you want the most out of your diviner, you'll have to upgrade to the Ritual Diviner [Dusk], and beyond that the Ritual Diviner [Dawn] - each unlocking access to more advanced rituals."
+        }
+      ]
+    }
+  ]
+}

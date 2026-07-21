@@ -1,0 +1,5 @@
+{
+  "type": "bloodmagic:suppression_effect",
+  "radius": 5,
+  "upkeep_cost": 400
+}

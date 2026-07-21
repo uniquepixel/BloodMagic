@@ -1,0 +1,14 @@
+{
+  "title": "Gathering of the Forsaken Souls",
+  "icon": { "id": "bloodmagic:crystal_cluster" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Gathering of the Forsaken Souls (internally: Forsaken Soul Ritual) draws ambient Demon Will from the Aura around the ritual and uses it to catalyze the growth of nearby Will Crystal Clusters, working alongside Will Catalysts. Tier 0, costs $(blood)40,000 LP$() to activate.\nUse a Ritual Diviner for easier construction."
+        }
+      ]
+    }
+  ]
+}

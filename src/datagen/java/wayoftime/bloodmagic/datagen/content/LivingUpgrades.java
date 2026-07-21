@@ -181,14 +181,18 @@ public class LivingUpgrades {
                         .withEffect(LivingEffectComponents.TAKING_DAMAGE.get(), new MultiplyReduceValue(LevelBasedValue.lookup(List.of(0.1F, 0.2F, 0.3F, 0.4F, 0.5F, 0.6F, 0.65F, 0.7F, 0.75F, 0.8F), LevelBasedValue.constant(0))), arrowDamage)
                         .build()
         );
-        /* TODO curios is nyi, do that and finish this
+        // Levels-only: no ATTRIBUTES effect here, since Curios' slot attribute is only registered
+        // when Curios itself is installed (and isn't a real registry entry otherwise), which would
+        // make the generic codec-based ATTRIBUTES effect fail to parse for players without Curios.
+        // The actual slot bonus is granted directly in code (CuriosCompat), guarded by ModList.
         context.register(
-                CURIOS_SOCKET,
+                Upgrades.CURIOS_SOCKET,
                 new LivingUpgrade.Builder()
-                        .withEffect()
+                        .level(300, 20)
+                        .level(1200, 50)
+                        .level(3000, 100)
                         .build()
         );
-         */
         context.register(
                 Upgrades.NETHERITE_PROTECT,
                 new LivingUpgrade.Builder() // TODO 6 dias = 1 xp, 1 1xp tome netherite upgraded = 1000xp
@@ -556,7 +560,7 @@ public class LivingUpgrades {
 
     // TODO order these alphabetical by *english* translation
     private static final List<ResourceKey<LivingUpgrade>> downgrades = List.of(Upgrades.BATTLE_HUNGRY, Upgrades.CRIPPLED_ARM, Upgrades.DIG_SLOWDOWN, Upgrades.MELEE_DECREASE, Upgrades.QUENCHED, Upgrades.SLOW_HEAL, Upgrades.SPEED_DECREASE, Upgrades.STORM_TROOPER, Upgrades.SWIM_DECREASE);
-    private static final List<ResourceKey<LivingUpgrade>> upgrades = List.of(Upgrades.ARROW_PROTECT, Upgrades.DIGGING, Upgrades.ELYTRA, Upgrades.EXPERIENCED, Upgrades.FALL_PROTECT, Upgrades.FIRE_RESIST, Upgrades.GILDED, Upgrades.HEALTH, Upgrades.JUMP, Upgrades.KNOCKBACK_RESIST, Upgrades.LUCK, Upgrades.MELEE_DAMAGE, Upgrades.NETHERITE_PROTECT, Upgrades.PHYSICAL_PROTECT, Upgrades.POISON_RESIST, Upgrades.REPAIR, Upgrades.SELF_SACRIFICE, Upgrades.SPEED, Upgrades.SPRINT_ATTACK);
+    private static final List<ResourceKey<LivingUpgrade>> upgrades = List.of(Upgrades.ARROW_PROTECT, Upgrades.CURIOS_SOCKET, Upgrades.DIGGING, Upgrades.ELYTRA, Upgrades.EXPERIENCED, Upgrades.FALL_PROTECT, Upgrades.FIRE_RESIST, Upgrades.GILDED, Upgrades.HEALTH, Upgrades.JUMP, Upgrades.KNOCKBACK_RESIST, Upgrades.LUCK, Upgrades.MELEE_DAMAGE, Upgrades.NETHERITE_PROTECT, Upgrades.PHYSICAL_PROTECT, Upgrades.POISON_RESIST, Upgrades.REPAIR, Upgrades.SELF_SACRIFICE, Upgrades.SPEED, Upgrades.SPRINT_ATTACK);
 
     public static void tags(Function<TagKey<LivingUpgrade>, TagsProvider.TagAppender<LivingUpgrade>> adder) {
         adder.apply(BMTags.Living.TRAINERS)
@@ -593,6 +597,7 @@ public class LivingUpgrades {
         addUpgrade(Upgrades.SWIM_DECREASE.location(), "Concrete Shoes", translator);
 
         addUpgrade(Upgrades.ARROW_PROTECT.location(), "Pin Cushion", translator);
+        addUpgrade(Upgrades.CURIOS_SOCKET.location(), "Curios Socket", translator);
         addUpgrade(Upgrades.DIGGING.location(), "Dwarven Might", translator);
         addUpgrade(Upgrades.ELYTRA.location(), "Elytra", translator);
         addUpgrade(Upgrades.EXPERIENCED.location(), "Experienced", translator);

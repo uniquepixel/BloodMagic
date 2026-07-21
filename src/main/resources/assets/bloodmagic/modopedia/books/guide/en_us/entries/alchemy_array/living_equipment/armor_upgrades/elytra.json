@@ -1,0 +1,14 @@
+{
+  "title": "Elytra",
+  "icon": { "id": "minecraft:elytra" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Adds an Elytra to your Living Armor. Rather than being trained, an Upgrade Tome for this upgrade must be crafted directly.\nThis Elytra does drain durability from the Chestplate, but at half the speed of a normal Elytra. It also looks pretty neat."
+        }
+      ]
+    }
+  ]
+}

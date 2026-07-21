@@ -3,7 +3,15 @@
   "icon": {"id": "bloodmagic:living_station"},
   "landing_text": "AKA the \"Miscellaneous\" bin. General information about the mod goes here, along with anything else that doesn't quite fit in another category, yet doesn't have enough to warrant a category of its own.",
   "entries": [
-    "utility/nyi"
+    "utility/alchemical_reaction_chamber",
+    "utility/bloodstone_bricks",
+    "utility/book_experience",
+    "utility/commands",
+    "utility/getting_started",
+    "utility/incense_altar",
+    "utility/life_essence_bucket",
+    "utility/ore_processing",
+    "utility/teleposer"
   ],
   "sort_num": 99
 }
