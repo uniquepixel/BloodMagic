@@ -93,6 +93,114 @@ public class BMBlockstateProvider extends BlockStateProvider {
                 builder.partialState().with(ARCBlock.LIT, true).with(ARCBlock.FACING, facing).with(ARCBlock.TYPE, type).modelForState().modelFile(on).rotationY((int) facing.getOpposite().toYRot()).addModel();
             }
         }
+
+        // Demon Dungeon decorative block palette - everything registered via BASIC_REG in BMBlocks
+        // (bricks 1/2/3, the stone/tilespecial Will reskins, eye, polished, tile, smallbrick, metal,
+        // emitter, both cracked bricks - ~56 plain single-texture cubes) is already handled for free
+        // by the BASIC_BLOCKS.getEntries() loop above: cubeAll keys off the registry name, which
+        // matches the flat texture files copied from 1.20.1's textures/block/dungeon/ folder 1:1
+        // (flattened - see BMBlocks). Only the blocks registered via BLOCK_REG below (pillars, and the
+        // stair/wall/gate/slab shapes) need explicit treatment here, since none of those are simple
+        // same-name cubes.
+        dungeonPillarFamily(BMBlocks.DUNGEON_PILLAR_CENTER, "dungeon_pillar", "dungeon_pillarheart");
+        dungeonPillarFamily(BMBlocks.DUNGEON_PILLAR_SPECIAL, "dungeon_pillarspecial", "dungeon_pillarheart");
+        dungeonPillarCapFamily(BMBlocks.DUNGEON_PILLAR_CAP);
+
+        dungeonStairFamily(BMBlocks.DUNGEON_BRICK_STAIRS, "dungeon_brick1");
+        dungeonStairFamily(BMBlocks.DUNGEON_POLISHED_STAIRS, "dungeon_polished");
+        dungeonStairFamily(BMBlocks.DUNGEON_STONE_STAIRS, "dungeon_stone");
+
+        dungeonWallFamily(BMBlocks.DUNGEON_BRICK_WALLS, "dungeon_brick1");
+        dungeonWallFamily(BMBlocks.DUNGEON_TILE_WALLS, "dungeon_tile");
+        dungeonWallFamily(BMBlocks.DUNGEON_POLISHED_WALLS, "dungeon_polished");
+        dungeonWallFamily(BMBlocks.DUNGEON_STONE_WALLS, "dungeon_stone");
+
+        dungeonGateFamily(BMBlocks.DUNGEON_BRICK_GATES, "dungeon_brick1");
+        dungeonGateFamily(BMBlocks.DUNGEON_POLISHED_GATES, "dungeon_polished");
+
+        dungeonSlabFamily(BMBlocks.DUNGEON_BRICK_SLABS, "dungeon_brick1");
+        dungeonSlabFamily(BMBlocks.DUNGEON_TILE_SLABS, "dungeon_tile");
+        dungeonSlabFamily(BMBlocks.DUNGEON_STONE_SLABS, "dungeon_stone");
+        dungeonSlabFamily(BMBlocks.DUNGEON_POLISHED_SLABS, "dungeon_polished");
+    }
+
+    private static final String[] DUNGEON_WILL_VARIANTS = {"", "_corrosive", "_destructive", "_steadfast", "_vengeful"};
+
+    private static String path(net.minecraft.world.level.block.Block block) {
+        return net.minecraft.core.registries.BuiltInRegistries.BLOCK.getKey(block).getPath();
+    }
+
+    private void dungeonPillarFamily(java.util.Map<String, wayoftime.bloodmagic.util.blockitem.BlockWithItemHolder<net.minecraft.world.level.block.RotatedPillarBlock, net.minecraft.world.item.BlockItem>> family, String sideBase, String endBase) {
+        for (String suffix : DUNGEON_WILL_VARIANTS) {
+            net.minecraft.world.level.block.RotatedPillarBlock block = family.get(suffix).block().get();
+            String name = path(block);
+            ResourceLocation side = bm("block/" + sideBase + suffix);
+            ResourceLocation end = bm("block/" + endBase + suffix);
+            ModelFile vertical = models().cubeColumn(name, side, end);
+            ModelFile horizontal = models().cubeColumnHorizontal(name + "_horizontal", side, end);
+            axisBlock(block, vertical, horizontal);
+            simpleBlockItem(block, vertical);
+        }
+    }
+
+    // Matches 1.20.1's hand-authored dungeon_pillar_cap.json blockstate exactly (see wayoftime.bloodmagic.common.block.BlockPillarCap) -
+    // the cap has two distinct models (an "outward" one used for up/east/south and a "downward" one
+    // used for down/north/west) since it isn't texture-symmetric front-to-back, so this can't use the
+    // generic directionalBlock() helper (which only ever rotates a single model).
+    private void dungeonPillarCapFamily(java.util.Map<String, wayoftime.bloodmagic.util.blockitem.BlockWithItemHolder<wayoftime.bloodmagic.common.block.BlockPillarCap, net.minecraft.world.item.BlockItem>> family) {
+        for (String suffix : DUNGEON_WILL_VARIANTS) {
+            wayoftime.bloodmagic.common.block.BlockPillarCap block = family.get(suffix).block().get();
+            String name = path(block);
+            ResourceLocation heart = bm("block/dungeon_pillarheart" + suffix);
+            ResourceLocation top = bm("block/dungeon_pillartop" + suffix);
+            ResourceLocation bottom = bm("block/dungeon_pillarbottom" + suffix);
+            ModelFile up = models().cubeBottomTop(name, top, heart, heart);
+            ModelFile down = models().cubeBottomTop(name + "_down", bottom, heart, heart);
+            getVariantBuilder(block)
+                    .partialState().with(wayoftime.bloodmagic.common.block.BlockPillarCap.FACING, Direction.DOWN).modelForState().modelFile(down).addModel()
+                    .partialState().with(wayoftime.bloodmagic.common.block.BlockPillarCap.FACING, Direction.EAST).modelForState().modelFile(up).rotationX(90).rotationY(90).addModel()
+                    .partialState().with(wayoftime.bloodmagic.common.block.BlockPillarCap.FACING, Direction.NORTH).modelForState().modelFile(down).rotationX(270).addModel()
+                    .partialState().with(wayoftime.bloodmagic.common.block.BlockPillarCap.FACING, Direction.SOUTH).modelForState().modelFile(up).rotationX(270).addModel()
+                    .partialState().with(wayoftime.bloodmagic.common.block.BlockPillarCap.FACING, Direction.UP).modelForState().modelFile(up).addModel()
+                    .partialState().with(wayoftime.bloodmagic.common.block.BlockPillarCap.FACING, Direction.WEST).modelForState().modelFile(down).rotationX(90).rotationY(90).addModel();
+            simpleBlockItem(block, up);
+        }
+    }
+
+    private void dungeonStairFamily(java.util.Map<String, wayoftime.bloodmagic.util.blockitem.BlockWithItemHolder<net.minecraft.world.level.block.StairBlock, net.minecraft.world.item.BlockItem>> family, String textureBase) {
+        for (String suffix : DUNGEON_WILL_VARIANTS) {
+            net.minecraft.world.level.block.StairBlock block = family.get(suffix).block().get();
+            ResourceLocation texture = bm("block/" + textureBase + suffix);
+            stairsBlock(block, texture);
+            simpleBlockItem(block, models().stairs(path(block), texture, texture, texture));
+        }
+    }
+
+    private void dungeonWallFamily(java.util.Map<String, wayoftime.bloodmagic.util.blockitem.BlockWithItemHolder<net.minecraft.world.level.block.WallBlock, net.minecraft.world.item.BlockItem>> family, String textureBase) {
+        for (String suffix : DUNGEON_WILL_VARIANTS) {
+            net.minecraft.world.level.block.WallBlock block = family.get(suffix).block().get();
+            ResourceLocation texture = bm("block/" + textureBase + suffix);
+            wallBlock(block, texture);
+            simpleBlockItem(block, models().wallInventory(path(block) + "_inventory", texture));
+        }
+    }
+
+    private void dungeonGateFamily(java.util.Map<String, wayoftime.bloodmagic.util.blockitem.BlockWithItemHolder<net.minecraft.world.level.block.FenceGateBlock, net.minecraft.world.item.BlockItem>> family, String textureBase) {
+        for (String suffix : DUNGEON_WILL_VARIANTS) {
+            net.minecraft.world.level.block.FenceGateBlock block = family.get(suffix).block().get();
+            ResourceLocation texture = bm("block/" + textureBase + suffix);
+            fenceGateBlock(block, texture);
+            simpleBlockItem(block, models().fenceGate(path(block), texture));
+        }
+    }
+
+    private void dungeonSlabFamily(java.util.Map<String, wayoftime.bloodmagic.util.blockitem.BlockWithItemHolder<net.minecraft.world.level.block.SlabBlock, net.minecraft.world.item.BlockItem>> family, String textureBase) {
+        for (String suffix : DUNGEON_WILL_VARIANTS) {
+            net.minecraft.world.level.block.SlabBlock block = family.get(suffix).block().get();
+            ResourceLocation texture = bm("block/" + textureBase + suffix);
+            slabBlock(block, texture, texture);
+            simpleBlockItem(block, models().slab(path(block), texture, texture, texture));
+        }
     }
 
     private void chargeBlock(wayoftime.bloodmagic.common.block.ExplosiveChargeBlock block, String name) {

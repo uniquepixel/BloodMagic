@@ -97,6 +97,12 @@ public class BMTiles {
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TileSpecialRoomDungeonSeal>> SPECIAL_DUNGEON_SEAL_TYPE = TILES.register("special_dungeon_seal",
             () -> new BlockEntityType<>(TileSpecialRoomDungeonSeal::new, Set.of(BMBlocks.SPECIAL_DUNGEON_SEAL.get()), null));
 
+    // Dungeon puzzle/hazard blocks (Priority 3 flavor content, see BMBlocks).
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TileDungeonAlternator>> DUNGEON_ALTERNATOR_TYPE = TILES.register("dungeon_alternator",
+            () -> new BlockEntityType<>(TileDungeonAlternator::new, Set.of(BMBlocks.DUNGEON_ALTERNATOR.block().get()), null));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TileSpikeTrap>> SPIKE_TRAP_TYPE = TILES.register("dungeon_spike_trap",
+            () -> new BlockEntityType<>(TileSpikeTrap::new, Set.of(BMBlocks.DUNGEON_SPIKE_TRAP.block().get()), null));
+
     private static void registerTileCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,

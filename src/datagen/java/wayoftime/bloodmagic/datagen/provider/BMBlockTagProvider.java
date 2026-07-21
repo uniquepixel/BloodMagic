@@ -93,5 +93,19 @@ public class BMBlockTagProvider extends BlockTagsProvider {
 
         this.tag(Tags.Blocks.NEEDS_NETHERITE_TOOL)
                 .addAll(BlockGroups.RUNE_T2);
+
+        // Demon Dungeon decorative block palette (see BMBlocks) - stone-tool tier matches
+        // dungeon_stone/dungeon_properties (strength(2,5)/SoundType.STONE); the dungeon_metal family
+        // is strength(5,6)/SoundType.METAL, same tier as HELLFORGED_BLOCK above, so it needs iron
+        // instead.
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
+                .addAll(BlockGroups.DUNGEON_PALETTE_STONE_TIER)
+                .addAll(BlockGroups.DUNGEON_PALETTE_METAL_TIER);
+
+        this.tag(BlockTags.NEEDS_STONE_TOOL)
+                .addAll(BlockGroups.DUNGEON_PALETTE_STONE_TIER);
+
+        this.tag(BlockTags.NEEDS_IRON_TOOL)
+                .addAll(BlockGroups.DUNGEON_PALETTE_METAL_TIER);
     }
 }

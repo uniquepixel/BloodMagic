@@ -247,6 +247,11 @@ public class BMItems {
     public static final DeferredHolder<Item, wayoftime.bloodmagic.common.item.dungeon.ItemDungeonKey> DUNGEON_MINE_ENTRANCE_KEY = BASIC_ITEMS.register("mineentrancekey", () -> new wayoftime.bloodmagic.common.item.dungeon.ItemDungeonKey(new Item.Properties(), "mine_entrances"));
     public static final DeferredHolder<Item, wayoftime.bloodmagic.common.item.dungeon.ItemDungeonKey> DUNGEON_MINE_KEY = BASIC_ITEMS.register("minekey", () -> new wayoftime.bloodmagic.common.item.dungeon.ItemDungeonKey(new Item.Properties(), "mines"));
 
+    // Debug tool ported from 1.20.1's ItemDungeonTester - see that class's javadoc. Registered under
+    // ITEMS (not BASIC_ITEMS) since it has custom use() behaviour, matching THROWING_DAGGER/SOUL_SNARE
+    // above.
+    public static final DeferredHolder<Item, wayoftime.bloodmagic.structures.ItemDungeonTester> DUNGEON_TESTER = ITEMS.register("dungeon_tester", wayoftime.bloodmagic.structures.ItemDungeonTester::new);
+
     public static void register(IEventBus modBus) {
         BASIC_ITEMS.register(modBus);
         ITEMS.register(modBus);

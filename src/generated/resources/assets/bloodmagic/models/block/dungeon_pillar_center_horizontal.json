@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "bloodmagic:block/dungeon_pillarheart",
+    "side": "bloodmagic:block/dungeon_pillar"
+  }
+}

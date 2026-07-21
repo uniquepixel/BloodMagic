@@ -1,5 +1,10 @@
 {
   "values": [
-    "bloodmagic:hellforged_block"
+    "bloodmagic:hellforged_block",
+    "bloodmagic:dungeon_metal",
+    "bloodmagic:dungeon_metal_corrosive",
+    "bloodmagic:dungeon_metal_steadfast",
+    "bloodmagic:dungeon_metal_vengeful",
+    "bloodmagic:dungeon_metal_destructive"
   ]
 }

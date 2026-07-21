@@ -481,6 +481,7 @@ public class BMLanguageProvider extends LanguageProvider {
         add(wayoftime.bloodmagic.common.item.BMItems.DUNGEON_SIMPLE_KEY.get(), "Simple Dungeon Key");
         add(wayoftime.bloodmagic.common.item.BMItems.DUNGEON_MINE_ENTRANCE_KEY.get(), "Mine Entrance Key");
         add(wayoftime.bloodmagic.common.item.BMItems.DUNGEON_MINE_KEY.get(), "Mine Key");
+        add(wayoftime.bloodmagic.common.item.BMItems.DUNGEON_TESTER.get(), "Dungeon Tester (Debug)");
         add(BMBlocks.DUNGEON_STONE, "Dungeon Stone");
         add(BMBlocks.DUNGEON_ORE, "Dungeon Ore");
         add(BMBlocks.DUNGEON_BRICK_ASSORTED, "Assorted Dungeon Brick");
@@ -491,6 +492,44 @@ public class BMLanguageProvider extends LanguageProvider {
         addTooltip("specialspawn", "A special room has spawned nearby!");
         addTooltip("blockeddoor", "This door leads nowhere...");
         addTooltip("incorrectKey", "This key doesn't fit this door.");
+
+        // Demon Dungeon decorative block palette (see BMBlocks) - each family below has 5
+        // Will-corruption variants (base + corrosive/destructive/steadfast/vengeful reskins).
+        addDungeonFamily(BMBlocks.DUNGEON_BRICK_1, "Dungeon Brick 1");
+        addDungeonFamily(BMBlocks.DUNGEON_BRICK_2, "Dungeon Brick 2");
+        addDungeonFamily(BMBlocks.DUNGEON_BRICK_3, "Dungeon Brick 3");
+        addDungeonFamily(BMBlocks.DUNGEON_POLISHED, "Polished Dungeon Stone");
+        addDungeonFamily(BMBlocks.DUNGEON_TILE_FAMILY, "Dungeon Tile");
+        addDungeonFamily(BMBlocks.DUNGEON_SMALLBRICK, "Small Dungeon Brick");
+        addDungeonFamily(BMBlocks.DUNGEON_METAL, "Dungeon Metal");
+        addDungeonFamily(BMBlocks.DUNGEON_EYE, "Dungeon Eye");
+        // Base ("") variant already has a lang entry above (from the previous round) - only the 4
+        // Will reskins are new here, so these two use the reskins-only variant of the helper.
+        addDungeonFamilyReskinsOnly(BMBlocks.DUNGEON_STONE_FAMILY, "Dungeon Stone");
+        addDungeonFamilyReskinsOnly(BMBlocks.DUNGEON_TILE_SPECIAL_FAMILY, "Blocked Dungeon Seal");
+        addDungeonFamily(BMBlocks.DUNGEON_PILLAR_CENTER, "Dungeon Pillar");
+        addDungeonFamily(BMBlocks.DUNGEON_PILLAR_SPECIAL, "Special Dungeon Pillar");
+        addDungeonFamily(BMBlocks.DUNGEON_PILLAR_CAP, "Dungeon Pillar Cap");
+        addDungeonFamily(BMBlocks.DUNGEON_BRICK_STAIRS, "Dungeon Brick Stairs");
+        addDungeonFamily(BMBlocks.DUNGEON_POLISHED_STAIRS, "Polished Dungeon Stone Stairs");
+        addDungeonFamily(BMBlocks.DUNGEON_STONE_STAIRS, "Dungeon Stone Stairs");
+        addDungeonFamily(BMBlocks.DUNGEON_BRICK_WALLS, "Dungeon Brick Wall");
+        addDungeonFamily(BMBlocks.DUNGEON_TILE_WALLS, "Dungeon Tile Wall");
+        addDungeonFamily(BMBlocks.DUNGEON_POLISHED_WALLS, "Polished Dungeon Stone Wall");
+        addDungeonFamily(BMBlocks.DUNGEON_STONE_WALLS, "Dungeon Stone Wall");
+        addDungeonFamily(BMBlocks.DUNGEON_BRICK_GATES, "Dungeon Brick Fence Gate");
+        addDungeonFamily(BMBlocks.DUNGEON_POLISHED_GATES, "Polished Dungeon Stone Fence Gate");
+        addDungeonFamily(BMBlocks.DUNGEON_BRICK_SLABS, "Dungeon Brick Slab");
+        addDungeonFamily(BMBlocks.DUNGEON_TILE_SLABS, "Dungeon Tile Slab");
+        addDungeonFamily(BMBlocks.DUNGEON_STONE_SLABS, "Dungeon Stone Slab");
+        addDungeonFamily(BMBlocks.DUNGEON_POLISHED_SLABS, "Polished Dungeon Stone Slab");
+        add(BMBlocks.DUNGEON_EMITTER, "Dungeon Light Emitter");
+        add(BMBlocks.DUNGEON_CRACKED_BRICK_1, "Cracked Dungeon Brick");
+        add(BMBlocks.DUNGEON_GLOWING_CRACKED_BRICK_1, "Glowing Cracked Dungeon Brick");
+        // Dungeon puzzle/hazard blocks (Priority 3 flavor content, see BMBlocks).
+        add(BMBlocks.DUNGEON_ALTERNATOR, "Dungeon Alternator");
+        add(BMBlocks.DUNGEON_SPIKE_TRAP, "Dungeon Spike Trap");
+        add(BMBlocks.DUNGEON_SPIKES, "Spikes");
 
         //Modopedia Guidebook lang-keys (was Patchouli)
         addBook("name", "Sanguine Scientiem");
@@ -516,5 +555,30 @@ public class BMLanguageProvider extends LanguageProvider {
 
     public void addTooltip(String name, String value) {
         add("tooltip.bloodmagic." + name, value);
+    }
+
+    // Demon Dungeon decorative block palette helper (see BMBlocks) - families are keyed by the same
+    // "" / "_corrosive" / "_destructive" / "_steadfast" / "_vengeful" suffixes used to register them.
+    private static final String[] DUNGEON_WILL_SUFFIXES = {"", "_corrosive", "_destructive", "_steadfast", "_vengeful"};
+    private static final String[] DUNGEON_WILL_LABEL_PREFIXES = {"", "Corrosive ", "Destructive ", "Steadfast ", "Vengeful "};
+
+    private void addDungeonFamily(java.util.Map<String, ? extends BlockWithItemHolder<? extends Block, ? extends BlockItem>> family, String baseName) {
+        for (int i = 0; i < DUNGEON_WILL_SUFFIXES.length; i++) {
+            BlockWithItemHolder<? extends Block, ? extends BlockItem> holder = family.get(DUNGEON_WILL_SUFFIXES[i]);
+            if (holder != null) {
+                add(holder, DUNGEON_WILL_LABEL_PREFIXES[i] + baseName);
+            }
+        }
+    }
+
+    // Like addDungeonFamily, but skips the "" (base) variant - used for families whose base block was
+    // already given a lang entry in a previous round (see call sites above).
+    private void addDungeonFamilyReskinsOnly(java.util.Map<String, ? extends BlockWithItemHolder<? extends Block, ? extends BlockItem>> family, String baseName) {
+        for (int i = 1; i < DUNGEON_WILL_SUFFIXES.length; i++) {
+            BlockWithItemHolder<? extends Block, ? extends BlockItem> holder = family.get(DUNGEON_WILL_SUFFIXES[i]);
+            if (holder != null) {
+                add(holder, DUNGEON_WILL_LABEL_PREFIXES[i] + baseName);
+            }
+        }
     }
 }

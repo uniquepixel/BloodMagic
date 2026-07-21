@@ -89,6 +89,10 @@ public class BMItemModelProvider extends ItemModelProvider {
         basicItem(BMItems.THROWING_DAGGER.get());
         basicItem(BMItems.THROWING_DAGGER_SYRINGE.get());
         basicItem(BMItems.SOUL_SNARE.get());
+        // Debug-only tool (see ItemDungeonTester's javadoc) - 1.20.1 never gave it dedicated art
+        // either, so this reuses the dungeon key icon as a placeholder (same "no upstream art exists"
+        // reuse convention as reagent_binding below).
+        reuseTexture(BMItems.DUNGEON_TESTER.get(), "simplekey");
         // The Sentient Armour Gem needs a second, orthogonal dimension (activated/deactivated) on
         // top of the plain per-Will-type variant every other WILL_ITEMS entry gets, so it's built
         // separately below rather than through this generic loop.

@@ -98,6 +98,8 @@ public class BMIdentifiers {
     public static class DamageTypes {
         public static final ResourceKey<DamageType> SACRIFICE = key("sacrifice"); // used by soul network to forcibly receive needed LP. TODO Potentially by Dagger of Sacrifice?
         public static final ResourceKey<DamageType> SELF_SACRIFICE = key("self_sacrifice");
+        // Demon Dungeon spike trap (see BlockSpikes) - ported from 1.20.1's BloodMagicDamageTypes.SPIKE.
+        public static final ResourceKey<DamageType> SPIKE = key("spike");
 
         private static ResourceKey<DamageType> key(String path) {
             return ResourceKey.create(Registries.DAMAGE_TYPE, BloodMagic.rl(path));

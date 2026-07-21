@@ -15,6 +15,8 @@ public class BMDamageTypes {
     public static void types(BootstrapContext<DamageType> context) {
         context.register(DamageTypes.SACRIFICE, new DamageType("sacrifice", DamageScaling.NEVER, 0F));
         context.register(DamageTypes.SELF_SACRIFICE, new DamageType("self_sacrifice", DamageScaling.NEVER, 0F));
+        // Demon Dungeon spike trap (see BlockSpikes) - matches 1.20.1's damage_type/spike.json exactly.
+        context.register(DamageTypes.SPIKE, new DamageType("spike", DamageScaling.WHEN_CAUSED_BY_LIVING_NON_PLAYER, 0.1F));
     }
 
     public static void tags(Function<TagKey<DamageType>, TagsProvider.TagAppender<DamageType>> setter) {

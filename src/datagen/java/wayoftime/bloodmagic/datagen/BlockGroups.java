@@ -1,10 +1,14 @@
 package wayoftime.bloodmagic.datagen;
 
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
 import wayoftime.bloodmagic.common.block.BMBlocks;
+import wayoftime.bloodmagic.util.blockitem.BlockWithItemHolder;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class BlockGroups {
     public static List<ResourceKey<Block>> RUNE_T1 = List.of(
@@ -34,4 +38,41 @@ public class BlockGroups {
     public static List<ResourceKey<Block>> CRYSTAL_CLUSTER = List.of(
             BMBlocks.CRYSTAL_CLUSTER.block().getKey(), BMBlocks.CRYSTAL_CLUSTER_BRICK.block().getKey()
     );
+
+    @SafeVarargs
+    private static List<ResourceKey<Block>> flattenDungeonFamilies(Map<String, ? extends BlockWithItemHolder<? extends Block, ? extends BlockItem>>... families) {
+        List<ResourceKey<Block>> keys = new ArrayList<>();
+        for (Map<String, ? extends BlockWithItemHolder<? extends Block, ? extends BlockItem>> family : families) {
+            for (BlockWithItemHolder<? extends Block, ? extends BlockItem> holder : family.values()) {
+                keys.add(holder.block().getKey());
+            }
+        }
+        return keys;
+    }
+
+    // Demon Dungeon decorative block palette (see BMBlocks) - stone-tool tier (matches
+    // dungeon_stone/RUNE_T1's strength(2,5)/SoundType.STONE Properties) and the separate iron-tool
+    // tier for the dungeon_metal family (strength(5,6)/SoundType.METAL, same tier as HELLFORGED_BLOCK
+    // above).
+    public static List<ResourceKey<Block>> DUNGEON_PALETTE_STONE_TIER = flattenDungeonFamilies(
+            BMBlocks.DUNGEON_BRICK_1, BMBlocks.DUNGEON_BRICK_2, BMBlocks.DUNGEON_BRICK_3,
+            BMBlocks.DUNGEON_POLISHED, BMBlocks.DUNGEON_TILE_FAMILY, BMBlocks.DUNGEON_SMALLBRICK,
+            BMBlocks.DUNGEON_EYE, BMBlocks.DUNGEON_STONE_FAMILY, BMBlocks.DUNGEON_TILE_SPECIAL_FAMILY,
+            BMBlocks.DUNGEON_PILLAR_CENTER, BMBlocks.DUNGEON_PILLAR_SPECIAL, BMBlocks.DUNGEON_PILLAR_CAP,
+            BMBlocks.DUNGEON_BRICK_STAIRS, BMBlocks.DUNGEON_POLISHED_STAIRS, BMBlocks.DUNGEON_STONE_STAIRS,
+            BMBlocks.DUNGEON_BRICK_WALLS, BMBlocks.DUNGEON_TILE_WALLS, BMBlocks.DUNGEON_POLISHED_WALLS, BMBlocks.DUNGEON_STONE_WALLS,
+            BMBlocks.DUNGEON_BRICK_GATES, BMBlocks.DUNGEON_POLISHED_GATES,
+            BMBlocks.DUNGEON_BRICK_SLABS, BMBlocks.DUNGEON_TILE_SLABS, BMBlocks.DUNGEON_STONE_SLABS, BMBlocks.DUNGEON_POLISHED_SLABS
+    );
+    static {
+        DUNGEON_PALETTE_STONE_TIER.add(BMBlocks.DUNGEON_EMITTER.block().getKey());
+        DUNGEON_PALETTE_STONE_TIER.add(BMBlocks.DUNGEON_CRACKED_BRICK_1.block().getKey());
+        DUNGEON_PALETTE_STONE_TIER.add(BMBlocks.DUNGEON_GLOWING_CRACKED_BRICK_1.block().getKey());
+        // Dungeon puzzle/hazard blocks (Priority 3 flavor content, see BMBlocks) - same stone-tool tier.
+        DUNGEON_PALETTE_STONE_TIER.add(BMBlocks.DUNGEON_ALTERNATOR.block().getKey());
+        DUNGEON_PALETTE_STONE_TIER.add(BMBlocks.DUNGEON_SPIKE_TRAP.block().getKey());
+        DUNGEON_PALETTE_STONE_TIER.add(BMBlocks.DUNGEON_SPIKES.block().getKey());
+    }
+
+    public static List<ResourceKey<Block>> DUNGEON_PALETTE_METAL_TIER = flattenDungeonFamilies(BMBlocks.DUNGEON_METAL);
 }
