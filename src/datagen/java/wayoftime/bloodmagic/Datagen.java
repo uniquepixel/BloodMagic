@@ -49,5 +49,10 @@ public class Datagen {
         event.createProvider(BMLootTableProvider::new);
 
         generator.addProvider(event.includeServer(), new BMRecipeProvider(output, event.getLookupProvider()));
+
+        // Modopedia "modopedia:multiblock" preview JSON for every ritual + Blood Altar tier, derived from the
+        // same live Ritual/AltarTier data used above - see BMMultiblockProvider's class javadoc for why this is
+        // a datagen provider (plain client-loaded asset JSON) rather than a runtime Java registrar.
+        generator.addProvider(event.includeClient(), new BMMultiblockProvider(output));
     }
 }

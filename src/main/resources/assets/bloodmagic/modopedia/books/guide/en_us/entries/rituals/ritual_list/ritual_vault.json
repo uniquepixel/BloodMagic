@@ -17,6 +17,15 @@
           "text": "Note: the broader Demon Dungeon generation system (keys, mimics, dungeon-specific hazards, etc.) that the old dungeon rituals led into has not been fully carried over to this branch yet - treat the destination content as a work in progress."
         }
       ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:multiblock",
+          "multiblock_id": "bloodmagic:ritual/vault",
+          "previewable": true
+        }
+      ]
     }
   ]
 }

@@ -9,6 +9,15 @@
           "text": "The Ritual of Speed grants a directional speed boost to players who pass through its range, pushing them onward in the direction the ritual is facing - useful for building fast, fuel-free transit corridors. Tier 0, costs $(blood)1,000 LP$() to activate.\nUnlike most rituals, this one is directional - the Ritual Diviner lets you choose which way it faces before building it.\nUse a Ritual Diviner [Dusk] for easier construction."
         }
       ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:multiblock",
+          "multiblock_id": "bloodmagic:ritual/speed",
+          "previewable": true
+        }
+      ]
     }
   ]
 }

@@ -17,6 +17,15 @@
           "text": "Various Demon Will types can be channeled into this ritual via the Aura to change its behavior - Corrosive Will grants effects similar to Silk Touch, Destructive Will similar to Fortune III, and Steadfast Will lets you choose between the two. Check the ritual's tooltip in-game (via the Ritual Diviner or a Divination Sigil) for the exact current bonuses on this branch."
         }
       ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:multiblock",
+          "multiblock_id": "bloodmagic:ritual/crushing",
+          "previewable": true
+        }
+      ]
     }
   ]
 }

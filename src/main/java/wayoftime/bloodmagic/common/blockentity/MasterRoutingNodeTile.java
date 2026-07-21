@@ -27,6 +27,13 @@ import java.util.Set;
  * automatic - any routing-node block touching another is linked), its dedicated node-network
  * screens/containers, and its custom in-world node model/beam renderer - this uses plain blocks.
  * The underlying network concept and item movement are real.
+ * <p>
+ * The 1.20.1 Filter item system (whitelist/blacklist by exact item/tag/mod id/enchantment, and AND/OR
+ * composition of other filters) is now restored too - see
+ * {@link wayoftime.bloodmagic.common.item.filter.AbstractFilterItem} and its subclasses, plugged
+ * into a node via {@link InputRoutingNodeTile#accepts(ItemStack)}/{@link OutputRoutingNodeTile#accepts(ItemStack)}
+ * below, which this class now consults on both ends of the transfer (only the output side was
+ * filterable before this pass - input nodes had no filtering capability at all).
  */
 public class MasterRoutingNodeTile extends BaseTile {
     private static final int MAX_NODES = 256;
@@ -85,6 +92,8 @@ public class MasterRoutingNodeTile extends BaseTile {
     }
 
     private static boolean moveOneItem(Level level, BlockPos inputPos, List<BlockPos> outputs, Set<BlockPos> networkPositions) {
+        InputRoutingNodeTile inputTile = level.getBlockEntity(inputPos) instanceof InputRoutingNodeTile t ? t : null;
+
         for (Direction side : Direction.values()) {
             BlockPos externalPos = inputPos.relative(side);
             if (networkPositions.contains(externalPos)) {
@@ -102,6 +111,10 @@ public class MasterRoutingNodeTile extends BaseTile {
                     continue;
                 }
 
+                if (inputTile != null && !inputTile.accepts(peek)) {
+                    continue;
+                }
+
                 if (tryInsertIntoOutputs(level, peek, outputs, networkPositions, source, slot)) {
                     return true;
                 }
@@ -113,7 +126,7 @@ public class MasterRoutingNodeTile extends BaseTile {
 
     private static boolean tryInsertIntoOutputs(Level level, ItemStack peek, List<BlockPos> outputs, Set<BlockPos> networkPositions, IItemHandler source, int slot) {
         for (BlockPos outputPos : outputs) {
-            if (!(level.getBlockEntity(outputPos) instanceof OutputRoutingNodeTile outputTile) || !outputTile.accepts(peek.getItem())) {
+            if (!(level.getBlockEntity(outputPos) instanceof OutputRoutingNodeTile outputTile) || !outputTile.accepts(peek)) {
                 continue;
             }
 

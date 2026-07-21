@@ -17,6 +17,15 @@
           "text": "Various Demon Will types can be channeled into this ritual via the Aura to change its behavior - for example, feeding it Steadfast Will lets it draw breeding feed from a linked chest instead of requiring animals to already be in love mode. Check the ritual's tooltip in-game (via the Ritual Diviner or a Divination Sigil) for the exact current bonuses on this branch."
         }
       ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:multiblock",
+          "multiblock_id": "bloodmagic:ritual/animal_growth",
+          "previewable": true
+        }
+      ]
     }
   ]
 }

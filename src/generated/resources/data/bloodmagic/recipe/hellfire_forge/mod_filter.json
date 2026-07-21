@@ -1,0 +1,17 @@
+{
+  "type": "bloodmagic:soul_forge",
+  "drain": 10.0,
+  "inputs": [
+    {
+      "item": "bloodmagic:standard_filter"
+    },
+    {
+      "item": "bloodmagic:slate_demonic"
+    }
+  ],
+  "minDrain": 40.0,
+  "output": {
+    "count": 1,
+    "id": "bloodmagic:mod_filter"
+  }
+}

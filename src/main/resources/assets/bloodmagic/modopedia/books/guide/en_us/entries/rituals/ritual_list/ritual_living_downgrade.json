@@ -25,6 +25,15 @@
           "text": "The downgrade applied depends on what item(s) you place in the chest - each item that matches a particular downgrade will increase that downgrade's level by one, so multiple downgrades can be applied at once with a single ritual activation.\nThe ritual respects any settings configured on your Living Armour Training Bracelet, so if it's set to 'do not allow other upgrades' the ritual will fail to apply the downgrades. Excess points are returned as Living Armour Upgrade Scraps, usable in subsequent rituals."
         }
       ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:multiblock",
+          "multiblock_id": "bloodmagic:ritual/downgrade",
+          "previewable": true
+        }
+      ]
     }
   ]
 }

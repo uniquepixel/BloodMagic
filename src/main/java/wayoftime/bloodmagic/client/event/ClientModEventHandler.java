@@ -25,6 +25,7 @@ import wayoftime.bloodmagic.client.render.entity.EntityMeteorRenderer;
 import wayoftime.bloodmagic.client.render.item.FlaskColor;
 import wayoftime.bloodmagic.client.render.model.ModelMeteor;
 import wayoftime.bloodmagic.client.screen.AlchemyTableScreen;
+import wayoftime.bloodmagic.client.screen.FilterScreen;
 import wayoftime.bloodmagic.client.screen.HoldingScreen;
 import wayoftime.bloodmagic.client.screen.TrainerScreen;
 import wayoftime.bloodmagic.common.entity.BMEntities;
@@ -133,5 +134,6 @@ public class ClientModEventHandler {
         event.register(BMMenus.TRAINER.get(), TrainerScreen::new);
         event.register(BMMenus.ALCHEMY_TABLE.get(), AlchemyTableScreen::new);
         event.register(BMMenus.HOLDING.get(), HoldingScreen::new);
+        event.register(BMMenus.FILTER.get(), FilterScreen::new);
     }
 }

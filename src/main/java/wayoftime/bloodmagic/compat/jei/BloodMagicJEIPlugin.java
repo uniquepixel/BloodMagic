@@ -17,6 +17,7 @@ import wayoftime.bloodmagic.BloodMagic;
 import wayoftime.bloodmagic.common.block.BMBlocks;
 import wayoftime.bloodmagic.common.recipe.BMRecipes;
 import wayoftime.bloodmagic.compat.jei.alchemytable.AlchemyTableRecipeCategory;
+import wayoftime.bloodmagic.compat.jei.alchemytable.PotionRecipeCategory;
 import wayoftime.bloodmagic.compat.jei.altar.BloodAltarRecipeCategory;
 import wayoftime.bloodmagic.compat.jei.arc.ARCFurnaceRecipeCategory;
 import wayoftime.bloodmagic.compat.jei.arc.ARCRecipeCategory;
@@ -39,6 +40,7 @@ public class BloodMagicJEIPlugin implements IModPlugin {
     public void registerCategories(IRecipeCategoryRegistration registration) {
         IGuiHelper guiHelper = registration.getJeiHelpers().getGuiHelper();
         registration.addRecipeCategories(new AlchemyTableRecipeCategory(guiHelper));
+        registration.addRecipeCategories(new PotionRecipeCategory(guiHelper));
         registration.addRecipeCategories(new ARCRecipeCategory(guiHelper));
         registration.addRecipeCategories(new ARCFurnaceRecipeCategory(guiHelper));
         registration.addRecipeCategories(new BloodAltarRecipeCategory(guiHelper));
@@ -52,6 +54,8 @@ public class BloodMagicJEIPlugin implements IModPlugin {
 
         registration.addRecipes(AlchemyTableRecipeCategory.RECIPE_TYPE,
                 level.getRecipeManager().getAllRecipesFor(BMRecipes.ALCHEMY_TABLE_TYPE.get()).stream().map(RecipeHolder::value).toList());
+        registration.addRecipes(PotionRecipeCategory.RECIPE_TYPE,
+                level.getRecipeManager().getAllRecipesFor(BMRecipes.FLASK_TYPE.get()).stream().map(RecipeHolder::value).toList());
         registration.addRecipes(ARCRecipeCategory.RECIPE_TYPE,
                 level.getRecipeManager().getAllRecipesFor(BMRecipes.ARC_TYPE.get()).stream().map(RecipeHolder::value).toList());
         registration.addRecipes(BloodAltarRecipeCategory.RECIPE_TYPE,
@@ -70,7 +74,7 @@ public class BloodMagicJEIPlugin implements IModPlugin {
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
-        registration.addRecipeCatalyst(new ItemStack(BMBlocks.ALCHEMY_TABLE), AlchemyTableRecipeCategory.RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(BMBlocks.ALCHEMY_TABLE), AlchemyTableRecipeCategory.RECIPE_TYPE, PotionRecipeCategory.RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(BMBlocks.ARC_BLOCK), ARCRecipeCategory.RECIPE_TYPE, ARCFurnaceRecipeCategory.RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(BMBlocks.BLOOD_ALTAR), BloodAltarRecipeCategory.RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(BMBlocks.HELLFIRE_FORGE), SoulForgeRecipeCategory.RECIPE_TYPE);

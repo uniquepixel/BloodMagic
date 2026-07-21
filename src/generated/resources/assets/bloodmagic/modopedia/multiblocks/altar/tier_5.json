@@ -1,0 +1,166 @@
+{
+  "type": "modopedia:dense",
+  "key": {
+    "0": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:blood_altar"
+      ]
+    },
+    "3": {
+      "type": "modopedia:tag",
+      "tag": "bloodmagic:altar/t3_capstones"
+    },
+    "4": {
+      "type": "modopedia:tag",
+      "tag": "bloodmagic:altar/t4_capstones"
+    },
+    "5": {
+      "type": "modopedia:tag",
+      "tag": "bloodmagic:altar/t5_capstones"
+    },
+    "P": {
+      "type": "modopedia:tag",
+      "tag": "bloodmagic:altar/pillars"
+    },
+    "R": {
+      "type": "modopedia:tag",
+      "tag": "bloodmagic:altar/runes"
+    }
+  },
+  "pattern": [
+    [
+      "5 RRRRRRRRRRRRR 5",
+      "                 ",
+      "R               R",
+      "R               R",
+      "R               R",
+      "R               R",
+      "R               R",
+      "R               R",
+      "R               R",
+      "R               R",
+      "R               R",
+      "R               R",
+      "R               R",
+      "R               R",
+      "R               R",
+      "                 ",
+      "5 RRRRRRRRRRRRR 5"
+    ],
+    [
+      "                 ",
+      "                 ",
+      "                 ",
+      "     RRRRRRR     ",
+      "                 ",
+      "   R         R   ",
+      "   R         R   ",
+      "   R         R   ",
+      "   R         R   ",
+      "   R         R   ",
+      "   R         R   ",
+      "   R         R   ",
+      "                 ",
+      "     RRRRRRR     ",
+      "                 ",
+      "                 ",
+      "                 "
+    ],
+    [
+      "                 ",
+      "                 ",
+      "                 ",
+      "   P         P   ",
+      "                 ",
+      "      RRRRR      ",
+      "     R     R     ",
+      "     R     R     ",
+      "     R     R     ",
+      "     R     R     ",
+      "     R     R     ",
+      "      RRRRR      ",
+      "                 ",
+      "   P         P   ",
+      "                 ",
+      "                 ",
+      "                 "
+    ],
+    [
+      "                 ",
+      "                 ",
+      "                 ",
+      "   P         P   ",
+      "                 ",
+      "     P     P     ",
+      "                 ",
+      "       RRR       ",
+      "       R R       ",
+      "       RRR       ",
+      "                 ",
+      "     P     P     ",
+      "                 ",
+      "   P         P   ",
+      "                 ",
+      "                 ",
+      "                 "
+    ],
+    [
+      "                 ",
+      "                 ",
+      "                 ",
+      "   P         P   ",
+      "                 ",
+      "     P     P     ",
+      "                 ",
+      "                 ",
+      "        0        ",
+      "                 ",
+      "                 ",
+      "     P     P     ",
+      "                 ",
+      "   P         P   ",
+      "                 ",
+      "                 ",
+      "                 "
+    ],
+    [
+      "                 ",
+      "                 ",
+      "                 ",
+      "   P         P   ",
+      "                 ",
+      "     3     3     ",
+      "                 ",
+      "                 ",
+      "                 ",
+      "                 ",
+      "                 ",
+      "     3     3     ",
+      "                 ",
+      "   P         P   ",
+      "                 ",
+      "                 ",
+      "                 "
+    ],
+    [
+      "                 ",
+      "                 ",
+      "                 ",
+      "   4         4   ",
+      "                 ",
+      "                 ",
+      "                 ",
+      "                 ",
+      "                 ",
+      "                 ",
+      "                 ",
+      "                 ",
+      "                 ",
+      "   4         4   ",
+      "                 ",
+      "                 ",
+      "                 "
+    ]
+  ]
+}

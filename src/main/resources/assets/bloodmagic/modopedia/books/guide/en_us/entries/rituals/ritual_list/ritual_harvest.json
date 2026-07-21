@@ -9,6 +9,15 @@
           "text": "The Reap of the Harvest Moon (internally: Harvest Ritual) automatically harvests fully-grown crops within its range and replants them, functioning as a fully automated farm. Tier 0, costs $(blood)20,000 LP$() to activate.\nUse a Ritual Diviner [Dusk] for easier construction."
         }
       ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:multiblock",
+          "multiblock_id": "bloodmagic:ritual/harvest",
+          "previewable": true
+        }
+      ]
     }
   ]
 }

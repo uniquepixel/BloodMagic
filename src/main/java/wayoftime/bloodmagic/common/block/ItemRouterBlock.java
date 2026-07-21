@@ -42,6 +42,16 @@ public class ItemRouterBlock extends Block implements EntityBlock {
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
+    // Sneak-right-click empty-handed removes an installed Filter item (see ItemRouterTile#handleInteract).
+    @Override
+    protected net.minecraft.world.InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+        if (level.getBlockEntity(pos) instanceof ItemRouterTile tile) {
+            tile.handleInteract(player, ItemStack.EMPTY);
+            return net.minecraft.world.InteractionResult.sidedSuccess(level.isClientSide);
+        }
+        return super.useWithoutItem(state, level, pos, player, hitResult);
+    }
+
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new ItemRouterTile(pos, state);

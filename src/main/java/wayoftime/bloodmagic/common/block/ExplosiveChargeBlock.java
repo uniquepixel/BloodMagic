@@ -2,7 +2,9 @@ package wayoftime.bloodmagic.common.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -29,9 +31,10 @@ import wayoftime.bloodmagic.common.blockentity.ExplosiveChargeTile;
  * <p>
  * Not ported: the original's owner-UUID tracking + {@code BlockProtectionHelper} claim check (that
  * helper class doesn't exist on this branch - there's no claims/protection mod integration to hook
- * into here), and the {@code AnointmentHolder} tool-bonus on the loot-table "harvesting tool" used
- * when collecting drops (no {@code AnointmentHolder} class on this branch; drops use a plain
- * diamond pickaxe context instead, matching the original's un-anointed baseline exactly).
+ * into here). The {@code AnointmentHolder} tool-bonus on the loot-table "harvesting tool" IS ported
+ * (see {@link #setPlacedBy} and {@link ExplosiveChargeTile#getHarvestingTool}), adapted to this
+ * branch's per-anointment "uses" data-component system instead of the original's NBT-backed
+ * {@code AnointmentHolder} class.
  */
 public abstract class ExplosiveChargeBlock extends Block implements EntityBlock {
     private static final VoxelShape UP = Block.box(2, 0, 2, 14, 7, 14);
@@ -94,6 +97,20 @@ public abstract class ExplosiveChargeBlock extends Block implements EntityBlock 
             tile.dropSelf();
         }
         return super.playerWillDestroy(level, pos, state, player);
+    }
+
+    /**
+     * Carries over whichever anointment (Fortune/Silk Touch/Smelting/Voiding) the placed
+     * ItemStack was carrying - see {@link ExplosiveChargeTile#applyAnointmentsFrom} - so a charge
+     * anointed before being placed (the same {@code AnointmentItem} "use in the other hand"
+     * interaction as anointing any other tool) actually detonates with that bonus applied.
+     */
+    @Override
+    public void setPlacedBy(Level level, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
+        super.setPlacedBy(level, pos, state, placer, stack);
+        if (!level.isClientSide && level.getBlockEntity(pos) instanceof ExplosiveChargeTile tile) {
+            tile.applyAnointmentsFrom(stack);
+        }
     }
 
     @Override

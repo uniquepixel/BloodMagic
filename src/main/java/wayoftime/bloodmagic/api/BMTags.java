@@ -17,6 +17,13 @@ public class BMTags {
 
         public static final TagKey<Item> STORAGE_BLOCKS_HELLFORGED = fromBlock(Blocks.STORAGE_BLOCKS_HELLFORGED);
 
+        // The 4 Explosive Charge family items (see BMBlocks' SHAPED_CHARGE/DEFORESTER_CHARGE/
+        // VEINMINE_CHARGE/FUNGAL_CHARGE) - used by the anointment-driven block-drop loot modifiers
+        // (see common.loot.BMLootModifiers) to make sure a charge held/used as a "tool" never itself
+        // triggers anointment bonuses meant for its own detonation-time synthetic harvesting tool,
+        // matching 1.20.1's BloodMagicTags.CHARGES guard in GlobalLootModifier.
+        public static final TagKey<Item> CHARGES = tag(bm("charges"));
+
         public static final TagKey<Item> ARC_TOOL = tag(bm("arc_tool"));
 
         public static final TagKey<Item> REVERTER = withParent(ARC_TOOL, bm("reverter"));
@@ -58,6 +65,12 @@ public class BMTags {
         public static final TagKey<Block> SOUL_NETWORK_COMPARATOR = tag(bm("altar/soul_network_comparator"));
 
         public static final TagKey<Block> STORAGE_BLOCKS_HELLFORGED = tag(c("storage_blocks/hellforged"));
+
+        // Ported from 1.20.1's BloodMagicTags.Blocks.MUNDANE_BLOCK - gates the Voiding anointment's
+        // loot modifier (see common.loot.BMLootModifiers) so it only discards drops from "junk"
+        // blocks (stone/cobblestone/sand/dirt/gravel/netherrack) instead of every block a Voiding
+        // charge/tool touches.
+        public static final TagKey<Block> MUNDANE_BLOCK = tag(bm("mundane_block"));
 
         private static TagKey<Block> tag(ResourceLocation id) {
             return TagKey.create(Registries.BLOCK, id);

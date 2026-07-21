@@ -25,6 +25,15 @@
           "text": "The Item Filter is placed on the ritual, either directly in an Item Frame or inside a linked chest - note that if you put multiple filters in the chest, only the first one will be used. By default, the input chest and output chest are in the same place.\nIf you supply the ritual with Steadfast or Corrosive Will, it will instead try to autocraft with a linked Hellfire Forge or Alchemy Table respectively. These recipes are all shapeless, but if you need 2 of an item, you'll have to specify it twice in the filter."
         }
       ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:multiblock",
+          "multiblock_id": "bloodmagic:ritual/crafting",
+          "previewable": true
+        }
+      ]
     }
   ]
 }

@@ -1,25 +1,12 @@
 package wayoftime.bloodmagic.common.event;
 
-import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentType;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.crafting.SingleRecipeInput;
-import net.minecraft.world.item.crafting.SmeltingRecipe;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
@@ -31,18 +18,17 @@ import wayoftime.bloodmagic.common.item.BMItems;
 import wayoftime.bloodmagic.common.item.SentientBowItem;
 import wayoftime.bloodmagic.common.item.SentientToolHelper;
 import wayoftime.bloodmagic.common.will.WillHelper;
-import wayoftime.bloodmagic.common.will.WorldWillHelper;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Full-fidelity port of 1.20.1's Anointment system's gameplay effects, adapted to this branch's
  * per-anointment "uses" data component architecture (see {@link wayoftime.bloodmagic.common.item.AnointmentItem})
  * rather than the original's data-driven {@code AnointmentHolder}/attribute-provider registry.
- * Silk Touch, Fortune, Smelting and Voiding recompute a block's drops (the same trick the
- * original's {@code IGlobalLootModifier}s used); the rest hook the closest matching vanilla event.
+ * Silk Touch, Fortune, Smelting and Voiding used to be handled here too, but now live in
+ * {@code wayoftime.bloodmagic.common.loot.BMLootModifiers} as real global loot modifiers (see
+ * {@link #onBlockDrops}'s javadoc for why); the rest hook the closest matching vanilla event.
  */
 public class AnointmentEventHandler {
     private static final float MELEE_ANOINTMENT_DAMAGE = 1.0F;
@@ -117,51 +103,20 @@ public class AnointmentEventHandler {
     }
 
     /**
-     * Silk Touch, Fortune, Smelting and Voiding all recompute what a block would have dropped
-     * under a modified tool (or clear the drops outright), same as the original's global loot
-     * modifiers.
+     * Only Hidden Knowledge is left here - Silk Touch, Fortune, Smelting and Voiding used to be
+     * handled in this method (recomputing what a block would have dropped under a modified tool,
+     * or clearing the drops outright), but that only ever ran for normal player mining: this method
+     * hooks NeoForge's {@code BlockDropsEvent}, which is fired from {@code Block#dropResources} and
+     * therefore never reached by {@code ExplosiveChargeTile#breakAndCollectDrops} (Charges collect
+     * their drops straight from {@code BlockState#getDrops}, bypassing dropResources entirely). That
+     * logic now lives in {@code wayoftime.bloodmagic.common.loot.BMLootModifiers} as real global
+     * loot modifiers, which run inside the loot-table resolution both paths share - see that
+     * class's javadoc. Hidden Knowledge has no loot-modifier equivalent (it only touches XP, which
+     * loot modifiers can't see), so it stays here.
      */
     public static void onBlockDrops(BlockDropsEvent event) {
         ItemStack tool = event.getTool();
-        if (tool.isEmpty() || !(event.getLevel() instanceof ServerLevel level)) {
-            return;
-        }
-
-        int voidingUses = tool.getOrDefault(BMDataComponents.ANOINTMENT_VOIDING_USES, 0);
-        if (voidingUses > 0) {
-            event.getDrops().clear();
-            decrement(tool, BMDataComponents.ANOINTMENT_VOIDING_USES.get(), voidingUses);
-            return;
-        }
-
-        int silkTouchUses = tool.getOrDefault(BMDataComponents.ANOINTMENT_SILK_TOUCH_USES, 0);
-        int fortuneUses = tool.getOrDefault(BMDataComponents.ANOINTMENT_FORTUNE_USES, 0);
-        if (silkTouchUses > 0 || fortuneUses > 0) {
-            BlockState state = event.getState();
-            ItemStack fakeTool = tool.copy();
-
-            if (silkTouchUses > 0) {
-                setEnchantLevel(level, fakeTool, Enchantments.SILK_TOUCH, 1);
-                decrement(tool, BMDataComponents.ANOINTMENT_SILK_TOUCH_USES.get(), silkTouchUses);
-            } else {
-                int baseFortune = getEnchantLevel(level, tool, Enchantments.FORTUNE);
-                setEnchantLevel(level, fakeTool, Enchantments.FORTUNE, baseFortune + fortuneUses);
-                decrement(tool, BMDataComponents.ANOINTMENT_FORTUNE_USES.get(), fortuneUses);
-            }
-
-            List<ItemStack> recomputed = Block.getDrops(state, level, event.getPos(), event.getBlockEntity(), event.getBreaker(), fakeTool);
-            List<ItemEntity> newDrops = new ArrayList<>();
-            double x = event.getPos().getX() + 0.5;
-            double y = event.getPos().getY() + 0.5;
-            double z = event.getPos().getZ() + 0.5;
-            for (ItemStack stack : recomputed) {
-                if (!stack.isEmpty()) {
-                    newDrops.add(new ItemEntity(level, x, y, z, stack));
-                }
-            }
-
-            event.getDrops().clear();
-            event.getDrops().addAll(newDrops);
+        if (tool.isEmpty()) {
             return;
         }
 
@@ -169,20 +124,6 @@ public class AnointmentEventHandler {
         if (hiddenKnowledgeUses > 0) {
             event.setDroppedExperience(event.getDroppedExperience() + HIDDEN_KNOWLEDGE_BONUS_XP);
             decrement(tool, BMDataComponents.ANOINTMENT_HIDDEN_KNOWLEDGE_USES.get(), hiddenKnowledgeUses);
-        }
-
-        int smeltingUses = tool.getOrDefault(BMDataComponents.ANOINTMENT_SMELTING_USES, 0);
-        if (smeltingUses > 0) {
-            for (ItemEntity drop : event.getDrops()) {
-                ItemStack stack = drop.getItem();
-                Optional<RecipeHolder<SmeltingRecipe>> recipe = level.getRecipeManager().getRecipeFor(RecipeType.SMELTING, new SingleRecipeInput(stack), level);
-                recipe.ifPresent(holder -> {
-                    ItemStack result = holder.value().getResultItem(level.registryAccess()).copy();
-                    result.setCount(stack.getCount() * result.getCount());
-                    drop.setItem(result);
-                });
-            }
-            decrement(tool, BMDataComponents.ANOINTMENT_SMELTING_USES.get(), smeltingUses);
         }
     }
 
@@ -253,16 +194,6 @@ public class AnointmentEventHandler {
         if (drain > 0) {
             WillHelper.consumeWill(shooter, type, drain);
         }
-    }
-
-    private static int getEnchantLevel(ServerLevel level, ItemStack stack, net.minecraft.resources.ResourceKey<Enchantment> key) {
-        Holder<Enchantment> holder = level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(key);
-        return EnchantmentHelper.getItemEnchantmentLevel(holder, stack);
-    }
-
-    private static void setEnchantLevel(ServerLevel level, ItemStack stack, net.minecraft.resources.ResourceKey<Enchantment> key, int enchantLevel) {
-        Holder<Enchantment> holder = level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(key);
-        EnchantmentHelper.updateEnchantments(stack, mutable -> mutable.set(holder, enchantLevel));
     }
 
     private static void decrement(ItemStack weapon, DataComponentType<Integer> component, int uses) {

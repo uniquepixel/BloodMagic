@@ -1,0 +1,8 @@
+{
+  "type": "bloodmagic:smelt",
+  "conditions": [
+    {
+      "condition": "minecraft:match_tool"
+    }
+  ]
+}

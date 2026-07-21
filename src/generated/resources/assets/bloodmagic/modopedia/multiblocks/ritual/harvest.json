@@ -1,0 +1,40 @@
+{
+  "type": "modopedia:dense",
+  "key": {
+    "0": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:ritual_stone_master"
+      ]
+    },
+    "D": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:ritual_stone_dusk"
+      ]
+    },
+    "E": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:ritual_stone_earth"
+      ]
+    },
+    "W": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:ritual_stone_water"
+      ]
+    }
+  },
+  "pattern": [
+    [
+      " WE EW ",
+      "W  E  W",
+      "E D D E",
+      " E 0 E ",
+      "E D D E",
+      "W  E  W",
+      " WE EW "
+    ]
+  ]
+}

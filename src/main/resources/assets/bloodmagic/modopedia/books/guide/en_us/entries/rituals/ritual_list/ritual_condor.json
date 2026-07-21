@@ -9,6 +9,15 @@
           "text": "The Reverence of the Condor (internally: Ritual of the Condor) negates fall damage and grants a slow, controlled descent to players within its range, much like a permanent Slow Falling effect. Tier 0, costs $(blood)1,000,000 LP$() to activate - a serious late-game investment.\nUse a Ritual Diviner [Dusk] for easier construction."
         }
       ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:multiblock",
+          "multiblock_id": "bloodmagic:ritual/condor",
+          "previewable": true
+        }
+      ]
     }
   ]
 }

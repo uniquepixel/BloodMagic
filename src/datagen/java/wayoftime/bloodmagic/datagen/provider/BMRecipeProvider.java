@@ -962,6 +962,17 @@ public class BMRecipeProvider extends RecipeProvider {
         // reworked Hellfire Forge (a Will-based minWill/drain pair, not raw LP) - 50/10 matches the
         // scale of this branch's other simple, low-tier forge recipes (sanguine_reverter, resonator).
         soulForge(output, "simple_key", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:storage_blocks/redstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/iron"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/iron"))), Ingredient.of(BMItems.SLATE_IMBUED.get())), new ItemStack(BMItems.DUNGEON_SIMPLE_KEY.get()), 50, 10);
+
+        // ===== Item Routing "Filter" system, restored from 1.20.1 (see BMItems and
+        // wayoftime.bloodmagic.common.item.filter.AbstractFilterItem). Each filter is a paper "form"
+        // inscribed with an Imbued Slate; the more specialised filters (tag/mod/enchant/composite)
+        // are built on top of a Standard Filter rather than from scratch, mirroring how 1.20.1's
+        // ItemTagFilter/ItemModFilter/etc. all extended ItemRouterFilter. =====
+        soulForge(output, "standard_filter", List.of(Ingredient.of(Items.PAPER), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:nuggets/iron"))), Ingredient.of(BMItems.SLATE_IMBUED.get())), new ItemStack(BMItems.STANDARD_FILTER.get()), 20, 5);
+        soulForge(output, "tag_filter", List.of(Ingredient.of(BMItems.STANDARD_FILTER.get()), Ingredient.of(BMItems.SLATE_IMBUED.get())), new ItemStack(BMItems.TAG_FILTER.get()), 40, 10);
+        soulForge(output, "mod_filter", List.of(Ingredient.of(BMItems.STANDARD_FILTER.get()), Ingredient.of(BMItems.SLATE_DEMONIC.get())), new ItemStack(BMItems.MOD_FILTER.get()), 40, 10);
+        soulForge(output, "enchant_filter", List.of(Ingredient.of(BMItems.STANDARD_FILTER.get()), Ingredient.of(Items.BOOKSHELF)), new ItemStack(BMItems.ENCHANT_FILTER.get()), 60, 15);
+        soulForge(output, "composite_filter", List.of(Ingredient.of(BMItems.STANDARD_FILTER.get()), Ingredient.of(BMItems.STANDARD_FILTER.get()), Ingredient.of(BMItems.SLATE_ETHEREAL.get())), new ItemStack(BMItems.COMPOSITE_FILTER.get()), 80, 20);
     }
 
     private static Ingredient bloodOrb(int minTier) {

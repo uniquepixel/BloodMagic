@@ -9,6 +9,15 @@
           "text": "The Ritual of the Satiated Stomach keeps the hunger bar of players within its range topped up, drawing from a linked chest of food if needed. Tier 0, costs $(blood)100,000 LP$() to activate.\nUse a Ritual Diviner for easier construction."
         }
       ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:multiblock",
+          "multiblock_id": "bloodmagic:ritual/full_stomach",
+          "previewable": true
+        }
+      ]
     }
   ]
 }

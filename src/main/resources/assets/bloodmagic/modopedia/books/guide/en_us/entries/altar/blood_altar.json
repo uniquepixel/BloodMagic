@@ -29,6 +29,15 @@
     {
       "components": [
         {
+          "type": "modopedia:multiblock",
+          "multiblock_id": "bloodmagic:altar/tier_1",
+          "previewable": true
+        }
+      ]
+    },
+    {
+      "components": [
+        {
           "type": "modopedia:text",
           "text": "In order for you to add $(blood)Life Essence$(), measured as \"$(blood)LP$()\", you first have to craft a Sacrificial Knife. By right-clicking while aiming at air with the knife, you can \"extract\" $(blood)200 LP$() for the cost of one heart, placing it into a nearby Altar. The Altar starts with a maximum capacity of 10,000LP, and the blood level in the basin indicates the percentage filled. The Divination Sigil allows more detailed information about the Altar."
         }
@@ -85,6 +94,15 @@
     {
       "components": [
         {
+          "type": "modopedia:multiblock",
+          "multiblock_id": "bloodmagic:altar/tier_2",
+          "previewable": true
+        }
+      ]
+    },
+    {
+      "components": [
+        {
           "type": "modopedia:text",
           "text": "Now that you have a Tier 2 Altar, you can look into getting $(blood)Life Essence$() from somewhere other than yourself. The Dagger of Sacrifice will allow you to sacrifice any mob (monster or passive) that stands within 2 blocks of your Altar, instantly killing them and granting you a decent sum of $(blood)LP$(). You can increase the amount you get per kill with Runes of Sacrifice. Different entities give different amounts of $(blood)LP$(). Check your configs for more info. (Slaughtering villagers for fun and profit!)"
         }
@@ -109,6 +127,15 @@
     {
       "components": [
         {
+          "type": "modopedia:multiblock",
+          "multiblock_id": "bloodmagic:altar/tier_3",
+          "previewable": true
+        }
+      ]
+    },
+    {
+      "components": [
+        {
           "type": "modopedia:text",
           "text": "To upgrade the Blood Altar to Tier 4, place 7 Blood Runes one block down and two blocks away from the previous set of runes along each edge. Then place four solid blocks in each corner, starting above the new ring of runes, and then cap each pillar with Bloodstone Bricks and/or Large Bloodstone Bricks (see the Bloodstone Bricks entry for how those are obtained)."
         }
@@ -125,6 +152,15 @@
     {
       "components": [
         {
+          "type": "modopedia:multiblock",
+          "multiblock_id": "bloodmagic:altar/tier_4",
+          "previewable": true
+        }
+      ]
+    },
+    {
+      "components": [
+        {
           "type": "modopedia:text",
           "text": "To upgrade the Blood Altar to Tier 5, place 13 Blood Runes one block down and three blocks away from the previous set of runes along each edge. Leave a one-block gap on either end, then place a Hellforged Block at each corner. You'll have to go delving deep for this rare and exotic metal."
         }
@@ -135,6 +171,32 @@
         {
           "type": "modopedia:text",
           "text": "$(b)Tier 5 Blood Altar$(/b)\nHas 108 total runes, 52 more than a Tier 4, 13 on each side."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:multiblock",
+          "multiblock_id": "bloodmagic:altar/tier_5",
+          "previewable": true
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(b)Tier 6 Blood Altar$(/b)\nThe final and largest form of the Blood Altar, with runes and pillars ringed even further out."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:multiblock",
+          "multiblock_id": "bloodmagic:altar/tier_6",
+          "previewable": true
         }
       ]
     }

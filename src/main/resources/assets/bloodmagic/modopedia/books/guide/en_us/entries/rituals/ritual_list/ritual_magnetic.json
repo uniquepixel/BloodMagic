@@ -17,6 +17,15 @@
           "text": "The search radius can be augmented by placing an expensive block directly underneath the Master Ritual Stone - progressively more valuable blocks (such as a Block of Iron, and beyond it a Block of Diamond) extend the radius further. Check the ritual's tooltip in-game (via the Ritual Diviner or a Divination Sigil) for the exact current radius values on this branch."
         }
       ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:multiblock",
+          "multiblock_id": "bloodmagic:ritual/magnetism",
+          "previewable": true
+        }
+      ]
     }
   ]
 }

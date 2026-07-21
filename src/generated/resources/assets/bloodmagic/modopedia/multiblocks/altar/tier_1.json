@@ -1,0 +1,16 @@
+{
+  "type": "modopedia:dense",
+  "key": {
+    "0": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:blood_altar"
+      ]
+    }
+  },
+  "pattern": [
+    [
+      "0"
+    ]
+  ]
+}

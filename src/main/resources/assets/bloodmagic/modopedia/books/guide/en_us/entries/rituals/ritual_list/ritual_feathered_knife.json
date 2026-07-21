@@ -17,6 +17,15 @@
           "text": "Various Demon Will types can be channeled into this ritual via the Aura to change its behavior, and Runes of Self Sacrifice and the Living Armour upgrade Tough Palms both affect how much is drawn per tick. Check the ritual's tooltip in-game (via the Ritual Diviner or a Divination Sigil) for the exact current bonuses on this branch."
         }
       ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:multiblock",
+          "multiblock_id": "bloodmagic:ritual/feathered_knife",
+          "previewable": true
+        }
+      ]
     }
   ]
 }

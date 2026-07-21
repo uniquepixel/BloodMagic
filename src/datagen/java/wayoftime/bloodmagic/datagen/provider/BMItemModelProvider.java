@@ -116,6 +116,15 @@ public class BMItemModelProvider extends ItemModelProvider {
 
         createSigilModels();
         createFlaskModels();
+
+        // Item Routing "Filter" system items have no dedicated art yet, so - matching the
+        // reagent_binding/DUNGEON_TESTER convention above - each reuses one of the existing Slate
+        // icons as a placeholder.
+        reuseTexture(BMItems.STANDARD_FILTER.get(), "slate_blank");
+        reuseTexture(BMItems.TAG_FILTER.get(), "slate_imbued");
+        reuseTexture(BMItems.MOD_FILTER.get(), "slate_demonic");
+        reuseTexture(BMItems.ENCHANT_FILTER.get(), "slate_ethereal");
+        reuseTexture(BMItems.COMPOSITE_FILTER.get(), "slate_reinforced");
     }
 
     // Alchemy Flask items - 3-layer generated models (tinted liquid, untinted outline, tinted

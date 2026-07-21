@@ -544,6 +544,28 @@ public class BMLanguageProvider extends LanguageProvider {
         addBook("name", "Sanguine Scientiem");
         addBook("landing_text", "Welcome to $(blood)Blood Magic$()! \n\n$(bmentry:utility/nyi)A lot of stuff$() isn't yet implemented, so please excuse our dust. \n\nClick $(bmentry:utility/getting_started)HERE$() to get started. If you find any bugs, please report them on our $(l:https://github.com/WayofTime/BloodMagic/issues)Github$().");
         addBook("subtitle", "Alchemical Wizardry");
+
+        // Item Routing "Filter" system, restored from 1.20.1 (see BMItems and
+        // wayoftime.bloodmagic.common.item.filter.AbstractFilterItem).
+        add(BMItems.STANDARD_FILTER.get(), "Standard Filter");
+        add(BMItems.TAG_FILTER.get(), "Tag Filter");
+        add(BMItems.MOD_FILTER.get(), "Mod Filter");
+        add(BMItems.ENCHANT_FILTER.get(), "Enchantment Filter");
+        add(BMItems.COMPOSITE_FILTER.get(), "Composite Filter");
+        addTooltip("basicfilter.desc", "Matches an exact item.");
+        addTooltip("tagfilter.desc", "Matches any of an item's tags.");
+        addTooltip("modfilter.desc", "Matches by the mod an item comes from.");
+        addTooltip("enchantfilter.desc", "Matches any of an item's enchantments.");
+        addTooltip("compositefilter.desc", "Combines other Filters with AND/OR.");
+        addTooltip("filter.whitelist", "Whitelist");
+        addTooltip("filter.blacklist", "Blacklist");
+        add("chat.bloodmagic.routing_node.filter_installed", "Installed filter: %s");
+        add("chat.bloodmagic.routing_node.filter_removed", "Removed filter: %s");
+        add("filter.bloodmagic.blackwhitelist", "Whitelist/Blacklist");
+        add("filter.bloodmagic.whitelist", "Mode: Whitelist");
+        add("filter.bloodmagic.blacklist", "Mode: Blacklist");
+        add("filter.bloodmagic.matchany", "Mode: Match Any (OR)");
+        add("filter.bloodmagic.matchall", "Mode: Match All (AND)");
     }
 
     public void addBook(String key, String value) {

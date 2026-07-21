@@ -7,6 +7,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import wayoftime.bloodmagic.BloodMagic;
 import wayoftime.bloodmagic.common.item.BMItems;
+import wayoftime.bloodmagic.common.block.BMBlocks;
 import wayoftime.bloodmagic.api.BMTags;
 
 import java.util.concurrent.CompletableFuture;
@@ -63,5 +64,10 @@ public class BMItemTagProvider extends ItemTagsProvider {
                 .addTag(BMTags.Items.CUTTING_FLUIDS)
                 .addTag(BMTags.Items.HYDRATION)
                 .addTag(BMTags.Items.ARC_FURNACE);
+
+        // Ported from 1.20.1's BloodMagicTags.CHARGES - see its javadoc in BMTags for why the
+        // block-drop loot modifiers need to know a charge item when they see one.
+        tag(BMTags.Items.CHARGES)
+                .add(BMBlocks.SHAPED_CHARGE.item().get(), BMBlocks.DEFORESTER_CHARGE.item().get(), BMBlocks.VEINMINE_CHARGE.item().get(), BMBlocks.FUNGAL_CHARGE.item().get());
     }
 }

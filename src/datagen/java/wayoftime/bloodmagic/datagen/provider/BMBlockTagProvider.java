@@ -115,5 +115,19 @@ public class BMBlockTagProvider extends BlockTagsProvider {
 
         this.tag(BlockTags.NEEDS_STONE_TOOL)
                 .add(BMBlocks.MIMIC.block().getKey(), BMBlocks.ETHEREAL_MIMIC.block().getKey());
+
+        // Ported from 1.20.1's data/bloodmagic/tags/blocks/mundane_block.json (#forge:cobblestone,
+        // #forge:stone, #minecraft:sand, #minecraft:dirt, minecraft:gravel, minecraft:netherrack) -
+        // see BMTags.Blocks.MUNDANE_BLOCK's javadoc for why this exists (gates the Voiding
+        // anointment). Listed directly rather than via the "c:stones"/"c:cobblestones"/"c:sands"
+        // common tags: those are only populated by NeoForge's own (already-built) data at runtime,
+        // not by anything a datagen run in this project can see, so referencing them here fails
+        // TagsProvider's "missing reference" validation during runData.
+        this.tag(BMTags.Blocks.MUNDANE_BLOCK)
+                .add(Blocks.STONE, Blocks.COBBLESTONE, Blocks.DEEPSLATE, Blocks.COBBLED_DEEPSLATE)
+                .add(Blocks.ANDESITE, Blocks.DIORITE, Blocks.GRANITE)
+                .add(Blocks.SAND, Blocks.RED_SAND)
+                .add(Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.PODZOL, Blocks.ROOTED_DIRT, Blocks.GRASS_BLOCK, Blocks.MYCELIUM)
+                .add(Blocks.GRAVEL, Blocks.NETHERRACK);
     }
 }

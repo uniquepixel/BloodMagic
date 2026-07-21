@@ -21,6 +21,9 @@ public class BMMenus {
 
     public static final DeferredHolder<MenuType<?>, MenuType<HoldingMenu>> HOLDING = MENUS.register("holding", () -> IMenuTypeExtension.create(HoldingMenu::new));
 
+    // Item Routing "Filter" system GUI (see wayoftime.bloodmagic.common.item.filter.AbstractFilterItem).
+    public static final DeferredHolder<MenuType<?>, MenuType<FilterMenu>> FILTER = MENUS.register("filter", () -> IMenuTypeExtension.create(FilterMenu::new));
+
     public static void register(IEventBus modbus) {
         MENUS.register(modbus);
     }

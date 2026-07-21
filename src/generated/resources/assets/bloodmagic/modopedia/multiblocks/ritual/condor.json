@@ -1,0 +1,114 @@
+{
+  "type": "modopedia:dense",
+  "key": {
+    "0": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:ritual_stone_master"
+      ]
+    },
+    "A": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:ritual_stone_air"
+      ]
+    },
+    "B": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:ritual_stone_blank"
+      ]
+    },
+    "D": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:ritual_stone_dusk"
+      ]
+    },
+    "E": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:ritual_stone_earth"
+      ]
+    },
+    "F": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:ritual_stone_fire"
+      ]
+    },
+    "W": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:ritual_stone_water"
+      ]
+    }
+  },
+  "pattern": [
+    [
+      "     D     ",
+      "  W     W  ",
+      " W  EEE  W ",
+      "   A   A   ",
+      "  E  D  E  ",
+      "D E D0D E D",
+      "  E  D  E  ",
+      "   A   A   ",
+      " W  EEE  W ",
+      "  W     W  ",
+      "     D     "
+    ],
+    [
+      "     A     ",
+      "     B     ",
+      "           ",
+      "     B     ",
+      "     F     ",
+      "AB BF FB BA",
+      "     F     ",
+      "     B     ",
+      "           ",
+      "     B     ",
+      "     A     "
+    ],
+    [
+      "           ",
+      " F   E   F ",
+      "     E     ",
+      "     E     ",
+      "           ",
+      " EEE   EEE ",
+      "           ",
+      "     E     ",
+      "     E     ",
+      " F   E   F ",
+      "           "
+    ],
+    [
+      "           ",
+      "           ",
+      "           ",
+      "           ",
+      "           ",
+      "           ",
+      "           ",
+      "           ",
+      "           ",
+      "           ",
+      "           "
+    ],
+    [
+      "           ",
+      "           ",
+      "    EEE    ",
+      "   AF FA   ",
+      "  EF   FE  ",
+      "  E     E  ",
+      "  EF   FE  ",
+      "   AF FA   ",
+      "    EEE    ",
+      "           ",
+      "           "
+    ]
+  ]
+}

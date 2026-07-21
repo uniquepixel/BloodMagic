@@ -1,0 +1,38 @@
+{
+  "title": "Filters",
+  "icon": { "id": "bloodmagic:standard_filter" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Filter items give the Item Routing system its matching logic. Right-click one to open its configuration screen: place up to 9 reference items in the grid (they're kept as a template, not consumed) and toggle whitelist/blacklist mode with the button."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(item)Standard Filter$() matches an exact item. $(item)Tag Filter$() matches any of a reference item's tags. $(item)Mod Filter$() matches by the mod a reference item comes from. $(item)Enchantment Filter$() matches any of a reference item's enchantments (an unenchanted reference matches unenchanted items instead)."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "$(item)Composite Filter$() nests other Filter items instead of reference items, combining them with its own whitelist/blacklist button repurposed as an OR/AND toggle: match if ANY nested filter matches, or only if ALL of them do."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Once configured, right-click an Input/Output Routing Node or an Item Router with the Filter in hand to install it - see those entries for details."
+        }
+      ]
+    }
+  ]
+}

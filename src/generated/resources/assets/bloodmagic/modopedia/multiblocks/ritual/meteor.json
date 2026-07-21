@@ -1,0 +1,138 @@
+{
+  "type": "modopedia:dense",
+  "key": {
+    "0": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:ritual_stone_master"
+      ]
+    },
+    "A": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:ritual_stone_air"
+      ]
+    },
+    "D": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:ritual_stone_dusk"
+      ]
+    },
+    "E": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:ritual_stone_earth"
+      ]
+    },
+    "F": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:ritual_stone_fire"
+      ]
+    },
+    "W": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:ritual_stone_water"
+      ]
+    }
+  },
+  "pattern": [
+    [
+      "        E        ",
+      "                 ",
+      "        E        ",
+      "     D  E  D     ",
+      "    D A E A D    ",
+      "   D   A A   D   ",
+      "    A   F   A    ",
+      "     A     A     ",
+      "E EEE F 0 F EEE E",
+      "     A     A     ",
+      "    A   F   A    ",
+      "   D   A A   D   ",
+      "    D A E A D    ",
+      "     D  E  D     ",
+      "        E        ",
+      "                 ",
+      "        E        "
+    ],
+    [
+      "        E        ",
+      "        E        ",
+      "                 ",
+      "                 ",
+      "                 ",
+      "                 ",
+      "                 ",
+      "                 ",
+      "EE             EE",
+      "                 ",
+      "                 ",
+      "                 ",
+      "                 ",
+      "                 ",
+      "                 ",
+      "        E        ",
+      "        E        "
+    ],
+    [
+      "                 ",
+      "        F        ",
+      "        F        ",
+      "                 ",
+      "                 ",
+      "                 ",
+      "                 ",
+      "                 ",
+      " FF           FF ",
+      "                 ",
+      "                 ",
+      "                 ",
+      "                 ",
+      "                 ",
+      "        F        ",
+      "        F        ",
+      "                 "
+    ],
+    [
+      "                 ",
+      "                 ",
+      "        W        ",
+      "        W        ",
+      "                 ",
+      "                 ",
+      "                 ",
+      "                 ",
+      "  WW         WW  ",
+      "                 ",
+      "                 ",
+      "                 ",
+      "                 ",
+      "        W        ",
+      "        W        ",
+      "                 ",
+      "                 "
+    ],
+    [
+      "                 ",
+      "                 ",
+      "                 ",
+      "        A        ",
+      "      WAAAW      ",
+      "     FF   FF     ",
+      "    WF     FW    ",
+      "    A       A    ",
+      "   AA       AA   ",
+      "    A       A    ",
+      "    WF     FW    ",
+      "     FF   FF     ",
+      "      WAAAW      ",
+      "        A        ",
+      "                 ",
+      "                 ",
+      "                 "
+    ]
+  ]
+}

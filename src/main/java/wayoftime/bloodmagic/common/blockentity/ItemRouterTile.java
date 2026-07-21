@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
+import wayoftime.bloodmagic.common.item.routing.IFilterProvider;
 import wayoftime.bloodmagic.util.ChatUtil;
 
 import java.util.LinkedHashSet;
@@ -25,21 +26,41 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Heavily simplified take on the Item Routing system: the 1.20.1 original is a graph of
- * master/input/output/filtered nodes wired together with composite tag/enchantment/mod filters -
- * none of that infrastructure is ported. This is a single self-contained block instead: an
- * enhanced hopper that pulls from the four horizontal sides and above into whatever's below it,
- * gated by an optional small item whitelist (right-click with an item to toggle it in/out; an
- * empty filter allows everything, matching a hopper).
+ * Standalone alternative to the full Routing Node network: an enhanced hopper that pulls from the
+ * four horizontal sides and above into whatever's below it, gated by an optional small built-in
+ * item whitelist (right-click with a plain item to toggle it in/out; an empty filter allows
+ * everything, matching a hopper).
+ * <p>
+ * Restores 1.20.1's Filter item plumbing (this block corresponds to the original's use of
+ * {@code ItemRouterFilter}-derived items): right-click with a Filter item (see
+ * {@link wayoftime.bloodmagic.common.item.filter.AbstractFilterItem}) in hand installs it into a
+ * dedicated filter slot, adding tag/mod id/enchantment/composite matching on top of the built-in
+ * whitelist (both must pass - see {@link #accepts(ItemStack)}). Sneak-right-click empty-handed
+ * removes an installed Filter item.
  */
 public class ItemRouterTile extends BaseTile {
     private static final int MAX_FILTER_SIZE = 4;
     private static final Direction[] INPUT_SIDES = {Direction.UP, Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST};
 
     private final Set<Item> filter = new LinkedHashSet<>();
+    private ItemStack filterItem = ItemStack.EMPTY;
 
     public ItemRouterTile(BlockPos pos, BlockState state) {
         super(BMTiles.ITEM_ROUTER_TYPE.get(), pos, state);
+    }
+
+    public ItemStack getFilterItem() {
+        return filterItem;
+    }
+
+    public boolean accepts(ItemStack stack) {
+        if (!filter.isEmpty() && !filter.contains(stack.getItem())) {
+            return false;
+        }
+        if (!filterItem.isEmpty() && filterItem.getItem() instanceof IFilterProvider provider) {
+            return provider.matches(filterItem, stack);
+        }
+        return true;
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, ItemRouterTile tile) {
@@ -60,7 +81,7 @@ public class ItemRouterTile extends BaseTile {
 
             for (int slot = 0; slot < source.getSlots(); slot++) {
                 ItemStack peek = source.extractItem(slot, 1, true);
-                if (peek.isEmpty() || (!tile.filter.isEmpty() && !tile.filter.contains(peek.getItem()))) {
+                if (peek.isEmpty() || !tile.accepts(peek)) {
                     continue;
                 }
 
@@ -84,6 +105,28 @@ public class ItemRouterTile extends BaseTile {
         }
 
         if (held.isEmpty()) {
+            if (player.isShiftKeyDown() && !filterItem.isEmpty()) {
+                ItemStack removed = filterItem;
+                filterItem = ItemStack.EMPTY;
+                ChatUtil.sendChat(player, List.of(Component.translatable("chat.bloodmagic.routing_node.filter_removed", removed.getHoverName())));
+                if (!player.getInventory().add(removed)) {
+                    player.drop(removed, false);
+                }
+                setChanged();
+            }
+            return;
+        }
+
+        if (held.getItem() instanceof IFilterProvider) {
+            ItemStack newFilter = held.copyWithCount(1);
+            ItemStack oldFilter = filterItem;
+            filterItem = newFilter;
+            held.shrink(1);
+            ChatUtil.sendChat(player, List.of(Component.translatable("chat.bloodmagic.routing_node.filter_installed", newFilter.getHoverName())));
+            if (!oldFilter.isEmpty() && !player.getInventory().add(oldFilter)) {
+                player.drop(oldFilter, false);
+            }
+            setChanged();
             return;
         }
 
@@ -111,6 +154,7 @@ public class ItemRouterTile extends BaseTile {
                 filter.add(item);
             }
         }
+        filterItem = tag.contains("filterItem") ? ItemStack.parseOptional(registries, tag.getCompound("filterItem")) : ItemStack.EMPTY;
     }
 
     @Override
@@ -121,5 +165,8 @@ public class ItemRouterTile extends BaseTile {
             list.add(StringTag.valueOf(BuiltInRegistries.ITEM.getKey(item).toString()));
         }
         tag.put("filter", list);
+        if (!filterItem.isEmpty()) {
+            tag.put("filterItem", filterItem.save(registries));
+        }
     }
 }

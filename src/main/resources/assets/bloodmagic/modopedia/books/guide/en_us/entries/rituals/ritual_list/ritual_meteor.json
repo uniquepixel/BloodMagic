@@ -17,6 +17,15 @@
           "text": "The size of the meteor and the resources gained vary based on the offering given. Normal offerings include Diamond, Block of Iron, Glowstone Dust, and Stone. Compatible mod items can also be used as offerings where present."
         }
       ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:multiblock",
+          "multiblock_id": "bloodmagic:ritual/meteor",
+          "previewable": true
+        }
+      ]
     }
   ]
 }

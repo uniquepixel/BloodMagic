@@ -1,0 +1,61 @@
+{
+  "type": "modopedia:dense",
+  "key": {
+    "0": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:blood_altar"
+      ]
+    },
+    "3": {
+      "type": "modopedia:tag",
+      "tag": "bloodmagic:altar/t3_capstones"
+    },
+    "P": {
+      "type": "modopedia:tag",
+      "tag": "bloodmagic:altar/pillars"
+    },
+    "R": {
+      "type": "modopedia:tag",
+      "tag": "bloodmagic:altar/runes"
+    }
+  },
+  "pattern": [
+    [
+      " RRRRR ",
+      "R     R",
+      "R     R",
+      "R     R",
+      "R     R",
+      "R     R",
+      " RRRRR "
+    ],
+    [
+      "P     P",
+      "       ",
+      "  RRR  ",
+      "  R R  ",
+      "  RRR  ",
+      "       ",
+      "P     P"
+    ],
+    [
+      "P     P",
+      "       ",
+      "       ",
+      "   0   ",
+      "       ",
+      "       ",
+      "P     P"
+    ],
+    [
+      "3     3",
+      "       ",
+      "       ",
+      "       ",
+      "       ",
+      "       ",
+      "3     3"
+    ]
+  ]
+}

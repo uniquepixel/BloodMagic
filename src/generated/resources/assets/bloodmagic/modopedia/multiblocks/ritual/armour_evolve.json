@@ -1,0 +1,86 @@
+{
+  "type": "modopedia:dense",
+  "key": {
+    "0": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:ritual_stone_master"
+      ]
+    },
+    "D": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:ritual_stone_dusk"
+      ]
+    },
+    "E": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:ritual_stone_earth"
+      ]
+    },
+    "F": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:ritual_stone_fire"
+      ]
+    }
+  },
+  "pattern": [
+    [
+      "    E    ",
+      " E     E ",
+      "  FF FF  ",
+      "  FD DF  ",
+      "E   0   E",
+      "  FD DF  ",
+      "  FF FF  ",
+      " E     E ",
+      "    E    "
+    ],
+    [
+      "         ",
+      " E     E ",
+      "         ",
+      "   D D   ",
+      "         ",
+      "   D D   ",
+      "         ",
+      " E     E ",
+      "         "
+    ],
+    [
+      "         ",
+      " E     E ",
+      "         ",
+      "         ",
+      "         ",
+      "         ",
+      "         ",
+      " E     E ",
+      "         "
+    ],
+    [
+      "         ",
+      " E     E ",
+      "         ",
+      "   D D   ",
+      "         ",
+      "   D D   ",
+      "         ",
+      " E     E ",
+      "         "
+    ],
+    [
+      "         ",
+      "         ",
+      "         ",
+      "    E    ",
+      "   E E   ",
+      "    E    ",
+      "         ",
+      "         ",
+      "         "
+    ]
+  ]
+}

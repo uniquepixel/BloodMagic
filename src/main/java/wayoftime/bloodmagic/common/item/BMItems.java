@@ -252,6 +252,16 @@ public class BMItems {
     // above.
     public static final DeferredHolder<Item, wayoftime.bloodmagic.structures.ItemDungeonTester> DUNGEON_TESTER = ITEMS.register("dungeon_tester", wayoftime.bloodmagic.structures.ItemDungeonTester::new);
 
+    // Item Routing "Filter" system, restored from 1.20.1's wayoftime.bloodmagic.common.item.routing
+    // (ItemStandardFilter/ItemTagFilter/ItemModFilter/ItemEnchantFilterCore/ItemCompositeFilter) - see
+    // wayoftime.bloodmagic.common.item.filter.AbstractFilterItem for how this port's version works.
+    // These plug into InputRoutingNodeTile/OutputRoutingNodeTile/ItemRouterTile's filter slot.
+    public static final DeferredHolder<Item, wayoftime.bloodmagic.common.item.filter.StandardFilterItem> STANDARD_FILTER = ITEMS.register("standard_filter", wayoftime.bloodmagic.common.item.filter.StandardFilterItem::new);
+    public static final DeferredHolder<Item, wayoftime.bloodmagic.common.item.filter.TagFilterItem> TAG_FILTER = ITEMS.register("tag_filter", wayoftime.bloodmagic.common.item.filter.TagFilterItem::new);
+    public static final DeferredHolder<Item, wayoftime.bloodmagic.common.item.filter.ModFilterItem> MOD_FILTER = ITEMS.register("mod_filter", wayoftime.bloodmagic.common.item.filter.ModFilterItem::new);
+    public static final DeferredHolder<Item, wayoftime.bloodmagic.common.item.filter.EnchantFilterItem> ENCHANT_FILTER = ITEMS.register("enchant_filter", wayoftime.bloodmagic.common.item.filter.EnchantFilterItem::new);
+    public static final DeferredHolder<Item, wayoftime.bloodmagic.common.item.filter.CompositeFilterItem> COMPOSITE_FILTER = ITEMS.register("composite_filter", wayoftime.bloodmagic.common.item.filter.CompositeFilterItem::new);
+
     public static void register(IEventBus modBus) {
         BASIC_ITEMS.register(modBus);
         ITEMS.register(modBus);

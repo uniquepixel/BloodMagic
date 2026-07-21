@@ -17,6 +17,15 @@
           "text": "The ritual can only link to one altar at a time. Mobs will still drop their normal, non-player-kill drops."
         }
       ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:multiblock",
+          "multiblock_id": "bloodmagic:ritual/well_of_suffering",
+          "previewable": true
+        }
+      ]
     }
   ]
 }

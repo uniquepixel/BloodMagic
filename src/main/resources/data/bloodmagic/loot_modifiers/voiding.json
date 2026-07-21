@@ -1,0 +1,8 @@
+{
+  "type": "bloodmagic:voiding",
+  "conditions": [
+    {
+      "condition": "minecraft:match_tool"
+    }
+  ]
+}

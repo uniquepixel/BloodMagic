@@ -1,0 +1,9 @@
+{
+  "type": "bloodmagic:looting",
+  "conditions": [
+    {
+      "condition": "minecraft:entity_properties",
+      "entity": "this"
+    }
+  ]
+}

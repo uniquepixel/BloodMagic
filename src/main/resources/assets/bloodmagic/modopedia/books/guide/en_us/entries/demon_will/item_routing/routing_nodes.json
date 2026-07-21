@@ -6,7 +6,7 @@
       "components": [
         {
           "type": "modopedia:text",
-          "text": "Note: this system was substantially redesigned from earlier versions of the mod. The old graph of Master/Input/Output/Filter nodes wired together by hand with a Node Router wand, using separate composite/tag/enchantment/mod Filter items, is gone. What's here now is simpler but still genuinely functional."
+          "text": "Note: this system was redesigned from earlier versions of the mod. The old graph of Master/Input/Output/Filter nodes wired together by hand with a Node Router wand is gone - nodes now connect automatically to any other routing-node block touching them, with no separate linking tool or per-face connection GUI. The Filter item system itself (see the Filters entry) is back, though, and plugs directly into these nodes."
         }
       ]
     },
@@ -14,7 +14,7 @@
       "components": [
         {
           "type": "modopedia:text",
-          "text": "A Routing Node network has three block types: the Master Routing Node, Input Routing Nodes, and Output Routing Nodes. Nodes connect automatically to any other routing-node block touching them - there's no separate linking tool or per-face connection GUI anymore. Every network needs exactly one Master Routing Node, which discovers the rest of the connected nodes for you."
+          "text": "A Routing Node network has three block types: the Master Routing Node, Input Routing Nodes, and Output Routing Nodes. Every network needs exactly one Master Routing Node, which discovers the rest of the connected nodes for you."
         }
       ]
     },
@@ -22,7 +22,15 @@
       "components": [
         {
           "type": "modopedia:text",
-          "text": "Input Routing Nodes pull items from any adjacent external inventory into the network. Output Routing Nodes push items from the network out into whichever adjacent inventory you've designated, gated by an optional item filter built directly into the node - right-click an Output Node with an item to toggle it in the filter (holds up to 9 items), right-click empty-handed to cycle its priority (higher priority nodes are filled first), and sneak-right-click empty-handed to flip between whitelist and blacklist mode."
+          "text": "Input Routing Nodes pull items from any adjacent external inventory into the network. Output Routing Nodes push items out into whichever adjacent inventory you've designated, ordered by priority (higher priority nodes are filled first) - right-click empty-handed to cycle priority, sneak-right-click empty-handed to flip its built-in whitelist/blacklist mode."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Both node types also accept a Filter item: right-click the node with a Filter item in hand to install it (sneak-right-click empty-handed to remove it again). An installed Filter adds tag/mod id/enchantment/composite matching on top of whatever built-in filtering the node already has - both have to agree for an item to pass."
         }
       ]
     }

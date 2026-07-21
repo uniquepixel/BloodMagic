@@ -1,0 +1,93 @@
+{
+  "type": "modopedia:dense",
+  "key": {
+    "0": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:ritual_stone_master"
+      ]
+    },
+    "A": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:ritual_stone_air"
+      ]
+    },
+    "B": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:ritual_stone_blank"
+      ]
+    },
+    "D": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:ritual_stone_dusk"
+      ]
+    },
+    "E": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:ritual_stone_earth"
+      ]
+    },
+    "F": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:ritual_stone_fire"
+      ]
+    },
+    "W": {
+      "type": "modopedia:simple",
+      "states": [
+        "bloodmagic:ritual_stone_water"
+      ]
+    }
+  },
+  "pattern": [
+    [
+      "    E    ",
+      "   W W   ",
+      "  D   D  ",
+      " W  B  W ",
+      "E  B0B  E",
+      " W  B  W ",
+      "  D   D  ",
+      "   W W   ",
+      "    E    "
+    ],
+    [
+      "         ",
+      "    A    ",
+      "    E    ",
+      "         ",
+      " AE   EA ",
+      "         ",
+      "    E    ",
+      "    A    ",
+      "         "
+    ],
+    [
+      "         ",
+      "         ",
+      "    E    ",
+      "         ",
+      "  E   E  ",
+      "         ",
+      "    E    ",
+      "         ",
+      "         "
+    ],
+    [
+      "         ",
+      "    A    ",
+      "  FF FF  ",
+      "  F   F  ",
+      " A     A ",
+      "  F   F  ",
+      "  FF FF  ",
+      "    A    ",
+      "         "
+    ]
+  ]
+}

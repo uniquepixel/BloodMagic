@@ -88,6 +88,14 @@ public class BMDataComponents {
     // SentientArmorGemItem/SentientArmorItem.
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Unit>> SENTIENT_ARMOUR_GEM_ACTIVE = DATA_COMPONENTS.registerComponentType("sentient_armour_gem_active", builder -> builder.persistent(Unit.CODEC).networkSynchronized(StreamCodec.unit(Unit.INSTANCE)));
 
+    // Item Routing "Filter" system (ported from 1.20.1's InventoryFilter/DataFilter, see
+    // wayoftime.bloodmagic.common.item.filter.AbstractFilterItem): each Filter item stores its
+    // configured reference items (the classic 1.20.1 "ghost slot" contents - Standard/Tag/Mod/
+    // Enchant filters hold plain reference stacks here, Composite holds nested filter item stacks)
+    // and its whitelist/blacklist toggle (reused by CompositeFilterItem as its AND/OR toggle).
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<ItemContainerContents>> FILTER_CONTENTS = DATA_COMPONENTS.registerComponentType("filter_contents", builder -> builder.persistent(ItemContainerContents.CODEC).networkSynchronized(ItemContainerContents.STREAM_CODEC));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> FILTER_BLACKLIST = DATA_COMPONENTS.registerComponentType("filter_blacklist", builder -> builder.persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL));
+
     public static void register(IEventBus modBus) {
         DATA_COMPONENTS.register(modBus);
     }

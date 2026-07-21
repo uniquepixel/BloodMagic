@@ -9,6 +9,15 @@
           "text": "Stand on the Master Ritual Stone while wearing Living Armour to use this ritual. Tier 0, costs $(blood)50,000 LP$() to activate. It advances your Living Armour's evolution, a key step in raising the armour's overall power beyond what upgrade points alone provide.\nUse a Ritual Diviner [Dusk] for easier construction."
         }
       ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:multiblock",
+          "multiblock_id": "bloodmagic:ritual/armour_evolve",
+          "previewable": true
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,8 @@
+{
+  "type": "bloodmagic:fortune",
+  "conditions": [
+    {
+      "condition": "minecraft:match_tool"
+    }
+  ]
+}

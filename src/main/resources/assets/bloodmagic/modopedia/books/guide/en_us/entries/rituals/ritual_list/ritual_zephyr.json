@@ -9,6 +9,15 @@
           "text": "The Call of the Zephyr (internally: Zephyr Ritual) whips up a wind that pulls dropped items and experience orbs within its range toward the Master Ritual Stone and into a linked chest, acting as a wide-area item collector. Tier 0, costs $(blood)1,000 LP$() to activate.\nUse a Ritual Diviner for easier construction."
         }
       ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:multiblock",
+          "multiblock_id": "bloodmagic:ritual/zephyr",
+          "previewable": true
+        }
+      ]
     }
   ]
 }

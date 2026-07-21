@@ -17,6 +17,15 @@
           "text": "To set a filter, place any form of Item Filter into the linked chest. The ritual will only use the first filter it finds, but will accept Standard, Tag, and Mod Item Filters."
         }
       ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:multiblock",
+          "multiblock_id": "bloodmagic:ritual/yawning_void",
+          "previewable": true
+        }
+      ]
     }
   ]
 }

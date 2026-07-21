@@ -9,6 +9,15 @@
           "text": "The Domain of the Filler (internally: Placer Ritual) places blocks from a linked inventory into the world around the Master Ritual Stone, acting as a ritual-powered block placer. Tier 0, costs $(blood)5,000 LP$() to activate.\nUse a Ritual Diviner for easier construction."
         }
       ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:multiblock",
+          "multiblock_id": "bloodmagic:ritual/placer",
+          "previewable": true
+        }
+      ]
     }
   ]
 }

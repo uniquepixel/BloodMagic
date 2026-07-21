@@ -25,6 +25,7 @@ import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
 import wayoftime.bloodmagic.common.block.ExplosiveChargeBlock;
+import wayoftime.bloodmagic.common.datacomponent.BMDataComponents;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,8 +44,46 @@ import java.util.List;
 public abstract class ExplosiveChargeTile extends BaseTile {
     private double internalCounter = 0;
 
+    // Anointment "uses" carried over from the ItemStack this charge was placed from (see
+    // ExplosiveChargeBlock#setPlacedBy) - the modern-branch equivalent of 1.20.1's
+    // AnointmentHolder field on TileExplosiveCharge. Baked onto the synthetic harvesting tool in
+    // getHarvestingTool() so the global loot modifiers in common.loot.BMLootModifiers (Fortune/
+    // Silk Touch/Smelting/Voiding) treat a detonating Charge exactly like an anointed hand tool.
+    private int fortuneUses;
+    private int silkTouchUses;
+    private int smeltingUses;
+    private int voidingUses;
+
     protected ExplosiveChargeTile(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
+    }
+
+    /**
+     * Called from {@link ExplosiveChargeBlock#setPlacedBy} with the ItemStack the player placed
+     * this charge from - copies over whichever {@code ANOINTMENT_*_USES} components (written by
+     * {@link wayoftime.bloodmagic.common.item.AnointmentItem}, e.g. dipping the charge in a Fortune
+     * Anointment before placing it) are present, so this tile's detonation picks them up too.
+     */
+    public void applyAnointmentsFrom(ItemStack placedStack) {
+        fortuneUses = placedStack.getOrDefault(BMDataComponents.ANOINTMENT_FORTUNE_USES, 0);
+        silkTouchUses = placedStack.getOrDefault(BMDataComponents.ANOINTMENT_SILK_TOUCH_USES, 0);
+        smeltingUses = placedStack.getOrDefault(BMDataComponents.ANOINTMENT_SMELTING_USES, 0);
+        voidingUses = placedStack.getOrDefault(BMDataComponents.ANOINTMENT_VOIDING_USES, 0);
+    }
+
+    private void applyAnointmentsTo(ItemStack stack) {
+        if (fortuneUses > 0) {
+            stack.set(BMDataComponents.ANOINTMENT_FORTUNE_USES, fortuneUses);
+        }
+        if (silkTouchUses > 0) {
+            stack.set(BMDataComponents.ANOINTMENT_SILK_TOUCH_USES, silkTouchUses);
+        }
+        if (smeltingUses > 0) {
+            stack.set(BMDataComponents.ANOINTMENT_SMELTING_USES, smeltingUses);
+        }
+        if (voidingUses > 0) {
+            stack.set(BMDataComponents.ANOINTMENT_VOIDING_USES, voidingUses);
+        }
     }
 
     public void tick() {
@@ -99,14 +138,18 @@ public abstract class ExplosiveChargeTile extends BaseTile {
     protected abstract void detonate(ServerLevel level, BlockPos pos, Direction chargeDirection);
 
     public ItemStack getHarvestingTool() {
-        return new ItemStack(Items.DIAMOND_PICKAXE);
+        ItemStack stack = new ItemStack(Items.DIAMOND_PICKAXE);
+        applyAnointmentsTo(stack);
+        return stack;
     }
 
     public void dropSelf() {
         if (level == null) {
             return;
         }
-        Containers.dropItemStack(level, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), new ItemStack(getBlockState().getBlock()));
+        ItemStack stack = new ItemStack(getBlockState().getBlock());
+        applyAnointmentsTo(stack);
+        Containers.dropItemStack(level, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), stack);
     }
 
     /**
@@ -157,11 +200,19 @@ public abstract class ExplosiveChargeTile extends BaseTile {
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
         internalCounter = tag.getDouble("internalCounter");
+        fortuneUses = tag.getInt("fortuneUses");
+        silkTouchUses = tag.getInt("silkTouchUses");
+        smeltingUses = tag.getInt("smeltingUses");
+        voidingUses = tag.getInt("voidingUses");
     }
 
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
         tag.putDouble("internalCounter", internalCounter);
+        tag.putInt("fortuneUses", fortuneUses);
+        tag.putInt("silkTouchUses", silkTouchUses);
+        tag.putInt("smeltingUses", smeltingUses);
+        tag.putInt("voidingUses", voidingUses);
     }
 }

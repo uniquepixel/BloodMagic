@@ -14,7 +14,15 @@
       "components": [
         {
           "type": "modopedia:text",
-          "text": "Right-click it with an item in hand to toggle that item in its small filter (holds up to 4 items). An empty filter lets everything through, behaving just like a plain hopper."
+          "text": "Right-click it with a plain item in hand to toggle that item in its small built-in filter (holds up to 4 items). An empty filter lets everything through, behaving just like a plain hopper."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Right-click it with a Filter item (see the Filters entry) instead to install it, adding tag/mod id/enchantment/composite matching on top of the built-in filter - both have to agree for an item to pass. Sneak-right-click empty-handed to remove an installed Filter."
         }
       ]
     }

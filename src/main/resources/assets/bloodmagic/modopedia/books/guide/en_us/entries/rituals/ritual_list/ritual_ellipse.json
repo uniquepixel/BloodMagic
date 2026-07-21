@@ -9,6 +9,15 @@
           "text": "This ritual is purely aesthetic in nature, designed for the budding, yet lazy, builder that resides in all of us. It's particularly good for building complicated shapes, such as the mighty dome above your evil lair. It draws blocks from a linked chest and places them to form an ellipsoid shape around the Master Ritual Stone. Tier 0, costs $(blood)20,000 LP$() to activate.\nUse a Ritual Diviner [Dusk] for easier construction."
         }
       ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:multiblock",
+          "multiblock_id": "bloodmagic:ritual/ellipsoid",
+          "previewable": true
+        }
+      ]
     }
   ]
 }

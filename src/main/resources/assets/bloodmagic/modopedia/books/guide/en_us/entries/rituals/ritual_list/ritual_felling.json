@@ -9,6 +9,15 @@
           "text": "The Crash of the Timberman (internally: Felling Ritual) fells an entire tree at once when you break a single log within its range, dropping all the logs for collection. Tier 0, costs $(blood)20,000 LP$() to activate.\nUse a Ritual Diviner for easier construction."
         }
       ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:multiblock",
+          "multiblock_id": "bloodmagic:ritual/felling",
+          "previewable": true
+        }
+      ]
     }
   ]
 }
