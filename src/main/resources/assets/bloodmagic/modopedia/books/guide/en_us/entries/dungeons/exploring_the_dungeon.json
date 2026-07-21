@@ -1,0 +1,30 @@
+{
+  "title": "Exploring the Dungeon",
+  "icon": { "id": "bloodmagic:simplekey" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Performing the Ritual of the Vault (see that ritual's own page) generates a Demon Dungeon in its own dedicated dimension and teleports everyone standing near the altar into its entrance room. On earlier versions of the mod this used a pair of physical Inversion Pillar portal blocks and a separate, smaller \"Antechamber\" tier - neither is present here. Instead, entering the ritual's altar room generates the dungeon directly and teleports you in."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The entrance room contains a Dungeon Controller block - right-click it at any time to teleport straight back to where you triggered the ritual from. Every other room is connected through doorways sealed with a Dungeon Seal; right-click a seal with a matching Dungeon Key (see that page) to consume the key and generate a new room beyond it, expanding the dungeon further. Rooms are built from the same decorative Demon Stone block palette described elsewhere in this category, occasionally tainted with Corrosive, Destructive, Steadfast, or Vengeful Will."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Watch your step: some rooms hide Spike Traps that jam out when triggered, and some chests or doorways may not be everything they appear to be (see Mimics). Note: 1.20.1's deeper progression through this dungeon - Spatial Distortions, a dedicated Mines sub-area reached with an uncraftable Foreman's Key, and farmable Tau Fruit - has not been carried over to this branch yet."
+        }
+      ]
+    }
+  ]
+}

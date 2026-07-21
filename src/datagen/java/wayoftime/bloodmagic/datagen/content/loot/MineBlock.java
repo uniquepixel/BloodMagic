@@ -57,6 +57,12 @@ public class MineBlock extends BlockLootSubProvider {
         // is BASIC_REG (already covered by the BASIC_BLOCKS loop above); these two are BLOCK_REG.
         addDropSelf(BMBlocks.DUNGEON_SPIKE_TRAP);
         addDropSelf(BMBlocks.DUNGEON_SPIKES);
+
+        // The Mimic (Priority 1 flavor content, see BMBlocks) - plain dropSelf matching upstream's
+        // loot table exactly; TileMimic never actually drops its disguise/tag contents (see
+        // TileMimic's class javadoc), so no component-copying table is needed here.
+        addDropSelf(BMBlocks.MIMIC);
+        addDropSelf(BMBlocks.ETHEREAL_MIMIC);
     }
 
     @SafeVarargs

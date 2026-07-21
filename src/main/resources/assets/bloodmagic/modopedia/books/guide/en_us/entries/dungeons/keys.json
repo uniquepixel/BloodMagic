@@ -1,0 +1,22 @@
+{
+  "title": "Dungeon Keys",
+  "icon": { "id": "bloodmagic:simplekey" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Every doorway in a generated Demon Dungeon is sealed behind a Dungeon Seal. Right-clicking a seal with a matching Dungeon Key consumes the key and generates a new room beyond that door, extending the dungeon further - this is the only way to push a dungeon's generation onward."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "A Simple Key opens most doorways, matching the common room types you'll run into throughout the dungeon; it can be found in dungeon chests or crafted in the Hellfire Forge from a redstone block, two iron ingots, and an Imbued Slate. A Mine Entrance Key is a rarer find that only matches a specific, less common kind of doorway - it isn't currently craftable and must be found within the dungeon itself. Note: 1.20.1 additionally had a unique, uncraftable Foreman's Key found behind special \"Spatial Distortion\" doors leading to a dedicated Mines sub-area; that specific progression path has not been carried over here."
+        }
+      ]
+    }
+  ]
+}

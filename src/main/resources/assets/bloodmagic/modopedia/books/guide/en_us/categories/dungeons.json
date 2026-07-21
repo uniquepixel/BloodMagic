@@ -1,9 +1,17 @@
 {
   "title": "Dungeons",
   "icon": { "id": "bloodmagic:hellforged_block" },
-  "landing_text": "Note: the elaborate procedural Demon Dungeon system from earlier versions of the mod (mazelike dungeon generation, Foreman's Keys, Spatial Distortions, Mimics, Tau Fruit farming, dungeon-exclusive ores) has not been carried over to this branch yet. This category is a placeholder for the one piece of related material that does still exist.",
+  "landing_text": "The procedural Demon Dungeon system is real on this branch again: performing the Ritual of the Vault opens a generated dungeon in its own dimension, room by room, gated by keyed doors. Some 1.20.1 flavor content (Tau Fruit farming, Spatial Distortions, the Inversion Pillar portal blocks, the separate Mines sub-area) hasn't been carried over yet - see Exploring the Dungeon for what's actually here.",
   "entries": [
-    "dungeons/demonite"
+    "dungeons/exploring_the_dungeon",
+    "dungeons/keys",
+    "dungeons/mimics",
+    "dungeons/demon_stone",
+    "dungeons/demonite",
+    "dungeons/dungeon_eye",
+    "dungeons/dungeon_emitter",
+    "dungeons/dungeon_alternator",
+    "dungeons/spike_trap"
   ],
   "sort_num": 5
 }

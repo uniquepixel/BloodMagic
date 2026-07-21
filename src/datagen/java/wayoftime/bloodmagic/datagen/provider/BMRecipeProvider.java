@@ -940,6 +940,28 @@ public class BMRecipeProvider extends RecipeProvider {
         soulForge(output, "resonator", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/copper"))), Ingredient.of(Items.QUARTZ)), new ItemStack(BMItems.RESONATOR.get()), 50, 10);
         soulForge(output, "primitive_crystalline_resonator", List.of(Ingredient.of(Items.AMETHYST_SHARD), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots"))), Ingredient.of(Items.QUARTZ), Ingredient.of(BMItems.CORRUPTED_DUST_TINY.get())), new ItemStack(BMItems.PRIMITIVE_CRYSTALLINE_RESONATOR.get()), 150, 40);
         soulForge(output, "hellforged_resonator", List.of(Ingredient.of(Items.AMETHYST_SHARD), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/gold"))), Ingredient.of(Items.QUARTZ), Ingredient.of(BMItems.HELLFORGED_PARTS.get())), new ItemStack(BMItems.HELLFORGED_RESONATOR.get()), 300, 80);
+
+        // ===== Demon Dungeon system (Priority 1/3 flavor content) - now that the Mimic and
+        // dungeon_stone both exist, 1.20.1's ethereal_mimic recipe is portable as-is. Plain MIMIC
+        // has no upstream crafting recipe either (dungeon/loot-generated only), matching 1.20.1. =====
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMBlocks.ETHEREAL_MIMIC.item().get(), 8)
+                .define('E', BMItems.SLATE_ETHEREAL.get())
+                .define('S', BMBlocks.DUNGEON_STONE.item().get())
+                .pattern("SSS")
+                .pattern("SES")
+                .pattern("SSS")
+                .unlockedBy("has_ethereal_slate", has(BMItems.SLATE_ETHEREAL.get()))
+                .save(output, BloodMagic.rl("ethereal_mimic"));
+
+        // Dungeon Keys - upstream's "simple_key" hellfire/soul forge recipe is portable as-is
+        // (redstone block + 2 iron ingots + infused slate, all real on this branch). "mine_key" is
+        // still skipped: it needs one of 5 per-Will-type "*crystal" items and a smeltable Hellforged
+        // Ingot, neither of which exist on this branch (BMItems.HELLFORGED_PARTS is a different,
+        // already-used item - see BMRecipeProvider's hellforged_resonator comment above). Upstream's
+        // LP-scale minimumDrain/drain (300.0/50.0) don't carry over meaningfully to this branch's
+        // reworked Hellfire Forge (a Will-based minWill/drain pair, not raw LP) - 50/10 matches the
+        // scale of this branch's other simple, low-tier forge recipes (sanguine_reverter, resonator).
+        soulForge(output, "simple_key", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:storage_blocks/redstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/iron"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/iron"))), Ingredient.of(BMItems.SLATE_IMBUED.get())), new ItemStack(BMItems.DUNGEON_SIMPLE_KEY.get()), 50, 10);
     }
 
     private static Ingredient bloodOrb(int minTier) {

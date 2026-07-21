@@ -170,6 +170,8 @@
     "bloodmagic:dungeon_cracked_brick1",
     "bloodmagic:dungeon_alternator",
     "bloodmagic:dungeon_spike_trap",
-    "bloodmagic:spikes"
+    "bloodmagic:spikes",
+    "bloodmagic:mimic",
+    "bloodmagic:ethereal_mimic"
   ]
 }

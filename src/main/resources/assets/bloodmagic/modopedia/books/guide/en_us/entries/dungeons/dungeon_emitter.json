@@ -1,0 +1,14 @@
+{
+  "title": "Dungeon Emitter",
+  "icon": { "id": "bloodmagic:dungeon_emitter" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Dungeon Emitter emits a constant redstone signal, similar to a Redstone Block. Unlike a Dungeon Alternator, its signal is steady and unchanging. Found powering traps and mechanisms throughout the Demon Dungeon."
+        }
+      ]
+    }
+  ]
+}

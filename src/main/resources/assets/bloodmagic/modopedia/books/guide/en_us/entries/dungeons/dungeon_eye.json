@@ -1,0 +1,14 @@
+{
+  "title": "Demon Eyes",
+  "icon": { "id": "bloodmagic:dungeon_eye" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "A Demon Eye is a light-emitting decorative block often found lighting the depths of the Demon Dungeon, part of the wider Demon Stone block family (see that page). Like the rest of that family it comes in Corrosive, Destructive, Steadfast, and Vengeful Will-tainted variants."
+        }
+      ]
+    }
+  ]
+}

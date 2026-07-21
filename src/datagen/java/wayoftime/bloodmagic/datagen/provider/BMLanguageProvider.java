@@ -530,6 +530,15 @@ public class BMLanguageProvider extends LanguageProvider {
         add(BMBlocks.DUNGEON_ALTERNATOR, "Dungeon Alternator");
         add(BMBlocks.DUNGEON_SPIKE_TRAP, "Dungeon Spike Trap");
         add(BMBlocks.DUNGEON_SPIKES, "Spikes");
+        add(BMBlocks.MIMIC, "Opaque Mimic");
+        add(BMBlocks.ETHEREAL_MIMIC, "Ethereal Mimic");
+        add("chat.bloodmagic.mimic.potionSet", "Potion effect set.");
+        add("chat.bloodmagic.mimic.potionSpawnRadius.up", "Potion spawn radius increased to %s.");
+        add("chat.bloodmagic.mimic.potionSpawnRadius.down", "Potion spawn radius decreased to %s.");
+        add("chat.bloodmagic.mimic.detectRadius.up", "Detection radius increased to %s.");
+        add("chat.bloodmagic.mimic.detectRadius.down", "Detection radius decreased to %s.");
+        add("chat.bloodmagic.mimic.potionInterval.up", "Potion interval increased to %s.");
+        add("chat.bloodmagic.mimic.potionInterval.down", "Potion interval decreased to %s.");
 
         //Modopedia Guidebook lang-keys (was Patchouli)
         addBook("name", "Sanguine Scientiem");

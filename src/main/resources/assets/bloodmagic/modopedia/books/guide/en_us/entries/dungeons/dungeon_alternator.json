@@ -1,0 +1,14 @@
+{
+  "title": "Dungeon Alternator",
+  "icon": { "id": "bloodmagic:dungeon_alternator" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Dungeon Alternator emits a constantly changing redstone signal, alternating between powered and unpowered at set intervals, similar to a Redstone Clock. Compare to the Dungeon Emitter, whose signal is steady and unchanging. Found wired into traps and mechanisms throughout the Demon Dungeon."
+        }
+      ]
+    }
+  ]
+}

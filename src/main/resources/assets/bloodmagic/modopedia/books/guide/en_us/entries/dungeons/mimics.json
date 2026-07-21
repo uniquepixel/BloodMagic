@@ -1,0 +1,22 @@
+{
+  "title": "Mimics",
+  "icon": { "id": "bloodmagic:ethereal_mimic" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Despite the name, a Mimic isn't a monster - it's a block that can take on the appearance of almost any other block while remaining what it really is underneath. Sneak-place one against an existing block to swap that block for a Mimic wearing its old appearance, or right-click an already-placed, plain Mimic with a block in hand to dress it up the same way."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Ethereal Mimic variant is completely intangible - you walk straight through it - which makes it handy for concealing pitfall traps or secret passages behind a convincing wall or floor. Keep an eye out; the dungeon generator places these naturally throughout the Demon Dungeon (see Exploring the Dungeon)."
+        }
+      ]
+    }
+  ]
+}

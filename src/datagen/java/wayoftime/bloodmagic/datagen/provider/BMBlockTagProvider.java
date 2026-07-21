@@ -107,5 +107,13 @@ public class BMBlockTagProvider extends BlockTagsProvider {
 
         this.tag(BlockTags.NEEDS_IRON_TOOL)
                 .addAll(BlockGroups.DUNGEON_PALETTE_METAL_TIER);
+
+        // The Mimic (Priority 1 flavor content, see BMBlocks) - stone-tool tier matches upstream's
+        // strength(2.0f)/SoundType.METAL, same tags upstream gives both variants.
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
+                .add(BMBlocks.MIMIC.block().getKey(), BMBlocks.ETHEREAL_MIMIC.block().getKey());
+
+        this.tag(BlockTags.NEEDS_STONE_TOOL)
+                .add(BMBlocks.MIMIC.block().getKey(), BMBlocks.ETHEREAL_MIMIC.block().getKey());
     }
 }

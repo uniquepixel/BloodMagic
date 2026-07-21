@@ -21,6 +21,7 @@ import wayoftime.bloodmagic.api.altar.EnumRuneType;
 import wayoftime.bloodmagic.util.BlockEntityHelper;
 import wayoftime.bloodmagic.util.blockitem.BlockWithItemHolder;
 import wayoftime.bloodmagic.util.blockitem.BlockWithItemRegister;
+import wayoftime.bloodmagic.common.item.block.MimicBlockItem;
 
 import java.util.HashMap;
 import java.util.List;
@@ -337,6 +338,23 @@ public class BMBlocks {
     public static final BlockWithItemHolder<BlockSpikeTrap, BlockItem> DUNGEON_SPIKE_TRAP = BLOCK_REG.register("dungeon_spike_trap", () -> new BlockSpikeTrap(dungeon_properties));
     private static final BlockBehaviour.Properties dungeon_spikes_properties = BlockBehaviour.Properties.of().strength(2.0F, 5.0F).sound(SoundType.CHAIN).noOcclusion().noCollission().requiresCorrectToolForDrops();
     public static final BlockWithItemHolder<BlockSpikes, BlockItem> DUNGEON_SPIKES = BLOCK_REG.register("spikes", () -> new BlockSpikes(dungeon_spikes_properties));
+
+    // The Mimic: a purely cosmetic "disguise" block (not a monster - see BlockMimic), ported from
+    // 1.20.1's BloodMagicBlocks MIMIC/ETHEREAL_MIMIC. Its dynamic baked model (client/model/mimic)
+    // needs a custom loader, so (like DUNGEON_SPIKE_TRAP/DUNGEON_SPIKES above) it's kept on
+    // BLOCK_REG with hand-authored blockstate/model json rather than BASIC_REG's auto-loop.
+    // ETHEREAL_MIMIC additionally has noCollission() - it's the intangible variant 1.20.1's
+    // guidebook says the dungeon generator hides pitfall traps and secret passages behind.
+    public static final BlockWithItemHolder<BlockMimic, MimicBlockItem> MIMIC = BLOCK_REG.register("mimic",
+            () -> new BlockMimic(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().sound(SoundType.METAL).strength(2.0f)
+                    .isRedstoneConductor((state, level, pos) -> false).isSuffocating((state, level, pos) -> false)
+                    .isViewBlocking((state, level, pos) -> false).noOcclusion()),
+            MimicBlockItem::new, new Item.Properties());
+    public static final BlockWithItemHolder<BlockMimic, MimicBlockItem> ETHEREAL_MIMIC = BLOCK_REG.register("ethereal_mimic",
+            () -> new BlockMimic(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().sound(SoundType.METAL).strength(2.0f)
+                    .isRedstoneConductor((state, level, pos) -> false).isSuffocating((state, level, pos) -> false)
+                    .isViewBlocking((state, level, pos) -> false).noOcclusion().noCollission()),
+            MimicBlockItem::new, new Item.Properties());
 
     private static void registerBlockCapability(RegisterCapabilitiesEvent event) {
         event.registerBlock(

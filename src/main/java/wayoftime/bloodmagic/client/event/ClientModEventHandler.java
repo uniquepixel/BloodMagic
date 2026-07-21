@@ -17,6 +17,9 @@ import wayoftime.bloodmagic.api.BMIdentifiers;
 import wayoftime.bloodmagic.client.hud.ElementRegistry;
 import wayoftime.bloodmagic.client.hud.Elements;
 import wayoftime.bloodmagic.client.model.sigil.SigilLoader;
+import wayoftime.bloodmagic.client.model.mimic.MimicColor;
+import wayoftime.bloodmagic.client.model.mimic.MimicLoader;
+import wayoftime.bloodmagic.common.block.BMBlocks;
 import wayoftime.bloodmagic.client.render.BMModelLayers;
 import wayoftime.bloodmagic.client.render.entity.EntityMeteorRenderer;
 import wayoftime.bloodmagic.client.render.item.FlaskColor;
@@ -67,6 +70,8 @@ public class ClientModEventHandler {
     @SubscribeEvent
     public static void registerModelLoaders(ModelEvent.RegisterGeometryLoaders event) {
         event.register(BMIdentifiers.ModelLoaders.SIGILS, new SigilLoader());
+        event.register(BMIdentifiers.ModelLoaders.MIMIC, new MimicLoader(BloodMagic.rl("block/solidopaquemimic")));
+        event.register(BMIdentifiers.ModelLoaders.MIMIC_ETHEREAL, new MimicLoader(BloodMagic.rl("block/etherealopaquemimic")));
     }
 
     @SubscribeEvent
@@ -114,6 +119,11 @@ public class ClientModEventHandler {
     public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
         FlaskColor flaskColor = new FlaskColor();
         event.register(flaskColor, BMItems.ALCHEMY_FLASK.get(), BMItems.ALCHEMY_FLASK_THROWABLE.get(), BMItems.ALCHEMY_FLASK_LINGERING.get());
+    }
+
+    @SubscribeEvent
+    public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
+        event.register(new MimicColor(), BMBlocks.MIMIC.block().get(), BMBlocks.ETHEREAL_MIMIC.block().get());
     }
 
     @SubscribeEvent

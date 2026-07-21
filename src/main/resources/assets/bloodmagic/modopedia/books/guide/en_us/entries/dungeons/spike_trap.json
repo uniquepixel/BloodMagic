@@ -1,0 +1,14 @@
+{
+  "title": "Spike Trap",
+  "icon": { "id": "bloodmagic:dungeon_spike_trap" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Spike Traps look only mildly suspicious until they receive a redstone signal, whereupon vicious spikes jam upward into whatever is standing on them. Whoever - or perhaps whatever - built the Demon Dungeon clearly wanted to keep intruders out."
+        }
+      ]
+    }
+  ]
+}

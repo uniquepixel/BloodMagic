@@ -1,0 +1,22 @@
+{
+  "title": "Demon Stone",
+  "icon": { "id": "bloodmagic:dungeon_eye" },
+  "pages": [
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "The Demon Dungeon's rooms are built almost entirely out of an odd pale-blue material unknown in the rest of reality, dubbed \"Demon Stone.\" It comes in a wide decorative family - plain stone, polished and tiled variants, bricks, small bricks, cracked bricks, pillars, stairs, walls, fence gates, slabs, and light-emitting Demon Eyes - all generated naturally throughout the dungeon."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
+          "text": "Most of the family also comes in four Will-tainted color variants - Corrosive, Destructive, Steadfast, and Vengeful - matching whatever Will corrupted that part of the dungeon. These are purely decorative reskins of the same shapes, not separate mechanics."
+        }
+      ]
+    }
+  ]
+}

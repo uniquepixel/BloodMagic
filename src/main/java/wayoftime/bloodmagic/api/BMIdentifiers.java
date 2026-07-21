@@ -113,6 +113,8 @@ public class BMIdentifiers {
 
     public static class ModelLoaders {
         public static final ResourceLocation SIGILS = bm("sigil_loader");
+        public static final ResourceLocation MIMIC = bm("mimic_loader");
+        public static final ResourceLocation MIMIC_ETHEREAL = bm("mimic_loader_ethereal");
     }
 
     public static class ModelLocations {

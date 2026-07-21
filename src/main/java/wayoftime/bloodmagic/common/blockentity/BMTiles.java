@@ -103,6 +103,11 @@ public class BMTiles {
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TileSpikeTrap>> SPIKE_TRAP_TYPE = TILES.register("dungeon_spike_trap",
             () -> new BlockEntityType<>(TileSpikeTrap::new, Set.of(BMBlocks.DUNGEON_SPIKE_TRAP.block().get()), null));
 
+    // The Mimic (Priority 1 flavor content, see BMBlocks) - one BlockEntityType shared by both the
+    // solid and ethereal variants, matching 1.20.1's single MIMIC_TYPE.
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TileMimic>> MIMIC_TYPE = TILES.register("mimic",
+            () -> new BlockEntityType<>(TileMimic::new, Set.of(BMBlocks.MIMIC.block().get(), BMBlocks.ETHEREAL_MIMIC.block().get()), null));
+
     private static void registerTileCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,

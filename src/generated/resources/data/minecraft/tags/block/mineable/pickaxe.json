@@ -186,6 +186,8 @@
     "bloodmagic:dungeon_metal_corrosive",
     "bloodmagic:dungeon_metal_steadfast",
     "bloodmagic:dungeon_metal_vengeful",
-    "bloodmagic:dungeon_metal_destructive"
+    "bloodmagic:dungeon_metal_destructive",
+    "bloodmagic:mimic",
+    "bloodmagic:ethereal_mimic"
   ]
 }
