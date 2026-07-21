@@ -1,0 +1,30 @@
+{
+  "type": "bloodmagic:alchemy_table",
+  "duration": 200,
+  "essence": 4000,
+  "inputs": [
+    {
+      "item": "minecraft:slime_ball"
+    },
+    {
+      "item": "bloodmagic:corrupted_dust"
+    },
+    {
+      "item": "minecraft:glow_berries"
+    },
+    {
+      "tag": "c:dusts/saltpeter"
+    },
+    {
+      "tag": "c:dusts/sulfur"
+    },
+    {
+      "item": "minecraft:water_bucket"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "bloodmagic:advancedcuttingfluid"
+  },
+  "tier": 4
+}

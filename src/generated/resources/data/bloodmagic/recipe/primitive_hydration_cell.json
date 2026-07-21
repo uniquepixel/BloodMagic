@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:water_bucket"
+    },
+    "c": {
+      "tag": "c:cobblestone"
+    },
+    "o": {
+      "type": "bloodmagic:bloodorb",
+      "orb_tier": 2
+    },
+    "s": {
+      "item": "bloodmagic:slate_blank"
+    }
+  },
+  "pattern": [
+    "csc",
+    "cBc",
+    "coc"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bloodmagic:primitive_hydration_cell"
+  }
+}

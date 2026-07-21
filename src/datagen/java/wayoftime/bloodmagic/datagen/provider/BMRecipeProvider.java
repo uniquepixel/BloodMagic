@@ -392,9 +392,10 @@ public class BMRecipeProvider extends RecipeProvider {
 
         // ===== Blood Runes/ritual stones/misc, batch 2 (12 more ported from 1.20.1 now that the
         // custom "bloodmagic:bloodorb" (minimum orb tier) Ingredient exists - see BloodOrbIngredient.
-        // Still skipped: ritual_reader (superseded by the Ritual Diviner recipes above), lava_crystal,
-        // primitive_furnace_cell/hydration_cell, and the 4 path/* recipes - none of those result/
-        // component items exist on this branch yet) =====
+        // Still skipped: ritual_reader (superseded by the Ritual Diviner recipes above) and the 4
+        // path/* recipes - none of those result/component items exist on this branch yet.
+        // lava_crystal/primitive_furnace_cell/primitive_hydration_cell are no longer skipped now that
+        // their items exist - see the ARC tool items section near the end of this method) =====
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMBlocks.RUNE_BLANK.item().get())
                 .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stone")))
                 .define('o', bloodOrb(1))
@@ -827,6 +828,84 @@ public class BMRecipeProvider extends RecipeProvider {
         soulForge(output, "deforester_charge", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:cobblestone"))), Ingredient.of(Items.CHARCOAL), Ingredient.of(net.minecraft.tags.ItemTags.LOGS), Ingredient.of(net.minecraft.tags.ItemTags.PLANKS)), Util.make(new ItemStack(BMBlocks.DEFORESTER_CHARGE.item().get()), s -> s.setCount(8)), 10, 0.5);
         soulForge(output, "fungal_charge", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:cobblestone"))), Ingredient.of(Items.CHARCOAL), Ingredient.of(Items.RED_MUSHROOM_BLOCK, Items.BROWN_MUSHROOM_BLOCK), Ingredient.of(Items.RED_MUSHROOM, Items.BROWN_MUSHROOM)), Util.make(new ItemStack(BMBlocks.FUNGAL_CHARGE.item().get()), s -> s.setCount(8)), 10, 0.5);
         soulForge(output, "veinmine_charge", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:cobblestone"))), Ingredient.of(Items.CHARCOAL), Ingredient.of(Items.SANDSTONE), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:sand")))), Util.make(new ItemStack(BMBlocks.VEINMINE_CHARGE.item().get()), s -> s.setCount(8)), 10, 0.5);
+
+        // ===== ARC tool items (13 ported from 1.20.1: the durability-gated catalysts placed in the
+        // Alchemical Reaction Chamber's tool slot). BMTags.Items.REVERTER/EXPLOSIVES/RESONATOR/
+        // CUTTING_FLUIDS/HYDRATION/ARC_SMELTING were all empty until BMItems gained these
+        // registrations, meaning every ARC recipe elsewhere in this file that gates on one of those
+        // tags was unreachable - see BMItemTagProvider for the tag population.
+        //
+        // Tartaric Forge (1.20.1's BlockSoulForge/TileSoulForge - "Tartaric Forge" is just its
+        // in-game name) doesn't exist as a block on this branch; only the differently-recipe-typed
+        // Hellfire Forge (soulForge() below) does. So sanguinereverter/resonator/
+        // primitive_crystalline_resonator/hellforged_resonator (all originally Tartaric Forge
+        // recipes) are mirrored onto soulForge() instead, the same substitution already used above
+        // for sentient_armour_gem. Their original "defaultcrystal"/"tauoil"/hellforged-ingot
+        // ingredients don't exist on this branch either - defaultcrystal is a Demon Crystal drop
+        // (out of scope, see common/block/Demon*.java) and tauoil/the hellforged ingot were never
+        // ported - so those slots use a vanilla Quartz stand-in for "raw crystal", Corrupted (Tiny)
+        // Dust for "tau oil", and BMItems.HELLFORGED_PARTS for the hellforged ingot.
+        //
+        // explosivepowder/*cuttingfluid were originally Alchemy Table recipes, and the Alchemy Table
+        // does exist on this branch, so those are ported via alchemyTable() with the same
+        // Corrupted (Tiny) Dust substitution for the not-yet-ported "tau"/plant-oil reagents.
+        //
+        // lavacrystal/furnacecell_primitive/primitive_hydration_cell were originally plain
+        // crafting-table recipes and are ported as-is (see the updated skip comment further above).
+        // lavacrystal loses 1.20.1's bindable/fire-starting/furnace-fuel behaviour (ItemLavaCrystal)
+        // since there's no item-side Binding+Soul-Network-syphon implementation on this branch yet -
+        // see BMItems.LAVA_CRYSTAL for details; it never implemented 1.20.1's IARCTool anyway, so
+        // this doesn't change its ARC behaviour either way.
+        //
+        // Both furnace-tier items go only into BMTags.Items.ARC_SMELTING, not ARC_BLASTING/
+        // ARC_SMOKING - see BMItems.PRIMITIVE_FURNACE_CELL for why. =====
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMItems.LAVA_CRYSTAL.get())
+                .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:glass")))
+                .define('b', Items.LAVA_BUCKET)
+                .define('c', bloodOrb(0))
+                .define('d', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:obsidian")))
+                .define('e', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/diamond")))
+                .pattern("aba")
+                .pattern("bcb")
+                .pattern("ded")
+                .unlockedBy("has_weak_orb", has(BMItems.ORB_WEAK.get()))
+                .save(output, BloodMagic.rl("lava_crystal"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMItems.PRIMITIVE_FURNACE_CELL.get())
+                .define('c', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:cobblestone")))
+                .define('f', Items.COAL_BLOCK)
+                .define('s', BMItems.SLATE_BLANK.get())
+                .define('o', bloodOrb(2))
+                .pattern("csc")
+                .pattern("cfc")
+                .pattern("coc")
+                .unlockedBy("has_magician_orb", has(BMItems.ORB_MAGICIAN.get()))
+                .save(output, BloodMagic.rl("primitive_furnace_cell"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMItems.PRIMITIVE_HYDRATION_CELL.get())
+                .define('B', Items.WATER_BUCKET)
+                .define('c', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:cobblestone")))
+                .define('o', bloodOrb(2))
+                .define('s', BMItems.SLATE_BLANK.get())
+                .pattern("csc")
+                .pattern("cBc")
+                .pattern("coc")
+                .unlockedBy("has_magician_orb", has(BMItems.ORB_MAGICIAN.get()))
+                .save(output, BloodMagic.rl("primitive_hydration_cell"));
+
+        alchemyTable(output, "explosive_powder", List.of(Ingredient.of(Items.GUNPOWDER), Ingredient.of(Items.GUNPOWDER), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/coal")))), new ItemStack(BMItems.EXPLOSIVE_POWDER.get()), 1, 500, 200);
+        alchemyTable(output, "primitive_explosive_cell", List.of(Ingredient.of(Items.GUNPOWDER), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), Ingredient.of(BMItems.CORRUPTED_DUST_TINY.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/coal")))), new ItemStack(BMItems.PRIMITIVE_EXPLOSIVE_CELL.get()), 3, 1000, 200);
+        alchemyTable(output, "hellforged_explosive_cell", List.of(Ingredient.of(Items.GUNPOWDER), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/sulfur"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/quartz"))), Ingredient.of(BMItems.CORRUPTED_DUST.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/coal")))), new ItemStack(BMItems.HELLFORGED_EXPLOSIVE_CELL.get()), 4, 4000, 200);
+
+        alchemyTable(output, "basic_cutting_fluid", List.of(Ingredient.of(Items.SLIME_BALL), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), Ingredient.of(Items.GUNPOWDER), Ingredient.of(Items.SUGAR), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/coal"))), Ingredient.of(Items.WATER_BUCKET)), new ItemStack(BMItems.BASIC_CUTTING_FLUID.get()), 1, 1000, 200);
+        alchemyTable(output, "intermediate_cutting_fluid", List.of(Ingredient.of(Items.SLIME_BALL), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/glowstone"))), Ingredient.of(Items.GUNPOWDER), Ingredient.of(Items.SUGAR), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/sulfur"))), Ingredient.of(Items.WATER_BUCKET)), new ItemStack(BMItems.INTERMEDIATE_CUTTING_FLUID.get()), 3, 2000, 200);
+        alchemyTable(output, "advanced_cutting_fluid", List.of(Ingredient.of(Items.SLIME_BALL), Ingredient.of(BMItems.CORRUPTED_DUST.get()), Ingredient.of(Items.GLOW_BERRIES), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/saltpeter"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/sulfur"))), Ingredient.of(Items.WATER_BUCKET)), new ItemStack(BMItems.ADVANCED_CUTTING_FLUID.get()), 4, 4000, 200);
+
+        soulForge(output, "sanguine_reverter", List.of(Ingredient.of(Items.SHEARS), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stone"))), Ingredient.of(BMItems.SLATE_IMBUED.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/iron")))), new ItemStack(BMItems.SANGUINE_REVERTER.get()), 50, 10);
+        soulForge(output, "resonator", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/copper"))), Ingredient.of(Items.QUARTZ)), new ItemStack(BMItems.RESONATOR.get()), 50, 10);
+        soulForge(output, "primitive_crystalline_resonator", List.of(Ingredient.of(Items.AMETHYST_SHARD), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots"))), Ingredient.of(Items.QUARTZ), Ingredient.of(BMItems.CORRUPTED_DUST_TINY.get())), new ItemStack(BMItems.PRIMITIVE_CRYSTALLINE_RESONATOR.get()), 150, 40);
+        soulForge(output, "hellforged_resonator", List.of(Ingredient.of(Items.AMETHYST_SHARD), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/gold"))), Ingredient.of(Items.QUARTZ), Ingredient.of(BMItems.HELLFORGED_PARTS.get())), new ItemStack(BMItems.HELLFORGED_RESONATOR.get()), 300, 80);
     }
 
     private static Ingredient bloodOrb(int minTier) {

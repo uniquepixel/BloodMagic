@@ -1,0 +1,24 @@
+{
+  "type": "bloodmagic:alchemy_table",
+  "duration": 200,
+  "essence": 1000,
+  "inputs": [
+    {
+      "item": "minecraft:gunpowder"
+    },
+    {
+      "tag": "c:dusts/redstone"
+    },
+    {
+      "item": "bloodmagic:corrupted_tinydust"
+    },
+    {
+      "tag": "c:dusts/coal"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "bloodmagic:primitive_explosive_cell"
+  },
+  "tier": 3
+}

@@ -1,0 +1,20 @@
+{
+  "type": "bloodmagic:soul_forge",
+  "drain": 10.0,
+  "inputs": [
+    {
+      "tag": "c:stone"
+    },
+    {
+      "tag": "c:ingots/copper"
+    },
+    {
+      "item": "minecraft:quartz"
+    }
+  ],
+  "minDrain": 50.0,
+  "output": {
+    "count": 1,
+    "id": "bloodmagic:resonator"
+  }
+}

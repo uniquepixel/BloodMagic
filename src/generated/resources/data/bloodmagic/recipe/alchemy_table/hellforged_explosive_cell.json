@@ -1,0 +1,30 @@
+{
+  "type": "bloodmagic:alchemy_table",
+  "duration": 200,
+  "essence": 4000,
+  "inputs": [
+    {
+      "item": "minecraft:gunpowder"
+    },
+    {
+      "tag": "c:dusts/sulfur"
+    },
+    {
+      "tag": "c:dusts/redstone"
+    },
+    {
+      "tag": "c:gems/quartz"
+    },
+    {
+      "item": "bloodmagic:corrupted_dust"
+    },
+    {
+      "tag": "c:dusts/coal"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "bloodmagic:hellforged_explosive_cell"
+  },
+  "tier": 4
+}

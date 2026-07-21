@@ -1,0 +1,21 @@
+{
+  "type": "bloodmagic:alchemy_table",
+  "duration": 200,
+  "essence": 500,
+  "inputs": [
+    {
+      "item": "minecraft:gunpowder"
+    },
+    {
+      "item": "minecraft:gunpowder"
+    },
+    {
+      "tag": "c:dusts/coal"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "bloodmagic:explosivepowder"
+  },
+  "tier": 1
+}

@@ -147,6 +147,21 @@ public class BMLanguageProvider extends LanguageProvider {
         add(BMItems.CORRUPTED_DUST.get(), "Corrupted Dust");
         add(BMItems.CORRUPTED_DUST_TINY.get(), "Tiny Corrupted Dust");
 
+        //ARC tool items
+        add(BMItems.SANGUINE_REVERTER.get(), "Sanguine Reverter");
+        add(BMItems.RESONATOR.get(), "Crystal Resonator");
+        add(BMItems.PRIMITIVE_CRYSTALLINE_RESONATOR.get(), "Reinforced Resonator");
+        add(BMItems.HELLFORGED_RESONATOR.get(), "Hellforged Resonator");
+        add(BMItems.EXPLOSIVE_POWDER.get(), "Explosive Powder");
+        add(BMItems.PRIMITIVE_EXPLOSIVE_CELL.get(), "Reinforced Explosive Cell");
+        add(BMItems.HELLFORGED_EXPLOSIVE_CELL.get(), "Hellforged Explosive Cell");
+        add(BMItems.BASIC_CUTTING_FLUID.get(), "Basic Cutting Fluid");
+        add(BMItems.INTERMEDIATE_CUTTING_FLUID.get(), "Intermediate Cutting Fluid");
+        add(BMItems.ADVANCED_CUTTING_FLUID.get(), "Advanced Cutting Fluid");
+        add(BMItems.PRIMITIVE_HYDRATION_CELL.get(), "Primitive Hydration Cell");
+        add(BMItems.PRIMITIVE_FURNACE_CELL.get(), "Primitive Fuel Cell");
+        add(BMItems.LAVA_CRYSTAL.get(), "Lava Crystal");
+
         add(BMBlocks.CRYSTAL_CLUSTER, "Crystal Cluster");
         add(BMBlocks.CRYSTAL_CLUSTER_BRICK, "Crystal Cluster Brick");
 

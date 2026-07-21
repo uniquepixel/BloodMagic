@@ -1,0 +1,23 @@
+{
+  "type": "bloodmagic:soul_forge",
+  "drain": 10.0,
+  "inputs": [
+    {
+      "item": "minecraft:shears"
+    },
+    {
+      "tag": "c:stone"
+    },
+    {
+      "item": "bloodmagic:slate_imbued"
+    },
+    {
+      "tag": "c:ingots/iron"
+    }
+  ],
+  "minDrain": 50.0,
+  "output": {
+    "count": 1,
+    "id": "bloodmagic:sanguinereverter"
+  }
+}

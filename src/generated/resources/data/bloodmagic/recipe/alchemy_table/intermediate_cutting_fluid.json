@@ -1,0 +1,30 @@
+{
+  "type": "bloodmagic:alchemy_table",
+  "duration": 200,
+  "essence": 2000,
+  "inputs": [
+    {
+      "item": "minecraft:slime_ball"
+    },
+    {
+      "tag": "c:dusts/glowstone"
+    },
+    {
+      "item": "minecraft:gunpowder"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "tag": "c:dusts/sulfur"
+    },
+    {
+      "item": "minecraft:water_bucket"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "bloodmagic:intermediatecuttingfluid"
+  },
+  "tier": 3
+}

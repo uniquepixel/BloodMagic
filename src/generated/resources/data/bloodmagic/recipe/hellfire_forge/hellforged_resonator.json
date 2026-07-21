@@ -1,0 +1,23 @@
+{
+  "type": "bloodmagic:soul_forge",
+  "drain": 80.0,
+  "inputs": [
+    {
+      "item": "minecraft:amethyst_shard"
+    },
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "item": "minecraft:quartz"
+    },
+    {
+      "item": "bloodmagic:hellforgedparts"
+    }
+  ],
+  "minDrain": 300.0,
+  "output": {
+    "count": 1,
+    "id": "bloodmagic:hellforged_resonator"
+  }
+}

@@ -35,14 +35,20 @@ public class BMItemTagProvider extends ItemTagsProvider {
         tag(BMTags.Items.LIVING_UPGRADE_SET)
                 .addTag(BMTags.Items.LIVING_SET);
 
-        tag(BMTags.Items.REVERTER);
-        tag(BMTags.Items.EXPLOSIVES);
-        tag(BMTags.Items.RESONATOR);
-        tag(BMTags.Items.CUTTING_FLUIDS);
-        tag(BMTags.Items.HYDRATION);
+        tag(BMTags.Items.REVERTER)
+                .add(BMItems.SANGUINE_REVERTER.get());
+        tag(BMTags.Items.EXPLOSIVES)
+                .add(BMItems.EXPLOSIVE_POWDER.get(), BMItems.PRIMITIVE_EXPLOSIVE_CELL.get(), BMItems.HELLFORGED_EXPLOSIVE_CELL.get());
+        tag(BMTags.Items.RESONATOR)
+                .add(BMItems.RESONATOR.get(), BMItems.PRIMITIVE_CRYSTALLINE_RESONATOR.get(), BMItems.HELLFORGED_RESONATOR.get());
+        tag(BMTags.Items.CUTTING_FLUIDS)
+                .add(BMItems.BASIC_CUTTING_FLUID.get(), BMItems.INTERMEDIATE_CUTTING_FLUID.get(), BMItems.ADVANCED_CUTTING_FLUID.get());
+        tag(BMTags.Items.HYDRATION)
+                .add(BMItems.PRIMITIVE_HYDRATION_CELL.get());
 
         tag(BMTags.Items.ARC_BLASTING);
-        tag(BMTags.Items.ARC_SMELTING);
+        tag(BMTags.Items.ARC_SMELTING)
+                .add(BMItems.PRIMITIVE_FURNACE_CELL.get(), BMItems.LAVA_CRYSTAL.get());
         tag(BMTags.Items.ARC_SMOKING);
 
         tag(BMTags.Items.ARC_FURNACE)

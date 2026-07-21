@@ -93,6 +93,7 @@ public class BloodMagic {
         NeoForge.EVENT_BUS.addListener(AnointmentEventHandler::onEntityJoin);
         NeoForge.EVENT_BUS.addListener(BMPotionEventHandler::onIncomingDamage);
         NeoForge.EVENT_BUS.addListener(BMPotionEventHandler::onLivingDrops);
+        NeoForge.EVENT_BUS.addListener(BMPotionEventHandler::onPlayerTick);
         NeoForge.EVENT_BUS.addListener(SentientArmorEventHandler::onIncomingDamage);
         NeoForge.EVENT_BUS.addListener(SentientArmorEventHandler::onDamagePre);
 

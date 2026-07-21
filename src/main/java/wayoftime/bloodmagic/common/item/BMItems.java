@@ -7,6 +7,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import wayoftime.bloodmagic.BloodMagic;
 import wayoftime.bloodmagic.common.datacomponent.BMDataComponents;
+import wayoftime.bloodmagic.common.datacomponent.EnumWillType;
 import wayoftime.bloodmagic.common.item.potion.AlchemyFlaskItem;
 import wayoftime.bloodmagic.common.item.potion.AlchemyFlaskLingeringItem;
 import wayoftime.bloodmagic.common.item.potion.AlchemyFlaskThrowableItem;
@@ -75,6 +76,42 @@ public class BMItems {
     public static final DeferredHolder<Item, Item> DEMONITE_GRAVEL = BASIC_ITEMS.register("demonitegravel", () -> new Item(new Item.Properties()));
     public static final DeferredHolder<Item, Item> CORRUPTED_DUST = BASIC_ITEMS.register("corrupted_dust", () -> new Item(new Item.Properties()));
     public static final DeferredHolder<Item, Item> CORRUPTED_DUST_TINY = BASIC_ITEMS.register("corrupted_tinydust", () -> new Item(new Item.Properties()));
+
+    // ARC tool items: durability-gated catalysts placed in the Alchemical Reaction Chamber's tool
+    // slot. Ported from 1.20.1's ItemARCToolBase(maxDamage, craftingMultiplier[, additionalOutputChance]
+    // [, type]) using the old item ids, tiers and stats as-is - ARC_SPEED/ARC_CHANCE default to 1 via
+    // ARCTile's getOrDefault when omitted below, and DEMON_WILL_TYPE defaults to EnumWillType.DEFAULT,
+    // matching the old constructor's own defaults. See BMItemTagProvider for the tag population that
+    // makes these usable, and BMRecipeProvider for how each one is now obtainable.
+    public static final DeferredHolder<Item, Item> SANGUINE_REVERTER = BASIC_ITEMS.register("sanguinereverter", () -> new Item(new Item.Properties().stacksTo(1).durability(32).component(BMDataComponents.ARC_SPEED, 2D).component(BMDataComponents.DEMON_WILL_TYPE, EnumWillType.STEADFAST)));
+
+    public static final DeferredHolder<Item, Item> EXPLOSIVE_POWDER = BASIC_ITEMS.register("explosivepowder", () -> new Item(new Item.Properties().stacksTo(1).durability(64).component(BMDataComponents.DEMON_WILL_TYPE, EnumWillType.DESTRUCTIVE)));
+    public static final DeferredHolder<Item, Item> PRIMITIVE_EXPLOSIVE_CELL = BASIC_ITEMS.register("primitive_explosive_cell", () -> new Item(new Item.Properties().stacksTo(1).durability(256).component(BMDataComponents.ARC_SPEED, 1.5D).component(BMDataComponents.DEMON_WILL_TYPE, EnumWillType.DESTRUCTIVE)));
+    public static final DeferredHolder<Item, Item> HELLFORGED_EXPLOSIVE_CELL = BASIC_ITEMS.register("hellforged_explosive_cell", () -> new Item(new Item.Properties().stacksTo(1).durability(1024).component(BMDataComponents.ARC_SPEED, 2D).component(BMDataComponents.DEMON_WILL_TYPE, EnumWillType.DESTRUCTIVE)));
+
+    public static final DeferredHolder<Item, Item> RESONATOR = BASIC_ITEMS.register("resonator", () -> new Item(new Item.Properties().stacksTo(1).durability(64).component(BMDataComponents.DEMON_WILL_TYPE, EnumWillType.VENGEFUL)));
+    public static final DeferredHolder<Item, Item> PRIMITIVE_CRYSTALLINE_RESONATOR = BASIC_ITEMS.register("primitive_crystalline_resonator", () -> new Item(new Item.Properties().stacksTo(1).durability(256).component(BMDataComponents.ARC_SPEED, 1.5D).component(BMDataComponents.DEMON_WILL_TYPE, EnumWillType.VENGEFUL)));
+    public static final DeferredHolder<Item, Item> HELLFORGED_RESONATOR = BASIC_ITEMS.register("hellforged_resonator", () -> new Item(new Item.Properties().stacksTo(1).durability(1024).component(BMDataComponents.ARC_SPEED, 2D).component(BMDataComponents.ARC_CHANCE, 2D).component(BMDataComponents.DEMON_WILL_TYPE, EnumWillType.VENGEFUL)));
+
+    public static final DeferredHolder<Item, Item> BASIC_CUTTING_FLUID = BASIC_ITEMS.register("basiccuttingfluid", () -> new Item(new Item.Properties().stacksTo(1).durability(64).component(BMDataComponents.DEMON_WILL_TYPE, EnumWillType.CORROSIVE)));
+    public static final DeferredHolder<Item, Item> INTERMEDIATE_CUTTING_FLUID = BASIC_ITEMS.register("intermediatecuttingfluid", () -> new Item(new Item.Properties().stacksTo(1).durability(256).component(BMDataComponents.ARC_SPEED, 1.5D).component(BMDataComponents.DEMON_WILL_TYPE, EnumWillType.CORROSIVE)));
+    public static final DeferredHolder<Item, Item> ADVANCED_CUTTING_FLUID = BASIC_ITEMS.register("advancedcuttingfluid", () -> new Item(new Item.Properties().stacksTo(1).durability(1024).component(BMDataComponents.ARC_SPEED, 2D).component(BMDataComponents.ARC_CHANCE, 2D).component(BMDataComponents.DEMON_WILL_TYPE, EnumWillType.CORROSIVE)));
+
+    public static final DeferredHolder<Item, Item> PRIMITIVE_HYDRATION_CELL = BASIC_ITEMS.register("primitive_hydration_cell", () -> new Item(new Item.Properties().stacksTo(1).durability(128).component(BMDataComponents.ARC_SPEED, 1.5D)));
+
+    // Furnace-tier ARC tools go only into BMTags.Items.ARC_SMELTING (see BMItemTagProvider), not
+    // ARC_BLASTING/ARC_SMOKING: 1.20.1's TileAlchemicalReactionChamber only ever queried
+    // RecipeType.SMELTING for ARC_TOOL_FURNACE items - blasting/smoking are new subdivisions on this
+    // branch with no historical item ever wired to them, so smelting-only preserves 1.20.1 behaviour.
+    public static final DeferredHolder<Item, Item> PRIMITIVE_FURNACE_CELL = BASIC_ITEMS.register("furnacecell_primitive", () -> new Item(new Item.Properties().stacksTo(1).durability(128).component(BMDataComponents.ARC_SPEED, 3D)));
+    // 1.20.1's ItemLavaCrystal was a bindable item (IBindable) that syphoned LP from its bound
+    // player's Soul Network to place fire blocks on right-click and to fuel furnaces indefinitely -
+    // it never implemented IARCTool, so it never got a speed/chance bonus in the ARC either way, it
+    // was just a valid tag member. This branch doesn't have an item-side binding+syphon
+    // implementation to port that onto yet (BloodOrbItem/SigilItem only use BMDataComponents.BINDING
+    // for ownership display, not for gameplay syphoning), so this is simplified to a plain
+    // durability-gated ARC tool like its siblings above; ARC behaviour is unaffected either way.
+    public static final DeferredHolder<Item, Item> LAVA_CRYSTAL = BASIC_ITEMS.register("lavacrystal", () -> new Item(new Item.Properties().stacksTo(1).durability(256)));
 
     public static final DeferredHolder<Item, SacrificialDaggerItem> SACRIFICIAL_DAGGER = ITEMS.register("sacrificial_dagger", SacrificialDaggerItem::new);
     public static final DeferredHolder<Item, ThrowingDaggerItem> THROWING_DAGGER = ITEMS.register("throwing_dagger", ThrowingDaggerItem::new);

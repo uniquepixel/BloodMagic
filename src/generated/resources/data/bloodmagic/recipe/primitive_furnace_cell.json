@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "c": {
+      "tag": "c:cobblestone"
+    },
+    "f": {
+      "item": "minecraft:coal_block"
+    },
+    "o": {
+      "type": "bloodmagic:bloodorb",
+      "orb_tier": 2
+    },
+    "s": {
+      "item": "bloodmagic:slate_blank"
+    }
+  },
+  "pattern": [
+    "csc",
+    "cfc",
+    "coc"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bloodmagic:furnacecell_primitive"
+  }
+}
