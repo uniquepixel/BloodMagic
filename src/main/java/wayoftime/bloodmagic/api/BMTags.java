@@ -4,6 +4,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import wayoftime.bloodmagic.BloodMagic;
@@ -72,9 +73,21 @@ public class BMTags {
         // charge/tool touches.
         public static final TagKey<Block> MUNDANE_BLOCK = tag(bm("mundane_block"));
 
+        // Teleposer block-swap guard, ported from 1.20.1's BloodMagicTags.TELEPOSE_BLOCK_BLACKLIST -
+        // blocks in this tag are never swapped by the Teleposer (see TeleposerTile), matching the
+        // original's "don't teleposition portals/doors/beds/pistons/bedrock/the Alchemy Table" list.
+        public static final TagKey<Block> TELEPOSE_BLOCK_BLACKLIST = tag(bm("telepose_blacklist"));
+
         private static TagKey<Block> tag(ResourceLocation id) {
             return TagKey.create(Registries.BLOCK, id);
         }
+    }
+
+    public static class EntityTypes {
+        // Teleposer entity-swap guard, ported from 1.20.1's BloodMagicTags.TELEPOSE_BLACKLIST - empty
+        // by default there too (a hook point for datapacks to exclude specific entity types from
+        // Teleposer swaps), so no entries are added by this branch's datagen either.
+        public static final TagKey<EntityType<?>> TELEPOSE_BLACKLIST = TagKey.create(Registries.ENTITY_TYPE, bm("telepose_blacklist"));
     }
 
     public static class DamageTypes {

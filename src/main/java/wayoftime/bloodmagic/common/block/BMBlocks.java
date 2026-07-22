@@ -61,6 +61,19 @@ public class BMBlocks {
 
     public static final BlockWithItemHolder<TeleposerBlock, BlockItem> TELEPOSER = BLOCK_REG.register("teleposer", TeleposerBlock::new);
 
+    // Demon crop blocks, ported from 1.20.1's BlockNetherrackSoil/BlockGrowingDoubt/BlockTau (see
+    // HarvestHandlerCrop's javadoc for why these were missing). NETHER_SOIL gets a BlockItem (via
+    // BLOCK_REG, matching 1.20.1's separately-registered "nether_soil" item); the 3 crop blocks
+    // don't (matching 1.20.1: they're only ever placed by planting their seed item on eligible
+    // soil, same as vanilla wheat/Blocks.WHEAT has no BlockItem of its own).
+    private static final BlockBehaviour.Properties nether_soil_properties = BlockBehaviour.Properties.of().strength(0.4F, 0.4F).sound(SoundType.NETHERRACK).randomTicks();
+    public static final BlockWithItemHolder<NetherSoilBlock, BlockItem> NETHER_SOIL = BLOCK_REG.register("nether_soil", () -> new NetherSoilBlock(nether_soil_properties));
+
+    private static final BlockBehaviour.Properties demon_crop_properties = BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().sound(SoundType.CROP);
+    public static final DeferredHolder<Block, GrowingDoubtBlock> GROWING_DOUBT = BLOCKS.register("creeping_doubt", () -> new GrowingDoubtBlock(demon_crop_properties));
+    public static final DeferredHolder<Block, TauBlock> WEAK_TAU = BLOCKS.register("weak_tau", () -> new TauBlock(demon_crop_properties, false));
+    public static final DeferredHolder<Block, TauBlock> STRONG_TAU = BLOCKS.register("strong_tau", () -> new TauBlock(demon_crop_properties, true));
+
     public static final BlockWithItemHolder<IncenseAltarBlock, BlockItem> INCENSE_ALTAR = BLOCK_REG.register("incense_altar", IncenseAltarBlock::new);
 
     public static final BlockWithItemHolder<ItemRouterBlock, BlockItem> ITEM_ROUTER = BLOCK_REG.register("item_router", ItemRouterBlock::new);

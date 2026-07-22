@@ -12,18 +12,22 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 
 public class AlchemyTableSerializer implements RecipeSerializer<AlchemyTableRecipe> {
 
+    // Field order here MUST match AlchemyTableRecipe's record constructor order
+    // (inputs, tier, essence, duration, output) - RecordCodecBuilder#apply/StreamCodec#composite
+    // pass decoded values to the constructor positionally, not by field name, so listing "essence"
+    // before "tier" (as JSON key order might suggest) silently swaps the two at runtime.
     public static final MapCodec<AlchemyTableRecipe> CODEC = RecordCodecBuilder.mapCodec(builder -> builder.group(
             Ingredient.CODEC_NONEMPTY.listOf().fieldOf("inputs").forGetter(AlchemyTableRecipe::inputs),
-            Codec.INT.fieldOf("essence").forGetter(AlchemyTableRecipe::essence),
             Codec.INT.fieldOf("tier").forGetter(AlchemyTableRecipe::tier),
+            Codec.INT.fieldOf("essence").forGetter(AlchemyTableRecipe::essence),
             Codec.INT.fieldOf("duration").forGetter(AlchemyTableRecipe::duration),
             ItemStack.CODEC.fieldOf("output").forGetter(AlchemyTableRecipe::output)
     ).apply(builder, AlchemyTableRecipe::new));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, AlchemyTableRecipe> STREAM_CODEC = StreamCodec.composite(
             Ingredient.CONTENTS_STREAM_CODEC.apply(ByteBufCodecs.list()), AlchemyTableRecipe::inputs,
-            ByteBufCodecs.INT, AlchemyTableRecipe::essence,
             ByteBufCodecs.INT, AlchemyTableRecipe::tier,
+            ByteBufCodecs.INT, AlchemyTableRecipe::essence,
             ByteBufCodecs.INT, AlchemyTableRecipe::duration,
             ItemStack.STREAM_CODEC, AlchemyTableRecipe::output,
             AlchemyTableRecipe::new

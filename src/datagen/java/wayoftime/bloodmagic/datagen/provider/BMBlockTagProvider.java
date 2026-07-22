@@ -129,5 +129,19 @@ public class BMBlockTagProvider extends BlockTagsProvider {
                 .add(Blocks.SAND, Blocks.RED_SAND)
                 .add(Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.PODZOL, Blocks.ROOTED_DIRT, Blocks.GRASS_BLOCK, Blocks.MYCELIUM)
                 .add(Blocks.GRAVEL, Blocks.NETHERRACK);
+
+        // Teleposer block-swap guard, ported from 1.20.1's data/bloodmagic/tags/blocks/
+        // telepose_blacklist.json (#minecraft:portals/doors/beds expanded to their individual
+        // blocks, and #forge:immovable/#forge:relocation_not_supported omitted - both "required":
+        // false in 1.20.1 - since none of these vanilla/cross-mod tags are referenceable from local
+        // datagen validation here; see the MUNDANE_BLOCK comment above for the same constraint).
+        this.tag(BMTags.Blocks.TELEPOSE_BLOCK_BLACKLIST)
+                .add(Blocks.BEDROCK, Blocks.END_PORTAL_FRAME, Blocks.PISTON_HEAD, Blocks.MOVING_PISTON)
+                .add(BMBlocks.ALCHEMY_TABLE.block().get())
+                .add(Blocks.NETHER_PORTAL, Blocks.END_PORTAL, Blocks.END_GATEWAY)
+                .add(Blocks.OAK_DOOR, Blocks.SPRUCE_DOOR, Blocks.BIRCH_DOOR, Blocks.JUNGLE_DOOR, Blocks.ACACIA_DOOR, Blocks.DARK_OAK_DOOR)
+                .add(Blocks.MANGROVE_DOOR, Blocks.CHERRY_DOOR, Blocks.BAMBOO_DOOR, Blocks.CRIMSON_DOOR, Blocks.WARPED_DOOR, Blocks.IRON_DOOR)
+                .add(Blocks.WHITE_BED, Blocks.ORANGE_BED, Blocks.MAGENTA_BED, Blocks.LIGHT_BLUE_BED, Blocks.YELLOW_BED, Blocks.LIME_BED, Blocks.PINK_BED, Blocks.GRAY_BED)
+                .add(Blocks.LIGHT_GRAY_BED, Blocks.CYAN_BED, Blocks.PURPLE_BED, Blocks.BLUE_BED, Blocks.BROWN_BED, Blocks.GREEN_BED, Blocks.RED_BED, Blocks.BLACK_BED);
     }
 }

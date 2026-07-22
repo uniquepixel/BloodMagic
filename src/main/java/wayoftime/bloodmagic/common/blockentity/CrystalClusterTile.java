@@ -32,6 +32,17 @@ public class CrystalClusterTile extends BaseTile {
     private int age = 0;
     private double progress = 0;
 
+    // Will Catalyst buffer (see wayoftime.bloodmagic.common.item.CrystalCatalystItem), ported from
+    // 1.20.1's TileDemonCrystal#applyCatalyst/injectedWill/speedModifier. Adapted to this tile's
+    // simpler growth model (a direct will-drained-per-tick -> progress accumulator, rather than
+    // 1.20.1's separate conversion-rate/growth-per-second formula): while injectedWill > 0, the
+    // Will drained each tick is multiplied by speedMultiplier before being added to progress, and
+    // the buffer is spent down by that same bonus amount - so the boost lasts roughly
+    // injectedWill / ((speedMultiplier - 1) * DRAIN_PER_TICK) ticks before reverting to normal
+    // speed, the same "temporary boost that depletes as it's used" shape as the original.
+    private double injectedWill = 0;
+    private double speedMultiplier = 1;
+
     public CrystalClusterTile(BlockPos pos, BlockState state) {
         super(BMTiles.CRYSTAL_CLUSTER_TYPE.get(), pos, state);
     }
@@ -46,13 +57,40 @@ public class CrystalClusterTile extends BaseTile {
             return;
         }
 
-        tile.progress += drained;
+        double gained = drained;
+        if (tile.injectedWill > 0 && tile.speedMultiplier > 1) {
+            double bonus = drained * (tile.speedMultiplier - 1);
+            gained += bonus;
+            tile.injectedWill = Math.max(0, tile.injectedWill - bonus);
+            if (tile.injectedWill <= 0) {
+                tile.speedMultiplier = 1;
+            }
+        }
+
+        tile.progress += gained;
         if (tile.progress >= WILL_PER_GROWTH_STAGE) {
             tile.progress = 0;
             tile.age++;
             tile.setChanged();
             level.sendBlockUpdated(pos, state, state, 3);
         }
+    }
+
+    /**
+     * Ported from 1.20.1's {@code ItemCrystalCatalyst#applyCatalyst}/{@code TileDemonCrystal#applyCatalyst}:
+     * only applies if the catalyst's Will type matches this cluster's, and the buffer isn't already
+     * full. On success, raises {@link #speedMultiplier} to at least {@code speedMultiplier} and adds
+     * {@code addedWill} to the buffer (capped at {@code maxWill}).
+     */
+    public boolean applyCatalyst(EnumWillType catalystType, double addedWill, double speedMultiplier, double maxWill) {
+        if (catalystType != type || injectedWill >= maxWill) {
+            return false;
+        }
+
+        this.speedMultiplier = Math.max(this.speedMultiplier, speedMultiplier);
+        this.injectedWill = Math.min(maxWill, this.injectedWill + addedWill);
+        setChanged();
+        return true;
     }
 
     public void onPlacedByWorld() {
@@ -115,6 +153,8 @@ public class CrystalClusterTile extends BaseTile {
         }
         age = tag.getInt("age");
         progress = tag.getDouble("progress");
+        injectedWill = tag.getDouble("injectedWill");
+        speedMultiplier = tag.contains("speedMultiplier") ? tag.getDouble("speedMultiplier") : 1;
     }
 
     @Override
@@ -123,5 +163,7 @@ public class CrystalClusterTile extends BaseTile {
         tag.putString("crystalType", type.name());
         tag.putInt("age", age);
         tag.putDouble("progress", progress);
+        tag.putDouble("injectedWill", injectedWill);
+        tag.putDouble("speedMultiplier", speedMultiplier);
     }
 }

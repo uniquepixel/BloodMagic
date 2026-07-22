@@ -22,8 +22,12 @@ import java.util.List;
  * <p>
  * The original handler also reflectively registered crops from HarvestCraft, Actually Additions,
  * Extra Utilities 2, Roots, and Mystical Agriculture, plus Blood Magic's own creeping-doubt/tau crop
- * blocks. None of those mods are dependencies of this branch, and the Blood Magic crop blocks haven't
- * been ported here yet, so only the four vanilla crops are registered.
+ * blocks. None of those mods are dependencies of this branch, so their crops are correctly out of
+ * scope. Blood Magic's own crop blocks ({@code GrowingDoubtBlock}/{@code TauBlock}) are ported now -
+ * since {@link #test}/{@link #harvest} above key off {@link CropBlock} generically (any max-age
+ * CropBlock, not a hardcoded per-block list), this class needed no changes at all to pick them up
+ * once registered in {@code BMBlocks} - the "only the four vanilla crops are registered" gap this
+ * javadoc used to describe was purely about the blocks not existing yet, not about this handler.
  */
 public class HarvestHandlerCrop implements IHarvestHandler {
 	private static final ItemStack MOCK_HOE = new ItemStack(Items.DIAMOND_HOE);

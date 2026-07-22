@@ -28,12 +28,16 @@ import wayoftime.bloodmagic.common.block.AlchemyTableBlock;
 import wayoftime.bloodmagic.common.block.BMBlocks;
 import wayoftime.bloodmagic.common.datacomponent.BMDataComponents;
 import wayoftime.bloodmagic.common.datacomponent.SoulNetwork;
+import wayoftime.bloodmagic.common.datacomponent.FlaskEffects;
 import wayoftime.bloodmagic.common.datamap.BMDataMaps;
 import wayoftime.bloodmagic.common.datamap.BloodOrb;
+import wayoftime.bloodmagic.common.item.potion.AlchemyFlaskItem;
 import wayoftime.bloodmagic.common.menu.AlchemyTableMenu;
 import wayoftime.bloodmagic.common.recipe.BMRecipes;
 import wayoftime.bloodmagic.common.recipe.alchemy_table.AlchemyTableInput;
 import wayoftime.bloodmagic.common.recipe.alchemy_table.AlchemyTableRecipe;
+import wayoftime.bloodmagic.common.recipe.flask.FlaskRecipe;
+import wayoftime.bloodmagic.common.recipe.flask.FlaskRecipeInput;
 import wayoftime.bloodmagic.util.TablePart;
 
 public class AlchemyTableTile extends BaseTile implements MenuProvider {
@@ -123,70 +127,162 @@ public class AlchemyTableTile extends BaseTile implements MenuProvider {
     }
 
     private RecipeManager.CachedCheck<AlchemyTableInput, AlchemyTableRecipe> recipeCheck = RecipeManager.createCheck(BMRecipes.ALCHEMY_TABLE_TYPE.get());
+
     public static void tick(Level level, BlockPos pos, BlockState state, AlchemyTableTile table) {
         if (table.PART == TablePart.RIGHT) {
             return;
         }
+
         AlchemyTableInput input = table.getInput();
         RecipeHolder<AlchemyTableRecipe> recipe = table.recipeCheck.getRecipeFor(input, level).orElse(null);
-        if (recipe == null) {
-            table.work = 0;
-            return;
-        }
-        ItemStack orbStack = table.inv.getStackInSlot(ORB_SLOT);
-        Binding binding = orbStack.getOrDefault(BMDataComponents.BINDING, Binding.EMPTY);
-        BloodOrb orb = orbStack.getItemHolder().getData(BMDataMaps.BLOOD_ORB_STATS);
-        if (orb.tier() < recipe.value().tier()) { // cannot be null, if it is it cant be placed in orb slot in the first place
-            table.data.set(ERROR_FLAG, ERR_ORB);
-            return;
-        }
-        if (binding.isEmpty()) {
-            table.data.set(ERROR_FLAG, ERR_ORB);
-            return;
-        }
-        SoulNetwork network = SoulNetworkHelper.getSoulNetwork(binding);
-        if (network.getCurrentEssence() < recipe.value().essence()) {
-            table.data.set(ERROR_FLAG, ERR_ESSENCE);
+        if (recipe != null) {
+            table.processCraft(level, pos, recipe.value().tier(), recipe.value().essence(), recipe.value().duration(),
+                    recipe.value().assemble(input, level.registryAccess()));
             return;
         }
 
-        ItemStack output = recipe.value().assemble(input, level.registryAccess());
-        ItemStack currentOutput = table.inv.getStackInSlot(OUTPUT_SLOT);
+        // No plain (item-only) Alchemy Table recipe matched - fall back to the Potion Flask
+        // recipe family, which reads/writes a flask's CURRENT stored effects instead of just
+        // matching ingredients (see FlaskRecipe). Mirrors 1.20.1's TileAlchemyTable#tick(): simple
+        // recipes are tried first, and only if none match does it look for a flask among the
+        // input slots and try flask recipes against the REMAINING (non-flask) reagents.
+        int flaskSlot = table.findFlaskSlot();
+        if (flaskSlot < 0) {
+            table.work = 0;
+            return;
+        }
+
+        ItemStack flaskStack = table.inv.getStackInSlot(flaskSlot);
+        NonNullList<ItemStack> reagents = NonNullList.create();
+        for (int i = 0; i < INPUT_COUNT; i++) {
+            if (i == flaskSlot) {
+                continue;
+            }
+            ItemStack stack = table.inv.getStackInSlot(i);
+            if (!stack.isEmpty()) {
+                reagents.add(stack);
+            }
+        }
+
+        FlaskRecipeInput flaskInput = new FlaskRecipeInput(flaskStack, reagents);
+        RecipeHolder<FlaskRecipe> flaskRecipe = findBestFlaskRecipe(level, flaskInput);
+        if (flaskRecipe == null) {
+            table.work = 0;
+            return;
+        }
+
+        table.processCraft(level, pos, flaskRecipe.value().minimumTier(), flaskRecipe.value().syphon(), flaskRecipe.value().ticks(),
+                flaskRecipe.value().assemble(flaskInput, level.registryAccess()));
+    }
+
+    /**
+     * Unlike {@link #recipeCheck} (a single {@link RecipeManager.CachedCheck} is fine there since any
+     * structural match is unambiguous), flask recipes can't just take the first structural match:
+     * several flask recipes can share the same reagents while disagreeing on whether they apply (e.g.
+     * a length/potency upgrade and a lowest-priority item-transform recipe keyed to the same
+     * ingredient) - see {@link FlaskRecipe}'s class javadoc. Mirroring 1.20.1's
+     * {@code BloodMagicRecipeRegistrar#getPotionFlaskRecipe}, every recipe whose {@link FlaskRecipe#matches}
+     * passes (ingredients AND {@code canModifyFlask}) is considered, and the one with the highest
+     * {@link FlaskRecipe#getPriority(FlaskEffects)} wins.
+     */
+    private static RecipeHolder<FlaskRecipe> findBestFlaskRecipe(Level level, FlaskRecipeInput input) {
+        FlaskEffects effects = AlchemyFlaskItem.getFlaskEffects(input.flask());
+        RecipeHolder<FlaskRecipe> best = null;
+        int bestPriority = Integer.MIN_VALUE;
+        for (RecipeHolder<FlaskRecipe> holder : level.getRecipeManager().getAllRecipesFor(BMRecipes.FLASK_TYPE.get())) {
+            FlaskRecipe candidate = holder.value();
+            if (!candidate.matches(input, level)) {
+                continue;
+            }
+            int priority = candidate.getPriority(effects);
+            if (best == null || priority > bestPriority) {
+                best = holder;
+                bestPriority = priority;
+            }
+        }
+        return best;
+    }
+
+    /** First non-empty input slot holding an {@link AlchemyFlaskItem}, or -1 if none (matches
+     * 1.20.1's "first flask found wins, in slot order" behaviour). */
+    private int findFlaskSlot() {
+        for (int i = 0; i < INPUT_COUNT; i++) {
+            ItemStack stack = inv.getStackInSlot(i);
+            if (!stack.isEmpty() && stack.getItem() instanceof AlchemyFlaskItem) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Shared progress/LP/consume cycle for both the plain Alchemy Table recipes and the Potion Flask
+     * recipes - same tier/essence gate, same progress bar (0-90 over {@code duration} ticks), same
+     * per-tick input consumption (crafting-remainder item if present, otherwise shrink by 1). Only the
+     * source of {@code minTier}/{@code essenceCost}/{@code duration}/{@code output} differs between the
+     * two recipe families.
+     */
+    private void processCraft(Level level, BlockPos pos, int minTier, int essenceCost, int duration, ItemStack output) {
+        ItemStack orbStack = inv.getStackInSlot(ORB_SLOT);
+        Binding binding = orbStack.getOrDefault(BMDataComponents.BINDING, Binding.EMPTY);
+        BloodOrb orb = orbStack.getItemHolder().getData(BMDataMaps.BLOOD_ORB_STATS);
+        if (orb == null || orb.tier() < minTier) {
+            data.set(ERROR_FLAG, ERR_ORB);
+            return;
+        }
+        if (binding.isEmpty()) {
+            data.set(ERROR_FLAG, ERR_ORB);
+            return;
+        }
+        SoulNetwork network = SoulNetworkHelper.getSoulNetwork(binding);
+        if (network.getCurrentEssence() < essenceCost) {
+            data.set(ERROR_FLAG, ERR_ESSENCE);
+            return;
+        }
+
+        ItemStack currentOutput = inv.getStackInSlot(OUTPUT_SLOT);
         if (!currentOutput.isEmpty()) {
             if (!ItemStack.isSameItemSameComponents(output, currentOutput)) {
-                table.work = 0;
+                work = 0;
                 return;
             }
         }
-        if (++table.work >= recipe.value().duration()) {
+        if (++work >= duration) {
             if (currentOutput.isEmpty()) {
-                table.inv.setStackInSlot(OUTPUT_SLOT, output);
+                inv.setStackInSlot(OUTPUT_SLOT, output);
             } else {
-                table.inv.getStackInSlot(OUTPUT_SLOT).grow(output.getCount());
+                currentOutput.grow(output.getCount());
             }
-            table.work = 0;
-            network.syphon(SoulTicket.block(level, pos, recipe.value().essence()));
+            work = 0;
+            network.syphon(SoulTicket.block(level, pos, essenceCost));
             for (int i = 0; i < INPUT_COUNT; i++) {
-                ItemStack inputStack = table.inv.getStackInSlot(i);
+                ItemStack inputStack = inv.getStackInSlot(i);
                 if (inputStack.hasCraftingRemainingItem()) {
-                    table.inv.setStackInSlot(i, inputStack.getCraftingRemainingItem());
+                    inv.setStackInSlot(i, inputStack.getCraftingRemainingItem());
                 } else {
                     inputStack.shrink(1);
                 }
                 if (inputStack.isEmpty()) {
-                    table.inv.setStackInSlot(i, ItemStack.EMPTY);
+                    inv.setStackInSlot(i, ItemStack.EMPTY);
                 }
             }
-            table.setChanged();
+            setChanged();
         }
 
-        table.data.set(PROGRESS, (int) Math.clamp((double) table.work / (double) recipe.value().duration() * 90, 0, 90));
+        data.set(PROGRESS, (int) Math.clamp((double) work / (double) duration * 90, 0, 90));
     }
 
+    /** Non-empty input slots only (compacted, gaps removed) - both {@link AlchemyTableRecipe} and
+     * {@link FlaskRecipe} ingredient lists are variable-length (not padded to {@link #INPUT_COUNT}),
+     * so a raw 1:1 copy of all 6 slots (including empties) would never match anything but a
+     * 6-ingredient recipe. */
     public AlchemyTableInput getInput() {
         NonNullList<ItemStack> inputs = NonNullList.create();
         for (int i = 0; i < ORB_SLOT; i++) {
-            inputs.add(inv.getStackInSlot(i));
+            ItemStack stack = inv.getStackInSlot(i);
+            if (!stack.isEmpty()) {
+                inputs.add(stack);
+            }
         }
 
         return new AlchemyTableInput(inputs);

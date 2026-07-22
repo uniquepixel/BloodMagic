@@ -7,6 +7,7 @@ import wayoftime.bloodmagic.datagen.content.ImperfectRitualData;
 import wayoftime.bloodmagic.datagen.content.datamap.BloodOrbStats;
 import wayoftime.bloodmagic.datagen.content.datamap.BloodRuneData;
 import wayoftime.bloodmagic.datagen.content.datamap.LivingData;
+import wayoftime.bloodmagic.datagen.content.datamap.SacrificeLpRatioData;
 import wayoftime.bloodmagic.datagen.content.datamap.TartaricGemMax;
 
 import java.util.concurrent.CompletableFuture;
@@ -23,5 +24,6 @@ public class BMDataMapProvider extends DataMapProvider {
         BloodRuneData.bootstrap(this::builder);
         LivingData.bootstrap(this::builder);
         ImperfectRitualData.dataMap(this::builder);
+        SacrificeLpRatioData.bootstrap(this::builder);
     }
 }

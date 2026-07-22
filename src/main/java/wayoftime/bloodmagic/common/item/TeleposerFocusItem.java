@@ -17,10 +17,19 @@ import java.util.List;
 /**
  * Binds to whichever Teleposer block it's used on; carrying it to a different Teleposer and
  * inserting it there (right-click) links that Teleposer to the bound position.
+ * <p>
+ * {@link #range} matches 1.20.1's 3 focus tiers (base/Enhanced/Reinforced, range 0/1/2 - see
+ * BMItems) and sizes the cuboid region {@link wayoftime.bloodmagic.common.blockentity.TeleposerTile}
+ * swaps: a range-0 focus only swaps the single block/entity directly above the Teleposer, while
+ * range-1/2 swap a 3x3x3 / 5x5x5 region above it (offset upward, not centered - see TeleposerTile's
+ * {@code entityBox}/{@code blockOffsets}).
  */
 public class TeleposerFocusItem extends Item {
-    public TeleposerFocusItem() {
+    public final int range;
+
+    public TeleposerFocusItem(int range) {
         super(new Properties().stacksTo(1));
+        this.range = range;
     }
 
     @Override

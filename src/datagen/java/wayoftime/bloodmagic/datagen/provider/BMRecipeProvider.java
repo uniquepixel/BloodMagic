@@ -82,9 +82,18 @@ public class BMRecipeProvider extends RecipeProvider {
         // ===== Blood Altar, batch 2 (2 more ported from 1.20.1 now that hellforged_block/archmage orb/teleposer_focus exist) =====
         altar(output, "archmagebloodorb", Ingredient.of(BMBlocks.HELLFORGED_BLOCK.item().get()), new ItemStack(BMItems.ORB_ARCHMAGE.get()), 4, 80000, 50, 100);
         altar(output, "teleposer_focus", Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ender_pearls"))), new ItemStack(BMItems.TELEPOSER_FOCUS.get()), 3, 2000, 10, 10);
+        altar(output, "enhanced_teleposer_focus", Ingredient.of(BMItems.TELEPOSER_FOCUS.get()), new ItemStack(BMItems.ENHANCED_TELEPOSER_FOCUS.get()), 3, 10000, 20, 10);
 
-        // ===== Blood Altar, batch 3 (1 more ported from 1.20.1 now that the Sacrificial Dagger exists) =====
-        altar(output, "daggerofsacrifice", Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:iron_sword"))), new ItemStack(BMItems.SACRIFICIAL_DAGGER.get()), 1, 3000, 5, 5);
+        // ===== Blood Altar, batch 3 (1 more ported from 1.20.1 now that the Dagger of Sacrifice
+        // exists) - NOTE: this recipe id ("daggerofsacrifice") previously (mis)pointed at
+        // BMItems.SACRIFICIAL_DAGGER as a stand-in, since only the self-sacrifice dagger existed on
+        // this branch at the time it was ported. 1.20.1's actual "daggerofsacrifice" altar recipe
+        // (iron_sword -> ItemDaggerOfSacrifice, tier 1, 3000/5/5) always targeted the *other* dagger -
+        // the Sacrificial Dagger has no altar recipe in 1.20.1 at all (only its crafting-table recipe,
+        // see "sacrificial_dagger" below). Nothing else in this codebase referenced this recipe's
+        // output by identity (only its id, for the auto-generated recipe-unlock advancement, which
+        // regenerates safely), so repointing it here is a correction, not a behaviour-breaking change. =====
+        altar(output, "daggerofsacrifice", Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:iron_sword"))), new ItemStack(BMItems.DAGGER_OF_SACRIFICE.get()), 1, 3000, 5, 5);
 
         // ===== Blood Altar, batch 4 (1 more ported from 1.20.1 now that the Soul Snare exists) =====
         altar(output, "soul_snare", Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:string"))), new ItemStack(BMItems.SOUL_SNARE.get()), 0, 500, 5, 1);
@@ -373,8 +382,9 @@ public class BMRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_teleposer_focus", has(BMItems.TELEPOSER_FOCUS.get()))
                 .save(output, BloodMagic.rl("teleposer"));
 
-        // Sacrificial Dagger: ported in addition to its existing Blood Altar recipe (daggerofsacrifice
-        // above) - the 1.20.1 original genuinely had both a crafting-table AND an altar recipe for it.
+        // Sacrificial Dagger: 1.20.1 only ever gave this a crafting-table recipe (no Blood Altar
+        // recipe - see the "daggerofsacrifice" altar recipe's comment above for why that name
+        // actually belongs to the unrelated Dagger of Sacrifice).
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, BMItems.SACRIFICIAL_DAGGER.get())
                 .define('G', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/gold")))
                 .define('g', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:glass")))

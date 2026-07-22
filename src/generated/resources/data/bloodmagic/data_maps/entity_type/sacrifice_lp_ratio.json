@@ -1,0 +1,15 @@
+{
+  "values": {
+    "minecraft:chicken": 100,
+    "minecraft:cow": 100,
+    "minecraft:enderman": 10,
+    "minecraft:horse": 100,
+    "minecraft:ocelot": 100,
+    "minecraft:pig": 100,
+    "minecraft:rabbit": 100,
+    "minecraft:sheep": 100,
+    "minecraft:slime": 15,
+    "minecraft:villager": 100,
+    "minecraft:wolf": 100
+  }
+}

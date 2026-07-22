@@ -231,9 +231,34 @@ public class BMLanguageProvider extends LanguageProvider {
 
         add(BMBlocks.TELEPOSER, "Teleposer");
         add(BMItems.TELEPOSER_FOCUS.get(), "Teleposition Focus");
+        add(BMItems.ENHANCED_TELEPOSER_FOCUS.get(), "Enhanced Teleposition Focus");
+        add(BMItems.REINFORCED_TELEPOSER_FOCUS.get(), "Reinforced Teleposition Focus");
         addTooltip("teleposerfocus.coords", "Current coordinates: (%d, %d, %d).");
         add("chat.bloodmagic.teleposer.linked", "Teleposer linked.");
         add("chat.bloodmagic.teleposer.unlinked", "Teleposer unlinked.");
+
+        // Dagger of Sacrifice, ported from 1.20.1 (distinct from the self-sacrifice Sacrificial
+        // Dagger above).
+        add(BMItems.DAGGER_OF_SACRIFICE.get(), "Dagger of Sacrifice");
+
+        // Will Catalysts, ported from 1.20.1.
+        add(BMItems.RAW_CATALYST.get(), "Raw Will Catalyst");
+        add(BMItems.CORROSIVE_CATALYST.get(), "Corrosive Will Catalyst");
+        add(BMItems.DESTRUCTIVE_CATALYST.get(), "Destructive Will Catalyst");
+        add(BMItems.STEADFAST_CATALYST.get(), "Steadfast Will Catalyst");
+        add(BMItems.VENGEFUL_CATALYST.get(), "Vengeful Will Catalyst");
+        addTooltip("crystalCatalyst", "Accelerates the growth of will.");
+
+        // Demon crop blocks, ported from 1.20.1 - block names drop the original's "(NYI)" ("not yet
+        // implemented") suffix on creeping_doubt/nether_soil now that they actually work here. No
+        // separate seed-item translation keys are needed: BlockItem#getDescriptionId() delegates to
+        // the placed block's key (vanilla behaviour, confirmed against BlockItem.java), so
+        // GROWING_DOUBT_SEED/WEAK_TAU_SEED/STRONG_TAU_SEED automatically pick up the block names
+        // below - adding them separately throws "Duplicate translation key" since it's the same key.
+        add(BMBlocks.GROWING_DOUBT.get(), "Seeds of Doubt");
+        add(BMBlocks.WEAK_TAU.get(), "Tau Fruit");
+        add(BMBlocks.STRONG_TAU.get(), "Saturated Tau");
+        add(BMBlocks.NETHER_SOIL, "Nether Soil");
 
         add(BMItems.ANOINTMENT_MELEE_DAMAGE.get(), "Anointment of Melee Damage");
         addTooltip("anointment_melee_damage.desc", "Coats a weapon in a corrosive edge, dealing bonus damage for a limited number of hits.");
@@ -436,6 +461,7 @@ public class BMLanguageProvider extends LanguageProvider {
         add("jei.bloodmagic.recipe.lp", "LP");
         add("jei.bloodmagic.recipe.lpDrained", "Drained: %s LP");
         add("jei.bloodmagic.recipe.minimumsouls", "Minimum: %s Will");
+        add("jei.bloodmagic.recipe.potionflask", "Potion Flask");
         add("jei.bloodmagic.recipe.requiredlp", "LP: %,d");
         add("jei.bloodmagic.recipe.requiredtier", "Tier: %d");
         add("jei.bloodmagic.recipe.soulforge", "Hellfire Forge");

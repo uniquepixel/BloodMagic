@@ -1,11 +1,13 @@
 package wayoftime.bloodmagic.common.item;
 
 import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import wayoftime.bloodmagic.BloodMagic;
+import wayoftime.bloodmagic.common.block.BMBlocks;
 import wayoftime.bloodmagic.common.datacomponent.BMDataComponents;
 import wayoftime.bloodmagic.common.datacomponent.EnumWillType;
 import wayoftime.bloodmagic.common.item.potion.AlchemyFlaskItem;
@@ -164,7 +166,14 @@ public class BMItems {
     // wired up and waiting on this item to exist.
     public static final DeferredHolder<Item, Item> REAGENT_BINDING = BASIC_ITEMS.register("reagent_binding", () -> new Item(new Item.Properties()));
 
-    public static final DeferredHolder<Item, TeleposerFocusItem> TELEPOSER_FOCUS = BASIC_ITEMS.register("teleposer_focus", TeleposerFocusItem::new);
+    // 3 focus tiers ported from 1.20.1's TELEPOSER_FOCUS/ENHANCED_TELEPOSER_FOCUS/
+    // REINFORCED_TELEPOSER_FOCUS - range 0/1/2, sizing the cuboid TeleposerTile swaps (see
+    // TeleposerFocusItem's javadoc). REINFORCED_TELEPOSER_FOCUS has no crafting recipe on this
+    // branch (1.20.1's was ENHANCED_TELEPOSER_FOCUS + bloodmagic:weakbloodshard, and that item
+    // hasn't been ported here yet) - it's still registered/obtainable via creative/commands.
+    public static final DeferredHolder<Item, TeleposerFocusItem> TELEPOSER_FOCUS = BASIC_ITEMS.register("teleposer_focus", () -> new TeleposerFocusItem(0));
+    public static final DeferredHolder<Item, TeleposerFocusItem> ENHANCED_TELEPOSER_FOCUS = BASIC_ITEMS.register("enhanced_teleposer_focus", () -> new TeleposerFocusItem(1));
+    public static final DeferredHolder<Item, TeleposerFocusItem> REINFORCED_TELEPOSER_FOCUS = BASIC_ITEMS.register("reinforced_teleposer_focus", () -> new TeleposerFocusItem(2));
 
     public static final DeferredHolder<Item, AnointmentItem> ANOINTMENT_MELEE_DAMAGE = BASIC_ITEMS.register("anointment_melee_damage", () -> new AnointmentItem(BMDataComponents.ANOINTMENT_MELEE_USES.get(), 20));
     public static final DeferredHolder<Item, AnointmentItem> ANOINTMENT_LOOTING = BASIC_ITEMS.register("anointment_looting", () -> new AnointmentItem(BMDataComponents.ANOINTMENT_LOOTING_USES.get(), 20));
@@ -261,6 +270,31 @@ public class BMItems {
     public static final DeferredHolder<Item, wayoftime.bloodmagic.common.item.filter.ModFilterItem> MOD_FILTER = ITEMS.register("mod_filter", wayoftime.bloodmagic.common.item.filter.ModFilterItem::new);
     public static final DeferredHolder<Item, wayoftime.bloodmagic.common.item.filter.EnchantFilterItem> ENCHANT_FILTER = ITEMS.register("enchant_filter", wayoftime.bloodmagic.common.item.filter.EnchantFilterItem::new);
     public static final DeferredHolder<Item, wayoftime.bloodmagic.common.item.filter.CompositeFilterItem> COMPOSITE_FILTER = ITEMS.register("composite_filter", wayoftime.bloodmagic.common.item.filter.CompositeFilterItem::new);
+
+    // Dagger of Sacrifice, ported from 1.20.1's ItemDaggerOfSacrifice - distinct from the
+    // self-sacrifice SACRIFICIAL_DAGGER above: this one instantly fills the nearest Blood Altar
+    // with LP off a killed non-player mob's health. Registered under ITEMS (not BASIC_ITEMS) since
+    // it has a custom hurtEnemy hook, matching SACRIFICIAL_DAGGER/THROWING_DAGGER above.
+    public static final DeferredHolder<Item, DaggerOfSacrificeItem> DAGGER_OF_SACRIFICE = ITEMS.register("dagger_of_sacrifice", DaggerOfSacrificeItem::new);
+
+    // Will Catalysts, ported from 1.20.1's 5 ItemCrystalCatalyst variants - right-click a Will
+    // Crystal Cluster of the matching type to speed its growth (see CrystalCatalystItem/
+    // CrystalClusterTile#applyCatalyst). All 5 tiers share identical numeric constants in 1.20.1
+    // too (only the Will type differs), so CrystalCatalystItem hardcodes them.
+    public static final DeferredHolder<Item, CrystalCatalystItem> RAW_CATALYST = BASIC_ITEMS.register("raw_catalyst", () -> new CrystalCatalystItem(EnumWillType.DEFAULT));
+    public static final DeferredHolder<Item, CrystalCatalystItem> CORROSIVE_CATALYST = BASIC_ITEMS.register("corrosive_catalyst", () -> new CrystalCatalystItem(EnumWillType.CORROSIVE));
+    public static final DeferredHolder<Item, CrystalCatalystItem> DESTRUCTIVE_CATALYST = BASIC_ITEMS.register("destructive_catalyst", () -> new CrystalCatalystItem(EnumWillType.DESTRUCTIVE));
+    public static final DeferredHolder<Item, CrystalCatalystItem> STEADFAST_CATALYST = BASIC_ITEMS.register("steadfast_catalyst", () -> new CrystalCatalystItem(EnumWillType.STEADFAST));
+    public static final DeferredHolder<Item, CrystalCatalystItem> VENGEFUL_CATALYST = BASIC_ITEMS.register("vengeful_catalyst", () -> new CrystalCatalystItem(EnumWillType.VENGEFUL));
+
+    // Demon crop seeds, ported from 1.20.1's GROWING_DOUBT_ITEM/WEAK_TAU_ITEM/STRONG_TAU_ITEM -
+    // plain BlockItems placing BMBlocks.GROWING_DOUBT/WEAK_TAU/STRONG_TAU (see those blocks' and
+    // HarvestHandlerCrop's javadoc). Registry ids match 1.20.1 exactly (the seed item is
+    // "growing_doubt" even though the block it places is "creeping_doubt" - a 1.20.1-original
+    // naming quirk, kept as-is for fidelity).
+    public static final DeferredHolder<Item, BlockItem> GROWING_DOUBT_SEED = BASIC_ITEMS.register("growing_doubt", () -> new BlockItem(BMBlocks.GROWING_DOUBT.get(), new Item.Properties()));
+    public static final DeferredHolder<Item, BlockItem> WEAK_TAU_SEED = BASIC_ITEMS.register("weak_tau", () -> new BlockItem(BMBlocks.WEAK_TAU.get(), new Item.Properties()));
+    public static final DeferredHolder<Item, BlockItem> STRONG_TAU_SEED = BASIC_ITEMS.register("strong_tau", () -> new BlockItem(BMBlocks.STRONG_TAU.get(), new Item.Properties()));
 
     public static void register(IEventBus modBus) {
         BASIC_ITEMS.register(modBus);

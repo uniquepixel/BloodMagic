@@ -51,10 +51,13 @@ public class BMItemModelProvider extends ItemModelProvider {
         // instead reuses reagent_holding's texture as a placeholder below. The L/XL anointment tiers
         // are excluded the same way - 1.20.1 told them apart with composited vial/ribbon overlays
         // this branch never ported (see BMItems for why), so each tier reuses its own family's
-        // tier-1 icon instead of going textureless.
+        // tier-1 icon instead of going textureless. GROWING_DOUBT_SEED is excluded too - its texture
+        // ("doubt_seed") doesn't match its registry name (see BMItems), so it needs the explicit
+        // reuseTexture() call further down instead of this generic loop's assume-matching-name logic.
         BMItems.BASIC_ITEMS.getEntries().stream().map(Supplier::get)
                 .filter(item -> item != BMItems.REAGENT_BINDING.get())
                 .filter(item -> !ANOINTMENT_TIER_ITEMS.contains(item))
+                .filter(item -> item != BMItems.GROWING_DOUBT_SEED.get())
                 .forEach(this::basicItem);
         getBuilder(BMItems.REAGENT_BINDING.getId().getPath())
                 .parent(new ModelFile.UncheckedModelFile("item/generated"))
@@ -89,6 +92,9 @@ public class BMItemModelProvider extends ItemModelProvider {
         basicItem(BMItems.THROWING_DAGGER.get());
         basicItem(BMItems.THROWING_DAGGER_SYRINGE.get());
         basicItem(BMItems.SOUL_SNARE.get());
+        // Dagger of Sacrifice - registered under ITEMS (custom hurtEnemy hook), so it needs the same
+        // explicit basicItem() call as its ITEMS siblings above instead of the BASIC_ITEMS auto-loop.
+        basicItem(BMItems.DAGGER_OF_SACRIFICE.get());
         // Debug-only tool (see ItemDungeonTester's javadoc) - 1.20.1 never gave it dedicated art
         // either, so this reuses the dungeon key icon as a placeholder (same "no upstream art exists"
         // reuse convention as reagent_binding below).
@@ -125,6 +131,12 @@ public class BMItemModelProvider extends ItemModelProvider {
         reuseTexture(BMItems.MOD_FILTER.get(), "slate_demonic");
         reuseTexture(BMItems.ENCHANT_FILTER.get(), "slate_ethereal");
         reuseTexture(BMItems.COMPOSITE_FILTER.get(), "slate_reinforced");
+
+        // Growing Doubt seed: registry id is "growing_doubt" but 1.20.1's texture for it is
+        // "doubt_seed" (a naming mismatch inherited as-is from 1.20.1 - see BMItems), so it can't go
+        // through the generic BASIC_ITEMS loop above like WEAK_TAU_SEED/STRONG_TAU_SEED (whose
+        // textures do match their registry names) can.
+        reuseTexture(BMItems.GROWING_DOUBT_SEED.get(), "doubt_seed");
     }
 
     // Alchemy Flask items - 3-layer generated models (tinted liquid, untinted outline, tinted

@@ -5,7 +5,13 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
@@ -16,9 +22,11 @@ import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import net.neoforged.neoforge.items.wrapper.RangedWrapper;
 import wayoftime.bloodmagic.BloodMagic;
+import wayoftime.bloodmagic.common.block.BMBlocks;
 import wayoftime.bloodmagic.common.datacomponent.BMDataComponents;
 import wayoftime.bloodmagic.common.event.BloodMagicCraftedEvent;
 import wayoftime.bloodmagic.common.item.BMItems;
+import wayoftime.bloodmagic.common.menu.HellfireForgeMenu;
 import wayoftime.bloodmagic.common.recipe.BMRecipes;
 import wayoftime.bloodmagic.common.recipe.forge.ForgeInput;
 import wayoftime.bloodmagic.common.recipe.forge.ForgeRecipe;
@@ -29,7 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class HellfireForgeTile extends BaseTile {
+public class HellfireForgeTile extends BaseTile implements MenuProvider {
     public ItemStackHandler inv = new ItemStackHandler(6) {
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
@@ -70,6 +78,30 @@ public class HellfireForgeTile extends BaseTile {
     public static final int MAX_PROGRESS = 200;
     protected int progress = 0;
 
+    // ContainerData indices exposed to HellfireForgeMenu for the GUI progress bar.
+    public static final int PROGRESS = 0;
+    public static final int DATA_COUNT = 1;
+
+    public final ContainerData data = new ContainerData() {
+        @Override
+        public int get(int index) {
+            return switch (index) {
+                case PROGRESS -> progress;
+                default -> 0;
+            };
+        }
+
+        @Override
+        public void set(int index, int value) {
+            // Progress is entirely server-driven by tick(); nothing is client/GUI settable.
+        }
+
+        @Override
+        public int getCount() {
+            return DATA_COUNT;
+        }
+    };
+
     public HellfireForgeTile(BlockPos pos, BlockState blockState) {
         super(BMTiles.HELLFIRE_FORGE_TYPE.get(), pos, blockState);
     }
@@ -78,17 +110,20 @@ public class HellfireForgeTile extends BaseTile {
         ForgeInput input = hellfireForgeTile.getInput();
         Optional<RecipeHolder<ForgeRecipe>> recipeOptional = level.getRecipeManager().getRecipeFor(BMRecipes.SOUL_FORGE_TYPE.get(), input, level);
         if (recipeOptional.isEmpty()) {
+            hellfireForgeTile.progress = 0;
             return;
         }
         ForgeRecipe recipe = recipeOptional.get().value();
         ItemStack output = recipe.assemble(input, level.registryAccess());
         if (output.isEmpty()) {
             BloodMagic.LOGGER.info("input matched but no result");
+            hellfireForgeTile.progress = 0;
             return;
         }
         ItemStack currentOutput = hellfireForgeTile.inv.getStackInSlot(OUTPUT_SLOT);
         if (!currentOutput.isEmpty() && !ItemStack.isSameItemSameComponents(currentOutput, output)) {
             BloodMagic.LOGGER.info("outputs dont stack!");
+            hellfireForgeTile.progress = 0;
             return;
         }
 
@@ -124,6 +159,7 @@ public class HellfireForgeTile extends BaseTile {
         }
         hellfireForgeTile.inv.setStackInSlot(OUTPUT_SLOT, event.getOutput());
 
+        hellfireForgeTile.progress = 0;
         hellfireForgeTile.setChanged();
     }
 
@@ -153,6 +189,16 @@ public class HellfireForgeTile extends BaseTile {
         super.saveAdditional(tag, registries);
         CompoundTag inventory = inv.serializeNBT(registries);
         tag.put("inventory", inventory);
+    }
+
+    @Override
+    public Component getDisplayName() {
+        return Component.translatable(BMBlocks.HELLFIRE_FORGE.block().get().getDescriptionId());
+    }
+
+    @Override
+    public @Nullable AbstractContainerMenu createMenu(int containerId, Inventory playerInventory, Player player) {
+        return new HellfireForgeMenu(containerId, playerInventory, this);
     }
 
     public @Nullable IItemHandler getInventory(Direction side) {

@@ -32,6 +32,7 @@ import wayoftime.bloodmagic.common.entity.BMEntities;
 import wayoftime.bloodmagic.common.menu.BMMenus;
 import wayoftime.bloodmagic.client.render.entity.layer.LivingElytraLayer;
 import wayoftime.bloodmagic.client.screen.ARCScreen;
+import wayoftime.bloodmagic.client.screen.HellfireForgeScreen;
 import wayoftime.bloodmagic.client.screen.LivingStationScreen;
 import wayoftime.bloodmagic.common.datacomponent.BMDataComponents;
 import wayoftime.bloodmagic.common.datacomponent.EnumWillType;
@@ -133,6 +134,7 @@ public class ClientModEventHandler {
         event.register(BMMenus.LIVING_STATION.get(), LivingStationScreen::new);
         event.register(BMMenus.TRAINER.get(), TrainerScreen::new);
         event.register(BMMenus.ALCHEMY_TABLE.get(), AlchemyTableScreen::new);
+        event.register(BMMenus.HELLFIRE_FORGE.get(), HellfireForgeScreen::new);
         event.register(BMMenus.HOLDING.get(), HoldingScreen::new);
         event.register(BMMenus.FILTER.get(), FilterScreen::new);
     }

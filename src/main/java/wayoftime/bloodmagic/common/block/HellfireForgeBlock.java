@@ -1,11 +1,10 @@
 package wayoftime.bloodmagic.common.block;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -15,11 +14,9 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
-import wayoftime.bloodmagic.BloodMagic;
 import wayoftime.bloodmagic.common.blockentity.BMTiles;
 import wayoftime.bloodmagic.common.blockentity.HellfireForgeTile;
 import wayoftime.bloodmagic.util.BlockEntityHelper;
@@ -44,65 +41,24 @@ public class HellfireForgeBlock extends Block implements EntityBlock {
         super.onRemove(state, level, pos, newState, movedByPiston);
     }
 
+    // A real GUI (HellfireForgeMenu/HellfireForgeScreen) now exposes the same 4 input slots + gem
+    // slot + output slot that the old face-click placement wrote to, so that interaction has been
+    // removed in favor of just opening the menu, matching AlchemyTableBlock/ARCBlock.
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+        if (!level.isClientSide && player instanceof ServerPlayer serverPlayer) {
+            serverPlayer.openMenu(state.getMenuProvider(level, pos), buf -> buf.writeBlockPos(pos));
+        }
+        return InteractionResult.sidedSuccess(level.isClientSide);
+    }
+
+    @Override
+    protected @Nullable MenuProvider getMenuProvider(BlockState state, Level level, BlockPos pos) {
         BlockEntity be = level.getBlockEntity(pos);
-        if (!(be instanceof HellfireForgeTile forge)) {
-            return ItemInteractionResult.FAIL;
+        if (!(be instanceof HellfireForgeTile tile)) {
+            return null;
         }
-
-        if (hand == InteractionHand.OFF_HAND) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-        }
-
-        ItemStack forgeStack = forge.inv.getStackInSlot(HellfireForgeTile.OUTPUT_SLOT);
-
-        if (player.isShiftKeyDown() && !forgeStack.isEmpty() && stack.isEmpty()) {
-            player.setItemInHand(hand, forgeStack.copy());
-            forge.inv.setStackInSlot(HellfireForgeTile.OUTPUT_SLOT, ItemStack.EMPTY);
-            forge.setChanged();
-            return ItemInteractionResult.sidedSuccess(level.isClientSide);
-        }
-
-        Direction side = hitResult.getDirection();
-        int slot = switch (side) {
-            case UP -> {
-                Vec3 relative = hitResult.getLocation().subtract(pos.getX(), pos.getY(), pos.getZ());
-                double x = relative.x;
-                double z = relative.z;
-                if (Math.abs(x - 0.5) < 3/16D && Math.abs(z - 0.5) < 3/16D && (stack.isEmpty() || forge.inv.isItemValid(HellfireForgeTile.GEM_SLOT, stack))) {
-                    yield HellfireForgeTile.GEM_SLOT;
-                }
-                if (z > 0.5) {
-                    yield x < 0.5 ? HellfireForgeTile.SOUTH : HellfireForgeTile.EAST;
-                } else {
-                    yield x < 0.5 ? HellfireForgeTile.WEST : HellfireForgeTile.NORTH;
-                }
-            }
-
-            case DOWN -> HellfireForgeTile.OUTPUT_SLOT;
-            case EAST -> HellfireForgeTile.EAST;
-            case WEST -> HellfireForgeTile.WEST;
-            case SOUTH -> HellfireForgeTile.SOUTH;
-            case NORTH -> HellfireForgeTile.NORTH;
-        };
-
-        BloodMagic.LOGGER.info("got: {} which is {}", slot, Direction.from2DDataValue(slot));
-
-        forgeStack = forge.inv.getStackInSlot(slot);
-        if (forgeStack.isEmpty() && !stack.isEmpty()) {
-            forge.inv.setStackInSlot(slot, stack.copy());
-            player.setItemInHand(hand, ItemStack.EMPTY);
-            forge.setChanged();
-            return ItemInteractionResult.sidedSuccess(level.isClientSide);
-        } else if (!forgeStack.isEmpty() && stack.isEmpty()) {
-            forge.inv.setStackInSlot(slot, ItemStack.EMPTY);
-            player.setItemInHand(hand, forgeStack.copy());
-            forge.setChanged();
-            return ItemInteractionResult.sidedSuccess(level.isClientSide);
-        }
-
-        return ItemInteractionResult.FAIL;
+        return tile;
     }
 
     @Override

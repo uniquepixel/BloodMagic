@@ -1,17 +1,28 @@
 package wayoftime.bloodmagic.datagen.content.loot;
 
+import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
+import net.minecraft.world.level.storage.loot.predicates.InvertedLootItemCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.item.enchantment.Enchantments;
 import wayoftime.bloodmagic.common.block.AlchemyTableBlock;
 import wayoftime.bloodmagic.common.block.BMBlocks;
+import wayoftime.bloodmagic.common.item.BMItems;
 import wayoftime.bloodmagic.util.TablePart;
 import wayoftime.bloodmagic.util.blockitem.BlockWithItemHolder;
 
@@ -63,7 +74,17 @@ public class MineBlock extends BlockLootSubProvider {
         // TileMimic's class javadoc), so no component-copying table is needed here.
         addDropSelf(BMBlocks.MIMIC);
         addDropSelf(BMBlocks.ETHEREAL_MIMIC);
+
+        // Demon crop blocks (see BMBlocks/NetherSoilBlock/GrowingDoubtBlock/TauBlock) - NETHER_SOIL
+        // drops netherrack (matching vanilla farmland dropping dirt); the 3 crop blocks need custom
+        // per-age tables, built in generate() below.
+        cropBlockList.add(BMBlocks.NETHER_SOIL.block().get());
+        cropBlockList.add(BMBlocks.GROWING_DOUBT.get());
+        cropBlockList.add(BMBlocks.WEAK_TAU.get());
+        cropBlockList.add(BMBlocks.STRONG_TAU.get());
     }
+
+    private final List<Block> cropBlockList = new ArrayList<>();
 
     @SafeVarargs
     private final void addDropSelfFamilies(java.util.Map<String, ? extends BlockWithItemHolder<? extends Block, ? extends BlockItem>>... families) {
@@ -105,6 +126,7 @@ public class MineBlock extends BlockLootSubProvider {
         list.addAll(dropSelfList);
         list.addAll(chargeBlocks);
         list.addAll(dungeonSlabList);
+        list.addAll(cropBlockList);
         return list;
     }
 
@@ -121,6 +143,42 @@ public class MineBlock extends BlockLootSubProvider {
 
         // Demon Dungeon decorative palette slabs need the double-slab-drops-2 table, not plain dropSelf.
         dungeonSlabList.forEach(block -> add(block, this::createSlabItemTable));
+
+        // Demon crop blocks - ported 1:1 from 1.20.1's creeping_doubt.json/weak_tau.json/
+        // strong_tau.json/nether_soil.json (see BMBlocks).
+        add(BMBlocks.NETHER_SOIL.block().get(), block -> createSingleItemTable(Items.NETHERRACK));
+
+        Block growingDoubt = BMBlocks.GROWING_DOUBT.get();
+        Item growingDoubtSeed = BMItems.GROWING_DOUBT_SEED.get();
+        add(growingDoubt, createCropDrops(growingDoubt, growingDoubtSeed, growingDoubtSeed, matureCondition(growingDoubt)));
+
+        Block weakTau = BMBlocks.WEAK_TAU.get();
+        Item weakTauItem = BMItems.WEAK_TAU_SEED.get();
+        add(weakTau, createCropDrops(weakTau, weakTauItem, weakTauItem, matureCondition(weakTau)));
+
+        // Strong Tau: breaking it immature yields weak Tau back (matching 1.20.1's 3-pool table -
+        // see BMBlocks/TauBlock) rather than the plain createCropDrops shape above.
+        Block strongTau = BMBlocks.STRONG_TAU.get();
+        Item strongTauItem = BMItems.STRONG_TAU_SEED.get();
+        LootItemCondition.Builder strongTauMature = matureCondition(strongTau);
+        var enchantmentLookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
+        add(strongTau, this.applyExplosionDecay(strongTau, LootTable.lootTable()
+                .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(weakTauItem))
+                        .when(InvertedLootItemCondition.invert(strongTauMature)))
+                .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(strongTauItem))
+                        .when(strongTauMature))
+                .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(strongTauItem)
+                                .apply(ApplyBonusCount.addBonusBinomialDistributionCount(enchantmentLookup.getOrThrow(Enchantments.FORTUNE), 0.5714286F, 3)))
+                        .when(strongTauMature))
+        ));
+    }
+
+    private LootItemCondition.Builder matureCondition(Block cropBlock) {
+        return LootItemBlockStatePropertyCondition.hasBlockStateProperties(cropBlock)
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7));
     }
 
     private void copyComponents(BlockWithItemHolder<? extends Block, ? extends BlockItem> holder) {

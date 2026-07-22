@@ -3,6 +3,7 @@ package wayoftime.bloodmagic.datagen.provider;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.CropBlock;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.client.model.generators.VariantBlockStateBuilder;
@@ -10,6 +11,7 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import wayoftime.bloodmagic.BloodMagic;
 import wayoftime.bloodmagic.common.block.ARCBlock;
 import wayoftime.bloodmagic.common.block.BMBlocks;
+import wayoftime.bloodmagic.common.block.NetherSoilBlock;
 import wayoftime.bloodmagic.common.datacomponent.EnumWillType;
 
 public class BMBlockstateProvider extends BlockStateProvider {
@@ -122,6 +124,36 @@ public class BMBlockstateProvider extends BlockStateProvider {
         dungeonSlabFamily(BMBlocks.DUNGEON_TILE_SLABS, "dungeon_tile");
         dungeonSlabFamily(BMBlocks.DUNGEON_STONE_SLABS, "dungeon_stone");
         dungeonSlabFamily(BMBlocks.DUNGEON_POLISHED_SLABS, "dungeon_polished");
+
+        // Demon crop blocks (see BMBlocks/NetherSoilBlock/GrowingDoubtBlock/TauBlock) - textures
+        // copied 1:1 from 1.20.1.
+        ModelFile netherSoilModel = models().withExistingParent("nether_soil", mcLoc("block/template_farmland"))
+                .texture("dirt", mcLoc("block/netherrack"))
+                .texture("top", bm("block/nether_soil"));
+        VariantBlockStateBuilder netherSoilBuilder = getVariantBuilder(BMBlocks.NETHER_SOIL.block().get());
+        for (int moisture = 0; moisture <= 7; moisture++) {
+            netherSoilBuilder.partialState().with(NetherSoilBlock.MOISTURE, moisture).modelForState().modelFile(netherSoilModel).addModel();
+        }
+        simpleBlockItem(BMBlocks.NETHER_SOIL.block().get(), netherSoilModel);
+
+        cropAgeBlock(BMBlocks.GROWING_DOUBT.get(), "block/crop", "crop", "creeping_doubt", null);
+        cropAgeBlock(BMBlocks.WEAK_TAU.get(), "block/cross", "cross", "weak_tau", null);
+        // strong_tau age 0 is unreachable in practice (strong Tau only ever appears via a >=age-1
+        // transform from weak Tau - see TauBlock) and 1.20.1 never shipped a strong_tau_1 texture,
+        // instead reusing weak_tau_1 for that unreachable variant - matched here for fidelity.
+        cropAgeBlock(BMBlocks.STRONG_TAU.get(), "block/cross", "cross", "strong_tau", "weak_tau_1");
+    }
+
+    private void cropAgeBlock(CropBlock block, String parentPath, String textureKey, String texturePrefix, String age0OverrideTexture) {
+        String name = path(block);
+        VariantBlockStateBuilder builder = getVariantBuilder(block);
+        for (int age = 0; age <= 7; age++) {
+            ResourceLocation texture = (age == 0 && age0OverrideTexture != null)
+                    ? bm("block/" + age0OverrideTexture)
+                    : bm("block/" + texturePrefix + "_" + (age + 1));
+            ModelFile model = models().withExistingParent(name + "_" + (age + 1), mcLoc(parentPath)).texture(textureKey, texture);
+            builder.partialState().with(CropBlock.AGE, age).modelForState().modelFile(model).addModel();
+        }
     }
 
     private static final String[] DUNGEON_WILL_VARIANTS = {"", "_corrosive", "_destructive", "_steadfast", "_vengeful"};
