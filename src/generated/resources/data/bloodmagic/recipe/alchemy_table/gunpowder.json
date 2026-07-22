@@ -4,10 +4,10 @@
   "essence": 0,
   "inputs": [
     {
-      "tag": "c:dusts/sulfur"
+      "item": "minecraft:blaze_powder"
     },
     {
-      "tag": "c:dusts/saltpeter"
+      "item": "minecraft:quartz"
     },
     {
       "tag": "minecraft:coals"

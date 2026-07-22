@@ -6,13 +6,13 @@
       "item": "bloodmagic:demon_crucible"
     },
     {
-      "tag": "c:stone"
+      "tag": "c:stones"
     },
     {
       "tag": "c:gems/lapis"
     },
     {
-      "tag": "c:glass"
+      "tag": "c:glass_blocks"
     }
   ],
   "minDrain": 500.0,

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "b": {
+      "item": "minecraft:bookshelf"
+    },
+    "g": {
+      "item": "bloodmagic:soul_gem_lesser"
+    },
+    "i": {
+      "tag": "c:ingots/iron"
+    },
+    "s": {
+      "item": "bloodmagic:slate_imbued"
+    }
+  },
+  "pattern": [
+    "ibi",
+    "bgb",
+    "isi"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bloodmagic:living_station"
+  }
+}

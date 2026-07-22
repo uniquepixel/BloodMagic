@@ -7,7 +7,7 @@
       "item": "minecraft:gunpowder"
     },
     {
-      "tag": "c:dusts/sulfur"
+      "item": "minecraft:blaze_powder"
     },
     {
       "tag": "c:dusts/redstone"
@@ -19,7 +19,7 @@
       "item": "bloodmagic:corrupted_dust"
     },
     {
-      "tag": "c:dusts/coal"
+      "item": "minecraft:coal"
     }
   ],
   "output": {

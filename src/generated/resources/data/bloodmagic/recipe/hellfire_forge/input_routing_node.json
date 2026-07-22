@@ -3,7 +3,7 @@
   "drain": 25.0,
   "inputs": [
     {
-      "tag": "c:stone"
+      "tag": "c:stones"
     },
     {
       "tag": "c:ingots/gold"

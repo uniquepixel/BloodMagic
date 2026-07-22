@@ -4,7 +4,7 @@
   "craftSpeed": 5,
   "drainSpeed": 1,
   "input": {
-    "tag": "c:string"
+    "tag": "c:strings"
   },
   "minTier": 0,
   "output": {

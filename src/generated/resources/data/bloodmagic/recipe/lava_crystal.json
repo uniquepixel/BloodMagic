@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "a": {
-      "tag": "c:glass"
+      "tag": "c:glass_blocks"
     },
     "b": {
       "item": "minecraft:lava_bucket"
@@ -13,7 +13,7 @@
       "orb_tier": 0
     },
     "d": {
-      "tag": "c:obsidian"
+      "tag": "c:obsidians"
     },
     "e": {
       "tag": "c:gems/diamond"

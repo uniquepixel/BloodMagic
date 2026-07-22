@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "c": {
-      "tag": "c:cobblestone"
+      "tag": "c:cobblestones"
     },
     "h": {
       "item": "minecraft:charcoal"
@@ -13,7 +13,7 @@
       "orb_tier": 1
     },
     "s": {
-      "tag": "c:stone"
+      "tag": "c:stones"
     }
   },
   "pattern": [

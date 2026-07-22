@@ -19,7 +19,7 @@
       "orb_tier": 3
     },
     "s": {
-      "tag": "c:string"
+      "tag": "c:strings"
     }
   },
   "pattern": [

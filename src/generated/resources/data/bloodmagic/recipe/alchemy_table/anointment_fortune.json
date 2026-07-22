@@ -13,7 +13,7 @@
       "tag": "c:dusts/redstone"
     },
     {
-      "tag": "c:dusts/coal"
+      "item": "minecraft:coal"
     }
   ],
   "output": {

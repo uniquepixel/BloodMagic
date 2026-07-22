@@ -9,7 +9,7 @@
       "tag": "c:ingots/iron"
     },
     {
-      "tag": "c:string"
+      "tag": "c:strings"
     }
   ],
   "minDrain": 32.0,

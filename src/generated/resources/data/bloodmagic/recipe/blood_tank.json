@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "g": {
+      "tag": "c:glass_blocks"
+    },
+    "i": {
+      "tag": "c:ingots/iron"
+    },
+    "o": {
+      "type": "bloodmagic:bloodorb",
+      "orb_tier": 1
+    }
+  },
+  "pattern": [
+    "igi",
+    "g g",
+    "ioi"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bloodmagic:blood_tank"
+  }
+}

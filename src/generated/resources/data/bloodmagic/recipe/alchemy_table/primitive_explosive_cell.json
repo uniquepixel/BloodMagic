@@ -13,7 +13,7 @@
       "item": "bloodmagic:corrupted_tinydust"
     },
     {
-      "tag": "c:dusts/coal"
+      "item": "minecraft:coal"
     }
   ],
   "output": {

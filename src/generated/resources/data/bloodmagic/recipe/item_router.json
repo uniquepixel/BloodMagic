@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "h": {
+      "item": "minecraft:hopper"
+    },
+    "i": {
+      "tag": "c:ingots/iron"
+    },
+    "s": {
+      "item": "bloodmagic:slate_imbued"
+    }
+  },
+  "pattern": [
+    "i i",
+    "ihi",
+    "isi"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bloodmagic:item_router"
+  }
+}

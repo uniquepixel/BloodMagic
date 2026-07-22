@@ -3,10 +3,10 @@
   "drain": 2.0,
   "inputs": [
     {
-      "tag": "c:stone"
+      "tag": "c:stones"
     },
     {
-      "tag": "c:glass"
+      "tag": "c:glass_blocks"
     }
   ],
   "minDrain": 10.0,

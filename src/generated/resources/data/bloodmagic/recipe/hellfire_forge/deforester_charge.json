@@ -3,7 +3,7 @@
   "drain": 0.5,
   "inputs": [
     {
-      "tag": "c:cobblestone"
+      "tag": "c:cobblestones"
     },
     {
       "item": "minecraft:charcoal"

@@ -4,10 +4,10 @@
   "essence": 50,
   "inputs": [
     {
-      "tag": "c:sand"
+      "tag": "c:sands"
     },
     {
-      "tag": "c:sand"
+      "tag": "c:sands"
     },
     {
       "item": "minecraft:water_bucket"

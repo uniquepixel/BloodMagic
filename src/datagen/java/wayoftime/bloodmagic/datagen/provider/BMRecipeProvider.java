@@ -47,6 +47,7 @@ import wayoftime.bloodmagic.common.recipe.flask.FlaskLengthRecipe;
 import wayoftime.bloodmagic.common.recipe.flask.FlaskPotencyRecipe;
 import wayoftime.bloodmagic.common.recipe.flask.FlaskTransformRecipe;
 import wayoftime.bloodmagic.common.recipe.ingredient.BloodOrbIngredient;
+import wayoftime.bloodmagic.datagen.builder.recipe.TieredRecipeBuilder;
 import wayoftime.bloodmagic.common.recipe.alchemy_table.AlchemyTableRecipe;
 import wayoftime.bloodmagic.common.recipe.arc.ARCRecipe;
 import wayoftime.bloodmagic.common.recipe.array.AlchemyArrayRecipe;
@@ -79,7 +80,7 @@ public class BMRecipeProvider extends RecipeProvider {
         altar(output, "imbuedslate", Ingredient.of(BMItems.SLATE_REINFORCED.get()), new ItemStack(BMItems.SLATE_IMBUED.get()), 2, 5000, 15, 10);
         altar(output, "magicianbloodorb", Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:storage_blocks/gold"))), new ItemStack(BMItems.ORB_MAGICIAN.get()), 2, 25000, 20, 20);
         altar(output, "reinforcedslate", Ingredient.of(BMItems.SLATE_BLANK.get()), new ItemStack(BMItems.SLATE_REINFORCED.get()), 1, 2000, 5, 5);
-        altar(output, "slate", Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stone"))), new ItemStack(BMItems.SLATE_BLANK.get()), 0, 1000, 5, 5);
+        altar(output, "slate", Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones"))), new ItemStack(BMItems.SLATE_BLANK.get()), 0, 1000, 5, 5);
         altar(output, "weakbloodorb", Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/diamond"))), new ItemStack(BMItems.ORB_WEAK.get()), 0, 2000, 5, 1);
 
         // ===== Blood Altar, batch 2 (2 more ported from 1.20.1 now that hellforged_block/archmage orb/teleposer_focus exist) =====
@@ -99,13 +100,13 @@ public class BMRecipeProvider extends RecipeProvider {
         altar(output, "daggerofsacrifice", Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:iron_sword"))), new ItemStack(BMItems.DAGGER_OF_SACRIFICE.get()), 1, 3000, 5, 5);
 
         // ===== Blood Altar, batch 4 (1 more ported from 1.20.1 now that the Soul Snare exists) =====
-        altar(output, "soul_snare", Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:string"))), new ItemStack(BMItems.SOUL_SNARE.get()), 0, 500, 5, 1);
+        altar(output, "soul_snare", Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:strings"))), new ItemStack(BMItems.SOUL_SNARE.get()), 0, 500, 5, 1);
 
         // ===== ARC (48 ported from 1.20.1; no further ARC recipes were portable - the remaining
         // 49 old ARC recipes all depend on an ore-processing chain (sand/fragment/gravel items),
         // a rune-reversion chain (needs the "hellforgedparts" item), or other items/tags that don't
         // exist on this branch yet) =====
-        arc(output, "clay_from_sand", BMTags.Items.HYDRATION, Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:sand"))), List.of(new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:clay_ball")))), List.of(Pair.of(new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:clay_ball"))), 0.5)), new FluidStack(BuiltInRegistries.FLUID.get(ResourceLocation.parse("minecraft:water")), 200), null);
+        arc(output, "clay_from_sand", BMTags.Items.HYDRATION, Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:sands"))), List.of(new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:clay_ball")))), List.of(Pair.of(new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:clay_ball"))), 0.5)), new FluidStack(BuiltInRegistries.FLUID.get(ResourceLocation.parse("minecraft:water")), 200), null);
         arc(output, "clay_from_terracotta", BMTags.Items.HYDRATION, Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:terracotta"))), List.of(new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:clay")))), List.of(), new FluidStack(BuiltInRegistries.FLUID.get(ResourceLocation.parse("minecraft:water")), 200), null);
         arc(output, "mossify_cobblestone", BMTags.Items.HYDRATION, Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:cobblestone"))), List.of(new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:mossy_cobblestone")))), List.of(), new FluidStack(BuiltInRegistries.FLUID.get(ResourceLocation.parse("minecraft:water")), 200), null);
         arc(output, "mossify_cobblestone_slab", BMTags.Items.HYDRATION, Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:cobblestone_slab"))), List.of(new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:mossy_cobblestone_slab")))), List.of(), new FluidStack(BuiltInRegistries.FLUID.get(ResourceLocation.parse("minecraft:water")), 200), null);
@@ -150,18 +151,18 @@ public class BMRecipeProvider extends RecipeProvider {
         arc(output, "solidify_yellow_concrete", BMTags.Items.HYDRATION, Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:yellow_concrete_powder"))), List.of(new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:yellow_concrete")))), List.of(), new FluidStack(BuiltInRegistries.FLUID.get(ResourceLocation.parse("minecraft:water")), 200), null);
         arc(output, "wash_bed", BMTags.Items.HYDRATION, Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("minecraft:beds"))), List.of(new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:white_bed")))), List.of(), new FluidStack(BuiltInRegistries.FLUID.get(ResourceLocation.parse("minecraft:water")), 333), null);
         arc(output, "wash_carpet", BMTags.Items.HYDRATION, Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("minecraft:wool_carpets"))), List.of(new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:white_carpet")))), List.of(), new FluidStack(BuiltInRegistries.FLUID.get(ResourceLocation.parse("minecraft:water")), 333), null);
-        arc(output, "wash_glass", BMTags.Items.HYDRATION, Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:glass"))), List.of(new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:glass")))), List.of(), new FluidStack(BuiltInRegistries.FLUID.get(ResourceLocation.parse("minecraft:water")), 333), null);
+        arc(output, "wash_glass", BMTags.Items.HYDRATION, Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:glass_blocks"))), List.of(new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:glass")))), List.of(), new FluidStack(BuiltInRegistries.FLUID.get(ResourceLocation.parse("minecraft:water")), 333), null);
         arc(output, "wash_glass_pane", BMTags.Items.HYDRATION, Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:glass_panes"))), List.of(new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:glass_pane")))), List.of(), new FluidStack(BuiltInRegistries.FLUID.get(ResourceLocation.parse("minecraft:water")), 333), null);
         arc(output, "wash_wool", BMTags.Items.HYDRATION, Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("minecraft:wool"))), List.of(new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:white_wool")))), List.of(), new FluidStack(BuiltInRegistries.FLUID.get(ResourceLocation.parse("minecraft:water")), 333), null);
 
         // ===== Alchemy Table (10 ported from 1.20.1) =====
         alchemyTable(output, "bread", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/wheat"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:sugar")))), new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:bread"))), 1, 100, 100);
-        alchemyTable(output, "clay_from_sand", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:sand"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:sand"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:water_bucket")))), Util.make(new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:clay_ball"))), s -> s.setCount(2)), 2, 50, 100);
-        alchemyTable(output, "cobweb", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:string"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:string"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:string")))), new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:cobweb"))), 1, 50, 50);
+        alchemyTable(output, "clay_from_sand", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:sands"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:sands"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:water_bucket")))), Util.make(new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:clay_ball"))), s -> s.setCount(2)), 2, 50, 100);
+        alchemyTable(output, "cobweb", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:strings"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:strings"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:strings")))), new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:cobweb"))), 1, 50, 50);
         alchemyTable(output, "flint_from_gravel", List.of(Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:gravel"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:flint")))), Util.make(new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:flint"))), s -> s.setCount(2)), 0, 50, 20);
         alchemyTable(output, "gold_ore_from_gilded", List.of(Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:gilded_blackstone")))), Util.make(new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:gold_nugget"))), s -> s.setCount(9)), 2, 200, 100);
         alchemyTable(output, "grass_block", List.of(Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:dirt"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:bone_meal"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:wheat_seeds")))), new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:grass_block"))), 1, 200, 200);
-        alchemyTable(output, "gunpowder", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/sulfur"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/saltpeter"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("minecraft:coals")))), Util.make(new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:gunpowder"))), s -> s.setCount(3)), 0, 0, 100);
+        alchemyTable(output, "gunpowder", List.of(Ingredient.of(Items.BLAZE_POWDER), Ingredient.of(Items.QUARTZ), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("minecraft:coals")))), Util.make(new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:gunpowder"))), s -> s.setCount(3)), 0, 0, 100);
         alchemyTable(output, "leather_from_flesh", List.of(Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:rotten_flesh"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:rotten_flesh"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:rotten_flesh"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:rotten_flesh"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:flint"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:water_bucket")))), Util.make(new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:leather"))), s -> s.setCount(4)), 1, 100, 200);
         alchemyTable(output, "nether_wart_from_block", List.of(Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:nether_wart_block")))), new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:nether_wart"))), 1, 50, 40);
         alchemyTable(output, "string", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("minecraft:wool"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:flint")))), Util.make(new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:string"))), s -> s.setCount(4)), 0, 100, 100);
@@ -169,18 +170,18 @@ public class BMRecipeProvider extends RecipeProvider {
         // ===== Soul Forge (3 ported from 1.20.1) =====
         soulForge(output, "commontartaricgem", List.of(Ingredient.of(BMItems.SOUL_GEM_LESSER.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/diamond"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:storage_blocks/gold"))), Ingredient.of(BMItems.SLATE_IMBUED.get())), new ItemStack(BMItems.SOUL_GEM_COMMON.get()), 240, 50);
         soulForge(output, "lessertartaricgem", List.of(Ingredient.of(BMItems.SOUL_GEM_PETTY.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/diamond"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:storage_blocks/redstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:storage_blocks/lapis")))), new ItemStack(BMItems.SOUL_GEM_LESSER.get()), 60, 20);
-        soulForge(output, "pettytartaricgem", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/gold"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:glass"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/lapis")))), new ItemStack(BMItems.SOUL_GEM_PETTY.get()), 1, 1);
+        soulForge(output, "pettytartaricgem", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/gold"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:glass_blocks"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/lapis")))), new ItemStack(BMItems.SOUL_GEM_PETTY.get()), 1, 1);
 
         // ===== Alchemy Table reagents (for the Alchemy Array sigil recipes below) =====
         // reagent_holding ported from 1.20.1 (tag names renamed forge: -> c:); the other three
         // referenced items that don't exist on this branch yet (teleposer block, etc.), so those
         // use simplified invented ingredient lists instead.
-        alchemyTable(output, "reagent_holding", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:chests"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:leathers"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:string"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:string")))), new ItemStack(BMItems.REAGENT_HOLDING.get()), 2, 2000, 200);
+        alchemyTable(output, "reagent_holding", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:chests"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:leathers"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:strings"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:strings")))), new ItemStack(BMItems.REAGENT_HOLDING.get()), 2, 2000, 200);
         alchemyTable(output, "reagent_bloodlight", List.of(Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:glowstone_dust"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:blaze_powder"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone")))), new ItemStack(BMItems.REAGENT_BLOODLIGHT.get()), 1, 500, 100);
         alchemyTable(output, "reagent_suppression", List.of(Ingredient.of(BMItems.SIGIL.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/gold"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:bucket")))), new ItemStack(BMItems.REAGENT_SUPPRESSION.get()), 4, 10000, 200);
         alchemyTable(output, "reagent_teleposition", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/gold"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:ender_pearl"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:chorus_fruit")))), new ItemStack(BMItems.REAGENT_TELEPOSITION.get()), 4, 10000, 200);
         // reagent_fastminer ported from 1.20.1 (tag name renamed forge:gunpowder -> c:gunpowder)
-        alchemyTable(output, "reagent_fastminer", List.of(Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:iron_pickaxe"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:iron_axe"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:iron_shovel"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gunpowder")))), new ItemStack(BMItems.REAGENT_FASTMINER.get()), 2, 2000, 200);
+        alchemyTable(output, "reagent_fastminer", List.of(Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:iron_pickaxe"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:iron_axe"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:iron_shovel"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gunpowders")))), new ItemStack(BMItems.REAGENT_FASTMINER.get()), 2, 2000, 200);
 
         // ===== Alchemy Array (sigils from reagents, ported from 1.20.1) =====
         // Textures ported 1:1 from 1.20.1's AlchemyArrayRecipeProvider - note "holdingsigil" reused
@@ -219,7 +220,7 @@ public class BMRecipeProvider extends RecipeProvider {
         // isn't confirmed to be the same item and guessing wrong would silently misroute a recipe.
         // Texture ported from 1.20.1's AlchemyArrayRegistry.BINDING_ARRAY constant, which all 5 of
         // its living_* recipes shared) =====
-        alchemyTable(output, "reagent_binding", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/glowstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gunpowder"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:nuggets/gold")))), new ItemStack(BMItems.REAGENT_BINDING.get()), 3, 1000, 200);
+        alchemyTable(output, "reagent_binding", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/glowstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gunpowders"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:nuggets/gold")))), new ItemStack(BMItems.REAGENT_BINDING.get()), 3, 1000, 200);
         array(output, "living_helmet", arrayTexture("bindingarray.png"), Ingredient.of(BMItems.REAGENT_BINDING.get()), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:iron_helmet"))), new ItemStack(BMItems.LIVING_HELMET.get()));
         array(output, "living_plate", arrayTexture("bindingarray.png"), Ingredient.of(BMItems.REAGENT_BINDING.get()), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:iron_chestplate"))), new ItemStack(BMItems.LIVING_PLATE.get()));
         array(output, "living_leggings", arrayTexture("bindingarray.png"), Ingredient.of(BMItems.REAGENT_BINDING.get()), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:iron_leggings"))), new ItemStack(BMItems.LIVING_LEGGINGS.get()));
@@ -233,12 +234,12 @@ public class BMRecipeProvider extends RecipeProvider {
         alchemyTable(output, "anointment_bow_velocity", List.of(Ingredient.of(BMItems.SLATE_IMBUED.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:nuggets/gold"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:bow")))), new ItemStack(BMItems.ANOINTMENT_BOW_VELOCITY.get()), 1, 500, 100);
         alchemyTable(output, "anointment_hidden_knowledge", List.of(Ingredient.of(BMItems.SLATE_IMBUED.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:glass_bottle"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:enchanted_book")))), new ItemStack(BMItems.ANOINTMENT_HIDDEN_KNOWLEDGE.get()), 1, 500, 100);
         alchemyTable(output, "anointment_holy_water", List.of(Ingredient.of(BMItems.SLATE_IMBUED.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:glistering_melon_slice"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/quartz")))), new ItemStack(BMItems.ANOINTMENT_HOLY_WATER.get()), 1, 500, 100);
-        alchemyTable(output, "anointment_quick_draw", List.of(Ingredient.of(BMItems.SLATE_IMBUED.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:string"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:spectral_arrow")))), new ItemStack(BMItems.ANOINTMENT_QUICK_DRAW.get()), 1, 500, 100);
+        alchemyTable(output, "anointment_quick_draw", List.of(Ingredient.of(BMItems.SLATE_IMBUED.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:strings"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:spectral_arrow")))), new ItemStack(BMItems.ANOINTMENT_QUICK_DRAW.get()), 1, 500, 100);
         alchemyTable(output, "anointment_silk_touch", List.of(Ingredient.of(BMItems.SLATE_IMBUED.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:cobweb"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:nuggets/gold")))), new ItemStack(BMItems.ANOINTMENT_SILK_TOUCH.get()), 1, 500, 100);
-        alchemyTable(output, "anointment_fortune", List.of(Ingredient.of(BMItems.SLATE_IMBUED.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/coal")))), new ItemStack(BMItems.ANOINTMENT_FORTUNE.get()), 1, 500, 100);
+        alchemyTable(output, "anointment_fortune", List.of(Ingredient.of(BMItems.SLATE_IMBUED.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), Ingredient.of(Items.COAL)), new ItemStack(BMItems.ANOINTMENT_FORTUNE.get()), 1, 500, 100);
         alchemyTable(output, "anointment_smelting", List.of(Ingredient.of(BMItems.SLATE_IMBUED.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:furnace"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:coal")))), new ItemStack(BMItems.ANOINTMENT_SMELTING.get()), 1, 500, 100);
         alchemyTable(output, "anointment_voiding", List.of(Ingredient.of(BMItems.SLATE_IMBUED.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:netherrack"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:cobbled_deepslate")))), new ItemStack(BMItems.ANOINTMENT_VOIDING.get()), 1, 500, 100);
-        alchemyTable(output, "anointment_weapon_repair", List.of(Ingredient.of(BMItems.SLATE_IMBUED.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/copper"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/gold")))), new ItemStack(BMItems.ANOINTMENT_WEAPON_REPAIR.get()), 1, 500, 100);
+        alchemyTable(output, "anointment_weapon_repair", List.of(Ingredient.of(BMItems.SLATE_IMBUED.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/copper"))), Ingredient.of(Items.GOLD_NUGGET)), new ItemStack(BMItems.ANOINTMENT_WEAPON_REPAIR.get()), 1, 500, 100);
         alchemyTable(output, "anointment_will_power", List.of(Ingredient.of(BMItems.SLATE_IMBUED.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(BMItems.RAW_WILL.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:nuggets/gold")))), new ItemStack(BMItems.ANOINTMENT_WILL_POWER.get()), 1, 500, 100);
 
         // ===== Anointment L/XL tiers (ported from 1.20.1's "_L"/"_XL" container sizes - see BMItems
@@ -260,23 +261,23 @@ public class BMRecipeProvider extends RecipeProvider {
         alchemyTable(output, "anointment_hidden_knowledge_xl", List.of(Ingredient.of(BMItems.ANOINTMENT_HIDDEN_KNOWLEDGE_L.get()), Ingredient.of(BMItems.SLATE_ETHEREAL.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:glass_bottle"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:enchanted_book")))), new ItemStack(BMItems.ANOINTMENT_HIDDEN_KNOWLEDGE_XL.get()), 4, 2000, 100);
         alchemyTable(output, "anointment_holy_water_l", List.of(Ingredient.of(BMItems.ANOINTMENT_HOLY_WATER.get()), Ingredient.of(BMItems.SLATE_DEMONIC.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:glistering_melon_slice"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/quartz")))), new ItemStack(BMItems.ANOINTMENT_HOLY_WATER_L.get()), 3, 1000, 100);
         alchemyTable(output, "anointment_holy_water_xl", List.of(Ingredient.of(BMItems.ANOINTMENT_HOLY_WATER_L.get()), Ingredient.of(BMItems.SLATE_ETHEREAL.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:glistering_melon_slice"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/quartz")))), new ItemStack(BMItems.ANOINTMENT_HOLY_WATER_XL.get()), 4, 2000, 100);
-        alchemyTable(output, "anointment_quick_draw_l", List.of(Ingredient.of(BMItems.ANOINTMENT_QUICK_DRAW.get()), Ingredient.of(BMItems.SLATE_DEMONIC.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:string"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:spectral_arrow")))), new ItemStack(BMItems.ANOINTMENT_QUICK_DRAW_L.get()), 3, 1000, 100);
-        alchemyTable(output, "anointment_quick_draw_xl", List.of(Ingredient.of(BMItems.ANOINTMENT_QUICK_DRAW_L.get()), Ingredient.of(BMItems.SLATE_ETHEREAL.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:string"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:spectral_arrow")))), new ItemStack(BMItems.ANOINTMENT_QUICK_DRAW_XL.get()), 4, 2000, 100);
+        alchemyTable(output, "anointment_quick_draw_l", List.of(Ingredient.of(BMItems.ANOINTMENT_QUICK_DRAW.get()), Ingredient.of(BMItems.SLATE_DEMONIC.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:strings"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:spectral_arrow")))), new ItemStack(BMItems.ANOINTMENT_QUICK_DRAW_L.get()), 3, 1000, 100);
+        alchemyTable(output, "anointment_quick_draw_xl", List.of(Ingredient.of(BMItems.ANOINTMENT_QUICK_DRAW_L.get()), Ingredient.of(BMItems.SLATE_ETHEREAL.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:strings"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:spectral_arrow")))), new ItemStack(BMItems.ANOINTMENT_QUICK_DRAW_XL.get()), 4, 2000, 100);
         alchemyTable(output, "anointment_silk_touch_l", List.of(Ingredient.of(BMItems.ANOINTMENT_SILK_TOUCH.get()), Ingredient.of(BMItems.SLATE_DEMONIC.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:cobweb"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:nuggets/gold")))), new ItemStack(BMItems.ANOINTMENT_SILK_TOUCH_L.get()), 3, 1000, 100);
         alchemyTable(output, "anointment_silk_touch_xl", List.of(Ingredient.of(BMItems.ANOINTMENT_SILK_TOUCH_L.get()), Ingredient.of(BMItems.SLATE_ETHEREAL.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:cobweb"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:nuggets/gold")))), new ItemStack(BMItems.ANOINTMENT_SILK_TOUCH_XL.get()), 4, 2000, 100);
-        alchemyTable(output, "anointment_fortune_l", List.of(Ingredient.of(BMItems.ANOINTMENT_FORTUNE.get()), Ingredient.of(BMItems.SLATE_DEMONIC.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/coal")))), new ItemStack(BMItems.ANOINTMENT_FORTUNE_L.get()), 3, 1000, 100);
-        alchemyTable(output, "anointment_fortune_xl", List.of(Ingredient.of(BMItems.ANOINTMENT_FORTUNE_L.get()), Ingredient.of(BMItems.SLATE_ETHEREAL.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/coal")))), new ItemStack(BMItems.ANOINTMENT_FORTUNE_XL.get()), 4, 2000, 100);
+        alchemyTable(output, "anointment_fortune_l", List.of(Ingredient.of(BMItems.ANOINTMENT_FORTUNE.get()), Ingredient.of(BMItems.SLATE_DEMONIC.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), Ingredient.of(Items.COAL)), new ItemStack(BMItems.ANOINTMENT_FORTUNE_L.get()), 3, 1000, 100);
+        alchemyTable(output, "anointment_fortune_xl", List.of(Ingredient.of(BMItems.ANOINTMENT_FORTUNE_L.get()), Ingredient.of(BMItems.SLATE_ETHEREAL.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), Ingredient.of(Items.COAL)), new ItemStack(BMItems.ANOINTMENT_FORTUNE_XL.get()), 4, 2000, 100);
         alchemyTable(output, "anointment_smelting_l", List.of(Ingredient.of(BMItems.ANOINTMENT_SMELTING.get()), Ingredient.of(BMItems.SLATE_DEMONIC.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:furnace"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:coal")))), new ItemStack(BMItems.ANOINTMENT_SMELTING_L.get()), 3, 1000, 100);
         alchemyTable(output, "anointment_smelting_xl", List.of(Ingredient.of(BMItems.ANOINTMENT_SMELTING_L.get()), Ingredient.of(BMItems.SLATE_ETHEREAL.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:furnace"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:coal")))), new ItemStack(BMItems.ANOINTMENT_SMELTING_XL.get()), 4, 2000, 100);
         alchemyTable(output, "anointment_voiding_l", List.of(Ingredient.of(BMItems.ANOINTMENT_VOIDING.get()), Ingredient.of(BMItems.SLATE_DEMONIC.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:netherrack"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:cobbled_deepslate")))), new ItemStack(BMItems.ANOINTMENT_VOIDING_L.get()), 3, 1000, 100);
         alchemyTable(output, "anointment_voiding_xl", List.of(Ingredient.of(BMItems.ANOINTMENT_VOIDING_L.get()), Ingredient.of(BMItems.SLATE_ETHEREAL.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:netherrack"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:cobbled_deepslate")))), new ItemStack(BMItems.ANOINTMENT_VOIDING_XL.get()), 4, 2000, 100);
-        alchemyTable(output, "anointment_weapon_repair_l", List.of(Ingredient.of(BMItems.ANOINTMENT_WEAPON_REPAIR.get()), Ingredient.of(BMItems.SLATE_DEMONIC.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/copper"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/gold")))), new ItemStack(BMItems.ANOINTMENT_WEAPON_REPAIR_L.get()), 3, 1000, 100);
-        alchemyTable(output, "anointment_weapon_repair_xl", List.of(Ingredient.of(BMItems.ANOINTMENT_WEAPON_REPAIR_L.get()), Ingredient.of(BMItems.SLATE_ETHEREAL.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/copper"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/gold")))), new ItemStack(BMItems.ANOINTMENT_WEAPON_REPAIR_XL.get()), 4, 2000, 100);
+        alchemyTable(output, "anointment_weapon_repair_l", List.of(Ingredient.of(BMItems.ANOINTMENT_WEAPON_REPAIR.get()), Ingredient.of(BMItems.SLATE_DEMONIC.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/copper"))), Ingredient.of(Items.GOLD_NUGGET)), new ItemStack(BMItems.ANOINTMENT_WEAPON_REPAIR_L.get()), 3, 1000, 100);
+        alchemyTable(output, "anointment_weapon_repair_xl", List.of(Ingredient.of(BMItems.ANOINTMENT_WEAPON_REPAIR_L.get()), Ingredient.of(BMItems.SLATE_ETHEREAL.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/copper"))), Ingredient.of(Items.GOLD_NUGGET)), new ItemStack(BMItems.ANOINTMENT_WEAPON_REPAIR_XL.get()), 4, 2000, 100);
 
         // ===== Throwing Dagger (ported from 1.20.1, soul forge, x16 output) =====
-        soulForge(output, "throwing_dagger", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/iron"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/iron"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:string")))), Util.make(new ItemStack(BMItems.THROWING_DAGGER.get()), s -> s.setCount(16)), 32, 5);
+        soulForge(output, "throwing_dagger", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/iron"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/iron"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:strings")))), Util.make(new ItemStack(BMItems.THROWING_DAGGER.get()), s -> s.setCount(16)), 32, 5);
         // Syringe variant (ported from 1.20.1, soul forge, x8 output)
-        soulForge(output, "throwing_dagger_syringe", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:glass")))), Util.make(new ItemStack(BMItems.THROWING_DAGGER_SYRINGE.get()), s -> s.setCount(8)), 10, 2);
+        soulForge(output, "throwing_dagger_syringe", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:glass_blocks")))), Util.make(new ItemStack(BMItems.THROWING_DAGGER_SYRINGE.get()), s -> s.setCount(8)), 10, 2);
 
         // ===== Sentient tools (5 ported 1:1 from 1.20.1 - all originally free, drain 0/minWill 0,
         // just a Petty Tartaric Gem + the matching vanilla iron tool. The Sentient Bow recipe is
@@ -303,12 +304,50 @@ public class BMRecipeProvider extends RecipeProvider {
         soulForge(output, "sentientboots", List.of(Ingredient.of(BMItems.SOUL_GEM_LESSER.get()), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:diamond_boots")))), new ItemStack(BMItems.SENTIENT_BOOTS.get()), 200, 80);
         soulForge(output, "sentient_armour_gem", List.of(Ingredient.of(BMItems.SOUL_GEM_LESSER.get()), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:diamond_chestplate"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:storage_blocks/iron"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:obsidian")))), new ItemStack(BMItems.SENTIENT_ARMOUR_GEM.get()), 300, 150);
 
+        // Living Station: like Sentient Armour above, this is new-to-this-branch content with no
+        // 1.20.1 upstream to port a recipe from (see LIVING_STATION's own registration comment in
+        // BMBlocks - "no 1.20.1 equivalent to port art from"). It's the GUI front-end for applying/
+        // scrapping Living Armour UPGRADE_TOME items (see LivingStationTile), so it's a real,
+        // player-facing furniture block with no plausible reason to be left unreachable. Costed as a
+        // "furniture/station" tier crafting-table recipe - a Lesser Soul Gem ties it to the same
+        // Will-magic tier as the Sentient Armour pieces it manages, Bookshelves represent the
+        // "recorded training knowledge" the station tracks, and Imbued Slate is this file's
+        // established general-purpose "magic activation" ingredient for utility blocks.
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMBlocks.LIVING_STATION.item().get())
+                .define('i', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/iron")))
+                .define('b', Items.BOOKSHELF)
+                .define('g', BMItems.SOUL_GEM_LESSER.get())
+                .define('s', BMItems.SLATE_IMBUED.get())
+                .pattern("ibi")
+                .pattern("bgb")
+                .pattern("isi")
+                .unlockedBy("has_lesser_gem", has(BMItems.SOUL_GEM_LESSER.get()))
+                .save(output, BloodMagic.rl("living_station"));
+
         // ===== Item Routing network (ported from 1.20.1's 4-tier soulforge chain, collapsed to
         // 3 recipes since this branch has no intermediate "routing node" block - each recipe below
         // merges the original's base-node + upgrade-tier material lists) =====
         soulForge(output, "master_routing_node", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:storage_blocks/iron"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/diamond"))), Ingredient.of(BMItems.SLATE_IMBUED.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/glowstone")))), new ItemStack(BMBlocks.MASTER_ROUTING_NODE.item().get()), 400, 200);
-        soulForge(output, "input_routing_node", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/gold"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/glowstone")))), new ItemStack(BMBlocks.INPUT_ROUTING_NODE.item().get()), 400, 25);
-        soulForge(output, "output_routing_node", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/iron"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/glowstone")))), new ItemStack(BMBlocks.OUTPUT_ROUTING_NODE.item().get()), 400, 25);
+        soulForge(output, "input_routing_node", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/gold"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/glowstone")))), new ItemStack(BMBlocks.INPUT_ROUTING_NODE.item().get()), 400, 25);
+        soulForge(output, "output_routing_node", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/iron"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/glowstone")))), new ItemStack(BMBlocks.OUTPUT_ROUTING_NODE.item().get()), 400, 25);
+
+        // Item Router: the "standalone alternative to the full Routing Node network" (see
+        // ItemRouterTile's javadoc) - an enhanced hopper with a built-in whitelist plus an optional
+        // Filter item slot (see the Item Routing "Filter" system below). Also new-to-this-branch (no
+        // 1.20.1 registration for this block exists at all - only its unrelated ITEM_ROUTER_FILTER
+        // item did), and left with no recipe despite the 3 routing nodes it complements all getting
+        // one above. Kept as a plain crafting-table recipe (unlike the Hellfire-Forge-gated routing
+        // nodes) since it's explicitly the simpler, more accessible alternative to that network - a
+        // vanilla Hopper upgraded with iron reinforcement and an Imbued Slate for the smart filtering.
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMBlocks.ITEM_ROUTER.item().get())
+                .define('i', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/iron")))
+                .define('h', Items.HOPPER)
+                .define('s', BMItems.SLATE_IMBUED.get())
+                .pattern("i i")
+                .pattern("ihi")
+                .pattern("isi")
+                .unlockedBy("has_imbued_slate", has(BMItems.SLATE_IMBUED.get()))
+                .save(output, BloodMagic.rl("item_router"));
 
         // ===== Ritual Diviner (crafting-table shaped, ported from 1.20.1's shape/tiering - the
         // original's dedicated "scribe tool" items don't exist on this branch, substituted with
@@ -350,20 +389,20 @@ public class BMRecipeProvider extends RecipeProvider {
         // filesystem clash with the "blood_altar/", "alchemy_table/" and "hellfire_forge/" recipe
         // subfolders the altar()/alchemyTable()/soulForge() helpers already write into) =====
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMBlocks.BLOOD_ALTAR.item().get())
-                .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stone")))
+                .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones")))
                 .define('b', Items.FURNACE)
                 .define('c', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/gold")))
                 .pattern("a a")
                 .pattern("aba")
                 .pattern("ccc")
-                .unlockedBy("has_stone", has(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stone"))))
+                .unlockedBy("has_stone", has(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones"))))
                 .save(output, BloodMagic.rl("blood_altar_block"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMBlocks.ALCHEMY_TABLE.item().get())
                 .define('b', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/iron")))
                 .define('g', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/gold")))
                 .define('o', BMItems.SLATE_BLANK.get())
-                .define('s', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stone")))
+                .define('s', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones")))
                 .define('w', TagKey.create(Registries.ITEM, ResourceLocation.parse("minecraft:planks")))
                 .pattern("sss")
                 .pattern("wbw")
@@ -375,7 +414,7 @@ public class BMRecipeProvider extends RecipeProvider {
                 .define('S', BMItems.SLATE_BLANK.get())
                 .define('i', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/iron")))
                 .define('o', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:storage_blocks/iron")))
-                .define('s', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stone")))
+                .define('s', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones")))
                 .pattern("i i")
                 .pattern("sSs")
                 .pattern("sos")
@@ -392,12 +431,58 @@ public class BMRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_teleposer_focus", has(BMItems.TELEPOSER_FOCUS.get()))
                 .save(output, BloodMagic.rl("teleposer"));
 
+        // ===== Blood Tank (new to this branch - BLOOD_TANK/BloodTankTile/BloodTankRenderer all
+        // exist and work, but never had a recipe of any kind, in either the base craft or the
+        // tier-up path). BloodTankTile.CAPACITIES runs tier 1 (16 buckets) up to tier 16 (524288
+        // buckets), and BMBlocks.BLOOD_TANK's BlockItem already bakes CONTAINER_TIER=1 into its
+        // default item properties, so a plain crafting-table recipe is all tier 1 needs - the
+        // FluidTieredRecipe/TieredRecipeBuilder machinery (see BaseTieredRecipe#matches, which reads
+        // both input stacks' CONTAINER_TIER component and requires them equal and below the tier-16
+        // cap) already exists for every tier beyond that, it just never had a recipe registered
+        // either. One tier-up recipe below covers all 15 upgrades (1->2 through 15->16) generically,
+        // since matches()/assemble() key off the placed tanks' own tier component rather than a
+        // fixed item, not one recipe per tier.
+        //
+        // Base tier: styled after the other core structure blocks just above (iron frame + glass
+        // basin), gated behind an Apprentice-tier orb - a small step past the orb-less core
+        // structures (Altar/Table/Forge/Teleposer), matching this file's other "early player-quality-
+        // of-life storage/utility" items (see e.g. reinforcedslate's altar tier). =====
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMBlocks.BLOOD_TANK.item().get())
+                .define('i', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/iron")))
+                .define('g', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:glass_blocks")))
+                .define('o', bloodOrb(1))
+                .pattern("igi")
+                .pattern("g g")
+                .pattern("ioi")
+                .unlockedBy("has_apprentice_orb", has(BMItems.ORB_APPRENTICE.get()))
+                .save(output, BloodMagic.rl("blood_tank"));
+
+        // Tier-up: 2 Blood Tanks of the same tier (their fluid contents merge into the result, or
+        // carry over from whichever side isn't empty - see FluidTieredRecipe#assemble) plus an iron
+        // reinforcement frame and a glass connector, into 1 tank of the next tier up. A full 3x3
+        // pattern is used deliberately (rather than a smaller pattern NeoForge would otherwise slide
+        // around the grid) so the "primary"/"secondary" slot indices BaseTieredRecipe reads from are
+        // unambiguous - a shape smaller than the grid could match at more than one offset, and
+        // primary/secondary are fixed absolute slot indices, not pattern-relative ones.
+        TieredRecipeBuilder.fluid(RecipeCategory.MISC, BMBlocks.BLOOD_TANK.item().get())
+                .primary(1)
+                .secondary(7)
+                .define('i', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/iron")))
+                .define('g', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:glass_blocks")))
+                .define('p', BMBlocks.BLOOD_TANK.item().get())
+                .define('s', BMBlocks.BLOOD_TANK.item().get())
+                .pattern("ipi")
+                .pattern(" g ")
+                .pattern("isi")
+                .unlockedBy("has_blood_tank", has(BMBlocks.BLOOD_TANK.item().get()))
+                .save(output, BloodMagic.rl("blood_tank_tier_up"));
+
         // Sacrificial Dagger: 1.20.1 only ever gave this a crafting-table recipe (no Blood Altar
         // recipe - see the "daggerofsacrifice" altar recipe's comment above for why that name
         // actually belongs to the unrelated Dagger of Sacrifice).
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, BMItems.SACRIFICIAL_DAGGER.get())
                 .define('G', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/gold")))
-                .define('g', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:glass")))
+                .define('g', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:glass_blocks")))
                 .define('i', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/iron")))
                 .pattern("ggg")
                 .pattern(" Gg")
@@ -423,7 +508,7 @@ public class BMRecipeProvider extends RecipeProvider {
         // to this branch, or require the "hellforgedparts" item (all T2 rune upgrades) - neither
         // is portable without inventing a substitute, so those were skipped) =====
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMBlocks.RUNE_CAPACITY.item().get())
-                .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stone")))
+                .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones")))
                 .define('b', Items.BUCKET)
                 .define('c', BMBlocks.RUNE_BLANK.item().get())
                 .define('d', BMItems.SLATE_IMBUED.get())
@@ -434,7 +519,7 @@ public class BMRecipeProvider extends RecipeProvider {
                 .save(output, BloodMagic.rl("blood_rune_capacity"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMBlocks.RUNE_DISLOCATION.item().get())
-                .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stone")))
+                .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones")))
                 .define('b', Items.WATER_BUCKET)
                 .define('c', BMBlocks.RUNE_BLANK.item().get())
                 .define('d', BMItems.SLATE_IMBUED.get())
@@ -451,7 +536,7 @@ public class BMRecipeProvider extends RecipeProvider {
         // lava_crystal/primitive_furnace_cell/primitive_hydration_cell are no longer skipped now that
         // their items exist - see the ARC tool items section near the end of this method) =====
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMBlocks.RUNE_BLANK.item().get())
-                .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stone")))
+                .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones")))
                 .define('o', bloodOrb(1))
                 .define('s', BMItems.SLATE_BLANK.get())
                 .pattern("asa")
@@ -461,7 +546,7 @@ public class BMRecipeProvider extends RecipeProvider {
                 .save(output, BloodMagic.rl("blood_rune_blank"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMBlocks.RUNE_SPEED.item().get())
-                .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stone")))
+                .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones")))
                 .define('b', BMItems.SLATE_BLANK.get())
                 .define('c', Items.SUGAR)
                 .define('d', BMBlocks.RUNE_BLANK.item().get())
@@ -484,7 +569,7 @@ public class BMRecipeProvider extends RecipeProvider {
                 .save(output, BloodMagic.rl("blood_rune_acceleration"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMBlocks.RUNE_CAPACITY_AUGMENTED.item().get())
-                .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:obsidian")))
+                .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:obsidians")))
                 .define('b', BMItems.SLATE_DEMONIC.get())
                 .define('c', Items.BUCKET)
                 .define('d', BMBlocks.RUNE_CAPACITY.item().get())
@@ -508,7 +593,7 @@ public class BMRecipeProvider extends RecipeProvider {
                 .save(output, BloodMagic.rl("blood_rune_charging"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMBlocks.RUNE_ORB.item().get())
-                .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stone")))
+                .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones")))
                 .define('b', bloodOrb(1))
                 .define('c', BMBlocks.RUNE_BLANK.item().get())
                 .define('d', bloodOrb(4))
@@ -519,7 +604,7 @@ public class BMRecipeProvider extends RecipeProvider {
                 .save(output, BloodMagic.rl("blood_rune_orb"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMBlocks.RUNE_SACRIFICE.item().get())
-                .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stone")))
+                .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones")))
                 .define('b', BMItems.SLATE_REINFORCED.get())
                 .define('c', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/gold")))
                 .define('d', BMBlocks.RUNE_BLANK.item().get())
@@ -531,7 +616,7 @@ public class BMRecipeProvider extends RecipeProvider {
                 .save(output, BloodMagic.rl("blood_rune_sacrifice"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMBlocks.RUNE_SELF_SACRIFICE.item().get())
-                .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stone")))
+                .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones")))
                 .define('b', BMItems.SLATE_REINFORCED.get())
                 .define('c', Items.GLOWSTONE_DUST)
                 .define('d', BMBlocks.RUNE_BLANK.item().get())
@@ -542,8 +627,29 @@ public class BMRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_blank_rune", has(BMBlocks.RUNE_BLANK.item().get()))
                 .save(output, BloodMagic.rl("blood_rune_self_sacrifice"));
 
+        // Efficiency Rune: unlike every other rune above, this one has no 1.20.1 art to port from -
+        // BloodRuneType.EFFICIENCY existed there (see BloodAltar#efficiencyMultiplier) but 1.20.1
+        // never actually registered a block/item for it, so it was dead enum code, not real content
+        // (confirmed: no BLANK_RUNE-style registration for it anywhere in 1.20.1's
+        // BloodMagicBlocks.java). RUNE_EFFICIENCY/RUNE_2_EFFICIENCY are new-to-this-branch content
+        // (see BloodRuneData) that was otherwise fully wired up - data map entry, lang, blockstate -
+        // and just missing recipes. Styled like the other direct-from-RUNE_BLANK runes above (same
+        // stone-corners/RUNE_BLANK-center/Imbued-Slate-base shape as blood_rune_capacity/
+        // blood_rune_displacement), with Amethyst Shard as the "precision/reduced-waste" flavor
+        // ingredient (unused by any other rune recipe, fitting for a rune about cutting drain waste).
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMBlocks.RUNE_EFFICIENCY.item().get())
+                .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones")))
+                .define('b', Items.AMETHYST_SHARD)
+                .define('c', BMBlocks.RUNE_BLANK.item().get())
+                .define('d', BMItems.SLATE_IMBUED.get())
+                .pattern("aba")
+                .pattern("bcb")
+                .pattern("ada")
+                .unlockedBy("has_blank_rune", has(BMBlocks.RUNE_BLANK.item().get()))
+                .save(output, BloodMagic.rl("blood_rune_efficiency"));
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMBlocks.RITUAL_STONE_BLANK.item().get(), 4)
-                .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:obsidian")))
+                .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:obsidians")))
                 .define('b', BMItems.SLATE_REINFORCED.get())
                 .define('c', bloodOrb(2))
                 .pattern("aba")
@@ -553,7 +659,7 @@ public class BMRecipeProvider extends RecipeProvider {
                 .save(output, BloodMagic.rl("ritual_stone_blank"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMBlocks.MASTER_RITUAL_STONE.item().get())
-                .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:obsidian")))
+                .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:obsidians")))
                 .define('b', BMBlocks.RITUAL_STONE_BLANK.item().get())
                 .define('c', bloodOrb(3))
                 .pattern("aba")
@@ -567,7 +673,7 @@ public class BMRecipeProvider extends RecipeProvider {
                 .define('S', BMItems.SLATE_IMBUED.get())
                 .define('f', Items.FURNACE)
                 .define('o', bloodOrb(3))
-                .define('s', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stone")))
+                .define('s', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones")))
                 .pattern("sss")
                 .pattern("SoS")
                 .pattern("IfI")
@@ -580,7 +686,7 @@ public class BMRecipeProvider extends RecipeProvider {
                 .define('g', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/gold")))
                 .define('l', BMItems.SLATE_IMBUED.get())
                 .define('o', bloodOrb(3))
-                .define('s', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:string")))
+                .define('s', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:strings")))
                 .pattern("ses")
                 .pattern("lbl")
                 .pattern("gog")
@@ -588,14 +694,14 @@ public class BMRecipeProvider extends RecipeProvider {
                 .save(output, BloodMagic.rl("experience_tome"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMBlocks.INCENSE_ALTAR.item().get())
-                .define('c', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:cobblestone")))
+                .define('c', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:cobblestones")))
                 .define('h', Items.CHARCOAL)
                 .define('o', bloodOrb(1))
-                .define('s', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stone")))
+                .define('s', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones")))
                 .pattern("s s")
                 .pattern("shs")
                 .pattern("coc")
-                .unlockedBy("has_stone", has(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stone"))))
+                .unlockedBy("has_stone", has(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones"))))
                 .save(output, BloodMagic.rl("incense_altar"));
 
         // ===== Ore fragments (7 ARC ore-processing recipes ported from 1.20.1, now that
@@ -659,6 +765,11 @@ public class BMRecipeProvider extends RecipeProvider {
         arc(output, "reversion/orb_rune", BMTags.Items.REVERTER, Ingredient.of(BMBlocks.RUNE_2_ORB.item().get()), List.of(new ItemStack(BMBlocks.RUNE_ORB.item().get()), new ItemStack(BMItems.HELLFORGED_PARTS.get()), Util.make(new ItemStack(Items.NETHERITE_SCRAP), s -> s.setCount(4))), List.of(), null, null);
         arc(output, "reversion/sac", BMTags.Items.REVERTER, Ingredient.of(BMBlocks.RUNE_2_SACRIFICE.item().get()), List.of(new ItemStack(BMBlocks.RUNE_SACRIFICE.item().get()), new ItemStack(BMItems.HELLFORGED_PARTS.get()), Util.make(new ItemStack(Items.NETHERITE_SCRAP), s -> s.setCount(4))), List.of(), null, null);
         arc(output, "reversion/speed", BMTags.Items.REVERTER, Ingredient.of(BMBlocks.RUNE_2_SPEED.item().get()), List.of(new ItemStack(BMBlocks.RUNE_SPEED.item().get()), new ItemStack(BMItems.HELLFORGED_PARTS.get()), Util.make(new ItemStack(Items.NETHERITE_SCRAP), s -> s.setCount(4))), List.of(), null, null);
+        // Efficiency's reversion recipe - see the "blood_rune_efficiency"/"blood_rune_efficiency_2"
+        // recipes below for why this rune (unlike its 9 siblings above) has no 1.20.1 precedent to
+        // mirror; added here purely to keep it at parity with the other 9 tier-2 runes now that it
+        // has a tier-2 form to revert.
+        arc(output, "reversion/efficiency", BMTags.Items.REVERTER, Ingredient.of(BMBlocks.RUNE_2_EFFICIENCY.item().get()), List.of(new ItemStack(BMBlocks.RUNE_EFFICIENCY.item().get()), new ItemStack(BMItems.HELLFORGED_PARTS.get()), Util.make(new ItemStack(Items.NETHERITE_SCRAP), s -> s.setCount(4))), List.of(), null, null);
 
         // ===== Hellforged Parts, part 2: crafting-table tier-2 rune upgrades (9 ported from
         // 1.20.1) - the reverse of the reversion recipes above: consumes a tier-1 rune, Hellforged
@@ -773,6 +884,40 @@ public class BMRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_hellforged_parts", has(BMItems.HELLFORGED_PARTS.get()))
                 .save(output, BloodMagic.rl("blood_rune_speed_2"));
 
+        // Efficiency's tier-2 form - same shape/cost as the 9 tier-2 runes above, for the same
+        // reason (see "blood_rune_efficiency" above): no 1.20.1 recipe exists to port, since 1.20.1
+        // never shipped a real Efficiency Rune item at all.
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMBlocks.RUNE_2_EFFICIENCY.item().get())
+                .define('s', Items.NETHERITE_SCRAP)
+                .define('p', BMItems.HELLFORGED_PARTS.get())
+                .define('d', BMBlocks.BLOODSTONE.item().get())
+                .define('r', BMBlocks.RUNE_EFFICIENCY.item().get())
+                .define('o', BMItems.SLATE_ETHEREAL.get())
+                .pattern("sps")
+                .pattern("drd")
+                .pattern("sos")
+                .unlockedBy("has_hellforged_parts", has(BMItems.HELLFORGED_PARTS.get()))
+                .save(output, BloodMagic.rl("blood_rune_efficiency_2"));
+
+        // ===== Flask catalysts (4 of 1.20.1's 9 Alchemy Table catalyst recipes ported - these feed
+        // the entire Alchemical Potion Flask system below, which was restored in an earlier round but
+        // left every one of its catalyst *sources* uncovered: SIMPLE_CATALYST/WEAK_FILLING_AGENT/
+        // CYCLING_CATALYST/COMBINATIONAL_CATALYST were consumed by dozens of flask recipes below with
+        // no recipe of their own anywhere, making the whole system unreachable from a fresh save
+        // despite every individual flask recipe otherwise being valid. The other 5 old catalyst
+        // recipes (mundane_power/mundane_lengthening/average_power/average_lengthening/
+        // standard_filling) aren't ported here - they need either 1.20.1's harvested "Tau" crop
+        // product (distinct from this branch's WEAK_TAU_SEED/STRONG_TAU_SEED, which only place the
+        // crop) or the same missing Hellforged dust/STRENGTHENED_CATALYST chain called out at
+        // "archmagebloodorb"/BMBlocks.HELLFORGED_BLOCK above - AVERAGE_FILLING_AGENT never had a
+        // crafting recipe even in 1.20.1 (loot-table only there too). "combinational" below swaps
+        // 1.20.1's BloodMagicTags.DUST_COAL ingredient for plain Items.COAL, the same substitution
+        // used for every other now-fixed c:dusts/coal reference in this file. =====
+        alchemyTable(output, "simple_catalyst", List.of(Ingredient.of(Items.SUGAR), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/glowstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gunpowders"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/nether_wart")))), Util.make(new ItemStack(BMItems.SIMPLE_CATALYST.get()), s -> s.setCount(2)), 2, 200, 100);
+        alchemyTable(output, "weak_filling", List.of(Ingredient.of(BMItems.SIMPLE_CATALYST.get()), Ingredient.of(Items.SUGAR_CANE), Ingredient.of(Items.CRIMSON_FUNGUS), Ingredient.of(Items.WARPED_FUNGUS)), new ItemStack(BMItems.WEAK_FILLING_AGENT.get()), 2, 2000, 100);
+        alchemyTable(output, "cycling_catalyst", List.of(Ingredient.of(BMItems.SIMPLE_CATALYST.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/lapis"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/lapis"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dyes/green"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:sands")))), new ItemStack(BMItems.CYCLING_CATALYST.get()), 2, 1000, 100);
+        alchemyTable(output, "combinational", List.of(Ingredient.of(BMItems.SIMPLE_CATALYST.get()), Ingredient.of(Items.BROWN_MUSHROOM), Ingredient.of(Items.RED_MUSHROOM), Ingredient.of(Items.SLIME_BALL), Ingredient.of(Items.COAL)), new ItemStack(BMItems.COMBINATIONAL_CATALYST.get()), 4, 2000, 100);
+
         // ===== Alchemical Potion Flask (all 110 ported from 1.20.1 - the 28 that reference
         // SPECTRAL_SIGHT/GRAVITY/GROUNDED/OBSIDIAN_CLOAK/HARD_CLOAK/BOUNCE were initially skipped
         // pending those potion effects existing; now that BMPotions has all 16 of 1.20.1's effects,
@@ -878,9 +1023,9 @@ public class BMRecipeProvider extends RecipeProvider {
         // recipe referenced its own output item "bloodmagic:soulforge" as an ingredient, which
         // looks like a authoring mistake in the original data - substituted here with the Crucible
         // itself, i.e. you upgrade a Crucible into a Crystallizer) =====
-        soulForge(output, "demon_crucible", List.of(Ingredient.of(Items.CAULDRON), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/lapis"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/diamond")))), new ItemStack(BMBlocks.DEMON_CRUCIBLE.item().get()), 400, 100);
-        soulForge(output, "demon_crystallizer", List.of(Ingredient.of(BMBlocks.DEMON_CRUCIBLE.item().get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/lapis"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:glass")))), new ItemStack(BMBlocks.DEMON_CRYSTALLIZER.item().get()), 500, 100);
-        soulForge(output, "demon_pylon", List.of(Ingredient.of(BMItems.RAW_WILL.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/lapis"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:storage_blocks/iron")))), new ItemStack(BMBlocks.DEMON_PYLON.item().get()), 400, 50);
+        soulForge(output, "demon_crucible", List.of(Ingredient.of(Items.CAULDRON), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/lapis"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/diamond")))), new ItemStack(BMBlocks.DEMON_CRUCIBLE.item().get()), 400, 100);
+        soulForge(output, "demon_crystallizer", List.of(Ingredient.of(BMBlocks.DEMON_CRUCIBLE.item().get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/lapis"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:glass_blocks")))), new ItemStack(BMBlocks.DEMON_CRYSTALLIZER.item().get()), 500, 100);
+        soulForge(output, "demon_pylon", List.of(Ingredient.of(BMItems.RAW_WILL.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/lapis"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:storage_blocks/iron")))), new ItemStack(BMBlocks.DEMON_PYLON.item().get()), 400, 50);
 
         // ===== Explosive Charge family (4 ported from 1.20.1's soulforge recipes for
         // BlockShapedExplosive/BlockDeforesterCharge/BlockFungalCharge/BlockVeinMineCharge; the
@@ -889,10 +1034,10 @@ public class BMRecipeProvider extends RecipeProvider {
         // instead - see BMBlocks for why only the base tier of each charge is ported, and why the
         // 20 anointment-combo soulforge recipes (fortune/silk touch/smelting/voiding variants)
         // aren't - no AnointmentHolder integration on these charges) =====
-        soulForge(output, "shaped_charge", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:cobblestone"))), Ingredient.of(Items.CHARCOAL), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:sand"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stone")))), Util.make(new ItemStack(BMBlocks.SHAPED_CHARGE.item().get()), s -> s.setCount(8)), 10, 0.5);
-        soulForge(output, "deforester_charge", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:cobblestone"))), Ingredient.of(Items.CHARCOAL), Ingredient.of(net.minecraft.tags.ItemTags.LOGS), Ingredient.of(net.minecraft.tags.ItemTags.PLANKS)), Util.make(new ItemStack(BMBlocks.DEFORESTER_CHARGE.item().get()), s -> s.setCount(8)), 10, 0.5);
-        soulForge(output, "fungal_charge", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:cobblestone"))), Ingredient.of(Items.CHARCOAL), Ingredient.of(Items.RED_MUSHROOM_BLOCK, Items.BROWN_MUSHROOM_BLOCK), Ingredient.of(Items.RED_MUSHROOM, Items.BROWN_MUSHROOM)), Util.make(new ItemStack(BMBlocks.FUNGAL_CHARGE.item().get()), s -> s.setCount(8)), 10, 0.5);
-        soulForge(output, "veinmine_charge", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:cobblestone"))), Ingredient.of(Items.CHARCOAL), Ingredient.of(Items.SANDSTONE), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:sand")))), Util.make(new ItemStack(BMBlocks.VEINMINE_CHARGE.item().get()), s -> s.setCount(8)), 10, 0.5);
+        soulForge(output, "shaped_charge", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:cobblestones"))), Ingredient.of(Items.CHARCOAL), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:sands"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones")))), Util.make(new ItemStack(BMBlocks.SHAPED_CHARGE.item().get()), s -> s.setCount(8)), 10, 0.5);
+        soulForge(output, "deforester_charge", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:cobblestones"))), Ingredient.of(Items.CHARCOAL), Ingredient.of(net.minecraft.tags.ItemTags.LOGS), Ingredient.of(net.minecraft.tags.ItemTags.PLANKS)), Util.make(new ItemStack(BMBlocks.DEFORESTER_CHARGE.item().get()), s -> s.setCount(8)), 10, 0.5);
+        soulForge(output, "fungal_charge", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:cobblestones"))), Ingredient.of(Items.CHARCOAL), Ingredient.of(Items.RED_MUSHROOM_BLOCK, Items.BROWN_MUSHROOM_BLOCK), Ingredient.of(Items.RED_MUSHROOM, Items.BROWN_MUSHROOM)), Util.make(new ItemStack(BMBlocks.FUNGAL_CHARGE.item().get()), s -> s.setCount(8)), 10, 0.5);
+        soulForge(output, "veinmine_charge", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:cobblestones"))), Ingredient.of(Items.CHARCOAL), Ingredient.of(Items.SANDSTONE), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:sands")))), Util.make(new ItemStack(BMBlocks.VEINMINE_CHARGE.item().get()), s -> s.setCount(8)), 10, 0.5);
 
         // ===== ARC tool items (13 ported from 1.20.1: the durability-gated catalysts placed in the
         // Alchemical Reaction Chamber's tool slot). BMTags.Items.REVERTER/EXPLOSIVES/RESONATOR/
@@ -926,10 +1071,10 @@ public class BMRecipeProvider extends RecipeProvider {
         // ARC_SMOKING - see BMItems.PRIMITIVE_FURNACE_CELL for why. =====
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMItems.LAVA_CRYSTAL.get())
-                .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:glass")))
+                .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:glass_blocks")))
                 .define('b', Items.LAVA_BUCKET)
                 .define('c', bloodOrb(0))
-                .define('d', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:obsidian")))
+                .define('d', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:obsidians")))
                 .define('e', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/diamond")))
                 .pattern("aba")
                 .pattern("bcb")
@@ -937,8 +1082,21 @@ public class BMRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_weak_orb", has(BMItems.ORB_WEAK.get()))
                 .save(output, BloodMagic.rl("lava_crystal"));
 
+        // Weak Activation Crystal: ported from 1.20.1 (BloodAltarRecipeProvider's
+        // "weak_activation_crystal", AltarTier.THREE.ordinal() == minTier 2 on this branch's 0-indexed
+        // altar() helper - see the "demonicslate"/"teleposer_focus"/"archmagebloodorb" altar recipes
+        // above for the same AltarTier-ordinal-to-minTier mapping already established in this file).
+        // ACTIVATION_CRYSTAL_AWAKENED isn't ported alongside it: 1.20.1 registered that item too but
+        // never gave it a crafting recipe of any kind either (no altar/table/forge/ritual reference
+        // anywhere in that branch's source), so there's no precedent to port from - it's still
+        // registered/obtainable via creative/commands, matching this file's existing
+        // REINFORCED_TELEPOSER_FOCUS precedent. ACTIVATION_CRYSTAL_CREATIVE is intentionally excluded
+        // (its own CrystalType.CREATIVE name and Integer.MAX_VALUE crystal level make it a
+        // debug/creative-only item, not meant to be player-crafted).
+        altar(output, "weak_activation_crystal", Ingredient.of(BMItems.LAVA_CRYSTAL.get()), new ItemStack(BMItems.ACTIVATION_CRYSTAL_WEAK.get()), 2, 10000, 20, 10);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMItems.PRIMITIVE_FURNACE_CELL.get())
-                .define('c', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:cobblestone")))
+                .define('c', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:cobblestones")))
                 .define('f', Items.COAL_BLOCK)
                 .define('s', BMItems.SLATE_BLANK.get())
                 .define('o', bloodOrb(2))
@@ -950,7 +1108,7 @@ public class BMRecipeProvider extends RecipeProvider {
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMItems.PRIMITIVE_HYDRATION_CELL.get())
                 .define('B', Items.WATER_BUCKET)
-                .define('c', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:cobblestone")))
+                .define('c', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:cobblestones")))
                 .define('o', bloodOrb(2))
                 .define('s', BMItems.SLATE_BLANK.get())
                 .pattern("csc")
@@ -959,16 +1117,16 @@ public class BMRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_magician_orb", has(BMItems.ORB_MAGICIAN.get()))
                 .save(output, BloodMagic.rl("primitive_hydration_cell"));
 
-        alchemyTable(output, "explosive_powder", List.of(Ingredient.of(Items.GUNPOWDER), Ingredient.of(Items.GUNPOWDER), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/coal")))), new ItemStack(BMItems.EXPLOSIVE_POWDER.get()), 1, 500, 200);
-        alchemyTable(output, "primitive_explosive_cell", List.of(Ingredient.of(Items.GUNPOWDER), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), Ingredient.of(BMItems.CORRUPTED_DUST_TINY.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/coal")))), new ItemStack(BMItems.PRIMITIVE_EXPLOSIVE_CELL.get()), 3, 1000, 200);
-        alchemyTable(output, "hellforged_explosive_cell", List.of(Ingredient.of(Items.GUNPOWDER), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/sulfur"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/quartz"))), Ingredient.of(BMItems.CORRUPTED_DUST.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/coal")))), new ItemStack(BMItems.HELLFORGED_EXPLOSIVE_CELL.get()), 4, 4000, 200);
+        alchemyTable(output, "explosive_powder", List.of(Ingredient.of(Items.GUNPOWDER), Ingredient.of(Items.GUNPOWDER), Ingredient.of(Items.COAL)), new ItemStack(BMItems.EXPLOSIVE_POWDER.get()), 1, 500, 200);
+        alchemyTable(output, "primitive_explosive_cell", List.of(Ingredient.of(Items.GUNPOWDER), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), Ingredient.of(BMItems.CORRUPTED_DUST_TINY.get()), Ingredient.of(Items.COAL)), new ItemStack(BMItems.PRIMITIVE_EXPLOSIVE_CELL.get()), 3, 1000, 200);
+        alchemyTable(output, "hellforged_explosive_cell", List.of(Ingredient.of(Items.GUNPOWDER), Ingredient.of(Items.BLAZE_POWDER), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/quartz"))), Ingredient.of(BMItems.CORRUPTED_DUST.get()), Ingredient.of(Items.COAL)), new ItemStack(BMItems.HELLFORGED_EXPLOSIVE_CELL.get()), 4, 4000, 200);
 
-        alchemyTable(output, "basic_cutting_fluid", List.of(Ingredient.of(Items.SLIME_BALL), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), Ingredient.of(Items.GUNPOWDER), Ingredient.of(Items.SUGAR), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/coal"))), Ingredient.of(Items.WATER_BUCKET)), new ItemStack(BMItems.BASIC_CUTTING_FLUID.get()), 1, 1000, 200);
-        alchemyTable(output, "intermediate_cutting_fluid", List.of(Ingredient.of(Items.SLIME_BALL), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/glowstone"))), Ingredient.of(Items.GUNPOWDER), Ingredient.of(Items.SUGAR), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/sulfur"))), Ingredient.of(Items.WATER_BUCKET)), new ItemStack(BMItems.INTERMEDIATE_CUTTING_FLUID.get()), 3, 2000, 200);
-        alchemyTable(output, "advanced_cutting_fluid", List.of(Ingredient.of(Items.SLIME_BALL), Ingredient.of(BMItems.CORRUPTED_DUST.get()), Ingredient.of(Items.GLOW_BERRIES), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/saltpeter"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/sulfur"))), Ingredient.of(Items.WATER_BUCKET)), new ItemStack(BMItems.ADVANCED_CUTTING_FLUID.get()), 4, 4000, 200);
+        alchemyTable(output, "basic_cutting_fluid", List.of(Ingredient.of(Items.SLIME_BALL), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), Ingredient.of(Items.GUNPOWDER), Ingredient.of(Items.SUGAR), Ingredient.of(Items.COAL), Ingredient.of(Items.WATER_BUCKET)), new ItemStack(BMItems.BASIC_CUTTING_FLUID.get()), 1, 1000, 200);
+        alchemyTable(output, "intermediate_cutting_fluid", List.of(Ingredient.of(Items.SLIME_BALL), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/glowstone"))), Ingredient.of(Items.GUNPOWDER), Ingredient.of(Items.SUGAR), Ingredient.of(Items.BLAZE_POWDER), Ingredient.of(Items.WATER_BUCKET)), new ItemStack(BMItems.INTERMEDIATE_CUTTING_FLUID.get()), 3, 2000, 200);
+        alchemyTable(output, "advanced_cutting_fluid", List.of(Ingredient.of(Items.SLIME_BALL), Ingredient.of(BMItems.CORRUPTED_DUST.get()), Ingredient.of(Items.GLOW_BERRIES), Ingredient.of(Items.QUARTZ), Ingredient.of(Items.BLAZE_POWDER), Ingredient.of(Items.WATER_BUCKET)), new ItemStack(BMItems.ADVANCED_CUTTING_FLUID.get()), 4, 4000, 200);
 
-        soulForge(output, "sanguine_reverter", List.of(Ingredient.of(Items.SHEARS), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stone"))), Ingredient.of(BMItems.SLATE_IMBUED.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/iron")))), new ItemStack(BMItems.SANGUINE_REVERTER.get()), 50, 10);
-        soulForge(output, "resonator", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/copper"))), Ingredient.of(Items.QUARTZ)), new ItemStack(BMItems.RESONATOR.get()), 50, 10);
+        soulForge(output, "sanguine_reverter", List.of(Ingredient.of(Items.SHEARS), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones"))), Ingredient.of(BMItems.SLATE_IMBUED.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/iron")))), new ItemStack(BMItems.SANGUINE_REVERTER.get()), 50, 10);
+        soulForge(output, "resonator", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/copper"))), Ingredient.of(Items.QUARTZ)), new ItemStack(BMItems.RESONATOR.get()), 50, 10);
         soulForge(output, "primitive_crystalline_resonator", List.of(Ingredient.of(Items.AMETHYST_SHARD), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots"))), Ingredient.of(Items.QUARTZ), Ingredient.of(BMItems.CORRUPTED_DUST_TINY.get())), new ItemStack(BMItems.PRIMITIVE_CRYSTALLINE_RESONATOR.get()), 150, 40);
         soulForge(output, "hellforged_resonator", List.of(Ingredient.of(Items.AMETHYST_SHARD), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/gold"))), Ingredient.of(Items.QUARTZ), Ingredient.of(BMItems.HELLFORGED_PARTS.get())), new ItemStack(BMItems.HELLFORGED_RESONATOR.get()), 300, 80);
 

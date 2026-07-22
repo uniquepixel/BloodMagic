@@ -1,0 +1,27 @@
+{
+  "type": "bloodmagic:alchemy_table",
+  "duration": 100,
+  "essence": 1000,
+  "inputs": [
+    {
+      "item": "bloodmagic:simplecatalyst"
+    },
+    {
+      "tag": "c:gems/lapis"
+    },
+    {
+      "tag": "c:gems/lapis"
+    },
+    {
+      "tag": "c:dyes/green"
+    },
+    {
+      "tag": "c:sands"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "bloodmagic:cyclingcatalyst"
+  },
+  "tier": 2
+}

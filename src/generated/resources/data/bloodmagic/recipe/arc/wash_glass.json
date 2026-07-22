@@ -8,7 +8,7 @@
     }
   ],
   "input": {
-    "tag": "c:glass"
+    "tag": "c:glass_blocks"
   },
   "input_fluid": {
     "amount": 333,

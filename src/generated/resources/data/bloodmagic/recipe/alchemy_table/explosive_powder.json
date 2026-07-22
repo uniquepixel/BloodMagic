@@ -10,7 +10,7 @@
       "item": "minecraft:gunpowder"
     },
     {
-      "tag": "c:dusts/coal"
+      "item": "minecraft:coal"
     }
   ],
   "output": {

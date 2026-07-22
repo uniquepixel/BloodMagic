@@ -16,7 +16,7 @@
       "tag": "c:ingots/copper"
     },
     {
-      "tag": "c:dusts/gold"
+      "item": "minecraft:gold_nugget"
     }
   ],
   "output": {

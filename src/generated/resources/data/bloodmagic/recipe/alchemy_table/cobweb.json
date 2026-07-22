@@ -4,13 +4,13 @@
   "essence": 50,
   "inputs": [
     {
-      "tag": "c:string"
+      "tag": "c:strings"
     },
     {
-      "tag": "c:string"
+      "tag": "c:strings"
     },
     {
-      "tag": "c:string"
+      "tag": "c:strings"
     }
   ],
   "output": {

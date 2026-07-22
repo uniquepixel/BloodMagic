@@ -1,0 +1,31 @@
+{
+  "type": "bloodmagic:fluid_tiered",
+  "category": "misc",
+  "pattern": {
+    "key": {
+      "g": {
+        "tag": "c:glass_blocks"
+      },
+      "i": {
+        "tag": "c:ingots/iron"
+      },
+      "p": {
+        "item": "bloodmagic:blood_tank"
+      },
+      "s": {
+        "item": "bloodmagic:blood_tank"
+      }
+    },
+    "pattern": [
+      "ipi",
+      " g ",
+      "isi"
+    ]
+  },
+  "primary": 1,
+  "result": {
+    "count": 1,
+    "id": "bloodmagic:blood_tank"
+  },
+  "secondary": 7
+}

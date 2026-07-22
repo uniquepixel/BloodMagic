@@ -6,7 +6,7 @@
       "item": "minecraft:water_bucket"
     },
     "c": {
-      "tag": "c:cobblestone"
+      "tag": "c:cobblestones"
     },
     "o": {
       "type": "bloodmagic:bloodorb",

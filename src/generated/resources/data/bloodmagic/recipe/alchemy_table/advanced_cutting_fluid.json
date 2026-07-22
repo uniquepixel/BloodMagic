@@ -13,10 +13,10 @@
       "item": "minecraft:glow_berries"
     },
     {
-      "tag": "c:dusts/saltpeter"
+      "item": "minecraft:quartz"
     },
     {
-      "tag": "c:dusts/sulfur"
+      "item": "minecraft:blaze_powder"
     },
     {
       "item": "minecraft:water_bucket"
