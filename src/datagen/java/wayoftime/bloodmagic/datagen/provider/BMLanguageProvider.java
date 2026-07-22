@@ -210,6 +210,17 @@ public class BMLanguageProvider extends LanguageProvider {
         add("ritual.bloodmagic.harvest", "Ritual of the Harvest");
         add("ritual.bloodmagic.meteor", "Ritual of the Meteor");
         add("ritual.bloodmagic.vault", "Ritual of the Vault");
+        add("ritual.bloodmagic.armour_evolve", "Ritual of Living Evolution");
+        add("ritual.bloodmagic.crafting", "Rhythm of the Beating Anvil");
+        add("ritual.bloodmagic.crushing", "Ritual of the Crusher");
+        add("ritual.bloodmagic.crystal_harvest", "Crack of the Fractured Crystal");
+        add("ritual.bloodmagic.crystal_split", "Resonance of the Faceted Crystal");
+        add("ritual.bloodmagic.ellipsoid", "Focus of the Ellipsoid");
+        add("ritual.bloodmagic.forsaken_soul", "Gathering of the Forsaken Souls");
+        add("ritual.bloodmagic.geode", "Ritual of the Geode's Bounty");
+        add("ritual.bloodmagic.downgrade", "Penance of the Leadened Soul");
+        add("ritual.bloodmagic.placer", "Domain of The Filler");
+        add("ritual.bloodmagic.upgrade_remove", "Sound of the Cleansing Soul");
         add("chat.bloodmagic.ritual.bound", "You have bound this ritual stone.");
         add("chat.bloodmagic.ritual.notOwner", "You do not own this ritual stone.");
         add("chat.bloodmagic.ritual.none", "The ritual stone is now inactive.");

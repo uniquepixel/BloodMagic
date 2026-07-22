@@ -28,12 +28,15 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.fluids.FluidStack;
 import wayoftime.bloodmagic.BloodMagic;
 import wayoftime.bloodmagic.api.BMIdentifiers;
+import wayoftime.bloodmagic.api.BMIdentifiers.Upgrades;
 import wayoftime.bloodmagic.api.BMTags;
 import wayoftime.bloodmagic.api.sigil.SigilEffect;
 import wayoftime.bloodmagic.common.block.BMBlocks;
 import wayoftime.bloodmagic.common.datacomponent.BMDataComponents;
+import wayoftime.bloodmagic.common.datacomponent.UpgradeTome;
 import wayoftime.bloodmagic.common.fluid.BMFluids;
 import wayoftime.bloodmagic.common.item.BMItems;
+import wayoftime.bloodmagic.common.living.LivingUpgrade;
 import wayoftime.bloodmagic.common.potion.BMPotions;
 import wayoftime.bloodmagic.common.recipe.flask.FlaskCycleRecipe;
 import wayoftime.bloodmagic.common.recipe.flask.FlaskEffectAmount;
@@ -67,7 +70,7 @@ public class BMRecipeProvider extends RecipeProvider {
     }
 
     @Override
-    protected void buildRecipes(RecipeOutput output) {
+    protected void buildRecipes(RecipeOutput output, HolderLookup.Provider registries) {
         // ===== Blood Altar (9 ported from 1.20.1) =====
         altar(output, "apprenticebloodorb", Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:storage_blocks/redstone"))), new ItemStack(BMItems.ORB_APPRENTICE.get()), 1, 5000, 5, 5);
         altar(output, "bucket_life", Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:bucket"))), new ItemStack(BMFluids.LIFE_ESSENCE_BUCKET.get()), 0, 1000, 5, 0);
@@ -456,6 +459,17 @@ public class BMRecipeProvider extends RecipeProvider {
                 .pattern("aaa")
                 .unlockedBy("has_blank_slate", has(BMItems.SLATE_BLANK.get()))
                 .save(output, BloodMagic.rl("blood_rune_blank"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMBlocks.RUNE_SPEED.item().get())
+                .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stone")))
+                .define('b', BMItems.SLATE_BLANK.get())
+                .define('c', Items.SUGAR)
+                .define('d', BMBlocks.RUNE_BLANK.item().get())
+                .pattern("aba")
+                .pattern("cdc")
+                .pattern("aba")
+                .unlockedBy("has_blank_rune", has(BMBlocks.RUNE_BLANK.item().get()))
+                .save(output, BloodMagic.rl("blood_rune_speed"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMBlocks.RUNE_ACCELERATION.item().get())
                 .define('a', Items.BUCKET)
@@ -990,6 +1004,38 @@ public class BMRecipeProvider extends RecipeProvider {
         soulForge(output, "mod_filter", List.of(Ingredient.of(BMItems.STANDARD_FILTER.get()), Ingredient.of(BMItems.SLATE_DEMONIC.get())), new ItemStack(BMItems.MOD_FILTER.get()), 40, 10);
         soulForge(output, "enchant_filter", List.of(Ingredient.of(BMItems.STANDARD_FILTER.get()), Ingredient.of(Items.BOOKSHELF)), new ItemStack(BMItems.ENCHANT_FILTER.get()), 60, 15);
         soulForge(output, "composite_filter", List.of(Ingredient.of(BMItems.STANDARD_FILTER.get()), Ingredient.of(BMItems.STANDARD_FILTER.get()), Ingredient.of(BMItems.SLATE_ETHEREAL.get())), new ItemStack(BMItems.COMPOSITE_FILTER.get()), 80, 20);
+
+        // ===== Living Armour Downgrade Tomes =====
+        // Fills a real gap: BMItems.UPGRADE_TOME had zero recipes of any kind, so the Ritual of the
+        // Downgrade (LivingDowngradeRitual - see its javadoc) had no legitimate in-game item to
+        // consume from its chest. 1.20.1's equivalent (LivingDowngradeRecipeProvider/
+        // RecipeLivingDowngrade) was NOT a real crafting recipe at all: it just tagged one raw
+        // vanilla item as the "key" RitualLivingDowngrade would recognise sitting in a chest, and
+        // the STACK COUNT of that item determined how many downgrade levels got applied in one
+        // ritual pulse (e.g. 5 rotten flesh -> Battle Hungry level 5 immediately). That whole points-
+        // economy/stack-counting mechanic doesn't exist on this branch (see LivingDowngradeRitual's
+        // javadoc) - downgrades are now regular UpgradeTome items carrying a fixed (upgrade, exp)
+        // pair, consumed one at a time by the ritual via LivingHelper#applyExpToCap.
+        //
+        // Every one of this branch's 9 IS_DOWNGRADE upgrades (LivingUpgrades#downgrades) happens to
+        // use exp==level 1:1 in its Levels map (e.g. BATTLE_HUNGRY needs exp>=1/2/3/4/5 for levels
+        // 1-5), so a tome carrying exactly 1 exp reliably grants exactly 1 level per
+        // LivingHelper#applyExp application - no partial/wasted exp, and no risk of overshooting a
+        // level boundary. Crafting (and ritual-feeding) N tomes therefore reproduces 1.20.1's old
+        // "N key items = N levels" progression tome-by-tome, and matches this branch's own
+        // convention of incremental, re-craftable tiers (see the anointment_*_l/_xl chain above)
+        // rather than an instant-max single craft. Ingredients mirror 1.20.1's per-downgrade "key
+        // item" 1:1 (LivingDowngradeRecipeProvider); the Blood Altar tier/cost mirrors this branch's
+        // other simple single-ingredient altar transforms (see "reinforcedslate" above).
+        altar(output, "downgrade_tome_battle_hungry", Ingredient.of(Items.ROTTEN_FLESH), tome(registries, Upgrades.BATTLE_HUNGRY, 1), 1, 2000, 5, 5);
+        altar(output, "downgrade_tome_melee_decrease", Ingredient.of(Items.STONE_SWORD), tome(registries, Upgrades.MELEE_DECREASE, 1), 1, 2000, 5, 5);
+        altar(output, "downgrade_tome_quenched", Ingredient.of(Items.GLASS_BOTTLE), tome(registries, Upgrades.QUENCHED, 1), 1, 2000, 5, 5);
+        altar(output, "downgrade_tome_storm_trooper", Ingredient.of(Items.ARROW), tome(registries, Upgrades.STORM_TROOPER, 1), 1, 2000, 5, 5);
+        altar(output, "downgrade_tome_dig_slowdown", Ingredient.of(Items.STONE_PICKAXE), tome(registries, Upgrades.DIG_SLOWDOWN, 1), 1, 2000, 5, 5);
+        altar(output, "downgrade_tome_slow_heal", Ingredient.of(Items.GHAST_TEAR), tome(registries, Upgrades.SLOW_HEAL, 1), 1, 2000, 5, 5);
+        altar(output, "downgrade_tome_swim_decrease", Ingredient.of(Items.WATER_BUCKET), tome(registries, Upgrades.SWIM_DECREASE, 1), 1, 2000, 5, 5);
+        altar(output, "downgrade_tome_speed_decrease", Ingredient.of(Items.SOUL_SAND), tome(registries, Upgrades.SPEED_DECREASE, 1), 1, 2000, 5, 5);
+        altar(output, "downgrade_tome_crippled_arm", Ingredient.of(Items.SHIELD), tome(registries, Upgrades.CRIPPLED_ARM, 1), 1, 2000, 5, 5);
     }
 
     private static Ingredient bloodOrb(int minTier) {
@@ -999,6 +1045,23 @@ public class BMRecipeProvider extends RecipeProvider {
     private static ItemStack sigil(ResourceKey<SigilEffect> effect) {
         ItemStack stack = new ItemStack(BMItems.SIGIL.get());
         stack.set(BMDataComponents.SIGIL_EFFECT, effect);
+        return stack;
+    }
+
+    /**
+     * Builds an UPGRADE_TOME ItemStack pre-loaded with a specific {@code (Holder<LivingUpgrade>, exp)}
+     * pair via the {@code BMDataComponents.UPGRADE_TOME_DATA} component - see
+     * {@code wayoftime.bloodmagic.common.datacomponent.UpgradeTome}. {@code LivingUpgrade} is a
+     * datapack registry (not a hardcoded one), so the real {@link Holder} backing it has to be
+     * resolved from the {@code HolderLookup.Provider} handed to {@code buildRecipes} rather than
+     * constructed directly; {@code ItemStack.CODEC} (used as-is by the Blood Altar/Alchemy
+     * Table/Hellfire Forge recipe result field, same as the anointment/sigil results above) already
+     * round-trips arbitrary data components including this one, so no custom recipe type is needed.
+     */
+    private static ItemStack tome(HolderLookup.Provider registries, ResourceKey<LivingUpgrade> upgrade, float exp) {
+        ItemStack stack = new ItemStack(BMItems.UPGRADE_TOME.get());
+        Holder<LivingUpgrade> holder = registries.lookupOrThrow(BMIdentifiers.RegistryKeys.LIVING_UPGRADES).getOrThrow(upgrade);
+        stack.set(BMDataComponents.UPGRADE_TOME_DATA, new UpgradeTome(holder, exp));
         return stack;
     }
 

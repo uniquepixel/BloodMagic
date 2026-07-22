@@ -41,6 +41,9 @@ public class MineBlock extends BlockLootSubProvider {
         addDropSelf(BMBlocks.TELEPOSER);
         addDropSelf(BMBlocks.INCENSE_ALTAR);
         addDropSelf(BMBlocks.ITEM_ROUTER);
+        addDropSelf(BMBlocks.MASTER_ROUTING_NODE);
+        addDropSelf(BMBlocks.INPUT_ROUTING_NODE);
+        addDropSelf(BMBlocks.OUTPUT_ROUTING_NODE);
         addDropSelf(BMBlocks.DEMON_CRUCIBLE);
         addDropSelf(BMBlocks.DEMON_CRYSTALLIZER);
         addDropSelf(BMBlocks.DEMON_PYLON);

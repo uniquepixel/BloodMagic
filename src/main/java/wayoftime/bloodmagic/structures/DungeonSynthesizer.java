@@ -427,6 +427,7 @@ public class DungeonSynthesizer {
 
         settings.clearProcessors();
         settings.addProcessor(new StoneToOreProcessor(room.oreDensity));
+        settings.addProcessor(new DungeonChestLootProcessor());
 
         placedRoom.placeStructureAtPosition(world.random, settings, world, roomLocation);
         for (String doorType : placedRoom.doorMap.keySet()) {
@@ -511,6 +512,7 @@ public class DungeonSynthesizer {
 
                 settings.clearProcessors();
                 settings.addProcessor(new StoneToOreProcessor(testingRoom.oreDensity));
+                settings.addProcessor(new DungeonChestLootProcessor());
 
                 Pair<Direction, BlockPos> addedDoor = Pair.of(oppositeDoorFacing, testDoor.offset(roomLocation));
 
