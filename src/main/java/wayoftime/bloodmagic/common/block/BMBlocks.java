@@ -123,6 +123,14 @@ public class BMBlocks {
 
     public static final BlockWithItemHolder<Block, BlockItem> HELLFORGED_BLOCK = BASIC_REG.register("hellforged_block", BlockBehaviour.Properties.of().strength(5, 6).sound(SoundType.METAL).requiresCorrectToolForDrops(), new Item.Properties());
 
+    // Raw Hellforged Block ("rawdemoniteblock" in 1.20.1) - the 9x storage-block round-trip for
+    // BMItems.DEMONITE_RAW, part of the dungeon_ore -> Raw Demonite -> Hellforged Ingot ->
+    // DUNGEON_METAL acquisition chain (see BMItems/BMRecipeProvider). Not to be confused with the
+    // unrelated HELLFORGED_BLOCK placeholder machine block just above, or with DUNGEON_METAL
+    // (1.20.1's actual "hellforgedblock" t5-capstone, ported here under a different name - see
+    // DUNGEON_METAL's javadoc below). Properties match 1.20.1's exactly.
+    public static final BlockWithItemHolder<Block, BlockItem> RAW_HELLFORGED_BLOCK = BASIC_REG.register("rawdemoniteblock", BlockBehaviour.Properties.of().strength(5, 6).sound(SoundType.METAL).requiresCorrectToolForDrops(), new Item.Properties());
+
     public static final BlockWithItemHolder<CrystalClusterBlock, BlockItem> CRYSTAL_CLUSTER = BASIC_REG.register("crystal_cluster", CrystalClusterBlock::new, rune_properties, BlockItem::new, decoration_item_properties);
     public static final BlockWithItemHolder<Block, BlockItem> CRYSTAL_CLUSTER_BRICK = BASIC_REG.register("crystal_cluster_brick", rune_properties, decoration_item_properties);
 

@@ -16,6 +16,8 @@ import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -113,6 +115,11 @@ public class BMRecipeProvider extends RecipeProvider {
         // ===== Blood Altar, batch 4 (1 more ported from 1.20.1 now that the Soul Snare exists) =====
         altar(output, "soul_snare", Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:strings"))), new ItemStack(BMItems.SOUL_SNARE.get()), 0, 500, 5, 1);
 
+        // ===== Blood Altar, batch 5 (Master Blood Orb, ported from 1.20.1 now that
+        // BMItems.WEAK_BLOOD_SHARD exists - AltarTier.FOUR.ordinal() = 3, matching the tier param
+        // convention already used by demonicslate/dusk_tool above) =====
+        altar(output, "masterbloodorb", Ingredient.of(BMItems.WEAK_BLOOD_SHARD.get()), new ItemStack(BMItems.ORB_MASTER.get()), 3, 40000, 30, 50);
+
         // ===== ARC (48 ported from 1.20.1; no further ARC recipes were portable - the remaining
         // 49 old ARC recipes all depend on an ore-processing chain (sand/fragment/gravel items),
         // a rune-reversion chain (needs the "hellforgedparts" item), or other items/tags that don't
@@ -166,6 +173,13 @@ public class BMRecipeProvider extends RecipeProvider {
         arc(output, "wash_glass_pane", BMTags.Items.HYDRATION, Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:glass_panes"))), List.of(new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:glass_pane")))), List.of(), new FluidStack(BuiltInRegistries.FLUID.get(ResourceLocation.parse("minecraft:water")), 333), null);
         arc(output, "wash_wool", BMTags.Items.HYDRATION, Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("minecraft:wool"))), List.of(new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:white_wool")))), List.of(), new FluidStack(BuiltInRegistries.FLUID.get(ResourceLocation.parse("minecraft:water")), 333), null);
 
+        // ===== ARC, batch 2 (Weak Blood Shard, ported from 1.20.1 now that BMItems.WEAK_BLOOD_SHARD
+        // exists) - reverting a Strong Tau plant with a REVERTER tool yields 1 guaranteed shard plus a
+        // 20% chance of a 2nd, matching 1.20.1's ARCRecipeBuilder.addRandomOutput(shard, 0.2) exactly.
+        // This unblocks the Master Blood Orb altar recipe, REINFORCED_TELEPOSER_FOCUS's crafting
+        // recipe, and the Greater Tartaric Gem Soul Forge recipe below, all 3 of which need it. =====
+        arc(output, "weakbloodshard_tau", BMTags.Items.REVERTER, Ingredient.of(BMItems.STRONG_TAU_SEED.get()), List.of(new ItemStack(BMItems.WEAK_BLOOD_SHARD.get())), List.of(Pair.of(new ItemStack(BMItems.WEAK_BLOOD_SHARD.get()), 0.2)), null, null);
+
         // ===== Alchemy Table (10 ported from 1.20.1) =====
         alchemyTable(output, "bread", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:crops/wheat"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:sugar")))), new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:bread"))), 1, 100, 100);
         alchemyTable(output, "clay_from_sand", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:sands"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:sands"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:water_bucket")))), Util.make(new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:clay_ball"))), s -> s.setCount(2)), 2, 50, 100);
@@ -182,6 +196,16 @@ public class BMRecipeProvider extends RecipeProvider {
         soulForge(output, "commontartaricgem", List.of(Ingredient.of(BMItems.SOUL_GEM_LESSER.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/diamond"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:storage_blocks/gold"))), Ingredient.of(BMItems.SLATE_IMBUED.get())), new ItemStack(BMItems.SOUL_GEM_COMMON.get()), 240, 50);
         soulForge(output, "lessertartaricgem", List.of(Ingredient.of(BMItems.SOUL_GEM_PETTY.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/diamond"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:storage_blocks/redstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:storage_blocks/lapis")))), new ItemStack(BMItems.SOUL_GEM_LESSER.get()), 60, 20);
         soulForge(output, "pettytartaricgem", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/gold"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:glass_blocks"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/lapis")))), new ItemStack(BMItems.SOUL_GEM_PETTY.get()), 1, 1);
+
+        // ===== Soul Forge, batch 2 (Greater Tartaric Gem, ported from 1.20.1 now that
+        // BMItems.WEAK_BLOOD_SHARD exists - 1.20.1's "greatertartaricgem" was
+        // (COMMON_GEM, DEMONIC_SLATE, WEAK_BLOOD_SHARD, BloodMagicTags.CRYSTAL_DEMON); the 4th slot
+        // (any Will Crystal Cluster drop) is dropped here since this branch hasn't ported any Will
+        // Crystal item yet (CrystalClusterBlock/DemonCrystallizerBlock exist, but nothing drops a
+        // crystal item to tag - a separate content gap, not a WEAK_BLOOD_SHARD one) - ForgeRecipe's
+        // ingredient list is already variable-length elsewhere in this file (e.g. "resonator" below
+        // uses 3), so a 3-input recipe here is not a mechanical problem, just a narrower one) =====
+        soulForge(output, "greatertartaricgem", List.of(Ingredient.of(BMItems.SOUL_GEM_COMMON.get()), Ingredient.of(BMItems.SLATE_DEMONIC.get()), Ingredient.of(BMItems.WEAK_BLOOD_SHARD.get())), new ItemStack(BMItems.SOUL_GEM_GREATER.get()), 1000, 100);
 
         // ===== Alchemy Table reagents (for the Alchemy Array sigil recipes below) =====
         // reagent_holding ported from 1.20.1 (tag names renamed forge: -> c:); the other three
@@ -472,6 +496,57 @@ public class BMRecipeProvider extends RecipeProvider {
                 .pattern("ggg")
                 .unlockedBy("has_teleposer_focus", has(BMItems.TELEPOSER_FOCUS.get()))
                 .save(output, BloodMagic.rl("teleposer"));
+
+        // Reinforced Teleposer Focus, ported from 1.20.1 now that BMItems.WEAK_BLOOD_SHARD exists -
+        // 1.20.1's id for this recipe was (confusingly) "enhanced_teleposer_focus" despite producing
+        // the *reinforced* focus, kept as-is here for fidelity (it doesn't collide with the
+        // "blood_altar/enhanced_teleposer_focus" altar recipe above - different recipe subfolder).
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, BMItems.REINFORCED_TELEPOSER_FOCUS.get())
+                .requires(BMItems.ENHANCED_TELEPOSER_FOCUS.get())
+                .requires(BMItems.WEAK_BLOOD_SHARD.get())
+                .unlockedBy("has_shard", has(BMItems.WEAK_BLOOD_SHARD.get()))
+                .save(output, BloodMagic.rl("enhanced_teleposer_focus"));
+
+        // ===== Hellforged/Demonite ore chain (ported from 1.20.1 now that BMItems.DEMONITE_RAW/
+        // HELLFORGED_INGOT and BMBlocks.RAW_HELLFORGED_BLOCK exist): dungeon_ore drops Raw Demonite
+        // (see MineBlock), which smelts/blasts into a Hellforged Ingot, which assembles 9-at-a-time
+        // into BMBlocks.DUNGEON_METAL - matching 1.20.1's GeneratorRecipes exactly, including the
+        // 200/100-tick smelt/blast times shared by every other ore in this mod. The final two
+        // (dungeon_metal <-> ingot) use direct item references rather than 1.20.1's
+        // STORAGE_BLOCKS_HELLFORGED tag, for the same reason "archmagebloodorb" above does: that tag
+        // (see BMBlockTagProvider) is currently populated with this branch's unrelated pre-existing
+        // HELLFORGED_BLOCK placeholder machine block, not DUNGEON_METAL - fixing the tag mapping
+        // itself is out of scope here (BMBlockTagProvider isn't owned by this pass). =====
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(BMItems.DEMONITE_RAW.get()), RecipeCategory.MISC, BMItems.HELLFORGED_INGOT.get(), 0, 200)
+                .unlockedBy("has_raw_demonite", has(BMItems.DEMONITE_RAW.get()))
+                .save(output, BloodMagic.rl("smelting/ingot_from_raw_hellforged"));
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(BMItems.DEMONITE_RAW.get()), RecipeCategory.MISC, BMItems.HELLFORGED_INGOT.get(), 0, 100)
+                .unlockedBy("has_raw_demonite", has(BMItems.DEMONITE_RAW.get()))
+                .save(output, BloodMagic.rl("smelting/blasting_ingot_from_raw_hellforged"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMBlocks.RAW_HELLFORGED_BLOCK.item().get())
+                .define('s', BMItems.DEMONITE_RAW.get())
+                .pattern("sss")
+                .pattern("sss")
+                .pattern("sss")
+                .unlockedBy("has_raw_hellforged", has(BMItems.DEMONITE_RAW.get()))
+                .save(output, BloodMagic.rl("raw_hellforged_block"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, BMItems.DEMONITE_RAW.get(), 9)
+                .requires(BMBlocks.RAW_HELLFORGED_BLOCK.item().get())
+                .unlockedBy("has_raw_hellforged_block", has(BMBlocks.RAW_HELLFORGED_BLOCK.item().get()))
+                .save(output, BloodMagic.rl("raw_hellforged_block_to_item"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMBlocks.DUNGEON_METAL.get("").item().get())
+                .define('s', BMItems.HELLFORGED_INGOT.get())
+                .pattern("sss")
+                .pattern("sss")
+                .pattern("sss")
+                .unlockedBy("has_hellforged", has(BMItems.HELLFORGED_INGOT.get()))
+                .save(output, BloodMagic.rl("hellforged_block"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, BMItems.HELLFORGED_INGOT.get(), 9)
+                .requires(BMBlocks.DUNGEON_METAL.get("").item().get())
+                .unlockedBy("has_hellforged_block", has(BMBlocks.DUNGEON_METAL.get("").item().get()))
+                .save(output, BloodMagic.rl("hellforged_block_to_ingot"));
 
         // ===== Blood Tank (new to this branch - BLOOD_TANK/BloodTankTile/BloodTankRenderer all
         // exist and work, but never had a recipe of any kind, in either the base craft or the

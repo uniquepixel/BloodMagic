@@ -5,6 +5,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import wayoftime.bloodmagic.datagen.content.loot.ChestLoot;
+import wayoftime.bloodmagic.datagen.content.loot.DungeonChestLoot;
 import wayoftime.bloodmagic.datagen.content.loot.MineBlock;
 
 import java.util.List;
@@ -18,7 +19,8 @@ public class BMLootTableProvider extends LootTableProvider {
                 Set.of(),
                 List.of(
                         new SubProviderEntry(MineBlock::new, LootContextParamSets.BLOCK),
-                        new SubProviderEntry(lookup -> new ChestLoot(), LootContextParamSets.CHEST)
+                        new SubProviderEntry(lookup -> new ChestLoot(), LootContextParamSets.CHEST),
+                        new SubProviderEntry(DungeonChestLoot::new, LootContextParamSets.CHEST)
                 ), registries
         );
     }

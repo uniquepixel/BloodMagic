@@ -58,6 +58,22 @@ public class BMItems {
     // DEMONIC_SLATE/ETHEREAL_SLATE are the full list there too - there was never a 6th (Tier 6) slate
     // on 1.20.1, so nothing is missing here.
 
+    // Hellforged/Demonite ore acquisition chain, ported from 1.20.1's DEMONITE_RAW/HELLFORGED_INGOT:
+    // dungeon_ore (already registered, see BMBlocks) drops DEMONITE_RAW (see MineBlock's ore drop
+    // table), which smelts/blasts into HELLFORGED_INGOT (see BMRecipeProvider), which in turn crafts
+    // into BMBlocks.DUNGEON_METAL (1.20.1's "hellforgedblock" t5-capstone, ported under a different
+    // name to avoid colliding with this branch's unrelated pre-existing HELLFORGED_BLOCK placeholder
+    // machine block - see DUNGEON_METAL's javadoc). DEMONITE_RAW also round-trips into
+    // BMBlocks.RAW_HELLFORGED_BLOCK ("rawdemoniteblock"), a standard 9x storage-block conversion.
+    public static final DeferredHolder<Item, Item> DEMONITE_RAW = BASIC_ITEMS.register("rawdemonite", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> HELLFORGED_INGOT = BASIC_ITEMS.register("ingot_hellforged", () -> new Item(new Item.Properties()));
+
+    // Weak Blood Shard, ported from 1.20.1's WEAK_BLOOD_SHARD - obtained by ARC-reverting a Strong
+    // Tau plant (see BMRecipeProvider's "weakbloodshard_tau" ARC recipe). Unblocks the Master Blood
+    // Orb Blood Altar recipe, REINFORCED_TELEPOSER_FOCUS's crafting recipe below, and the Greater
+    // Tartaric Gem Soul Forge recipe - all three referenced this item before it existed on this branch.
+    public static final DeferredHolder<Item, Item> WEAK_BLOOD_SHARD = BASIC_ITEMS.register("weakbloodshard", () -> new Item(new Item.Properties()));
+
     // Ore fragments (ARC ore-processing chain: raw material/ore -> fragment -> dust/nugget) and
     // Hellforged Parts (dropped by reverting a tier-2 rune back to its tier-1 form in the ARC),
     // ported from 1.20.1 using the old item ids as-is.
@@ -180,9 +196,9 @@ public class BMItems {
 
     // 3 focus tiers ported from 1.20.1's TELEPOSER_FOCUS/ENHANCED_TELEPOSER_FOCUS/
     // REINFORCED_TELEPOSER_FOCUS - range 0/1/2, sizing the cuboid TeleposerTile swaps (see
-    // TeleposerFocusItem's javadoc). REINFORCED_TELEPOSER_FOCUS has no crafting recipe on this
-    // branch (1.20.1's was ENHANCED_TELEPOSER_FOCUS + bloodmagic:weakbloodshard, and that item
-    // hasn't been ported here yet) - it's still registered/obtainable via creative/commands.
+    // TeleposerFocusItem's javadoc). REINFORCED_TELEPOSER_FOCUS's crafting recipe (1.20.1's
+    // ENHANCED_TELEPOSER_FOCUS + bloodmagic:weakbloodshard, see BMRecipeProvider's
+    // "enhanced_teleposer_focus" vanilla recipe) is now ported now that WEAK_BLOOD_SHARD exists.
     public static final DeferredHolder<Item, TeleposerFocusItem> TELEPOSER_FOCUS = BASIC_ITEMS.register("teleposer_focus", () -> new TeleposerFocusItem(0));
     public static final DeferredHolder<Item, TeleposerFocusItem> ENHANCED_TELEPOSER_FOCUS = BASIC_ITEMS.register("enhanced_teleposer_focus", () -> new TeleposerFocusItem(1));
     public static final DeferredHolder<Item, TeleposerFocusItem> REINFORCED_TELEPOSER_FOCUS = BASIC_ITEMS.register("reinforced_teleposer_focus", () -> new TeleposerFocusItem(2));

@@ -132,6 +132,13 @@ public class BMLanguageProvider extends LanguageProvider {
 
         add(BMBlocks.HELLFORGED_BLOCK, "Hellforged Block");
 
+        // Hellforged/Demonite ore acquisition chain (see BMItems/BMBlocks/BMRecipeProvider)
+        add(BMItems.DEMONITE_RAW.get(), "Raw Demonite");
+        add(BMItems.HELLFORGED_INGOT.get(), "Hellforged Ingot");
+        add(BMBlocks.RAW_HELLFORGED_BLOCK, "Block of Raw Demonite");
+
+        add(BMItems.WEAK_BLOOD_SHARD.get(), "Weak Blood Shard");
+
         //Ore fragments + Hellforged Parts
         add(BMItems.HELLFORGED_PARTS.get(), "Intricate Hellforged Parts");
         addTooltip("hellforgedparts", "These parts are currently beyond your crafting capabilities...");

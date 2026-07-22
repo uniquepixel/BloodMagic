@@ -50,8 +50,9 @@ public class MineBlock extends BlockLootSubProvider {
 
         // Demon Dungeon system - DUNGEON_CONTROLLER/DUNGEON_SEAL/SPECIAL_DUNGEON_SEAL are
         // structural/internal only (no BlockItem, see BMBlocks) so intentionally have no loot table.
+        // DUNGEON_ORE is NOT a plain dropSelf (see specialDropList/generate() below) - mining it
+        // drops BMItems.DEMONITE_RAW, matching 1.20.1's createOreDrop(DUNGEON_ORE, DEMONITE_RAW).
         addDropSelf(BMBlocks.DUNGEON_STONE);
-        addDropSelf(BMBlocks.DUNGEON_ORE);
         addDropSelf(BMBlocks.DUNGEON_BRICK_ASSORTED);
         addDropSelf(BMBlocks.DUNGEON_TILE_SPECIAL);
 
@@ -119,7 +120,7 @@ public class MineBlock extends BlockLootSubProvider {
     // double the item.
     private final List<Block> chargeBlocks = List.of(BMBlocks.SHAPED_CHARGE.block().get(), BMBlocks.DEFORESTER_CHARGE.block().get(), BMBlocks.VEINMINE_CHARGE.block().get(), BMBlocks.FUNGAL_CHARGE.block().get());
 
-    private final List<Block> specialDropList = List.of(BMBlocks.BLOOD_TANK.block().get(), BMBlocks.LIVING_STATION.block().get(), BMBlocks.ALCHEMY_TABLE.block().get(), BMBlocks.BLOOD_LIGHT.get());
+    private final List<Block> specialDropList = List.of(BMBlocks.BLOOD_TANK.block().get(), BMBlocks.LIVING_STATION.block().get(), BMBlocks.ALCHEMY_TABLE.block().get(), BMBlocks.BLOOD_LIGHT.get(), BMBlocks.DUNGEON_ORE.block().get());
     private List<Block> dropSelfList = new ArrayList<>();
 
     @Override
@@ -140,6 +141,11 @@ public class MineBlock extends BlockLootSubProvider {
         copyComponents(BMBlocks.LIVING_STATION);
 
         add(BMBlocks.ALCHEMY_TABLE.block().get(), block -> createSinglePropConditionTable(block, AlchemyTableBlock.PART, TablePart.LEFT));
+
+        // Hellforged/Demonite ore chain start: mining dungeon_ore drops Raw Demonite (fortune-boosted
+        // via the inherited createOreDrop helper), not the ore block itself - matches 1.20.1's
+        // GeneratorLootTable#createOreDrop(DUNGEON_ORE, DEMONITE_RAW).
+        add(BMBlocks.DUNGEON_ORE.block().get(), block -> createOreDrop(block, BMItems.DEMONITE_RAW.get()));
 
         add(BMBlocks.BLOOD_LIGHT.get(), noDrop());
         chargeBlocks.forEach(block -> add(block, noDrop()));
