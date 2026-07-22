@@ -84,7 +84,18 @@ public class BMRecipeProvider extends RecipeProvider {
         altar(output, "weakbloodorb", Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/diamond"))), new ItemStack(BMItems.ORB_WEAK.get()), 0, 2000, 5, 1);
 
         // ===== Blood Altar, batch 2 (2 more ported from 1.20.1 now that hellforged_block/archmage orb/teleposer_focus exist) =====
-        altar(output, "archmagebloodorb", Ingredient.of(BMBlocks.HELLFORGED_BLOCK.item().get()), new ItemStack(BMItems.ORB_ARCHMAGE.get()), 4, 80000, 50, 100);
+        // archmagebloodorb: 1.20.1's ingredient was its own dungeon_metal block (named
+        // "hellforgedblock" there), which collides with this branch's unrelated pre-existing
+        // "hellforged_block" placeholder machine block - see BMBlocks.DUNGEON_METAL's javadoc. Fixed
+        // to accept the actual ported dungeon_metal family (base + all 4 Will reskins), matching
+        // 1.20.1's block tag (which accepted all 5 variants too).
+        altar(output, "archmagebloodorb", Ingredient.of(
+                BMBlocks.DUNGEON_METAL.get("").item().get(),
+                BMBlocks.DUNGEON_METAL.get("_corrosive").item().get(),
+                BMBlocks.DUNGEON_METAL.get("_destructive").item().get(),
+                BMBlocks.DUNGEON_METAL.get("_steadfast").item().get(),
+                BMBlocks.DUNGEON_METAL.get("_vengeful").item().get()
+        ), new ItemStack(BMItems.ORB_ARCHMAGE.get()), 4, 80000, 50, 100);
         altar(output, "teleposer_focus", Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ender_pearls"))), new ItemStack(BMItems.TELEPOSER_FOCUS.get()), 3, 2000, 10, 10);
         altar(output, "enhanced_teleposer_focus", Ingredient.of(BMItems.TELEPOSER_FOCUS.get()), new ItemStack(BMItems.ENHANCED_TELEPOSER_FOCUS.get()), 3, 10000, 20, 10);
 
@@ -183,6 +194,22 @@ public class BMRecipeProvider extends RecipeProvider {
         // reagent_fastminer ported from 1.20.1 (tag name renamed forge:gunpowder -> c:gunpowder)
         alchemyTable(output, "reagent_fastminer", List.of(Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:iron_pickaxe"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:iron_axe"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:iron_shovel"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gunpowders")))), new ItemStack(BMItems.REAGENT_FASTMINER.get()), 2, 2000, 200);
 
+        // ===== Alchemy Table reagents, batch 2 (8 more ported from 1.20.1, filling in the Water/
+        // Lava/Void/Growth/Frost/Magnetism/Air/Seer sigils - the sigil effects/items already worked,
+        // only this crafting chain was ever missing; tag names renamed forge: -> c: same as above).
+        // reagent_sight's "DIVINATION_SIGIL" ingredient uses the same any-sigil substitution as
+        // reagent_suppression's "VOID_SIGIL" above (Ingredient.of(BMItems.SIGIL.get())), since this
+        // branch's sigils are all one generic BMItems.SIGIL item distinguished only by a data
+        // component rather than separate items - there's no per-effect Ingredient to match on. =====
+        alchemyTable(output, "reagent_water", List.of(Ingredient.of(Items.SUGAR), Ingredient.of(Items.WATER_BUCKET), Ingredient.of(Items.WATER_BUCKET)), new ItemStack(BMItems.REAGENT_WATER.get()), 1, 300, 200);
+        alchemyTable(output, "reagent_lava", List.of(Ingredient.of(Items.LAVA_BUCKET), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:cobblestones"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:storage_blocks/coal")))), new ItemStack(BMItems.REAGENT_LAVA.get()), 1, 1000, 200);
+        alchemyTable(output, "reagent_void", List.of(Ingredient.of(Items.BUCKET), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:strings"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:strings"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gunpowders")))), new ItemStack(BMItems.REAGENT_VOID.get()), 2, 1000, 200);
+        alchemyTable(output, "reagent_growth", List.of(Ingredient.of(net.minecraft.tags.ItemTags.SAPLINGS), Ingredient.of(net.minecraft.tags.ItemTags.SAPLINGS), Ingredient.of(Items.SUGAR_CANE), Ingredient.of(Items.SUGAR)), new ItemStack(BMItems.REAGENT_GROWTH.get()), 2, 2000, 200);
+        alchemyTable(output, "reagent_magnetism", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:strings"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/gold"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/gold"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:storage_blocks/iron")))), new ItemStack(BMItems.REAGENT_MAGNETISM.get()), 3, 1000, 200);
+        alchemyTable(output, "reagent_air", List.of(Ingredient.of(Items.GHAST_TEAR), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:feathers"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:feathers")))), new ItemStack(BMItems.REAGENT_AIR.get()), 2, 2000, 200);
+        alchemyTable(output, "reagent_frost", List.of(Ingredient.of(Items.PACKED_ICE), Ingredient.of(Items.SNOW_BLOCK), Ingredient.of(Items.SNOWBALL), Ingredient.of(Items.WATER_BUCKET)), new ItemStack(BMItems.REAGENT_FROST.get()), 3, 2000, 200);
+        alchemyTable(output, "reagent_sight", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/glowstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:glass_blocks"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:glass_blocks"))), Ingredient.of(BMItems.SIGIL.get())), new ItemStack(BMItems.REAGENT_SIGHT.get()), 1, 500, 200);
+
         // ===== Alchemy Array (sigils from reagents, ported from 1.20.1) =====
         // Textures ported 1:1 from 1.20.1's AlchemyArrayRecipeProvider - note "holdingsigil" reused
         // sightsigil.png there (the same texture as the Seer sigil, which doesn't exist on this
@@ -197,6 +224,21 @@ public class BMRecipeProvider extends RecipeProvider {
 
         // ===== Alchemy Array, batch 3 (1 more ported from 1.20.1 now that reagent_fastminer exists) =====
         array(output, "fastminersigil", arrayTexture("fastminersigil.png"), Ingredient.of(BMItems.REAGENT_FASTMINER.get()), Ingredient.of(BMItems.SLATE_REINFORCED.get()), sigil(BMIdentifiers.Sigils.MINER));
+
+        // ===== Alchemy Array, sigils batch 2 (8 more ported from 1.20.1, pairing with the "Alchemy
+        // Table reagents, batch 2" reagents above - fills in the sigils that had a working effect/
+        // item but no recipe at all: Water/Lava/Void/Growth/Frost/Magnetism/Air/Seer. Slate tiers and
+        // textures ported 1:1 from 1.20.1's AlchemyArrayRecipeProvider, including frostsigil's
+        // "stupidarray.png" placeholder texture - see that file's own TODO comment, not a mistake
+        // here. Not labeled "batch 5" to avoid colliding with the unrelated Binding batch below) =====
+        array(output, "watersigil", arrayTexture("watersigil.png"), Ingredient.of(BMItems.REAGENT_WATER.get()), Ingredient.of(BMItems.SLATE_BLANK.get()), sigil(BMIdentifiers.Sigils.WATER));
+        array(output, "lavasigil", arrayTexture("lavasigil.png"), Ingredient.of(BMItems.REAGENT_LAVA.get()), Ingredient.of(BMItems.SLATE_BLANK.get()), sigil(BMIdentifiers.Sigils.LAVA));
+        array(output, "voidsigil", arrayTexture("voidsigil.png"), Ingredient.of(BMItems.REAGENT_VOID.get()), Ingredient.of(BMItems.SLATE_REINFORCED.get()), sigil(BMIdentifiers.Sigils.VOID));
+        array(output, "growthsigil", arrayTexture("growthsigil.png"), Ingredient.of(BMItems.REAGENT_GROWTH.get()), Ingredient.of(BMItems.SLATE_REINFORCED.get()), sigil(BMIdentifiers.Sigils.GROWTH));
+        array(output, "frostsigil", arrayTexture("stupidarray.png"), Ingredient.of(BMItems.REAGENT_FROST.get()), Ingredient.of(BMItems.SLATE_IMBUED.get()), sigil(BMIdentifiers.Sigils.ICE));
+        array(output, "magnetismsigil", arrayTexture("magnetismsigil.png"), Ingredient.of(BMItems.REAGENT_MAGNETISM.get()), Ingredient.of(BMItems.SLATE_IMBUED.get()), sigil(BMIdentifiers.Sigils.MAGNETISM));
+        array(output, "airsigil", arrayTexture("airsigil.png"), Ingredient.of(BMItems.REAGENT_AIR.get()), Ingredient.of(BMItems.SLATE_REINFORCED.get()), sigil(BMIdentifiers.Sigils.AIR));
+        array(output, "seersigil", arrayTexture("sightsigil.png"), Ingredient.of(BMItems.REAGENT_SIGHT.get()), Ingredient.of(BMItems.SLATE_REINFORCED.get()), sigil(BMIdentifiers.Sigils.SEER));
 
         // ===== Alchemy Array, batch 4 (6 special-effect arrays ported from 1.20.1 - movement/
         // updraft/spike/day/night/bounce - folded in here from a short-lived separate provider
@@ -537,7 +579,7 @@ public class BMRecipeProvider extends RecipeProvider {
         // their items exist - see the ARC tool items section near the end of this method) =====
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMBlocks.RUNE_BLANK.item().get())
                 .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones")))
-                .define('o', bloodOrb(1))
+                .define('o', bloodOrb(0))
                 .define('s', BMItems.SLATE_BLANK.get())
                 .pattern("asa")
                 .pattern("aoa")
@@ -561,7 +603,7 @@ public class BMRecipeProvider extends RecipeProvider {
                 .define('b', BMItems.SLATE_DEMONIC.get())
                 .define('c', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/gold")))
                 .define('d', BMBlocks.RUNE_SPEED.item().get())
-                .define('e', bloodOrb(4))
+                .define('e', bloodOrb(3))
                 .pattern("aba")
                 .pattern("cdc")
                 .pattern("aea")
@@ -573,7 +615,7 @@ public class BMRecipeProvider extends RecipeProvider {
                 .define('b', BMItems.SLATE_DEMONIC.get())
                 .define('c', Items.BUCKET)
                 .define('d', BMBlocks.RUNE_CAPACITY.item().get())
-                .define('e', bloodOrb(4))
+                .define('e', bloodOrb(3))
                 .pattern("aba")
                 .pattern("cdc")
                 .pattern("aea")
@@ -583,7 +625,7 @@ public class BMRecipeProvider extends RecipeProvider {
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMBlocks.RUNE_CHARGING.item().get())
                 .define('G', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/glowstone")))
                 .define('R', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone")))
-                .define('e', bloodOrb(4))
+                .define('e', bloodOrb(3))
                 .define('r', BMBlocks.RUNE_BLANK.item().get())
                 .define('s', BMItems.SLATE_DEMONIC.get())
                 .pattern("RsR")
@@ -594,9 +636,9 @@ public class BMRecipeProvider extends RecipeProvider {
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMBlocks.RUNE_ORB.item().get())
                 .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones")))
-                .define('b', bloodOrb(1))
+                .define('b', bloodOrb(0))
                 .define('c', BMBlocks.RUNE_BLANK.item().get())
-                .define('d', bloodOrb(4))
+                .define('d', bloodOrb(3))
                 .pattern("aba")
                 .pattern("cdc")
                 .pattern("aba")
@@ -608,7 +650,7 @@ public class BMRecipeProvider extends RecipeProvider {
                 .define('b', BMItems.SLATE_REINFORCED.get())
                 .define('c', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/gold")))
                 .define('d', BMBlocks.RUNE_BLANK.item().get())
-                .define('e', bloodOrb(2))
+                .define('e', bloodOrb(1))
                 .pattern("aba")
                 .pattern("cdc")
                 .pattern("aea")
@@ -620,7 +662,7 @@ public class BMRecipeProvider extends RecipeProvider {
                 .define('b', BMItems.SLATE_REINFORCED.get())
                 .define('c', Items.GLOWSTONE_DUST)
                 .define('d', BMBlocks.RUNE_BLANK.item().get())
-                .define('e', bloodOrb(2))
+                .define('e', bloodOrb(1))
                 .pattern("aba")
                 .pattern("cdc")
                 .pattern("aea")
@@ -651,7 +693,7 @@ public class BMRecipeProvider extends RecipeProvider {
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMBlocks.RITUAL_STONE_BLANK.item().get(), 4)
                 .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:obsidians")))
                 .define('b', BMItems.SLATE_REINFORCED.get())
-                .define('c', bloodOrb(2))
+                .define('c', bloodOrb(1))
                 .pattern("aba")
                 .pattern("bcb")
                 .pattern("aba")
@@ -661,7 +703,7 @@ public class BMRecipeProvider extends RecipeProvider {
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMBlocks.MASTER_RITUAL_STONE.item().get())
                 .define('a', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:obsidians")))
                 .define('b', BMBlocks.RITUAL_STONE_BLANK.item().get())
-                .define('c', bloodOrb(3))
+                .define('c', bloodOrb(2))
                 .pattern("aba")
                 .pattern("bcb")
                 .pattern("aba")
@@ -672,7 +714,7 @@ public class BMRecipeProvider extends RecipeProvider {
                 .define('I', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:storage_blocks/iron")))
                 .define('S', BMItems.SLATE_IMBUED.get())
                 .define('f', Items.FURNACE)
-                .define('o', bloodOrb(3))
+                .define('o', bloodOrb(2))
                 .define('s', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones")))
                 .pattern("sss")
                 .pattern("SoS")
@@ -685,7 +727,7 @@ public class BMRecipeProvider extends RecipeProvider {
                 .define('e', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:storage_blocks/lapis")))
                 .define('g', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/gold")))
                 .define('l', BMItems.SLATE_IMBUED.get())
-                .define('o', bloodOrb(3))
+                .define('o', bloodOrb(2))
                 .define('s', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:strings")))
                 .pattern("ses")
                 .pattern("lbl")
@@ -696,7 +738,7 @@ public class BMRecipeProvider extends RecipeProvider {
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BMBlocks.INCENSE_ALTAR.item().get())
                 .define('c', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:cobblestones")))
                 .define('h', Items.CHARCOAL)
-                .define('o', bloodOrb(1))
+                .define('o', bloodOrb(0))
                 .define('s', TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones")))
                 .pattern("s s")
                 .pattern("shs")
@@ -1026,6 +1068,12 @@ public class BMRecipeProvider extends RecipeProvider {
         soulForge(output, "demon_crucible", List.of(Ingredient.of(Items.CAULDRON), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/lapis"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/diamond")))), new ItemStack(BMBlocks.DEMON_CRUCIBLE.item().get()), 400, 100);
         soulForge(output, "demon_crystallizer", List.of(Ingredient.of(BMBlocks.DEMON_CRUCIBLE.item().get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/lapis"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:glass_blocks")))), new ItemStack(BMBlocks.DEMON_CRYSTALLIZER.item().get()), 500, 100);
         soulForge(output, "demon_pylon", List.of(Ingredient.of(BMItems.RAW_WILL.get()), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gems/lapis"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:storage_blocks/iron")))), new ItemStack(BMBlocks.DEMON_PYLON.item().get()), 400, 50);
+
+        // Demon Will Gauge: ported from 1.20.1's soulforge recipe (gold ingot + redstone dust + glass
+        // + "any Demon Crystal" -> demonwillgauge, minimumDrain 400/drain 50) - "any Demon Crystal"
+        // (a 5-item list of the old per-color crystal items) becomes this branch's single consolidated
+        // BMItems.RAW_WILL, same substitution already established by demon_pylon just above.
+        soulForge(output, "demon_will_gauge", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/gold"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:glass_blocks"))), Ingredient.of(BMItems.RAW_WILL.get())), new ItemStack(BMItems.DEMON_WILL_GAUGE.get()), 400, 50);
 
         // ===== Explosive Charge family (4 ported from 1.20.1's soulforge recipes for
         // BlockShapedExplosive/BlockDeforesterCharge/BlockFungalCharge/BlockVeinMineCharge; the

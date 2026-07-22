@@ -1,0 +1,17 @@
+{
+  "type": "bloodmagic:array",
+  "added_input": {
+    "item": "bloodmagic:slate_blank"
+  },
+  "base_input": {
+    "item": "bloodmagic:reagent_lava"
+  },
+  "output": {
+    "components": {
+      "bloodmagic:sigil_effect": "bloodmagic:lava"
+    },
+    "count": 1,
+    "id": "bloodmagic:sigil"
+  },
+  "texture": "bloodmagic:textures/models/alchemyarrays/lavasigil.png"
+}

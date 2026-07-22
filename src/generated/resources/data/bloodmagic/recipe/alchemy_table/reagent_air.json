@@ -1,0 +1,21 @@
+{
+  "type": "bloodmagic:alchemy_table",
+  "duration": 200,
+  "essence": 2000,
+  "inputs": [
+    {
+      "item": "minecraft:ghast_tear"
+    },
+    {
+      "tag": "c:feathers"
+    },
+    {
+      "tag": "c:feathers"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "bloodmagic:reagent_air"
+  },
+  "tier": 2
+}

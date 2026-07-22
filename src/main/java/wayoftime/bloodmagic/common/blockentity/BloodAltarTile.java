@@ -120,13 +120,13 @@ public class BloodAltarTile extends BaseTile implements IFluidHandler {
     }
 
     private void calculateStats(Map<EnumRuneType, Integer> upgrades) {
-        capacityMod = (float) ((1D + 0.2D * upgrades.getOrDefault(EnumRuneType.CAPACITY, 0) * Math.pow(1.075, upgrades.getOrDefault(EnumRuneType.AUGMENTED_CAPACITY, 0))));
+        capacityMod = (float) ((1D + 0.2D * upgrades.getOrDefault(EnumRuneType.CAPACITY, 0)) * Math.pow(1.075, upgrades.getOrDefault(EnumRuneType.AUGMENTED_CAPACITY, 0)));
         tickRate = Math.max(1, 20 - upgrades.getOrDefault(EnumRuneType.ACCELERATION, 0));
         consumptionMod = 0.2F * upgrades.getOrDefault(EnumRuneType.SPEED, 0);
         sacrificeMod = 0.1F * upgrades.getOrDefault(EnumRuneType.SACRIFICE, 0);
         selfSacMod = 0.1F * upgrades.getOrDefault(EnumRuneType.SELF_SACRIFICE, 0);
         dislocationMod = (float) Math.pow(1.2, upgrades.getOrDefault(EnumRuneType.DISPLACEMENT, 0));
-        orbCapMod = 0.2F * upgrades.getOrDefault(EnumRuneType.ORB, 0);
+        orbCapMod = 0.02F * upgrades.getOrDefault(EnumRuneType.ORB, 0);
         chargeAmount = (10 * upgrades.getOrDefault(EnumRuneType.CHARGING, 0) * (1 + consumptionMod/2));
         chargeCapMod = (float) Math.max(0.5 * capacityMod, 1) * upgrades.getOrDefault(EnumRuneType.CHARGING, 0);
         efficiencyMod = (float) Math.pow(0.85, upgrades.getOrDefault(EnumRuneType.EFFICIENCY, 0));

@@ -3,9 +3,23 @@
   "bloodNeeded": 80000,
   "craftSpeed": 50,
   "drainSpeed": 100,
-  "input": {
-    "item": "bloodmagic:hellforged_block"
-  },
+  "input": [
+    {
+      "item": "bloodmagic:dungeon_metal"
+    },
+    {
+      "item": "bloodmagic:dungeon_metal_corrosive"
+    },
+    {
+      "item": "bloodmagic:dungeon_metal_destructive"
+    },
+    {
+      "item": "bloodmagic:dungeon_metal_steadfast"
+    },
+    {
+      "item": "bloodmagic:dungeon_metal_vengeful"
+    }
+  ],
   "minTier": 4,
   "output": {
     "count": 1,

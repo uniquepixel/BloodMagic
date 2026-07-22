@@ -75,4 +75,11 @@ public class BlockGroups {
     }
 
     public static List<ResourceKey<Block>> DUNGEON_PALETTE_METAL_TIER = flattenDungeonFamilies(BMBlocks.DUNGEON_METAL);
+
+    // T5 altar capstone eligibility (see BMBlockTagProvider) - the dungeon_metal family (base + all
+    // 4 Will reskins), matching 1.20.1's t5_capstones tag which accepted all 5 of its equivalent
+    // "hellforgedblock" variants. Kept separate from DUNGEON_PALETTE_METAL_TIER above even though
+    // they're currently identical - that list is about mining-tool tier, this one's about altar-tier
+    // semantics, and the two concerns shouldn't be coupled just because they happen to match today.
+    public static List<ResourceKey<Block>> DUNGEON_METAL = flattenDungeonFamilies(BMBlocks.DUNGEON_METAL);
 }

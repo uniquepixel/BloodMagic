@@ -10,7 +10,7 @@
     },
     "e": {
       "type": "bloodmagic:bloodorb",
-      "orb_tier": 4
+      "orb_tier": 3
     },
     "r": {
       "item": "bloodmagic:rune_blank"

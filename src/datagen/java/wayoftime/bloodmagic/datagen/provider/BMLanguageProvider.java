@@ -239,6 +239,14 @@ public class BMLanguageProvider extends LanguageProvider {
         add(BMItems.REAGENT_TELEPOSITION.get(), "Teleposition Reagent");
         add(BMItems.REAGENT_FASTMINER.get(), "Fast Miner Reagent");
         add(BMItems.REAGENT_BINDING.get(), "Binding Reagent");
+        add(BMItems.REAGENT_WATER.get(), "Water Reagent");
+        add(BMItems.REAGENT_LAVA.get(), "Lava Reagent");
+        add(BMItems.REAGENT_VOID.get(), "Void Reagent");
+        add(BMItems.REAGENT_GROWTH.get(), "Growth Reagent");
+        add(BMItems.REAGENT_FROST.get(), "Frost Reagent");
+        add(BMItems.REAGENT_MAGNETISM.get(), "Magnetism Reagent");
+        add(BMItems.REAGENT_AIR.get(), "Air Reagent");
+        add(BMItems.REAGENT_SIGHT.get(), "Sight Reagent");
 
         add(BMBlocks.TELEPOSER, "Teleposer");
         add(BMItems.TELEPOSER_FOCUS.get(), "Teleposition Focus");

@@ -7,14 +7,14 @@
     },
     "b": {
       "type": "bloodmagic:bloodorb",
-      "orb_tier": 1
+      "orb_tier": 0
     },
     "c": {
       "item": "bloodmagic:rune_blank"
     },
     "d": {
       "type": "bloodmagic:bloodorb",
-      "orb_tier": 4
+      "orb_tier": 3
     }
   },
   "pattern": [

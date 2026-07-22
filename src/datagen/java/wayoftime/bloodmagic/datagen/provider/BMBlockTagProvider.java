@@ -31,14 +31,24 @@ public class BMBlockTagProvider extends BlockTagsProvider {
         this.tag(BMTags.Blocks.T4_CAPSTONES)
                 .addAll(BlockGroups.BLOODSTONE);
 
+        // Fixed from BlockGroups.HELLFORGED_BLOCK: that's this branch's unrelated pre-existing
+        // "hellforged_block" placeholder machine block, not 1.20.1's t5-capstone block (which was
+        // *also* named "hellforgedblock" there, but got ported here as DUNGEON_METAL to avoid the
+        // naming collision - see BMBlocks.DUNGEON_METAL's javadoc). 1.20.1's t5_capstones tag
+        // accepted all 5 of its variants (base + 4 Will reskins), matched here by DUNGEON_METAL.
         this.tag(BMTags.Blocks.T5_CAPSTONES)
-                .addAll(BlockGroups.HELLFORGED_BLOCK);
+                .addAll(BlockGroups.DUNGEON_METAL);
 
         this.tag(BMTags.Blocks.T6_CAPSTONES)
                 .addAll(BlockGroups.CRYSTAL_CLUSTER);
 
-        this.tag(BMTags.Blocks.PILLARS)
-                .add(Blocks.STONE_BRICKS); // TODO implement empty pillar tag = 1.20 behaviour-ish. perhaps isFaceSturdy shenanigans can help here too
+        // Deliberately left empty to match 1.20.1's ComponentType.NOTAIR pillar gate (any solid,
+        // non-air, non-liquid block - not just a fixed list) - AltarUtil#getTier's pillar check
+        // already falls back to an isFaceSturdy(UP)/isFaceSturdy(DOWN) test (true for essentially any
+        // solid full block, false for air and fluids, matching NOTAIR's intent exactly) whenever this
+        // tag has zero entries, so populating it with a hand-picked block list (previously just
+        // minecraft:stone_bricks) would only make this narrower than 1.20.1, not broader.
+        this.tag(BMTags.Blocks.PILLARS);
 
         this.tag(BMTags.Blocks.SOUL_NETWORK_COMPARATOR)
                 .addAll(BlockGroups.BLOODSTONE);

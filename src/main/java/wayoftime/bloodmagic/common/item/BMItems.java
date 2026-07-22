@@ -166,6 +166,18 @@ public class BMItems {
     // wired up and waiting on this item to exist.
     public static final DeferredHolder<Item, Item> REAGENT_BINDING = BASIC_ITEMS.register("reagent_binding", () -> new Item(new Item.Properties()));
 
+    // 8 more reagents ported from 1.20.1, feeding the Water/Lava/Void/Growth/Frost/Magnetism/Air/
+    // Seer sigil Alchemy Array recipes (see BMRecipeProvider) - the sigil effects/items themselves
+    // already existed and worked, only the crafting chain to obtain them was missing.
+    public static final DeferredHolder<Item, Item> REAGENT_WATER = BASIC_ITEMS.register("reagent_water", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> REAGENT_LAVA = BASIC_ITEMS.register("reagent_lava", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> REAGENT_VOID = BASIC_ITEMS.register("reagent_void", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> REAGENT_GROWTH = BASIC_ITEMS.register("reagent_growth", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> REAGENT_FROST = BASIC_ITEMS.register("reagent_frost", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> REAGENT_MAGNETISM = BASIC_ITEMS.register("reagent_magnetism", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> REAGENT_AIR = BASIC_ITEMS.register("reagent_air", () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> REAGENT_SIGHT = BASIC_ITEMS.register("reagent_sight", () -> new Item(new Item.Properties()));
+
     // 3 focus tiers ported from 1.20.1's TELEPOSER_FOCUS/ENHANCED_TELEPOSER_FOCUS/
     // REINFORCED_TELEPOSER_FOCUS - range 0/1/2, sizing the cuboid TeleposerTile swaps (see
     // TeleposerFocusItem's javadoc). REINFORCED_TELEPOSER_FOCUS has no crafting recipe on this

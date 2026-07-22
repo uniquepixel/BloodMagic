@@ -1,0 +1,17 @@
+{
+  "type": "bloodmagic:array",
+  "added_input": {
+    "item": "bloodmagic:slate_imbued"
+  },
+  "base_input": {
+    "item": "bloodmagic:reagent_frost"
+  },
+  "output": {
+    "components": {
+      "bloodmagic:sigil_effect": "bloodmagic:ice"
+    },
+    "count": 1,
+    "id": "bloodmagic:sigil"
+  },
+  "texture": "bloodmagic:textures/models/alchemyarrays/stupidarray.png"
+}

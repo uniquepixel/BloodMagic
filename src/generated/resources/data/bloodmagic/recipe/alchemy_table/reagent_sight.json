@@ -1,0 +1,24 @@
+{
+  "type": "bloodmagic:alchemy_table",
+  "duration": 200,
+  "essence": 500,
+  "inputs": [
+    {
+      "tag": "c:dusts/glowstone"
+    },
+    {
+      "tag": "c:glass_blocks"
+    },
+    {
+      "tag": "c:glass_blocks"
+    },
+    {
+      "item": "bloodmagic:sigil"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "bloodmagic:reagent_sight"
+  },
+  "tier": 1
+}

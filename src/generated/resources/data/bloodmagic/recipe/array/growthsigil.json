@@ -1,0 +1,17 @@
+{
+  "type": "bloodmagic:array",
+  "added_input": {
+    "item": "bloodmagic:slate_reinforced"
+  },
+  "base_input": {
+    "item": "bloodmagic:reagent_growth"
+  },
+  "output": {
+    "components": {
+      "bloodmagic:sigil_effect": "bloodmagic:growth"
+    },
+    "count": 1,
+    "id": "bloodmagic:sigil"
+  },
+  "texture": "bloodmagic:textures/models/alchemyarrays/growthsigil.png"
+}

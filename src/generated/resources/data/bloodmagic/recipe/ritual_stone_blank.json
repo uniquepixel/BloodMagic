@@ -10,7 +10,7 @@
     },
     "c": {
       "type": "bloodmagic:bloodorb",
-      "orb_tier": 2
+      "orb_tier": 1
     }
   },
   "pattern": [

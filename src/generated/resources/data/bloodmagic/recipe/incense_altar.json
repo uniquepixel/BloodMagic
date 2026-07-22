@@ -10,7 +10,7 @@
     },
     "o": {
       "type": "bloodmagic:bloodorb",
-      "orb_tier": 1
+      "orb_tier": 0
     },
     "s": {
       "tag": "c:stones"
