@@ -12,5 +12,6 @@
     },
     "count": 1,
     "id": "bloodmagic:sigil"
-  }
+  },
+  "texture": "bloodmagic:textures/models/alchemyarrays/suppressionsigil.png"
 }

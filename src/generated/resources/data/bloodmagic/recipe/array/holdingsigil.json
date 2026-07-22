@@ -9,5 +9,6 @@
   "output": {
     "count": 1,
     "id": "bloodmagic:sigil_holding"
-  }
+  },
+  "texture": "bloodmagic:textures/models/alchemyarrays/sightsigil.png"
 }

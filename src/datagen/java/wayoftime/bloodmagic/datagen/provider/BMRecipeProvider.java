@@ -180,16 +180,19 @@ public class BMRecipeProvider extends RecipeProvider {
         alchemyTable(output, "reagent_fastminer", List.of(Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:iron_pickaxe"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:iron_axe"))), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:iron_shovel"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gunpowder")))), new ItemStack(BMItems.REAGENT_FASTMINER.get()), 2, 2000, 200);
 
         // ===== Alchemy Array (sigils from reagents, ported from 1.20.1) =====
-        array(output, "bloodlightsigil", Ingredient.of(BMItems.REAGENT_BLOODLIGHT.get()), Ingredient.of(BMItems.SLATE_IMBUED.get()), sigil(BMIdentifiers.Sigils.BLOODLIGHT));
-        array(output, "holdingsigil", Ingredient.of(BMItems.REAGENT_HOLDING.get()), Ingredient.of(BMItems.SLATE_IMBUED.get()), new ItemStack(BMItems.SIGIL_HOLDING.get()));
-        array(output, "suppressionsigil", Ingredient.of(BMItems.REAGENT_SUPPRESSION.get()), Ingredient.of(BMItems.SLATE_DEMONIC.get()), sigil(BMIdentifiers.Sigils.SUPPRESSION));
-        array(output, "telepositionsigil", Ingredient.of(BMItems.REAGENT_TELEPOSITION.get()), Ingredient.of(BMItems.SLATE_DEMONIC.get()), sigil(BMIdentifiers.Sigils.TELEPOSITION));
+        // Textures ported 1:1 from 1.20.1's AlchemyArrayRecipeProvider - note "holdingsigil" reused
+        // sightsigil.png there (the same texture as the Seer sigil, which doesn't exist on this
+        // branch), so that reuse is preserved here rather than guessed at.
+        array(output, "bloodlightsigil", arrayTexture("lightsigil.png"), Ingredient.of(BMItems.REAGENT_BLOODLIGHT.get()), Ingredient.of(BMItems.SLATE_IMBUED.get()), sigil(BMIdentifiers.Sigils.BLOODLIGHT));
+        array(output, "holdingsigil", arrayTexture("sightsigil.png"), Ingredient.of(BMItems.REAGENT_HOLDING.get()), Ingredient.of(BMItems.SLATE_IMBUED.get()), new ItemStack(BMItems.SIGIL_HOLDING.get()));
+        array(output, "suppressionsigil", arrayTexture("suppressionsigil.png"), Ingredient.of(BMItems.REAGENT_SUPPRESSION.get()), Ingredient.of(BMItems.SLATE_DEMONIC.get()), sigil(BMIdentifiers.Sigils.SUPPRESSION));
+        array(output, "telepositionsigil", arrayTexture("teleportation.png"), Ingredient.of(BMItems.REAGENT_TELEPOSITION.get()), Ingredient.of(BMItems.SLATE_DEMONIC.get()), sigil(BMIdentifiers.Sigils.TELEPOSITION));
 
         // ===== Alchemy Array, batch 2 (1 more ported from 1.20.1 - only needs vanilla redstone + a blank slate) =====
-        array(output, "divinationsigil", Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:redstone"))), Ingredient.of(BMItems.SLATE_BLANK.get()), sigil(BMIdentifiers.Sigils.DIVINATION));
+        array(output, "divinationsigil", arrayTexture("divinationsigil.png"), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:redstone"))), Ingredient.of(BMItems.SLATE_BLANK.get()), sigil(BMIdentifiers.Sigils.DIVINATION));
 
         // ===== Alchemy Array, batch 3 (1 more ported from 1.20.1 now that reagent_fastminer exists) =====
-        array(output, "fastminersigil", Ingredient.of(BMItems.REAGENT_FASTMINER.get()), Ingredient.of(BMItems.SLATE_REINFORCED.get()), sigil(BMIdentifiers.Sigils.MINER));
+        array(output, "fastminersigil", arrayTexture("fastminersigil.png"), Ingredient.of(BMItems.REAGENT_FASTMINER.get()), Ingredient.of(BMItems.SLATE_REINFORCED.get()), sigil(BMIdentifiers.Sigils.MINER));
 
         // ===== Alchemy Array, batch 4 (6 special-effect arrays ported from 1.20.1 - movement/
         // updraft/spike/day/night/bounce - folded in here from a short-lived separate provider
@@ -197,23 +200,27 @@ public class BMRecipeProvider extends RecipeProvider {
         // collides with this one under the same "Recipes" datagen provider name. Output is a
         // placeholder (minecraft:bedrock, never handed to the player) since AlchemyArrayEffects
         // routes these ids to dedicated continuous/triggered effect classes instead of the plain
-        // crafting effect that would consume the result) =====
-        array(output, "movement", Ingredient.of(Items.FEATHER), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), new ItemStack(Items.BEDROCK));
-        array(output, "updraft", Ingredient.of(Items.FEATHER), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/glowstone"))), new ItemStack(Items.BEDROCK));
-        array(output, "spike", Ingredient.of(Items.COBBLESTONE), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/iron"))), new ItemStack(Items.BEDROCK));
-        array(output, "day", Ingredient.of(Items.COAL), Ingredient.of(Items.COAL), new ItemStack(Items.BEDROCK));
-        array(output, "night", Ingredient.of(Items.LAPIS_LAZULI), Ingredient.of(Items.LAPIS_LAZULI), new ItemStack(Items.BEDROCK));
-        array(output, "bounce", Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:slimeballs"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), new ItemStack(Items.BEDROCK));
+        // crafting effect that would consume the result. Textures ported 1:1 from 1.20.1's
+        // AlchemyArrayRecipeProvider; AlchemyArrayRendererRegistry additionally keys these same
+        // recipe ids to their bespoke multi-layer circle renderers rather than the plain one) =====
+        array(output, "movement", arrayTexture("movementarray.png"), Ingredient.of(Items.FEATHER), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), new ItemStack(Items.BEDROCK));
+        array(output, "updraft", arrayTexture("updraftarray.png"), Ingredient.of(Items.FEATHER), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/glowstone"))), new ItemStack(Items.BEDROCK));
+        array(output, "spike", arrayTexture("spikearray.png"), Ingredient.of(Items.COBBLESTONE), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/iron"))), new ItemStack(Items.BEDROCK));
+        array(output, "day", arrayTexture("sunarray.png"), Ingredient.of(Items.COAL), Ingredient.of(Items.COAL), new ItemStack(Items.BEDROCK));
+        array(output, "night", arrayTexture("moonarray.png"), Ingredient.of(Items.LAPIS_LAZULI), Ingredient.of(Items.LAPIS_LAZULI), new ItemStack(Items.BEDROCK));
+        array(output, "bounce", arrayTexture("bouncearray.png"), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:slimeballs"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), new ItemStack(Items.BEDROCK));
 
         // ===== Alchemy Array, batch 5 (the 8th special effect, Binding, now that reagent_binding
         // exists - 4 of 1.20.1's 5 living_* binding arrays ported; "living_trainer" (which produced
         // an "upgradetrainer" item) is skipped since this branch's closest equivalent, UPGRADE_TOME,
-        // isn't confirmed to be the same item and guessing wrong would silently misroute a recipe) =====
+        // isn't confirmed to be the same item and guessing wrong would silently misroute a recipe.
+        // Texture ported from 1.20.1's AlchemyArrayRegistry.BINDING_ARRAY constant, which all 5 of
+        // its living_* recipes shared) =====
         alchemyTable(output, "reagent_binding", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/glowstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gunpowder"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:nuggets/gold")))), new ItemStack(BMItems.REAGENT_BINDING.get()), 3, 1000, 200);
-        array(output, "living_helmet", Ingredient.of(BMItems.REAGENT_BINDING.get()), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:iron_helmet"))), new ItemStack(BMItems.LIVING_HELMET.get()));
-        array(output, "living_plate", Ingredient.of(BMItems.REAGENT_BINDING.get()), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:iron_chestplate"))), new ItemStack(BMItems.LIVING_PLATE.get()));
-        array(output, "living_leggings", Ingredient.of(BMItems.REAGENT_BINDING.get()), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:iron_leggings"))), new ItemStack(BMItems.LIVING_LEGGINGS.get()));
-        array(output, "living_boots", Ingredient.of(BMItems.REAGENT_BINDING.get()), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:iron_boots"))), new ItemStack(BMItems.LIVING_BOOTS.get()));
+        array(output, "living_helmet", arrayTexture("bindingarray.png"), Ingredient.of(BMItems.REAGENT_BINDING.get()), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:iron_helmet"))), new ItemStack(BMItems.LIVING_HELMET.get()));
+        array(output, "living_plate", arrayTexture("bindingarray.png"), Ingredient.of(BMItems.REAGENT_BINDING.get()), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:iron_chestplate"))), new ItemStack(BMItems.LIVING_PLATE.get()));
+        array(output, "living_leggings", arrayTexture("bindingarray.png"), Ingredient.of(BMItems.REAGENT_BINDING.get()), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:iron_leggings"))), new ItemStack(BMItems.LIVING_LEGGINGS.get()));
+        array(output, "living_boots", arrayTexture("bindingarray.png"), Ingredient.of(BMItems.REAGENT_BINDING.get()), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:iron_boots"))), new ItemStack(BMItems.LIVING_BOOTS.get()));
 
         // ===== Anointments (13 ported from 1.20.1; the original's "slate_vial" ingredient doesn't
         // exist on this branch, substituted with the closest existing tier - Imbued Slate) =====
@@ -996,8 +1003,21 @@ public class BMRecipeProvider extends RecipeProvider {
     }
 
     private void array(RecipeOutput output, String id, Ingredient baseInput, Ingredient addedInput, ItemStack result) {
+        array(output, id, AlchemyArrayRecipe.DEFAULT_TEXTURE, baseInput, addedInput, result);
+    }
+
+    /**
+     * Overload carrying the per-recipe ground-circle texture forward - see {@code arrayTexture()}
+     * and the call sites above for the real 1.20.1 texture mapping this was ported from
+     * ({@code AlchemyArrayRecipeProvider}/{@code AlchemyArrayRecipeBuilder} on that branch).
+     */
+    private void array(RecipeOutput output, String id, ResourceLocation texture, Ingredient baseInput, Ingredient addedInput, ItemStack result) {
         ResourceLocation rl = BloodMagic.rl("array/" + id);
-        output.accept(rl, new AlchemyArrayRecipe(baseInput, addedInput, result), advancement(output, rl));
+        output.accept(rl, new AlchemyArrayRecipe(baseInput, addedInput, result, texture), advancement(output, rl));
+    }
+
+    private static ResourceLocation arrayTexture(String fileName) {
+        return BloodMagic.rl("textures/models/alchemyarrays/" + fileName);
     }
 
     private void altar(RecipeOutput output, String id, Ingredient input, ItemStack result, int minTier, int totalBlood, int craftSpeed, int drainSpeed) {

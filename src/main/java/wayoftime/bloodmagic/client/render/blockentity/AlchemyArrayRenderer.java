@@ -1,58 +1,63 @@
 package wayoftime.bloodmagic.client.render.blockentity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Axis;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.client.renderer.entity.ItemRenderer;
-import net.minecraft.client.resources.model.BakedModel;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
+import wayoftime.bloodmagic.client.render.alchemyarray.AlchemyArrayRendererRegistry;
+import wayoftime.bloodmagic.client.render.alchemyarray.AlchemyCircleRenderer;
 import wayoftime.bloodmagic.common.blockentity.AlchemyArrayTile;
+import wayoftime.bloodmagic.common.recipe.BMRecipes;
+import wayoftime.bloodmagic.common.recipe.array.AlchemyArrayInput;
+import wayoftime.bloodmagic.common.recipe.array.AlchemyArrayRecipe;
 
 /**
  * Renderer for the Alchemy Array.
  * <p>
- * 1.20.1 rendered a large stack of bespoke, per-recipe rotating circle textures on the ground
- * (movement/updraft/spike/day/night/bounce/binding each had their own art, driven by a family of
- * {@code *AlchemyCircleRenderer} classes doing custom quadrilateral geometry - see
- * {@code AlchemyArrayRendererRegistry} in 1.20.1). None of that per-array art
- * ({@code textures/models/alchemyarrays/*.png}) has been ported to this branch, so reproducing
- * that system would mean drawing bespoke circles with no matching texture. Instead, this
- * renderer follows the same pattern as {@link BloodAltarRenderer}: it floats the two placed
- * ingredient item stacks (base, then added) just above the block, slowly spinning - enough to
- * show at a glance what's queued/consuming without depending on the unported array art.
+ * Full-fidelity restoration of 1.20.1's approach (a flat, textured, spinning ground billboard
+ * per recipe - see {@code AlchemyCircleRenderer} and its 8 timing-curve subclasses under
+ * {@code client.render.alchemyarray}), replacing this branch's earlier placeholder of floating,
+ * spinning item stacks (kept the two-item-stack renderer only until the array art and rendering
+ * utilities it depends on - {@code RenderResizableQuadrilateral}, {@code Model2D} - were ported).
+ * <p>
+ * Ported from 1.20.1's {@code RenderAlchemyArray}: re-resolves which recipe currently matches the
+ * array's contents every frame (mirroring {@link AlchemyArrayTile#attemptCraft()}'s own recipe
+ * lookup) purely to pick the right {@link AlchemyCircleRenderer} - the actual craft/effect logic
+ * stays entirely server-authoritative in the tile.
  */
 public class AlchemyArrayRenderer implements BlockEntityRenderer<AlchemyArrayTile> {
+    private final RecipeManager.CachedCheck<AlchemyArrayInput, AlchemyArrayRecipe> recipeCheck =
+            RecipeManager.createCheck(BMRecipes.ALCHEMY_ARRAY_TYPE.get());
 
     public AlchemyArrayRenderer(BlockEntityRendererProvider.Context context) {
     }
 
     @Override
     public void render(AlchemyArrayTile tile, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
-        renderItem(tile.getInventory().getStackInSlot(AlchemyArrayTile.BASE_SLOT), 0.3, tile.getLevel(), poseStack, bufferSource, packedLight, packedOverlay);
-        renderItem(tile.getInventory().getStackInSlot(AlchemyArrayTile.ADDED_SLOT), 0.55, tile.getLevel(), poseStack, bufferSource, packedLight, packedOverlay);
-    }
-
-    private void renderItem(ItemStack stack, double height, Level level, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
-        if (stack.isEmpty()) {
+        Level level = tile.getLevel();
+        if (level == null) {
             return;
         }
 
-        Minecraft mc = Minecraft.getInstance();
-        ItemRenderer itemRenderer = mc.getItemRenderer();
+        ItemStack base = tile.getInventory().getStackInSlot(AlchemyArrayTile.BASE_SLOT);
+        ItemStack added = tile.getInventory().getStackInSlot(AlchemyArrayTile.ADDED_SLOT);
+        if (base.isEmpty() && added.isEmpty()) {
+            return;
+        }
 
-        poseStack.pushPose();
-        poseStack.translate(0.5, height, 0.5);
-        float rotation = (float) (720.0F * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL);
-        poseStack.mulPose(Axis.YP.rotationDegrees(rotation));
-        poseStack.scale(0.4F, 0.4F, 0.4F);
-        BakedModel bakedModel = itemRenderer.getModel(stack, level, (LivingEntity) null, 1);
-        itemRenderer.render(stack, ItemDisplayContext.FIXED, true, poseStack, bufferSource, packedLight, packedOverlay, bakedModel);
-        poseStack.popPose();
+        AlchemyArrayInput input = new AlchemyArrayInput(base, added);
+        RecipeHolder<AlchemyArrayRecipe> match = recipeCheck.getRecipeFor(input, level).orElse(null);
+
+        ResourceLocation recipeId = match != null ? match.id() : null;
+        AlchemyArrayRecipe recipe = match != null ? match.value() : null;
+        AlchemyCircleRenderer renderer = AlchemyArrayRendererRegistry.getRenderer(recipeId, recipe);
+
+        float craftTime = tile.activeCounter + partialTick;
+        renderer.renderAt(tile, craftTime, poseStack, bufferSource, packedLight, packedOverlay);
     }
 }

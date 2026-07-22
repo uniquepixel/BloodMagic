@@ -9,5 +9,6 @@
   "output": {
     "count": 1,
     "id": "minecraft:bedrock"
-  }
+  },
+  "texture": "bloodmagic:textures/models/alchemyarrays/updraftarray.png"
 }
