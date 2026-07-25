@@ -38,6 +38,14 @@
       "components": [
         {
           "type": "modopedia:text",
+          "text": "Each ring of path blocks follows a few rules: every path block in the same ring must sit at the same height, the next ring out may not be more than 5 blocks higher or lower than the previous one, and only the blocks at the same height as a ring - or up to two blocks above it - count toward that ring's Tranquility. With no path at all, none of the surrounding terrain is scanned, but the Altar still grants its baseline 20% bonus on its own."
+        }
+      ]
+    },
+    {
+      "components": [
+        {
+          "type": "modopedia:text",
           "text": "The total Tranquility is calculated by square-rooting the Tranquility of each type present and adding the results together - so for later-game setups, it's best to have many different types of Tranquility rather than a huge amount of just one.\nThe Tranquility bonus is capped by the size of your Altar (i.e. tier of path used): No Path 20%, Wooden Path 60%, Stone Path 120%, Worn Stone Path 200%, Obsidian Path 300%."
         }
       ]

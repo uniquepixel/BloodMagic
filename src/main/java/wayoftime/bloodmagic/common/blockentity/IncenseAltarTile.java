@@ -1,6 +1,7 @@
 package wayoftime.bloodmagic.common.blockentity;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -12,6 +13,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import wayoftime.bloodmagic.common.dataattachment.BMDataAttachments;
 import wayoftime.bloodmagic.common.incense.EnumTranquilityType;
+import wayoftime.bloodmagic.common.incense.IIncensePath;
 import wayoftime.bloodmagic.common.incense.IncenseAltarHandler;
 import wayoftime.bloodmagic.common.incense.IncenseTranquilityRegistry;
 import wayoftime.bloodmagic.common.incense.TranquilityStack;
@@ -21,32 +23,34 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Full-fidelity-in-spirit port of 1.20.1's Incense Altar ({@code TileIncenseAltar}): periodically
- * scans the blocks around the altar for tranquility "flavors" (plants, crops, trees, earth, water,
- * fire, lava - see {@link IncenseTranquilityRegistry}), sums each flavor and combines them via
- * diminishing (square-root) returns, then converts the result into an LP-gain bonus multiplier
- * (see {@link IncenseAltarHandler}) that builds up on any player standing nearby, up to that
- * bonus's cap. Consumed by {@link wayoftime.bloodmagic.common.ritual.types.FeatheredKnifeRitual}
- * as an LP-gain multiplier via the pre-existing {@code incense} attachment.
+ * Full-fidelity port of 1.20.1's Incense Altar ({@code TileIncenseAltar}): periodically walks a
+ * physical "road" of {@link IIncensePath} blocks outward from the altar ring-by-ring
+ * ({@link #recheckConstruction}), tabulates tranquility "flavors" (plants, crops, trees, earth,
+ * water, fire, lava - see {@link IncenseTranquilityRegistry}) only within the rings the road
+ * actually reaches, combines them via diminishing (square-root) returns, then converts the result
+ * (gated by both tranquility AND road length - see {@link IncenseAltarHandler}) into an LP-gain
+ * bonus multiplier that builds up on any player standing nearby, up to that bonus's cap. Consumed
+ * by {@link wayoftime.bloodmagic.common.ritual.types.FeatheredKnifeRitual} as an LP-gain
+ * multiplier via the pre-existing {@code incense} attachment.
  * <p>
- * Not ported: the original's "road construction quality" system, which required literally paving a
- * physical path of special road blocks ({@code IIncensePath}) outward from the altar before ANY
- * tranquility scan would even run, and which capped/gated the resulting bonus by how far that road
- * extended plus registered {@code IncenseAltarComponent} altar-tier structures. No road blocks or
- * altar-tier components exist on this branch, so the scan here always runs (over a fixed area
- * around the altar) and the bonus is capped purely by tranquility - see {@link IncenseAltarHandler}
- * for detail. This is what actually makes surrounding the altar with flowers, water and crops do
- * something, without first porting the entire road-block subsystem.
+ * With zero road blocks placed, the tranquility scan never runs at all (the road-walk fails at its
+ * very first ring, distance 2) - but a flat +20% bonus still applies regardless, matching 1.20.1
+ * exactly (see {@link IncenseAltarHandler}'s javadoc: tier 0 requires neither tranquility nor road
+ * length). Laying down {@code IncenseAltarPathBlock} road rings (wood/stone/worn stone/obsidian -
+ * see {@code BMBlocks}) both extends how far the tranquility scan reaches AND raises the bonus
+ * cap past that flat 20%.
  */
 public class IncenseAltarTile extends BaseTile {
     private static final double RANGE = 5;
-    private static final int SCAN_RADIUS = 5;
-    private static final int SCAN_DOWN = 2;
-    private static final int SCAN_UP = 2;
+    // How far (in blocks, y-axis) one road ring may step up/down from the previous ring while the
+    // walk searches for the next ring's height - matches 1.20.1's "next ring may not be more than 5
+    // blocks higher/lower than the previous ring" (see the guidebook).
+    private static final int MAX_CHECK_RANGE = 5;
     private static final int RECHECK_INTERVAL = 100;
 
     private double tranquility = 0;
     private double incenseBonus = 0;
+    private int roadDistance = 0;
 
     public IncenseAltarTile(BlockPos pos, BlockState state) {
         super(BMTiles.INCENSE_ALTAR_TYPE.get(), pos, state);
@@ -64,7 +68,7 @@ public class IncenseAltarTile extends BaseTile {
         }
 
         if (level.getGameTime() % RECHECK_INTERVAL == 0) {
-            tile.recheckTranquility(level, pos);
+            tile.recheckConstruction(level, pos);
         }
 
         boolean hasPerformed = false;
@@ -85,36 +89,97 @@ public class IncenseAltarTile extends BaseTile {
     }
 
     /**
-     * Scans the area around the altar for registered tranquility sources, sums each flavor
-     * separately, then combines the per-flavor sums with diminishing (square-root) returns - a
-     * garden with one dominant flavor plateaus quickly, while a varied garden of several flavors
-     * keeps paying off. Mirrors 1.20.1's {@code TileIncenseAltar#recheckConstruction}.
+     * Full-fidelity port of 1.20.1's {@code TileIncenseAltar#recheckConstruction}. Walks the road
+     * outward ring by ring, starting at distance 2 (the closest ring checked - two blocks
+     * horizontally from the altar): for each ring, searches y-offsets within
+     * {@link #MAX_CHECK_RANGE} of the previous ring's height for a full ring of
+     * {@link IIncensePath} blocks whose {@code getLevelOfPath} is high enough to reach this
+     * distance (level {@code >= currentDistance - 2}). If a ring succeeds, every block from the
+     * altar out to (and including) that ring, from the ring's height up to 2 above it, is tabulated
+     * for tranquility; the walk then tries the next ring out. The first ring that fails ends the
+     * walk (matching upstream's own loop, which has no other exit) - {@code roadDistance} becomes
+     * that failing ring's distance minus 2, i.e. the number of successful rings.
+     * <p>
+     * With zero path blocks anywhere, the very first ring (distance 2) fails immediately, so
+     * {@code roadDistance == 0} and nothing is ever scanned for tranquility - the resulting bonus is
+     * then whatever {@link IncenseAltarHandler} grants for zero tranquility and zero road (a flat
+     * 20%, not zero).
      */
-    private void recheckTranquility(Level level, BlockPos pos) {
-        Map<EnumTranquilityType, Double> tranquilityMap = new EnumMap<>(EnumTranquilityType.class);
+    private void recheckConstruction(Level level, BlockPos pos) {
+        int yOffset = 0;
+        Map<EnumTranquilityType, Double> newTranquilityMap = new EnumMap<>(EnumTranquilityType.class);
+        int newRoadDistance;
 
-        for (int x = -SCAN_RADIUS; x <= SCAN_RADIUS; x++) {
-            for (int y = -SCAN_DOWN; y <= SCAN_UP; y++) {
-                for (int z = -SCAN_RADIUS; z <= SCAN_RADIUS; z++) {
-                    BlockPos scanPos = pos.offset(x, y, z);
-                    BlockState scanState = level.getBlockState(scanPos);
-                    Block block = scanState.getBlock();
+        for (int currentDistance = 2; ; currentDistance++) {
+            boolean canFormRoad = false;
 
-                    TranquilityStack stack = IncenseTranquilityRegistry.getTranquilityOfBlock(level, scanPos, block, scanState);
-                    if (stack != null) {
-                        tranquilityMap.merge(stack.type(), stack.value(), Double::sum);
+            search:
+            for (int i = -MAX_CHECK_RANGE + yOffset; i <= MAX_CHECK_RANGE + yOffset; i++) {
+                BlockPos verticalPos = pos.offset(0, i, 0);
+
+                canFormRoad = true;
+                ring:
+                for (int index = 0; index < 4; index++) {
+                    Direction horizontalFacing = Direction.from2DDataValue(index);
+                    BlockPos facingOffsetPos = verticalPos.relative(horizontalFacing, currentDistance);
+                    for (int j = -1; j <= 1; j++) {
+                        BlockPos offsetPos = facingOffsetPos.relative(horizontalFacing.getClockWise(), j);
+                        BlockState state = level.getBlockState(offsetPos);
+                        Block block = state.getBlock();
+                        if (!(block instanceof IIncensePath path && path.getLevelOfPath(level, offsetPos, state) >= currentDistance - 2)) {
+                            canFormRoad = false;
+                            break ring;
+                        }
                     }
                 }
+
+                if (canFormRoad) {
+                    yOffset = i;
+                    break search;
+                }
+            }
+
+            if (canFormRoad) {
+                for (int i = -currentDistance; i <= currentDistance; i++) {
+                    for (int j = -currentDistance; j <= currentDistance; j++) {
+                        if (Math.abs(i) != currentDistance && Math.abs(j) != currentDistance) {
+                            continue;
+                        }
+
+                        for (int y = yOffset; y <= 2 + yOffset; y++) {
+                            BlockPos offsetPos = pos.offset(i, y, j);
+                            BlockState state = level.getBlockState(offsetPos);
+                            Block block = state.getBlock();
+                            TranquilityStack stack = IncenseTranquilityRegistry.getTranquilityOfBlock(level, offsetPos, block, state);
+                            if (stack != null) {
+                                newTranquilityMap.merge(stack.type(), stack.value(), Double::sum);
+                            }
+                        }
+                    }
+                }
+            } else {
+                newRoadDistance = currentDistance - 2;
+                break;
             }
         }
 
+        double totalTranquility = 0;
+        for (double value : newTranquilityMap.values()) {
+            totalTranquility += value;
+        }
+
+        if (totalTranquility < 0) {
+            return;
+        }
+
         double appliedTranquility = 0;
-        for (double value : tranquilityMap.values()) {
+        for (double value : newTranquilityMap.values()) {
             appliedTranquility += Math.sqrt(value);
         }
 
         this.tranquility = appliedTranquility;
-        this.incenseBonus = IncenseAltarHandler.getIncenseBonusFromTranquility(appliedTranquility);
+        this.roadDistance = newRoadDistance;
+        this.incenseBonus = IncenseAltarHandler.getIncenseBonusFromComponents(level, pos, appliedTranquility, newRoadDistance);
         setChanged();
     }
 
@@ -126,11 +191,16 @@ public class IncenseAltarTile extends BaseTile {
         return incenseBonus;
     }
 
+    public int getRoadDistance() {
+        return roadDistance;
+    }
+
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
         tranquility = tag.getDouble("tranquility");
         incenseBonus = tag.getDouble("incenseBonus");
+        roadDistance = tag.getInt("roadDistance");
     }
 
     @Override
@@ -138,5 +208,6 @@ public class IncenseAltarTile extends BaseTile {
         super.saveAdditional(tag, registries);
         tag.putDouble("tranquility", tranquility);
         tag.putDouble("incenseBonus", incenseBonus);
+        tag.putInt("roadDistance", roadDistance);
     }
 }

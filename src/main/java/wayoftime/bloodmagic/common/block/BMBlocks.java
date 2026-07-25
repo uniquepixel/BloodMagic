@@ -76,6 +76,21 @@ public class BMBlocks {
 
     public static final BlockWithItemHolder<IncenseAltarBlock, BlockItem> INCENSE_ALTAR = BLOCK_REG.register("incense_altar", IncenseAltarBlock::new);
 
+    // Incense Altar road/path blocks, ported from 1.20.1's BlockPath (via BASIC_REG for the free
+    // auto blockstate/model/loot treatment - see BMBlockstateProvider/MineBlock). Registry ids and
+    // pathLevel tiers (2/4/6/8) match 1.20.1's BloodMagicBlocks exactly: each tier's road reaches 2
+    // rings further than the last (3/5/7/9 rings out from the altar respectively - see
+    // IncenseAltarTile#recheckConstruction/IncenseAltarHandler).
+    private static final BlockBehaviour.Properties incense_path_properties = BlockBehaviour.Properties.of().strength(2.0F, 5.0F).requiresCorrectToolForDrops();
+    public static final BlockWithItemHolder<IncenseAltarPathBlock, BlockItem> WOOD_BRICK_PATH = BASIC_REG.register("woodbrickpath", () -> new IncenseAltarPathBlock(2, incense_path_properties));
+    public static final BlockWithItemHolder<IncenseAltarPathBlock, BlockItem> WOOD_TILE_PATH = BASIC_REG.register("woodtilepath", () -> new IncenseAltarPathBlock(2, incense_path_properties));
+    public static final BlockWithItemHolder<IncenseAltarPathBlock, BlockItem> STONE_BRICK_PATH = BASIC_REG.register("stonebrickpath", () -> new IncenseAltarPathBlock(4, incense_path_properties));
+    public static final BlockWithItemHolder<IncenseAltarPathBlock, BlockItem> STONE_TILE_PATH = BASIC_REG.register("stonetilepath", () -> new IncenseAltarPathBlock(4, incense_path_properties));
+    public static final BlockWithItemHolder<IncenseAltarPathBlock, BlockItem> WORN_STONE_BRICK_PATH = BASIC_REG.register("wornstonebrickpath", () -> new IncenseAltarPathBlock(6, incense_path_properties));
+    public static final BlockWithItemHolder<IncenseAltarPathBlock, BlockItem> WORN_STONE_TILE_PATH = BASIC_REG.register("wornstonetilepath", () -> new IncenseAltarPathBlock(6, incense_path_properties));
+    public static final BlockWithItemHolder<IncenseAltarPathBlock, BlockItem> OBSIDIAN_BRICK_PATH = BASIC_REG.register("obsidianbrickpath", () -> new IncenseAltarPathBlock(8, incense_path_properties));
+    public static final BlockWithItemHolder<IncenseAltarPathBlock, BlockItem> OBSIDIAN_TILE_PATH = BASIC_REG.register("obsidiantilepath", () -> new IncenseAltarPathBlock(8, incense_path_properties));
+
     public static final BlockWithItemHolder<ItemRouterBlock, BlockItem> ITEM_ROUTER = BLOCK_REG.register("item_router", ItemRouterBlock::new);
 
     public static final BlockWithItemHolder<MasterRoutingNodeBlock, BlockItem> MASTER_ROUTING_NODE = BLOCK_REG.register("master_routing_node", MasterRoutingNodeBlock::new);

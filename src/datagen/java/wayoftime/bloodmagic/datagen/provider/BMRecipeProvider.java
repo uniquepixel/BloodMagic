@@ -822,6 +822,54 @@ public class BMRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_stone", has(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones"))))
                 .save(output, BloodMagic.rl("incense_altar"));
 
+        // ===== Incense Altar road/path blocks (ported from 1.20.1's GeneratorRecipes "path_*"
+        // family - see BMBlocks.WOOD_BRICK_PATH etc/IncenseAltarPathBlock/IncenseAltarTile). Orb
+        // tiers mirror upstream exactly: 1.20.1 numbered its orbs 1-5 (weak/apprentice/magician/
+        // master/archmage), this branch numbers them 0-5 (weak=0..archmage=4, plus a new tier-5
+        // transcendent not present in 1.20.1) - so upstream's orb_tier 2/3/4/5 requirements map to
+        // bloodOrb(1)/bloodOrb(2)/bloodOrb(3)/bloodOrb(4) here (apprentice/magician/master/archmage
+        // respectively, the same orbs by name). Ids/ingredient counts/results match 1.20.1's
+        // recipes/path/path_*.json exactly (also referenced by the guidebook's incense_altar entry). =====
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, BMBlocks.WOOD_BRICK_PATH.item().get(), 4)
+                .requires(Ingredient.of(net.minecraft.tags.ItemTags.PLANKS), 4)
+                .requires(bloodOrb(1))
+                .unlockedBy("has_planks", has(net.minecraft.tags.ItemTags.PLANKS))
+                .save(output, BloodMagic.rl("path/path_wood"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, BMBlocks.WOOD_TILE_PATH.item().get(), 4)
+                .requires(BMBlocks.WOOD_BRICK_PATH.item().get(), 4)
+                .unlockedBy("has_wood_path", has(BMBlocks.WOOD_BRICK_PATH.item().get()))
+                .save(output, BloodMagic.rl("path/path_woodtile"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, BMBlocks.STONE_BRICK_PATH.item().get(), 4)
+                .requires(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones"))), 4)
+                .requires(bloodOrb(2))
+                .unlockedBy("has_stone", has(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:stones"))))
+                .save(output, BloodMagic.rl("path/path_stone"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, BMBlocks.STONE_TILE_PATH.item().get(), 4)
+                .requires(BMBlocks.STONE_BRICK_PATH.item().get(), 4)
+                .unlockedBy("has_stone_path", has(BMBlocks.STONE_BRICK_PATH.item().get()))
+                .save(output, BloodMagic.rl("path/path_stonetile"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, BMBlocks.WORN_STONE_BRICK_PATH.item().get(), 4)
+                .requires(BMBlocks.STONE_BRICK_PATH.item().get(), 4)
+                .requires(bloodOrb(3))
+                .unlockedBy("has_stone_path", has(BMBlocks.STONE_BRICK_PATH.item().get()))
+                .save(output, BloodMagic.rl("path/path_wornstone"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, BMBlocks.WORN_STONE_TILE_PATH.item().get(), 4)
+                .requires(BMBlocks.WORN_STONE_BRICK_PATH.item().get(), 4)
+                .unlockedBy("has_worn_stone_path", has(BMBlocks.WORN_STONE_BRICK_PATH.item().get()))
+                .save(output, BloodMagic.rl("path/path_wornstonetile"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, BMBlocks.OBSIDIAN_BRICK_PATH.item().get(), 4)
+                .requires(Items.OBSIDIAN, 4)
+                .requires(bloodOrb(4))
+                .unlockedBy("has_obsidian", has(Items.OBSIDIAN))
+                .save(output, BloodMagic.rl("path/path_obsidian"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, BMBlocks.OBSIDIAN_TILE_PATH.item().get(), 4)
+                .requires(BMBlocks.OBSIDIAN_BRICK_PATH.item().get(), 4)
+                .unlockedBy("has_obsidian_path", has(BMBlocks.OBSIDIAN_BRICK_PATH.item().get()))
+                .save(output, BloodMagic.rl("path/path_obsidiantile"));
+
         // ===== Ore fragments (7 ARC ore-processing recipes ported from 1.20.1, now that
         // ironfragment/goldfragment/copperfragment/fragment_netherite_scrap exist). The 8th old
         // recipe, "fragmentshellforged" (raw-hellforged-material -> demonitefragment), is skipped:

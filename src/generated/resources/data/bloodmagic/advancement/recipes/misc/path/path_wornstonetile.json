@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bloodmagic:path/path_wornstonetile"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_worn_stone_path": {
+      "conditions": {
+        "items": [
+          {
+            "items": "bloodmagic:wornstonebrickpath"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_worn_stone_path"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bloodmagic:path/path_wornstonetile"
+    ]
+  }
+}

@@ -355,6 +355,17 @@ public class BMLanguageProvider extends LanguageProvider {
 
         add(BMBlocks.INCENSE_ALTAR, "Incense Altar");
 
+        // Incense Altar road/path blocks (see BMBlocks/IncenseAltarPathBlock) - names match 1.20.1's
+        // guidebook phrasing ("Wooden Path"/"Stone Path"/"Worn Stone Path"/"Obsidian Path").
+        add(BMBlocks.WOOD_BRICK_PATH, "Wooden Path");
+        add(BMBlocks.WOOD_TILE_PATH, "Wooden Tile Path");
+        add(BMBlocks.STONE_BRICK_PATH, "Stone Path");
+        add(BMBlocks.STONE_TILE_PATH, "Stone Tile Path");
+        add(BMBlocks.WORN_STONE_BRICK_PATH, "Worn Stone Path");
+        add(BMBlocks.WORN_STONE_TILE_PATH, "Worn Stone Tile Path");
+        add(BMBlocks.OBSIDIAN_BRICK_PATH, "Obsidian Path");
+        add(BMBlocks.OBSIDIAN_TILE_PATH, "Obsidian Tile Path");
+
         add("effect.bloodmagic.soul_snare", "Soul Snare");
         add("effect.bloodmagic.soft_fall", "Soft Fall");
         add("effect.bloodmagic.fire_fuse", "Fire Fuse");
