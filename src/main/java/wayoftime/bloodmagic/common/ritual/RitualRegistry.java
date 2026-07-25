@@ -27,6 +27,7 @@ import wayoftime.bloodmagic.common.ritual.types.MagnetismRitual;
 import wayoftime.bloodmagic.common.ritual.types.MeteorRitual;
 import wayoftime.bloodmagic.common.ritual.types.PlacerRitual;
 import wayoftime.bloodmagic.common.ritual.types.RegenerationRitual;
+import wayoftime.bloodmagic.common.ritual.types.SimpleVaultRitual;
 import wayoftime.bloodmagic.common.ritual.types.SphereCreateRitual;
 import wayoftime.bloodmagic.common.ritual.types.SpeedRitual;
 import wayoftime.bloodmagic.common.ritual.types.UpgradeRemoveRitual;
@@ -63,6 +64,7 @@ public class RitualRegistry {
         register(new HarvestRitual());
         register(new MeteorRitual());
         register(new VaultRitual());
+        register(new SimpleVaultRitual());
         register(new ArmourEvolveRitual());
         register(new CrystalHarvestRitual());
         register(new PlacerRitual());

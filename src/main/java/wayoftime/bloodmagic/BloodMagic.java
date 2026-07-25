@@ -27,6 +27,7 @@ import wayoftime.bloodmagic.common.fluid.BMFluids;
 import wayoftime.bloodmagic.common.incense.IncenseTranquilityRegistry;
 import wayoftime.bloodmagic.common.item.BMItems;
 import wayoftime.bloodmagic.common.item.BMMaterialsAndTiers;
+import wayoftime.bloodmagic.common.loot.BMLootItemFunctions;
 import wayoftime.bloodmagic.common.loot.BMLootModifiers;
 import wayoftime.bloodmagic.common.recipe.BMRecipes;
 import wayoftime.bloodmagic.common.recipe.ingredient.BMIngredientTypes;
@@ -78,6 +79,7 @@ public class BloodMagic {
         BMTabs.register(modBus);
         BMPotions.register(modBus);
         BMLootModifiers.register(modBus);
+        BMLootItemFunctions.register(modBus);
         modBus.addListener(BMNetworking::register);
         RitualRegistry.bootstrap();
         HarvestHandlerRegistry.bootstrap();

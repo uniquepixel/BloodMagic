@@ -18,11 +18,14 @@ import net.minecraft.world.level.storage.loot.functions.SetPotionFunction;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.NumberProvider;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import wayoftime.bloodmagic.api.BMIdentifiers.Upgrades;
 import wayoftime.bloodmagic.common.block.BMBlocks;
 import wayoftime.bloodmagic.common.item.BMItems;
 import wayoftime.bloodmagic.common.loot.BMLootTables;
 
 import java.util.function.BiConsumer;
+
+import static wayoftime.bloodmagic.common.loot.SetUpgradeTomeFunction.setUpgradeTome;
 
 /**
  * Full-fidelity port of 1.20.1's {@code wayoftime.bloodmagic.common.data.GeneratorLootTable}'s
@@ -167,7 +170,8 @@ public class DungeonChestLoot implements LootTableSubProvider {
         LootPool.Builder tartaricSoulPool = LootPool.lootPool().setRolls(UniformGenerator.between(1, 2))
                 .add(LootItem.lootTableItem(BMItems.RAW_WILL.get()).setWeight(5).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3))));
         LootPool.Builder upgradePool = LootPool.lootPool().setRolls(UniformGenerator.between(1, 2))
-                .add(LootItem.lootTableItem(BMItems.UPGRADE_TOME.get()).setWeight(3));
+                .add(LootItem.lootTableItem(BMItems.UPGRADE_TOME.get()).setWeight(3)
+                        .apply(setUpgradeTome(UniformGenerator.between(300, 600), Upgrades.HEALTH)));
         acceptor.accept(BMLootTables.SIMPLE_DUNGEON_TEST_GEMS, LootTable.lootTable().withPool(tartaricGemPool).withPool(tartaricSoulPool).withPool(upgradePool));
 
         // ================= standard_dungeon/* =================
@@ -212,7 +216,8 @@ public class DungeonChestLoot implements LootTableSubProvider {
                 BMItems.SENTIENT_PICKAXE.get(), BMItems.SENTIENT_SCYTHE.get(),
                 BMItems.SENTIENT_AXE.get(),
                 BMItems.SENTIENT_SHOVEL.get()}, 1, 2, ConstantValue.exactly(1), enchantWithLevels(UniformGenerator.between(25, 39)));
-        enchantingLoot.add(LootItem.lootTableItem(BMItems.UPGRADE_TOME.get()).setWeight(4));
+        enchantingLoot.add(LootItem.lootTableItem(BMItems.UPGRADE_TOME.get()).setWeight(4)
+                .apply(setUpgradeTome(UniformGenerator.between(200, 400), Upgrades.EXPERIENCED)));
         enchantingLoot.add(LootItem.lootTableItem(BMItems.WEAK_TAU_SEED.get()).setWeight(10).apply(SetItemCountFunction.setCount(UniformGenerator.between(4, 7))));
         enchantingLoot.add(LootItem.lootTableItem(BMItems.STRONG_TAU_SEED.get()).setWeight(5).apply(SetItemCountFunction.setCount(UniformGenerator.between(4, 7))));
         addMultipleItemsWithSameParams(enchantingLoot, new Item[]{BMItems.CORROSIVE_CATALYST.get(),
@@ -332,8 +337,10 @@ public class DungeonChestLoot implements LootTableSubProvider {
                 Items.DIAMOND_CHESTPLATE, Items.DIAMOND_LEGGINGS,
                 Items.DIAMOND_BOOTS}, 1, 2, ConstantValue.exactly(1), enchantWithLevels(UniformGenerator.between(20, 25)), SetItemDamageFunction.setDamage(UniformGenerator.between(0.7F, 0.9F)));
 
-        smithyLoot.add(LootItem.lootTableItem(BMItems.UPGRADE_TOME.get()).setWeight(4));
-        smithyLoot.add(LootItem.lootTableItem(BMItems.UPGRADE_TOME.get()).setWeight(4));
+        smithyLoot.add(LootItem.lootTableItem(BMItems.UPGRADE_TOME.get()).setWeight(4)
+                .apply(setUpgradeTome(UniformGenerator.between(150, 225), Upgrades.DIGGING)));
+        smithyLoot.add(LootItem.lootTableItem(BMItems.UPGRADE_TOME.get()).setWeight(4)
+                .apply(setUpgradeTome(UniformGenerator.between(250, 350), Upgrades.MELEE_DAMAGE)));
         addMultipleItemsWithQualitySameParams(smithyLoot, new Item[]{BMItems.CORROSIVE_CATALYST.get(),
                 BMItems.RAW_CATALYST.get(), BMItems.STEADFAST_CATALYST.get(),
                 BMItems.VENGEFUL_CATALYST.get(),
@@ -380,7 +387,8 @@ public class DungeonChestLoot implements LootTableSubProvider {
                 BMItems.RAW_CATALYST.get(), BMItems.STEADFAST_CATALYST.get(),
                 BMItems.VENGEFUL_CATALYST.get(),
                 BMItems.DESTRUCTIVE_CATALYST.get()}, 2, 3, UniformGenerator.between(2, 5));
-        miningOreLoot.add(LootItem.lootTableItem(BMItems.UPGRADE_TOME.get()).setWeight(4));
+        miningOreLoot.add(LootItem.lootTableItem(BMItems.UPGRADE_TOME.get()).setWeight(4)
+                .apply(setUpgradeTome(UniformGenerator.between(200, 300), Upgrades.DIGGING)));
         addMultipleItemsWithQualitySameParams(miningOreLoot, empoweredWeaponAnointments, 3, 2, UniformGenerator.between(2, 5));
         miningOreLoot.add(LootItem.lootTableItem(BMItems.HELLFORGED_PARTS.get()).setWeight(1).setQuality(10).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))));
         miningOreLoot.add(LootItem.lootTableItem(Items.MUSIC_DISC_PIGSTEP).setWeight(3).setQuality(5).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))));
@@ -413,7 +421,11 @@ public class DungeonChestLoot implements LootTableSubProvider {
                 BMItems.VENGEFUL_CATALYST.get(),
                 BMItems.DESTRUCTIVE_CATALYST.get()}, 2, 3, UniformGenerator.between(2, 5));
 
-        minesSmithyLoot.add(LootItem.lootTableItem(BMItems.UPGRADE_TOME.get()).setWeight(4));
+        // 1.20.1's mines/smithy_loot had two separate upgradetome entries here (arrow_protect and
+        // physical_protect, both weight 4, both points 200-300) - consolidated into this table's
+        // single UPGRADE_TOME entry by passing both as candidates for setUpgradeTome to pick between.
+        minesSmithyLoot.add(LootItem.lootTableItem(BMItems.UPGRADE_TOME.get()).setWeight(4)
+                .apply(setUpgradeTome(UniformGenerator.between(200, 300), Upgrades.ARROW_PROTECT, Upgrades.PHYSICAL_PROTECT)));
         minesSmithyLoot.add(LootItem.lootTableItem(BMItems.RAW_WILL.get()).setWeight(10).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 4))));
 
         addMultipleItemsWithQualitySameParams(minesSmithyLoot, empoweredWeaponAnointments3, 2, 3, UniformGenerator.between(1, 3));

@@ -56,11 +56,14 @@ public class BMBlockTagProvider extends BlockTagsProvider {
         this.tag(BMTags.Blocks.PULSE_ON_CRAFTING)
                 .add(Blocks.REDSTONE_LAMP, Blocks.NOTE_BLOCK);
 
+        // Fixed from BlockGroups.HELLFORGED_BLOCK: same naming-collision bug as T5_CAPSTONES above
+        // (that's this branch's unrelated pre-existing "hellforged_block" placeholder machine block,
+        // not the real ported Hellforged storage/beacon-base block family, which is DUNGEON_METAL).
         this.tag(BMTags.Blocks.STORAGE_BLOCKS_HELLFORGED)
-                .addAll(BlockGroups.HELLFORGED_BLOCK);
+                .addAll(BlockGroups.DUNGEON_METAL);
 
         this.tag(BlockTags.BEACON_BASE_BLOCKS)
-                .addAll(BlockGroups.HELLFORGED_BLOCK);
+                .addAll(BlockGroups.DUNGEON_METAL);
 
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(BMBlocks.BLOOD_ALTAR.block().getKey(), BMBlocks.BLOOD_TANK.block().getKey(), BMBlocks.ALCHEMY_TABLE.block().getKey(), BMBlocks.TELEPOSER.block().getKey(), BMBlocks.INCENSE_ALTAR.block().getKey(), BMBlocks.ITEM_ROUTER.block().getKey(), BMBlocks.MASTER_ROUTING_NODE.block().getKey(), BMBlocks.INPUT_ROUTING_NODE.block().getKey(), BMBlocks.OUTPUT_ROUTING_NODE.block().getKey(), BMBlocks.DEMON_CRUCIBLE.block().getKey(), BMBlocks.DEMON_CRYSTALLIZER.block().getKey(), BMBlocks.DEMON_PYLON.block().getKey(), BMBlocks.SHAPED_CHARGE.block().getKey(), BMBlocks.DEFORESTER_CHARGE.block().getKey(), BMBlocks.VEINMINE_CHARGE.block().getKey(), BMBlocks.FUNGAL_CHARGE.block().getKey());

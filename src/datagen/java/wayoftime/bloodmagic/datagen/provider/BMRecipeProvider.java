@@ -281,16 +281,17 @@ public class BMRecipeProvider extends RecipeProvider {
         array(output, "bounce", arrayTexture("bouncearray.png"), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:slimeballs"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), new ItemStack(Items.BEDROCK));
 
         // ===== Alchemy Array, batch 5 (the 8th special effect, Binding, now that reagent_binding
-        // exists - 4 of 1.20.1's 5 living_* binding arrays ported; "living_trainer" (which produced
-        // an "upgradetrainer" item) is skipped since this branch's closest equivalent, UPGRADE_TOME,
-        // isn't confirmed to be the same item and guessing wrong would silently misroute a recipe.
-        // Texture ported from 1.20.1's AlchemyArrayRegistry.BINDING_ARRAY constant, which all 5 of
-        // its living_* recipes shared) =====
+        // exists - all 5 of 1.20.1's living_* binding arrays ported, including "living_trainer"
+        // (1.20.1's ItemLivingTrainer), whose 1:1 equivalent on this branch is BMItems.TRAINING_BRACELET
+        // (same whitelist/blacklist Living Armour XP-gating mechanic, same translated name "Living
+        // Training Bracelet"). Texture ported from 1.20.1's AlchemyArrayRegistry.BINDING_ARRAY
+        // constant, which all 5 of its living_* recipes shared) =====
         alchemyTable(output, "reagent_binding", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/glowstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:dusts/redstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:gunpowders"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:nuggets/gold")))), new ItemStack(BMItems.REAGENT_BINDING.get()), 3, 1000, 200);
         array(output, "living_helmet", arrayTexture("bindingarray.png"), Ingredient.of(BMItems.REAGENT_BINDING.get()), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:iron_helmet"))), new ItemStack(BMItems.LIVING_HELMET.get()));
         array(output, "living_plate", arrayTexture("bindingarray.png"), Ingredient.of(BMItems.REAGENT_BINDING.get()), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:iron_chestplate"))), new ItemStack(BMItems.LIVING_PLATE.get()));
         array(output, "living_leggings", arrayTexture("bindingarray.png"), Ingredient.of(BMItems.REAGENT_BINDING.get()), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:iron_leggings"))), new ItemStack(BMItems.LIVING_LEGGINGS.get()));
         array(output, "living_boots", arrayTexture("bindingarray.png"), Ingredient.of(BMItems.REAGENT_BINDING.get()), Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse("minecraft:iron_boots"))), new ItemStack(BMItems.LIVING_BOOTS.get()));
+        array(output, "living_trainer", arrayTexture("bindingarray.png"), Ingredient.of(BMItems.REAGENT_BINDING.get()), Ingredient.of(Items.DIAMOND), new ItemStack(BMItems.TRAINING_BRACELET.get()));
 
         // ===== Anointments (13 ported from 1.20.1; the original's "slate_vial" ingredient doesn't
         // exist on this branch, substituted with the closest existing tier - Imbued Slate) =====
@@ -1266,14 +1267,23 @@ public class BMRecipeProvider extends RecipeProvider {
                 .save(output, BloodMagic.rl("ethereal_mimic"));
 
         // Dungeon Keys - upstream's "simple_key" hellfire/soul forge recipe is portable as-is
-        // (redstone block + 2 iron ingots + infused slate, all real on this branch). "mine_key" is
-        // still skipped: it needs one of 5 per-Will-type "*crystal" items and a smeltable Hellforged
-        // Ingot, neither of which exist on this branch (BMItems.HELLFORGED_PARTS is a different,
-        // already-used item - see BMRecipeProvider's hellforged_resonator comment above). Upstream's
+        // (redstone block + 2 iron ingots + infused slate, all real on this branch). Upstream's
         // LP-scale minimumDrain/drain (300.0/50.0) don't carry over meaningfully to this branch's
         // reworked Hellfire Forge (a Will-based minWill/drain pair, not raw LP) - 50/10 matches the
         // scale of this branch's other simple, low-tier forge recipes (sanguine_reverter, resonator).
         soulForge(output, "simple_key", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:storage_blocks/redstone"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/iron"))), Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/iron"))), Ingredient.of(BMItems.SLATE_IMBUED.get())), new ItemStack(BMItems.DUNGEON_SIMPLE_KEY.get()), 50, 10);
+        // "mine_key" was previously skipped since it needs a smeltable Hellforged Ingot, which
+        // didn't exist on this branch at the time - it now does (BMItems.HELLFORGED_INGOT, added
+        // alongside the rest of the Hellforged material chain). Upstream also required one of 5
+        // per-Will-type "*_CRYSTAL" items (CORROSIVE/DESTRUCTIVE/VENGEFUL/RAW/STEADFAST_CRYSTAL as
+        // alternatives in a single Ingredient slot); this branch never split the Will Crystal ore
+        // drop into 5 typed items, so - matching the exact same substitution DungeonChestLoot.java's
+        // javadoc already establishes for this concept - the matching *_CATALYST family
+        // (BMItems#CORROSIVE_CATALYST/STEADFAST_CATALYST/VENGEFUL_CATALYST/DESTRUCTIVE_CATALYST/
+        // RAW_CATALYST) is used as the 5 alternatives instead. minWill/drain (300/80) matches this
+        // branch's other Hellforged-tier forge recipe, hellforged_resonator, since both consume a
+        // rare late-game Hellforged material.
+        soulForge(output, "mine_key", List.of(Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.parse("c:ingots/copper"))), Ingredient.of(BMItems.CORROSIVE_CATALYST.get(), BMItems.DESTRUCTIVE_CATALYST.get(), BMItems.VENGEFUL_CATALYST.get(), BMItems.RAW_CATALYST.get(), BMItems.STEADFAST_CATALYST.get()), Ingredient.of(BMItems.HELLFORGED_INGOT.get()), Ingredient.of(BMItems.SLATE_IMBUED.get())), new ItemStack(BMItems.DUNGEON_MINE_KEY.get()), 300, 80);
 
         // ===== Item Routing "Filter" system, restored from 1.20.1 (see BMItems and
         // wayoftime.bloodmagic.common.item.filter.AbstractFilterItem). Each filter is a paper "form"

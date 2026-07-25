@@ -1,12 +1,12 @@
 {
-  "title": "Ritual of the Vault",
-  "icon": { "id": "bloodmagic:hellforged_block" },
+  "title": "Ritual of the Simple Vault",
+  "icon": { "id": "bloodmagic:simplekey" },
   "pages": [
     {
       "components": [
         {
           "type": "modopedia:text",
-          "text": "This is the more advanced of two rituals that open a passage to a self-contained loot dungeon - the counterpart to the cheaper Ritual of the Simple Vault. Tier 1, costs $(blood)200,000 LP$() to activate.\nUse a Ritual Diviner for easier construction."
+          "text": "This is the cheaper of two rituals that open a passage to a self-contained loot dungeon, generating a smaller entrance into the Demon Realm than its counterpart, the Ritual of the Vault. Tier 0, costs $(blood)80,000 LP$() to activate.\nUse a Ritual Diviner for easier construction."
         }
       ]
     },
@@ -22,7 +22,7 @@
       "components": [
         {
           "type": "modopedia:multiblock",
-          "multiblock_id": "bloodmagic:ritual/vault",
+          "multiblock_id": "bloodmagic:ritual/simple_vault",
           "previewable": true
         }
       ]

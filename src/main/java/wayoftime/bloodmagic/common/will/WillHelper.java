@@ -12,8 +12,10 @@ import java.util.List;
 
 /**
  * Helper for the Demon Will "soul economy": a player's total Will is simply whatever their Soul
- * Gems (Tartaric Gems) currently hold - there's no separate world-side pool for this part of the
- * system (that's the ambient chunk-based aura, a different, not-yet-ported mechanic).
+ * Gems (Tartaric Gems) currently hold - there's no separate player-side pool for this part of the
+ * system (that's distinct from the ambient chunk-based Will aura, which is a per-world/per-chunk
+ * pool handled separately by {@link WorldWillHelper} and used throughout DemonCrucibleTile,
+ * DemonPylonTile, and DemonCrystallizerTile).
  */
 public class WillHelper {
     public static List<ItemStack> allSlots(Player player) {

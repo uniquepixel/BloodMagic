@@ -217,6 +217,7 @@ public class BMLanguageProvider extends LanguageProvider {
         add("ritual.bloodmagic.harvest", "Ritual of the Harvest");
         add("ritual.bloodmagic.meteor", "Ritual of the Meteor");
         add("ritual.bloodmagic.vault", "Ritual of the Vault");
+        add("ritual.bloodmagic.simple_vault", "Ritual of the Simple Vault");
         add("ritual.bloodmagic.armour_evolve", "Ritual of Living Evolution");
         add("ritual.bloodmagic.crafting", "Rhythm of the Beating Anvil");
         add("ritual.bloodmagic.crushing", "Ritual of the Crusher");
@@ -481,6 +482,7 @@ public class BMLanguageProvider extends LanguageProvider {
         add("jei.bloodmagic.recipe.altar", "Blood Altar");
         add("jei.bloodmagic.recipe.arc", "ARC Recipe");
         add("jei.bloodmagic.recipe.arcfurnace", "ARC Furnace Recipe");
+        add("jei.bloodmagic.recipe.bloodtank", "Blood Tank");
         add("jei.bloodmagic.recipe.consumptionrate", "Consumption: %s LP/t");
         add("jei.bloodmagic.recipe.drainrate", "Drain: %s LP/t");
         add("jei.bloodmagic.recipe.info", "Info");

@@ -47,6 +47,19 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "exp": {
+                "type": "minecraft:uniform",
+                "max": 600.0,
+                "min": 300.0
+              },
+              "function": "bloodmagic:set_upgrade_tome",
+              "upgrades": [
+                "bloodmagic:health"
+              ]
+            }
+          ],
           "name": "bloodmagic:upgrade_tome",
           "weight": 3
         }

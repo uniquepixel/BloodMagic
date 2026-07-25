@@ -894,11 +894,37 @@
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "exp": {
+                "type": "minecraft:uniform",
+                "max": 225.0,
+                "min": 150.0
+              },
+              "function": "bloodmagic:set_upgrade_tome",
+              "upgrades": [
+                "bloodmagic:digging"
+              ]
+            }
+          ],
           "name": "bloodmagic:upgrade_tome",
           "weight": 4
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "exp": {
+                "type": "minecraft:uniform",
+                "max": 350.0,
+                "min": 250.0
+              },
+              "function": "bloodmagic:set_upgrade_tome",
+              "upgrades": [
+                "bloodmagic:melee_damage"
+              ]
+            }
+          ],
           "name": "bloodmagic:upgrade_tome",
           "weight": 4
         },

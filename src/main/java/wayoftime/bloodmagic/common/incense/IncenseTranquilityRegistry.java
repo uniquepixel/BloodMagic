@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.GrassBlock;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import wayoftime.bloodmagic.common.block.BMBlocks;
 import wayoftime.bloodmagic.common.fluid.BMFluids;
 
 import java.util.ArrayList;
@@ -79,7 +80,10 @@ public class IncenseTranquilityRegistry {
         registerBlock(Blocks.WHEAT, EnumTranquilityType.CROP, 1.0D);
         registerBlock(Blocks.NETHER_WART, EnumTranquilityType.CROP, 1.0D);
         registerBlock(Blocks.BEETROOTS, EnumTranquilityType.CROP, 1.0D);
-        // WEAK_TAU/STRONG_TAU (Demon Will crops) aren't ported to this branch yet - skipped.
+        // WEAK_TAU/STRONG_TAU are also this mod's own DeferredHolders - same early-resolution issue
+        // as LIFE_ESSENCE_BLOCK above, same lazy-predicate fix.
+        registerTranquilityHandler(state -> state.getBlock() == BMBlocks.WEAK_TAU.get(), EnumTranquilityType.CROP, 1.2D);
+        registerTranquilityHandler(state -> state.getBlock() == BMBlocks.STRONG_TAU.get(), EnumTranquilityType.CROP, 1.5D);
 
         // Added some blocks to the list at Tara's suggestion. (kept verbatim from 1.20.1)
         registerBlock(Blocks.CRIMSON_NYLIUM, EnumTranquilityType.FIRE, 0.75D);

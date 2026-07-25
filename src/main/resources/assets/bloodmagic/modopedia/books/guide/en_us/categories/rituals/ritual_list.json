@@ -26,6 +26,7 @@
     "rituals/ritual_list/ritual_meteor",
     "rituals/ritual_list/ritual_placer",
     "rituals/ritual_list/ritual_regeneration",
+    "rituals/ritual_list/ritual_simple_vault",
     "rituals/ritual_list/ritual_speed",
     "rituals/ritual_list/ritual_sphere_create",
     "rituals/ritual_list/ritual_upgrade_remove",

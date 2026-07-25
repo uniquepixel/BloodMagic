@@ -221,7 +221,7 @@ public class LivingUpgrades {
                         .level(50000, 180)
                         .level(80000, 240)
                         .level(150000, 300)
-                        .withEffect(LivingEffectComponents.ATTRIBUTES.get(), new AttributeEffect(Upgrades.DIGGING.location(), Attributes.MINING_EFFICIENCY, Operation.ADD_MULTIPLIED_BASE, LevelBasedValue.lookup(List.of(0.1f, 0.2f, 0.3f, 0.4f, 0.5f, 0.6f, 0.7f, 0.8f, 1f, 1.2f, 1.5f), LevelBasedValue.constant(0f))))
+                        .withEffect(LivingEffectComponents.ATTRIBUTES.get(), new AttributeEffect(Upgrades.DIGGING.location(), Attributes.MINING_EFFICIENCY, Operation.ADD_MULTIPLIED_BASE, LevelBasedValue.lookup(List.of(0.1f, 0.2f, 0.3f, 0.4f, 0.5f, 0.6f, 0.8f, 1f, 1.2f, 1.5f), LevelBasedValue.constant(0f))))
                         .withEffect(LivingEffectComponents.BREAK_BLOCK.get(), new AddMobEffect(MobEffects.DIG_SPEED, LevelBasedValue.lookup(List.of(0f, 0f, 0f, 1f, 1f, 1f, 1f, 1f, 2f, 2f), LevelBasedValue.constant(0)), LevelBasedValue.lookup(List.of(0f, 50f, 60f, 100f, 100f, 100f, 100f, 150f, 150f, 150f), LevelBasedValue.constant(0))))
                         .build()
         );
@@ -414,7 +414,7 @@ public class LivingUpgrades {
                         .level(35000, 130)
                         .level(50000, 180)
                         .level(70000, 250)
-                        .withEffect(LivingEffectComponents.ATTRIBUTES.get(), new AttributeEffect(Upgrades.SPEED.location(), Attributes.MOVEMENT_SPEED, Operation.ADD_MULTIPLIED_BASE, LevelBasedValue.lookup(List.of(0.1f, 0.2f, 0.3f, 0.4f, 0.5f, 0.6f, 0.7f, 0.9f, 1.1f, 1.3f, 1.5f), LevelBasedValue.constant(0f))))
+                        .withEffect(LivingEffectComponents.ATTRIBUTES.get(), new AttributeEffect(Upgrades.SPEED.location(), Attributes.MOVEMENT_SPEED, Operation.ADD_MULTIPLIED_BASE, LevelBasedValue.lookup(List.of(0.1f, 0.2f, 0.3f, 0.4f, 0.5f, 0.7f, 0.9f, 1.1f, 1.3f, 1.5f), LevelBasedValue.constant(0f))))
                         .withEffect(LivingEffectComponents.TICK.get(), new AddMobEffect(MobEffects.MOVEMENT_SPEED, LevelBasedValue.lookup(List.of(0f, 0f, 0f, 0f, 0f, 0f, 0f, 1f, 1f, 2f), LevelBasedValue.constant(0)), LevelBasedValue.lookup(List.of(0f, 0f, 0f, 0f, 0f, 20f, 60f, 60f, 100f, 200f), LevelBasedValue.constant(0))), LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, new EntityPredicate.Builder().flags(new EntityFlagsPredicate.Builder().setSprinting(true))))
                         .build()
         );

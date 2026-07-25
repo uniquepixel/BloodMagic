@@ -507,6 +507,19 @@
         },
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "exp": {
+                "type": "minecraft:uniform",
+                "max": 300.0,
+                "min": 200.0
+              },
+              "function": "bloodmagic:set_upgrade_tome",
+              "upgrades": [
+                "bloodmagic:digging"
+              ]
+            }
+          ],
           "name": "bloodmagic:upgrade_tome",
           "weight": 4
         },
